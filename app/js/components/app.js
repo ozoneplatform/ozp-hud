@@ -3,6 +3,7 @@
 'use strict';
 
 var React = require('react/addons');
+var Header = require('./header');
 
 var APP = React.createClass({
 
@@ -10,10 +11,7 @@ var APP = React.createClass({
         /*jshint ignore:start */
         return (
             <div>
-                <p>
-                  This template brings together all the pieces you need to start building your first React app.
-                  Gulp is used for orchastrating the build process, and Webpack is used to combine the Javascripts together.
-                </p>
+                <Header />
             </div>
         );
         /*jshint ignore:end */
