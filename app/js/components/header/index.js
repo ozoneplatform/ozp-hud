@@ -16,10 +16,31 @@ var Header = React.createClass({
 	toggle3: function(){
 		alert("toggle 3");
 	},
+
+	getInitialState: function() {
+	    var date = new Date();
+	 	var curTime = date.getHours() + ":" + date.getMinutes();
+	    return {time: curTime};
+    },
+
+	getTime: function(){
+		var date = new Date();
+ 		var time = date.getHours() + ":" + date.getMinutes();
+        this.setState({time: time});
+  	},
+
 	
+
+	 componentDidMount: function() {
+    	this.interval = setInterval(this.getTime, 30000);
+  	},
+
+  	componentWillUnmount: function() {
+    	clearInterval(this.interval);
+  	},
+
     render: function () {
     	var user = "J Smith";
-    	var time = "13:15 EST";
     	return (
     		<nav className="navbar navbar-default navbar-inverse app-toolbar no-rounded-corners navbar-fixed-top" role="navigation">
     			<div className="container-fluid">    			    
@@ -66,7 +87,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#">
-				    				<b>{time}</b>
+				    				<b>{this.state.time}</b>
 				    			</a>
 				        	</li>
 				        	<li>
