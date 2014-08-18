@@ -86,7 +86,16 @@
 
 #ozp-logo {
     > img {
-    	height: 30px;
-    	width: 30px;
+    	height: 20px;
+    	width: 20px;
     }
+}
+
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:20px !important}
+
+/*-- change navbar dropdown color --*/
+.navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
+	background-color: black;
+    color:#ffffff;
 }
