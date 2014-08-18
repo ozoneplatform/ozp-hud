@@ -48,7 +48,7 @@ var Header = React.createClass({
 	    			    <ul className="nav navbar-nav">
 				        	<li>
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
-				        			<i className="fa fa-navicon fa-2x" />
+				        			<i className="fa fa-navicon fa-lg" />
 				        		</a>
 				                <ul className="dropdown-menu" role="menu">
 				                    <li><a href="#"><i className="fa fa-th"></i> App Library</a></li>
@@ -57,7 +57,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-				    				<i className="fa fa-shopping-cart fa-2x" />
+				    				<i className="fa fa-shopping-cart fa-lg" />
 				    			</a>
 				        	</li>
 				        	<li className="active">
@@ -67,7 +67,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-		    		    			<i className="fa fa-star fa-2x" />
+		    		    			<i className="fa fa-star fa-lg" />
 		    		    		</a>
 				        	</li>
 				        </ul>
@@ -77,12 +77,12 @@ var Header = React.createClass({
 	    			    <ul className="nav navbar-nav">
 				        	<li>
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
-				        			<i className="fa fa-wrench fa-2x" />
+				        			<i className="fa fa-wrench fa-lg" />
 				        		</a>
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#">
-				    				<i className="fa fa-bell fa-2x" />
+				    				<i className="fa fa-bell fa-lg" />
 				    			</a>
 				        	</li>
 				        	<li>
@@ -92,7 +92,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
-						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
+						        	<i className="fa fa-user fa-lg" /><b>{" " + user}</b>
 				    			</a>
 				    			<ul className="dropdown-menu" role="menu">
 				                    <li><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
@@ -101,7 +101,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-		    		    			<i className="fa fa-question fa-2x" />
+		    		    			<i className="fa fa-question fa-lg" />
 		    		    		</a>
 				        	</li>
 				        </ul>
