@@ -4,6 +4,22 @@ var React = require('react/addons');
 require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 
+var genTime = function(){
+	var date = new Date();
+	var hour = date.getHours();
+	var min = date.getMinutes();
+	var hourStr = hour.toString();
+	var minStr = min.toString();
+	if (hour < 10){
+		hourStr = '0' + hourStr;
+	}
+	if (min < 10){
+		minStr = '0' + minStr;
+	}
+
+	return (hourStr + ':' + minStr);
+}
+
 var Header = React.createClass({
 	toggle: function(){
 		alert("test test test");
@@ -18,15 +34,17 @@ var Header = React.createClass({
 	},
 
 	getInitialState: function() {
-	    var date = new Date();
+	    /*var date = new Date();
 	 	var curTime = date.getHours() + ":" + date.getMinutes();
-	    return {time: curTime};
+	    return {time: curTime};*/
+	    return {time: genTime()};
     },
 
 	getTime: function(){
-		var date = new Date();
+		/*var date = new Date();
  		var time = date.getHours() + ":" + date.getMinutes();
-        this.setState({time: time});
+        this.setState({time: time});*/
+		this.setState({time: genTime()});
   	},
 
 	
