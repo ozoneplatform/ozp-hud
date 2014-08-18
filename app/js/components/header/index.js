@@ -3,6 +3,7 @@
 var React = require('react/addons');
 require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
+var appsMallLogo  = './images/AppsMall_Icon.png';
 
 var genTime = function(){
 	var date = new Date();
@@ -74,19 +75,14 @@ var Header = React.createClass({
 				                </ul>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-				    				<i className="fa fa-shopping-cart fa-lg" />
-				    			</a>
+						        <a id="appsmall-logo" href="#" onClick={this.toggle3}>
+					    			<img src={appsMallLogo} />
+					    		</a>
 				        	</li>
 				        	<li className="active">
 						        <a id="ozp-logo" href="#" onClick={this.toggle3}>
 					    			<img src={logo} />
 					    		</a>
-				        	</li>
-				        	<li>
-						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-		    		    			<i className="fa fa-star fa-lg" />
-		    		    		</a>
 				        	</li>
 				        </ul>
     			    </div>

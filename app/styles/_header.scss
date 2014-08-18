@@ -91,6 +91,13 @@
     }
 }
 
+#appsmall-logo {
+    > img {
+    	height: 20px;
+    	width: 14px;
+    }
+}
+
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
 .navbar {min-height:20px !important}
 
