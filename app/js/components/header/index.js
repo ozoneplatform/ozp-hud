@@ -4,6 +4,10 @@ var React = require('react/addons');
 require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
+var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
+
+var appsLogos  = ['./images/AppsMall_Icon.png'];
+
 
 var genTime = function(){
 	var date = new Date();
@@ -35,16 +39,10 @@ var Header = React.createClass({
 	},
 
 	getInitialState: function() {
-	    /*var date = new Date();
-	 	var curTime = date.getHours() + ":" + date.getMinutes();
-	    return {time: curTime};*/
 	    return {time: genTime()};
     },
 
 	getTime: function(){
-		/*var date = new Date();
- 		var time = date.getHours() + ":" + date.getMinutes();
-        this.setState({time: time});*/
 		this.setState({time: genTime()});
   	},
 
@@ -85,6 +83,8 @@ var Header = React.createClass({
 					    		</a>
 				        	</li>
 				        </ul>
+				        				        	<QuickLaunchIcons />
+
     			    </div>
     			    
     			    <div id="user-menu" className="dropdown navbar-right">
