@@ -1,9 +1,8 @@
 /** @jsx React.DOM */
 
-'use strict';
-
 var React = require('react/addons');
 var Header = require('./header');
+var Library = require('./library');
 
 var APP = React.createClass({
 
@@ -12,6 +11,7 @@ var APP = React.createClass({
         return (
             <div>
                 <Header />
+                <Library />
             </div>
         );
         /*jshint ignore:end */

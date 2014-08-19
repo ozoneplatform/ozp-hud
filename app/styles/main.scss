@@ -34,10 +34,11 @@ html, body {
 }
 
 .divider-vertical {
-height: 50px;
+height: 40px;
 margin: 0 9px;
 border-left: 1px solid #777777;
 border-right: 1px solid #777777;
 }
 
 @import 'header';
+@import 'search';

@@ -83,7 +83,7 @@ var Header = React.createClass({
 					    		</a>
 				        	</li>
 				        </ul>
-				        				        	<QuickLaunchIcons />
+				        <QuickLaunchIcons />
 
     			    </div>
     			    
@@ -100,7 +100,7 @@ var Header = React.createClass({
 				    			</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#">
+						        <a className="nav-bar-button" id="ozp-clock" href="#">
 				    				<b>{this.state.time}</b>
 				    			</a>
 				        	</li>
