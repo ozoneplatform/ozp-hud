@@ -67,7 +67,7 @@ var Header = React.createClass({
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
-				                <ul className="dropdown-menu" role="menu">
+				                <ul className="dropdown-menu" role="menu" id= "app-dropdown-menu">
 				                    <li><a href="#"><i className="fa fa-th"></i> App Library</a></li>
 				                    <li><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
 				                </ul>
@@ -84,13 +84,12 @@ var Header = React.createClass({
 				        	</li>
 				        </ul>
 				        <QuickLaunchIcons />
-
     			    </div>
     			    
     			    <div id="user-menu" className="dropdown navbar-right">
 	    			    <ul className="nav navbar-nav">
 				        	<li>
-						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
+						        <a className="nav-bar-button" href="#">
 				        			<i className="fa fa-wrench fa-2x" />
 				        		</a>
 				        	</li>
