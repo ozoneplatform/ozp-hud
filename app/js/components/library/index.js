@@ -6,7 +6,7 @@ var Library = React.createClass({
     render: function () {
         return (
             <div id="search">
-            	<h3 className="applib">Application Library</h3>
+            	<h3 id="applib"><b>Application Library</b></h3>
             </div>
         );
     }
