@@ -2,17 +2,18 @@
 
 var React = require('react/addons');
 require('bootstrap');
+var data = require('../../../data.js');
 
-var appsLogos  = ['./images/appIcons/paperAirplane.png', './images/appIcons/bread.png', './images/appIcons/chat.png', './images/appIcons/clipboard.png'];
+var apps = data.launcherApps;
 
 
 var QuickLaunchIcons = React.createClass({
 	render: function(){
-		var icons = appsLogos.map(function(image){
+		var icons = apps.map(function(app){
 						return(
-							<li key={image}>
-								<a href="#">
-					    			<img src={image} height='30px'/>
+							<li key={app.img}>
+								<a href={app.url}>
+					    			<img src={app.img} height='30px'/>
 				    			</a>
 			    			</li>
 						);
