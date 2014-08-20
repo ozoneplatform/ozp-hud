@@ -6,6 +6,8 @@ var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
 var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
 
+//var Alerts = require('./alerts');
+
 var appsLogos  = ['./images/AppsMall_Icon.png'];
 
 
@@ -36,6 +38,10 @@ var Header = React.createClass({
 	
 	toggle3: function(){
 		alert("toggle 3");
+	},
+	
+	toggleImage: function(){
+		alert("toggle image");
 	},
 
 	getInitialState: function() {
@@ -94,7 +100,7 @@ var Header = React.createClass({
 				        		</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#">
+						        <a className="nav-bar-button" id="ozp-notifications" href="#" onClick={this.toggleImage}>
 				    				<i className="fa fa-bell fa-2x" />
 				    			</a>
 				        	</li>
