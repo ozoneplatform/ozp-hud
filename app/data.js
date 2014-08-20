@@ -27,7 +27,7 @@ module.exports = (function (){
 			{img: './images/sampleListings/SearchWell.png'},
 			{img: './images/sampleListings/Skybox.png'},
 			{img: './images/sampleListings/TreeNote.png'},
-			{img: './images/sampleListings/WhiteboardGRaphs.png'}
+			{img: './images/sampleListings/WhiteboardGraphs.png'}
 		]
 	};
 

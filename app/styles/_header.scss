@@ -74,9 +74,8 @@
     }
 
     i {
-        color: #858585 !important;
+        color: #858585;
     }
-
 
     .dropdown-menu {
         margin-top: 0;
@@ -123,4 +122,12 @@
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
 	background-color: black;
     color:#ffffff;
+}
+
+#ozp-notifications {    
+   &:active {    
+       > i {
+           color: blue !important;
+       }
+   }
 }

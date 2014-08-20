@@ -5,8 +5,7 @@ require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
 var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
-
-//var Alerts = require('./alerts');
+var Alerts = require('../alerts/index.js');
 
 var appsLogos  = ['./images/AppsMall_Icon.png'];
 
@@ -52,9 +51,7 @@ var Header = React.createClass({
 		this.setState({time: genTime()});
   	},
 
-	
-
-	 componentDidMount: function() {
+	componentDidMount: function() {
     	this.interval = setInterval(this.getTime, 30000);
   	},
 
@@ -99,11 +96,7 @@ var Header = React.createClass({
 				        			<i className="fa fa-wrench fa-2x" />
 				        		</a>
 				        	</li>
-				        	<li>
-						        <a className="nav-bar-button" id="ozp-notifications" href="#" onClick={this.toggleImage}>
-				    				<i className="fa fa-bell fa-2x" />
-				    			</a>
-				        	</li>
+						    <Alerts />
 				        	<li>
 						        <a className="nav-bar-button" id="ozp-clock" href="#">
 				    				<b>{this.state.time}</b>
