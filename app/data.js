@@ -28,6 +28,10 @@ module.exports = (function (){
 			{img: './images/sampleListings/Skybox.png'},
 			{img: './images/sampleListings/TreeNote.png'},
 			{img: './images/sampleListings/WhiteboardGraphs.png'}
+		],
+		alerts: 	[
+			"Bagels in Lobby!", 
+			"Office Cat is here."
 		]
 	};
 
