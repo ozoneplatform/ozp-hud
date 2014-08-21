@@ -4,6 +4,7 @@ var React = require('react/addons');
 require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
+var dashboard  = './images/DashboardIconStatic.png';
 var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
 var Alerts = require('../alerts/index.js');
 
@@ -84,6 +85,16 @@ var Header = React.createClass({
 						        <a id="appsmall-logo" href="#" onClick={this.toggle3}>
 					    			<img src={appsMallLogo} />
 					    		</a>
+				        	</li>
+				        	<li>
+						        <a className="nav-bar-button" href="#">
+				        			<i id="ozp-dashboard" className="fa fa-desktop fa-2x" />
+				        		</a>
+				        	</li>
+				        	<li>
+				        		<a className="nav-bar-button" href="#">
+				        			<img src={dashboard} />
+				        		</a>
 				        	</li>
 				        </ul>
 				        <QuickLaunchIcons />
