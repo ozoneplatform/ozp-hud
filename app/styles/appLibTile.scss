@@ -1,8 +1,14 @@
-.app-lib-tile {
-    img {
-    	position: absolute;
-    	color: black;
-        width: 220px;
-        height: 137px;
-    }
+#applib {
+    padding-left: 30px;
+}
+
+#applib-tiles {
+	margin: 0 25px 25px 0;
+    width: 200px;
+    height: 120px;
+}
+
+.ozp-lib-name {
+	color: white;
+	text-align: center;
 }

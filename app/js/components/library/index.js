@@ -11,9 +11,8 @@ var Library = React.createClass({
     	var icons = apps.map(function(app){
 			return(
 				<li key={app.img}>
-	                <a href="#">
-		    			<img src={app.img} />
-	    			</a>
+		    			<img id="applib-tiles" src={app.img} />
+		    		<h5 className="ozp-lib-name">{app.name}</h5>
     			</li>
 			);
 		});
