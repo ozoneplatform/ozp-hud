@@ -6,12 +6,17 @@ var data = require('../../../data.js');
 var apps = data.appLibrary;
 
 var Library = React.createClass({
+	
+	clickImage: function(url){
+		window.open(url);
+	},
 
     render: function () {
+    	var click = this.clickImage;
     	var icons = apps.map(function(app){
-			return(
+    		return(
 				<li key={app.img}>
-		    			<img id="applib-tiles" src={app.img} />
+					<img id="applib-tiles" src={app.img} onClick={click.bind(this, app.url)}/>
 		    		<h5 className="ozp-lib-name">{app.name}</h5>
     			</li>
 			);
