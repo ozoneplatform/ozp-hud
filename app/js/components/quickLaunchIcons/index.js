@@ -12,9 +12,14 @@ var QuickLaunchIcons = React.createClass({
 		var icons = apps.map(function(app){
 						return(
 							<li key={app.img}>
+							<div>
 								<a href={app.url}>
-					    			<img src={app.img} height='30px'/>
+					    			<img src={app.img} height='35px'/>
 				    			</a>
+				    			<a>
+									<i className="fa fa-external-link launch-external" />
+				    			</a>
+				    		</div>
 			    			</li>
 						);
 					});

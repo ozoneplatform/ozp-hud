@@ -38,8 +38,6 @@
             }
         }
     }
-
-
 }
 
 
@@ -105,7 +103,7 @@
 
 #ozp-notifications {        
         > i {
-            color: gold !important;
+            color: #1872A6 !important;
         }
 }
 
@@ -136,7 +134,39 @@
 #ozp-notifications {    
    &:active {    
        > i {
-           color: gold !important;
+           color: #1872A6 !important;
        }
    }
 }
+#top-bar{
+    ul {
+        list-style: none outside none;
+    }
+    ul li {
+        cursor: pointer;
+        float: left;
+        margin: 0;
+        position: relative;
+        text-align:center;
+        height: 37px;
+    }
+    .clearfix {
+        clear: both;
+    }
+    ul li:hover:after{
+        border: 2px solid #ECC24D;
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    .dashboard-img {
+        height: 25px;
+    }
+}
+
+.launch-external{
+    color: white;
+}
+
