@@ -3,6 +3,7 @@
     height: 55px;
     background: #fff;
     border-bottom: 1px solid #d5d5d5;
+    padding-left: 0px;
 
     .navbar-form {
         margin: 0;
@@ -122,6 +123,10 @@
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
 	background-color: black;
     color:#ffffff;
+}
+
+.container-fluid {
+	padding-left: 0px;
 }
 
 #ozp-notifications {    

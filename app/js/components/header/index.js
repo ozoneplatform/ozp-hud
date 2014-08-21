@@ -66,7 +66,7 @@ var Header = React.createClass({
     			<div className="container-fluid">    			    
     			    <div className="navbar-header">
 	    			    <ul className="nav navbar-nav">
-				        	<li>
+				        	<li className="active">
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
@@ -76,13 +76,13 @@ var Header = React.createClass({
 				                </ul>
 				        	</li>
 				        	<li>
-						        <a id="appsmall-logo" href="#" onClick={this.toggle3}>
-					    			<img src={appsMallLogo} />
-					    		</a>
-				        	</li>
-				        	<li className="active">
 						        <a id="ozp-logo" href="#" onClick={this.toggle3}>
 					    			<img src={logo} />
+					    		</a>
+				        	</li>
+				        	<li>
+						        <a id="appsmall-logo" href="#" onClick={this.toggle3}>
+					    			<img src={appsMallLogo} />
 					    		</a>
 				        	</li>
 				        </ul>
@@ -113,7 +113,7 @@ var Header = React.createClass({
 				        	</li>
 				        	<li>
 						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
-		    		    			<i className="fa fa-question fa-2x" />
+		    		    			<i className="fa fa-question-circle fa-2x" />
 		    		    		</a>
 				        	</li>
 				        </ul>
