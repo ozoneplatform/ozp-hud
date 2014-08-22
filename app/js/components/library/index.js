@@ -28,9 +28,9 @@ var Library = React.createClass({
     		return(
 				<li key={app.img}>					
 					
-					<i id="tileIcon" className="fa fa-ellipsis-h fa-lg" data-toggle="dropdown"></i>
+					<i id="tileIcon" className="fa fa-ellipsis-h fa-2x" data-toggle="dropdown"></i>
 					<ul className="dropdown-menu" role="menu" id= "tileIcon-dropdown">
-	                	<li><a href="#" onClick={disconnnect.bind(this, app)}> Disconnect</a></li>
+	                	<li onClick={disconnnect.bind(this, app)}>Disconnect</li>
 	                </ul>					
 					<img id="applib-tiles" src={app.img} onClick={click.bind(this, app.url)}/>						
 					<h5 className="ozp-lib-name">{app.name}</h5>
