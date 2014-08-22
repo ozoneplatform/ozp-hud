@@ -8,7 +8,7 @@ var data = require('../../../data.js');
 
 var Alerts = React.createClass({
 	getInitialState: function() {
-	    return {alerts: data.alerts, newAlerts: true};
+	    return {alerts: data.alerts, newAlertNum: 2};
     },
 
 
@@ -17,7 +17,7 @@ var Alerts = React.createClass({
     	//Check for alerts!
     	var self = this;
     	setTimeout(function(){
-    		self.setState({alert: self.state.alerts.unshift("Made you look!"), newAlerts: true});
+    		self.setState({alert: self.state.alerts.unshift("Made you look!"), newAlertNum: (self.state.newAlertNum+1)});
     	},8000);
   	},
 
@@ -25,14 +25,17 @@ var Alerts = React.createClass({
   	},
 
   	alertsViewed: function(){
-		this.setState({newAlerts: false});
+		this.setState({newAlertNum: 0});
   	},
 
 	render: function(){
 		var menuContents;
 		var anchorID = 'no-ozp-notifications';
-		if (this.state.newAlerts === true) {
+		var displayedAlertNum = this.state.newAlertNum;
+		if (this.state.newAlertNum !== 0) {
 			anchorID = 'ozp-notifications';
+		}else{
+			displayedAlertNum = '';
 		}
 		if(this.state.alerts.length != 0){
 			var alertItems =  this.state.alerts.map(function(alertText,index){
@@ -56,7 +59,8 @@ var Alerts = React.createClass({
 		return (
 				<li onBlur={this.alertsViewed}>
 					<a id={anchorID} className="nav-bar-button" data-toggle="dropdown" href="#" >
-			    		<i className=" fa fa-bell fa-2x" />
+			    		<span className="fa-stack"><i className="fa fa-bell fa-2x fa-stack-2x" />
+			    		<i id="notification-number" className="fa fa-stack-1x">{displayedAlertNum}</i></span>
 					</a>
 					{menuContents}
         		</li>

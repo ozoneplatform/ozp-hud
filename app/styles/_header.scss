@@ -82,14 +82,6 @@
     }
 }
 
-#app-dropdown-menu {
-        margin-top: 0;
-        border-color: #d5d5d5;
-        i {
-	        color: #858585 !important;
-	    }
-}
-
 #ozp-logo {
     > img {
     	height: 30px;
@@ -101,11 +93,6 @@
     color: white !important;
 }
 
-#ozp-notifications {        
-        > i {
-            color: #1872A6 !important;
-        }
-}
 
 #appsmall-logo {
     > img {
@@ -142,7 +129,7 @@
     ul {
         list-style: none outside none;
     }
-    ul li {
+    ul > li {
         cursor: pointer;
         float: left;
         margin: 0;
@@ -153,7 +140,7 @@
     .clearfix {
         clear: both;
     }
-    ul li:hover:after{
+    ul > li:hover:after{
         border: 2px solid #ECC24D;
         bottom: 0;
         content: "";
@@ -161,7 +148,7 @@
         position: absolute;
         width: 100%;
         }
-    ul li.current:after{
+    ul > li.current:after{
         border: 2px solid #1A71A6;       
         bottom: 0;
         content: "";
@@ -169,10 +156,11 @@
         position: absolute;
         width: 100%; 
     }
-    ul li.current:hover:after{
+    ul > li.current:hover:after{
     };
-
-    
+    ul > li > ul > li:hover:after{
+        border: 0;
+    };
 
     .dashboard-img {
         height: 25px;
