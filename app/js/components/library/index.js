@@ -15,9 +15,14 @@ var Library = React.createClass({
     	var click = this.clickImage;
     	var icons = apps.map(function(app){
     		return(
-				<li key={app.img}>
-					<img id="applib-tiles" src={app.img} onClick={click.bind(this, app.url)}/>
-		    		<h5 className="ozp-lib-name">{app.name}</h5>
+				<li key={app.img}>					
+					
+					<i id="tileIcon" className="fa fa-ellipsis-h fa-lg" data-toggle="dropdown"></i>
+					<ul className="dropdown-menu" role="menu" id= "tileIcon-dropdown">
+	                	<li><a href="#"> Disconnect</a></li>
+	                </ul>					
+					<img id="applib-tiles" src={app.img} onClick={click.bind(this, app.url)}/>						
+					<h5 className="ozp-lib-name">{app.name}</h5>
     			</li>
 			);
 		});
