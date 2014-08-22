@@ -148,7 +148,7 @@
         margin: 0;
         position: relative;
         text-align:center;
-        height: 37px;
+        height: 42px;
     }
     .clearfix {
         clear: both;
@@ -160,11 +160,26 @@
         left: 0;
         position: absolute;
         width: 100%;
+        }
+    ul li.current:after{
+        border: 2px solid #1A71A6;       
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        width: 100%; 
     }
+    ul li.current:hover:after{
+    };
+
+    
+
     .dashboard-img {
         height: 25px;
     }
 }
+
+
 
 .launch-external{
     color: white;

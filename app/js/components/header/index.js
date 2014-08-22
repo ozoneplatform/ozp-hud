@@ -5,7 +5,7 @@ require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
 var dashboard  = './images/DashboardIconStatic.png';
-var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
+//var QuickLaunchIcons = require('../quickLaunchIcons/index.js');
 var Alerts = require('../alerts/index.js');
 
 var appsLogos  = ['./images/AppsMall_Icon.png'];
@@ -76,7 +76,7 @@ var Header = React.createClass({
 				                    <li><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
 				                </ul>
 				        	</li>
-				        	<li>
+				        	<li className="current">
 						        <a id="ozp-logo" href="#" onClick={this.toggle3}>
 					    			<img src={logo} />
 					    		</a>
