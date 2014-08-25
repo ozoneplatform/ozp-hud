@@ -5,6 +5,7 @@
 var React = require('react/addons');
 var Header = require('./header');
 var Library = require('./library');
+var HelpModal = require('./header/helpmodal.js');
 
 var APP = React.createClass({
 
@@ -12,8 +13,9 @@ var APP = React.createClass({
         /*jshint ignore:start */
         return (
             <div>
-                <Header />
+            	<Header />            	
                 <Library />
+                <HelpModal />
             </div>
         );
         /*jshint ignore:end */

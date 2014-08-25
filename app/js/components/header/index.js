@@ -32,10 +32,6 @@ var Header = React.createClass({
 		alert("test test test");
 	},
 	
-	toggle2: function(){
-		alert("toggle 2");
-	},
-	
 	toggle3: function(){
 		alert("toggle 3");
 	},
@@ -82,7 +78,7 @@ var Header = React.createClass({
 					    		</a>
 				        	</li>
 				        	<li>
-						        <a id="appsmall-logo" href="#" onClick={this.toggle3}>
+						        <a id="appsmall-logo" href="http://localhost:8000/webpack-dev-server/dist/index.html">
 					    			<img src={appsMallLogo} />
 					    		</a>
 				        	</li>
@@ -122,7 +118,7 @@ var Header = React.createClass({
 				                </ul>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#" onClick={this.toggle2}>
+						        <a className="nav-bar-button" href="#" data-toggle="modal" data-target=".help-modal-lg">
 		    		    			<i className="fa fa-question-circle fa-2x" />
 		    		    		</a>
 				        	</li>
