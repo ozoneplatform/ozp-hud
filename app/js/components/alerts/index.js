@@ -23,20 +23,17 @@ var Alerts = React.createClass({
     	setTimeout(function(){
     		self.setState({alert: self.state.alerts.unshift({text:'Possum Breach!', img: './images/appIcons/bread.png', time:'12/12/12 00:00'}), newAlertNum: (self.state.newAlertNum+1)});
     	},8000);
-    	/*$(function() {
-		 	$("#alert-dropdown-menu").on("click", function(e) {
-		 			       		console.log(e);
-
-		 		if(e.target.className !== "remove-alert"){
-		       		e.stopPropagation();
-		       	}else{
-		       		console.log("click");
-		       		$("#alert-anchor").click();
-		       	}
-		    });
-		});*/
-		$('#alert-anchor').on('hide.bs.dropdown', function () {
-    		return false;
+    	
+		$('.dropdown').on({
+		    'shown.bs.dropdown': function() { this.closable = false; },
+		    'click':             function(e) { 
+		    						if(e.target.className.indexOf('toggleAlertMenu') > -1){
+		    							this.closable = true;
+		    						}else{
+		    							this.closable = false; 
+		    						}
+		    					},
+		    'hide.bs.dropdown':  function() { return this.closable; }
 		});
   	},
 
@@ -50,7 +47,7 @@ var Alerts = React.createClass({
 	render: function(){
 		var menuContents;
 		var removeAlert = this.removeAlert;
-		var anchorClass = 'nav-bar-button';
+		var anchorClass = 'toggleAlertMenu nav-bar-button';
 		var displayedAlertNum = this.state.newAlertNum;
 		if (this.state.newAlertNum !== 0) {
 			anchorClass += ' ozp-notifications';
@@ -67,20 +64,20 @@ var Alerts = React.createClass({
 			    			</tr>
 						);
 					});
-			menuContents = 	<ul className="dropdown-menu" role="menu" id= "alert-dropdown-menu">
-								<li data-stopPropagation="true"><table><tbody>{alertItems}</tbody></table></li>
+			menuContents = 	<ul className="dropdown dropdown-menu" role="menu" id= "alert-dropdown-menu">
+								<li className="toggleAlertMenu"><table><tbody>{alertItems}</tbody></table></li>
             				</ul>;
 		}else {
-			menuContents = 	<ul className="dropdown-menu" role="menu" id= "alert-dropdown-menu">
-								<li><table className="no-alerts">No new alerts!</table></li>
+			menuContents = 	<ul className="dropdown dropdown-menu" role="menu" id= "alert-dropdown-menu">
+								<li><table className="toggleAlertMenu no-alerts">No new alerts!</table></li>
 							</ul>;
 		};
 
 		return (
 				<li onBlur={this.alertsViewed}>
 					<a id="alert-anchor" className={anchorClass} data-toggle="dropdown" href="#" >
-			    		<span className="fa-stack"><i className="fa fa-bell fa-2x fa-stack-2x" />
-			    		<i id="notification-number" className="fa fa-stack-1x">{displayedAlertNum}</i></span>
+			    		<span className="fa-stack"><i className="toggleAlertMenu fa fa-bell fa-2x fa-stack-2x" />
+			    		<i id="notification-number" className="toggleAlertMenu fa fa-stack-1x">{displayedAlertNum}</i></span>
 					</a>
 					{menuContents}
         		</li>
