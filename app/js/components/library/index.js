@@ -69,7 +69,7 @@ var Library = React.createClass({
     	            	<h2 id="visit-appsmall">Visit the AppsMall to discover <br />
     	            	Apps you can start using</h2>
     	            	<form method="get" action="./images/sampleSites/AppsMall.png">
-    	            		<button type="submit" id="empty-text-button"><img src={appsMallLogo} /> AppsMall</button>
+    	            		<p id="visit-button-text"><button type="submit" id="empty-text-button"><img src={appsMallLogo} /> AppsMall</button></p>
     	            	</form>
     	            </div>
     	        );
