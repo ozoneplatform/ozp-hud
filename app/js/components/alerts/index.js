@@ -64,7 +64,7 @@ var Alerts = React.createClass({
 			    			</tr>
 						);
 					});
-			menuContents = 	<ul className="dropdown dropdown-menu" role="menu" id= "alert-dropdown-menu">
+			menuContents = 	<ul className="dropdown dropdown-menu test" role="menu" id= "alert-dropdown-menu">
 								<li className="toggleAlertMenu"><table><tbody>{alertItems}</tbody></table></li>
             				</ul>;
 		}else {
@@ -74,7 +74,7 @@ var Alerts = React.createClass({
 		};
 
 		return (
-				<li onBlur={this.alertsViewed}>
+				<li id="alert-list" className="dropdown" onBlur={this.alertsViewed}>
 					<a id="alert-anchor" className={anchorClass} data-toggle="dropdown" href="#" >
 			    		<span className="fa-stack"><i className="toggleAlertMenu fa fa-bell fa-2x fa-stack-2x" />
 			    		<i id="notification-number" className="toggleAlertMenu fa fa-stack-1x">{displayedAlertNum}</i></span>

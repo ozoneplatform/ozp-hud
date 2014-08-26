@@ -99,7 +99,7 @@ var Header = React.createClass({
 				        </ul>
     			    </div>
     			    
-    			    <div id="user-menu" className="dropdown navbar-right">
+    			    <div id="user-menu" className=" navbar-right">
 	    			    <ul className="nav navbar-nav">
 				        	<li>
 						        <a className="nav-bar-button" href="#">
