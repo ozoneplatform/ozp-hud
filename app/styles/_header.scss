@@ -78,7 +78,7 @@
 
     .dropdown-menu {
         margin-top: 0;
-        border-color: #d5d5d5;
+        background-color: #222222;
     }
 }
 
@@ -114,8 +114,9 @@
 
 /*-- change navbar dropdown color --*/
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
-	background-color: black;
+	background-color: #222222;
     color:#ffffff;
+    border-radius: 5px !important;
 }
 
 .container-fluid {

@@ -116,7 +116,7 @@ var Header = React.createClass({
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
-				    			<ul className="dropdown-menu" role="menu">
+				    			<ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-sign-out"></i> Log Out</a></li>
 				                </ul>
