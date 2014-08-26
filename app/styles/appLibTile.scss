@@ -1,11 +1,40 @@
 #applib {
     padding-left: 30px;
+    color: #7A7A7A !important;
 }
 
 #applib-tiles {
 	margin: 0 25px 0 0;
     width: 200px;
     height: 120px;
+}
+
+#empty-app-text {
+	text-align: center;
+	color: #7A7A7A !important;
+	font-size: 2.6em;
+    line-height: 1.2em;
+    font-family: sans-serif;
+}
+
+#visit-appsmall {
+	text-align: center;
+	color: #1872A6 !important;
+	font-size: 1.8em;
+    line-height: 1.3em;
+    margin-top: 18px;
+    font-family: sans-serif;
+}
+
+#empty-text-button {
+	position: absolute;
+	top: 300px;
+	left: 905px;
+	font-weight: bold;
+	border-style: none;
+	background-color: black !important;
+	color: #1872A6 !important;
+	font-size: 1.2em;
 }
 
 .ozp-lib-name {
