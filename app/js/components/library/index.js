@@ -57,13 +57,7 @@ var Library = React.createClass({
     	else {
     		return (
     	            <div id="search">
-    	            	<h3 id="applib"><b>Application Library</b></h3>
-    	            	<br />
-    	            	<br />
-    	            	<br />
-    	            	<br />
-    	            	<br />
-    	            	<br />
+    	            	<h3 id="applib"><b>Application Library</b></h3>    	            	
     	            	<h1 id="empty-app-text">You Currently have no <br />
     	            	Apps to display</h1>
     	            	<h2 id="visit-appsmall">Visit the AppsMall to discover <br />
