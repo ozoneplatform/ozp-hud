@@ -60,7 +60,7 @@ var Alerts = React.createClass({
 							<tr key={alert.text+index}>
 			    				<td><img className="alert-thumbnail" src={alert.img} /> </td>
 			    				<td className="alert-text">{alert.text}<br/><i>{alert.time}</i></td>
-			    				<td className="close"><span className="remove-alert" onClick={removeAlert.bind(this, alert)}>X</span></td>
+			    				<td className="close"><span className="remove-alert" onClick={removeAlert.bind(null, alert)}>X</span></td>
 			    			</tr>
 						);
 					});
