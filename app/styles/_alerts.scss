@@ -1,11 +1,51 @@
-#app-dropdown-menu {
+#alert-dropdown-menu {
         margin-top: 0;
+
+        border-color: transparent !important;
+        background-color: transparent;
         i {
 	        color: #858585 !important;
 	    }
+
+		.close {
+		  font-size: 15pt;
+		  font-weight: bold;
+		  color: #ffffff;
+		}
+
+		table{
+			table-layout: fixed;
+			width: 280px;
+			//border: 1px solid red;
+			background: $page-bg;
+			border-collapse: separate;
+			border-spacing: 5px 10px;
+			border-radius: 10px !important;
+	        cursor: default;
+
+		}
+		table td{
+			white-space: normal;
+			width: 30px;
+			word-wrap: break-word;
+			//border: 1px solid red;
+			vertical-align: top;
+		}
+		table td.alert-text{
+			font-size: 12px;
+			text-align: left;
+			width: 200px;
+		}
+		table td img.alert-thumbnail{
+			height: 30px;
+			width: 30px;
+		}
+		table.no-alerts{
+			height: 50px;
+		}
 }
 
-#ozp-notifications {        
+.ozp-notifications {        
          .fa-bell {
             color: #1872A6 !important;
         }
@@ -14,3 +54,4 @@
 #notification-number{
 	color: #ECC24D !important;
 }
+
