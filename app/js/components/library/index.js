@@ -12,6 +12,10 @@ var Library = React.createClass({
 		window.open(url);
 	},
 	
+	clickAppsMall: function(url){
+		window.open(url);
+	},
+	
 	disconnect: function(app){
 		var i = this.state.appArray.indexOf(app);
 		this.state.appArray.splice(i, 1);
@@ -54,11 +58,19 @@ var Library = React.createClass({
     		return (
     	            <div id="search">
     	            	<h3 id="applib"><b>Application Library</b></h3>
+    	            	<br />
+    	            	<br />
+    	            	<br />
+    	            	<br />
+    	            	<br />
+    	            	<br />
     	            	<h1 id="empty-app-text">You Currently have no <br />
     	            	Apps to display</h1>
     	            	<h2 id="visit-appsmall">Visit the AppsMall to discover <br />
     	            	Apps you can start using</h2>
-    	            	<button id="empty-text-button"><img src={appsMallLogo} /> AppsMall</button>
+    	            	<form method="get" action="./images/sampleSites/AppsMall.png">
+    	            		<button type="submit" id="empty-text-button"><img src={appsMallLogo} /> AppsMall</button>
+    	            	</form>
     	            </div>
     	        );
     	}
