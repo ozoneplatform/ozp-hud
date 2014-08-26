@@ -70,7 +70,7 @@ var Header = React.createClass({
 				                <ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-th"></i> App Library</a></li>
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-desktop"></i> WebTop</a></li>
+				                    <li id="app-dropdown-item"><a href="./images/sampleSites/webtop-screenshot.png"><i className="fa fa-desktop"></i> WebTop</a></li>
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-envelope-o"></i> Submit a Listing</a></li>
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-bar-chart-o"></i> Metrics</a></li>
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-terminal"></i> Developer Resources</a></li>
@@ -82,12 +82,12 @@ var Header = React.createClass({
 					    		</a>
 				        	</li>
 				        	<li>
-						        <a id="appsmall-logo" href="http://localhost:8000/webpack-dev-server/dist/index.html">
+						        <a id="appsmall-logo" href="./images/sampleSites/AppsMall.png">
 					    			<img src={appsMallLogo} />
 					    		</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#">
+						        <a className="nav-bar-button" href="./images/sampleSites/webtop-screenshot.png">
 				        			<i id="ozp-dashboard" className="fa fa-desktop fa-2x" />
 				        		</a>
 				        	</li>
@@ -118,7 +118,7 @@ var Header = React.createClass({
 				    			</a>
 				    			<ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
 				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-sign-out"></i> Log Out</a></li>
+				                    <li id="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
 				                </ul>
 				        	</li>
 				        	<li>

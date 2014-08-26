@@ -1,5 +1,5 @@
 #help-modal .modal-header, .modal-body {
-    background-color: black !important;
+    background-color: #222222 !important;
     color: white !important;
     height: 350px;
 }
@@ -17,20 +17,17 @@
 }
 
 #help-modal-left {
-	background-color: black !important;
 	float: left;
 	width: 30%;
 }
 
 #help-modal-right {
-	background-color: black !important;
 	float: right;
 	width: 70%;
 }
 
 #help-modal-textarea {
 	width: 100%;
-	background-color: black !important;
 }
 
 .modal-dialog-center {
