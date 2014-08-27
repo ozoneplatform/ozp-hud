@@ -1,0 +1,33 @@
+.app-folder{
+	height: 120px;
+	width: 200px;
+	border: solid;
+	border-color: #CCCDD1;
+	border-width: 2px;
+	border-radius: 15px;
+
+	img{
+		padding: 5px;
+		height: 35px;
+		width: 35px;
+	}
+}
+
+.folder-modal{
+	.modal-content{
+		border-color: transparent !important;
+        background-color: transparent !important;
+    	color: white;
+
+	}
+	.modal-body{
+		width: auto;
+		border: solid;
+		border-color: #CCCDD1;
+		border-width: 2px;
+		border-radius: 15px;
+	}
+	.close {
+    	color: white !important;
+	}
+}

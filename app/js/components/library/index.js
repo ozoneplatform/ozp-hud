@@ -6,6 +6,9 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 
 var apps = data.appLibrary;
 
+var Folder = require('../folder/index.js');
+
+
 var Library = React.createClass({
 	
 	clickImage: function(url){
@@ -30,7 +33,6 @@ var Library = React.createClass({
 	    	var icons = this.state.appArray.map(function(app){
 	    		return(
 					<li key={app.img}>					
-						
 						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 		                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
@@ -46,6 +48,7 @@ var Library = React.createClass({
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
+			            <li><Folder /></li>
 					</ul>
 	            </div>
 	        );

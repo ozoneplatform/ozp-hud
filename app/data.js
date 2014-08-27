@@ -29,6 +29,12 @@ module.exports = (function (){
 			{img: './images/sampleListings/TreeNote.png', name: 'Tree Note', url: './images/sampleListings/TreeNote.png'},
 			{img: './images/sampleListings/WhiteboardGraphs.png', name: 'Whiteboard Graphs', url: './images/sampleListings/WhiteboardGraphs.png'}
 		],
+		folder: 	[
+			{img: './images/sampleListings/AirMail.png', name: 'Air Mail', url: './images/sampleListings/AirMail.png', thumb: './images/appIcons/paperAirplane.png'},
+			{img: './images/sampleListings/BreadBasket.png', name: 'Bread Basket', url: './images/sampleListings/BreadBasket.png', thumb: './images/appIcons/bread.png'},
+			{img: './images/sampleListings/Clipboard.png', name: 'Clipboard', url: './images/sampleListings/Clipboard.png', thumb: './images/appIcons/clipboard.png'}
+
+		],
 		alerts: 	[
 			{text:'OZONE Systemwide Update on 1/1/11 at 12:00pm. Server down until 2:00pm', img: './images/ozoneAlert.png', time:'12/12/12 00:00'}, 
 			{text: 'Air Mail Version 1.2.1 released', img: './images/appIcons/paperAirplane.png', time:'12/12/12 00:00'}
