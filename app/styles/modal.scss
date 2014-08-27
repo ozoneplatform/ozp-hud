@@ -1,15 +1,15 @@
-#help-modal .modal-header, .modal-body {
+.help-modal .modal-header, .modal-body {
     background-color: #222222 !important;
     color: white !important;
     height: 350px;
     border-style: double;
 }
 
-#help-modal .close {
+.close {
     color: white !important;
 }
 
-#help-text {
+.help-text {
     background-color: grey !important;
     border-color: white !important;
     border-style: solid;
@@ -17,17 +17,17 @@
     height: 250px;
 }
 
-#help-modal-left {
+.help-modal-left {
 	float: left;
 	width: 30%;
 }
 
-#help-modal-right {
+.help-modal-right {
 	float: right;
 	width: 70%;
 }
 
-#help-modal-textarea {
+.help-modal-textarea {
 	width: 100%;
 }
 

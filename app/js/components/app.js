@@ -11,16 +11,19 @@ var APP = React.createClass({
 
     render: function () {
         /*jshint ignore:start */
-        return (
+        return this.renderHUD();
+        /*jshint ignore:end */
+    },
+
+	renderHUD: function(){
+		return (
             <div>
             	<Header />            	
                 <Library />
                 <HelpModal />
             </div>
-        );
-        /*jshint ignore:end */
-    }
-
+        ); 
+	}
 });
 
 

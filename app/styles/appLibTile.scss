@@ -1,16 +1,16 @@
-#applib {
+.applib {
     padding-left: 30px;
     color: #7A7A7A !important;
     font-weight: 100;
 }
 
-#applib-tiles {
+.applib-tiles {
 	margin: 0 25px 0 0;
     width: 200px;
     height: 120px;
 }
 
-#empty-app-text {
+.empty-app-text {
 	padding-top: 150px;
 	text-align: center;
 	color: #7A7A7A !important;
@@ -19,7 +19,7 @@
     font-weight: 100;
 }
 
-#visit-appsmall {
+.visit-appsmall {
 	text-align: center;
 	color: #1872A6 !important;
 	font-size: 1.8em;
@@ -28,11 +28,11 @@
     font-weight: 100;
 }
 
-#visit-button-text {
+.visit-button-text {
 	text-align: center;
 }
 
-#empty-text-button {
+.empty-text-button {
 	font-weight: bold;
 	border-style: none;
 	background-color: black !important;
@@ -45,7 +45,7 @@
 	text-align: center;
 }
 
-#tileIcon {
+.tileIcon {
 	position: absolute;
 	padding-left: 10px;
 	top: 0px;
@@ -60,7 +60,7 @@
     }
 }
 
-#tileIcon-dropdown {
+.tileIcon-dropdown {
 	position: absolute;
 	width: 60px;
 	top: 24px;

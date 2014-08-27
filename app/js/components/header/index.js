@@ -68,12 +68,12 @@ var Header = React.createClass({
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
 				                <ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-th"></i> App Library</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
-				                    <li id="app-dropdown-item"><a href="./images/sampleSites/webtop-screenshot.png"><i className="fa fa-desktop"></i> WebTop</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-envelope-o"></i> Submit a Listing</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-bar-chart-o"></i> Metrics</a></li>
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-terminal"></i> Developer Resources</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-th"></i> App Library</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
+				                    <li className="app-dropdown-item"><a href="./images/sampleSites/webtop-screenshot.png"><i className="fa fa-desktop"></i> WebTop</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-envelope-o"></i> Submit a Listing</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-bar-chart-o"></i> Metrics</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-terminal"></i> Developer Resources</a></li>
 				                </ul>
 				        	</li>
 				        	<li className="current">
@@ -117,8 +117,8 @@ var Header = React.createClass({
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
 				    			<ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
-				                    <li id="app-dropdown-item"><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
-				                    <li id="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
+				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
+				                    <li className="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
 				                </ul>
 				        	</li>
 				        	<li>
