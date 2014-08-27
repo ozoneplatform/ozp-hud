@@ -10,19 +10,19 @@ var HelpModal = require('./header/helpmodal.js');
 var APP = React.createClass({
 
     render: function () {
-        /*jshint ignore:start */
         return this.renderHUD();
-        /*jshint ignore:end */
     },
 
 	renderHUD: function(){
-		return (
+		/*jshint ignore:start */
+        return (
             <div>
             	<Header />            	
                 <Library />
                 <HelpModal />
             </div>
-        ); 
+        );
+        /*jshint ignore:end */ 
 	}
 });
 
