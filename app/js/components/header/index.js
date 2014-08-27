@@ -28,17 +28,6 @@ var genTime = function(){
 }
 
 var Header = React.createClass({
-	toggle: function(){
-		alert("test test test");
-	},
-	
-	toggle3: function(){
-		alert("toggle 3");
-	},
-	
-	toggleImage: function(){
-		alert("toggle image");
-	},
 
 	getInitialState: function() {
 	    return {time: genTime()};
@@ -77,7 +66,7 @@ var Header = React.createClass({
 				                </ul>
 				        	</li>
 				        	<li className="current">
-						        <a id="ozp-logo" href="#" onClick={this.toggle3}>
+						        <a id="ozp-logo" href="#">
 					    			<img src={logo} />
 					    		</a>
 				        	</li>
