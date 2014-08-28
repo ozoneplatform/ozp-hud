@@ -11,8 +11,7 @@ var HelpModal = require('./header/helpmodal.js');
 var APP = React.createClass({
 
     render: function () {
-        //return this.renderHUD();
-        return this.renderSettings();
+        return this.renderHUD();
     },
 
 	renderHUD: function(){
@@ -21,21 +20,11 @@ var APP = React.createClass({
             <div>
             	<Header />            	
                 <Library />
-                <HelpModal />
+                <Settings />
+                <HelpModal />                
             </div>
         );
         /*jshint ignore:end */ 
-	},
-	
-	renderSettings: function(){
-		/*jshint ignore:start */
-		return (
-            <div>
-            	<Header />
-            	<Settings />
-            </div>
-        );
-        /*jshint ignore:end */
 	}
 });
 

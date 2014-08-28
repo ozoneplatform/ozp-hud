@@ -106,7 +106,7 @@ var Header = React.createClass({
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
 				    			<ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
-				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
+				                    <li className="app-dropdown-item"><a href="#" data-toggle="modal" data-target=".settings-modal-lg"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
 				                    <li className="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
 				                </ul>
 				        	</li>
