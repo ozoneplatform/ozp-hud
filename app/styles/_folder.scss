@@ -14,7 +14,10 @@
 }
 
 .folder-modal{
+
 	.modal-content{
+		margin-right: auto;
+		margin-left: auto;
 		width: 710px;
 		border-color: transparent !important;
         background-color: transparent !important;
@@ -36,4 +39,7 @@
 	h2{
 		text-align: center;
 	}
+}
+.modal-dialog{
+	width: 810px;
 }
