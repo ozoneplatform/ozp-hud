@@ -53,7 +53,7 @@ var Header = React.createClass({
     			    <div className="navbar-header">
 	    			    <ul className="nav navbar-nav">
 				        	<li className="menu-icon">
-						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
+						        <a className="nav-bar-button nav-bar-icon" data-toggle="dropdown" href="#">
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
 				                <ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
@@ -90,19 +90,14 @@ var Header = React.createClass({
     			    
     			    <div className="navbar-right">
 	    			    <ul className="nav navbar-nav">
-				        	<li>
-						        <a className="nav-bar-button" href="#">
-				        			<i className="fa fa-wrench fa-2x" />
-				        		</a>
-				        	</li>
 						    <Alerts />
 				        	<li>
-						        <a className="nav-bar-button" id="ozp-clock" href="#">
+						        <a className="nav-bar-button nav-bar-icon" id="ozp-clock" href="#">
 				    				<b>{this.state.time}</b>
 				    			</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
+						        <a className="nav-bar-button nav-bar-icon" data-toggle="dropdown" href="#">
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
 				    			<ul className="dropdown-menu app-dropdown-menu" role="menu">
@@ -111,7 +106,7 @@ var Header = React.createClass({
 				                </ul>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="#" data-toggle="modal" data-target=".help-modal-lg">
+						        <a className="nav-bar-button nav-bar-icon" href="#" data-toggle="modal" data-target=".help-modal-lg">
 		    		    			<i className="fa fa-question-circle fa-2x" />
 		    		    		</a>
 				        	</li>

@@ -47,7 +47,7 @@ var Alerts = React.createClass({
 	render: function(){
 		var menuContents;
 		var removeAlert = this.removeAlert;
-		var anchorClass = 'toggleAlertMenu nav-bar-button';
+		var anchorClass = 'toggleAlertMenu nav-bar-button nav-bar-icon';
 		var displayedAlertNum = this.state.newAlertNum;
 		if (this.state.newAlertNum !== 0) {
 			anchorClass += ' ozp-notifications';

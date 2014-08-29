@@ -3,7 +3,7 @@ $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 @import "../../bower_components/font-awesome/scss/font-awesome.scss";
-@import 'colors';
+@import 'colors_fonts';
 
 html, body {
     background: $general-bg;
@@ -31,8 +31,6 @@ html, body {
 .divider-vertical {
 height: 40px;
 margin: 0 9px;
-border-left: 1px solid #777777;
-border-right: 1px solid #777777;
 }
 #login-page{
 
@@ -50,15 +48,13 @@ border-right: 1px solid #777777;
         color: white;
         width: 300px;
         margin: 0 auto;
-        font-family: 'Ubuntu Light', 'Ubuntu';
-        font-weight: 200;
-        font-style: normal;
+        font-family: $general-font;
+        font-weight: $general-font-weight;
         font-size: 14px;
     }
     label{
-        font-family: 'Ubuntu Light', 'Ubuntu';
-        font-weight: 200;
-        font-style: normal;
+        font-family: $general-font;
+        font-weight: $general-font-weight;
         font-size: 14px;
         height: auto;
         width: auto;

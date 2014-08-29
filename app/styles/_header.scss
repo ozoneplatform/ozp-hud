@@ -41,7 +41,9 @@
 }
 
 .menu-icon {
-	background-color: $nav-menu-bg  
+	background-color: $nav-menu-bg;
+	:hover{
+    };
 }
 
 
@@ -69,15 +71,7 @@
 
     .btn {
         height: 54px;
-        background: #fff;
-        padding: 15px 34px 0 30px;
-        font-size: 18px;
-        color: #858585 !important;
-        border-left: 1px solid #d5d5d5;
-    }
-
-    i {
-        color: #858585;
+        padding: 15px 34px 0 30px;        
     }
 
     .dropdown-menu {
@@ -112,6 +106,10 @@
 	margin-top:7px;
 }
 
+.nav-bar-icon {
+	color: $general-icon-color !important;
+}
+
 .app-dropdown-item {
 	height:20px !important;
 }
@@ -125,7 +123,7 @@
 /*-- change navbar dropdown color --*/
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
 	background-color: $nav-dropdown-bg;
-    color:#ffffff;
+	color:$nav-font-color;
     border-radius: 5px !important;
 }
 
@@ -136,7 +134,7 @@
 #ozp-notifications {    
    &:active {    
        > i {
-           color: #1872A6 !important;
+           color: $general-active-el !important;
        }
    }
 }
@@ -157,7 +155,7 @@
         clear: both;
     }
     ul > li:hover:after{
-        border: 2px solid #ECC24D;
+        border: 2px solid $general-hover;
         bottom: 0;
         content: "";
         left: 0;
@@ -165,7 +163,7 @@
         width: 100%;
         }
     ul > li.current:after{
-        border: 2px solid #1A71A6;       
+        border: 2px solid $general-active-el;       
         bottom: 0;
         content: "";
         left: 0;

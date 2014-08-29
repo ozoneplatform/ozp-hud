@@ -28,7 +28,7 @@ var Library = React.createClass({
     render: function () {
     	var click = this.clickImage;
     	var disconnnect = this.disconnect;
-    	var showApps = true;
+    	var showApps = false;
     	if(showApps) {
 	    	var icons = this.state.appArray.map(function(app){
 	    		return(
