@@ -44,7 +44,7 @@ var Library = React.createClass({
 			});
 	    	
 	    	return (
-	            <div className="search">
+	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
@@ -55,7 +55,7 @@ var Library = React.createClass({
     	}
     	else {
     		return (
-    	            <div className="search">
+    	            <div className="applib-main">
     	            	<h3 className="applib"><b>Application Library</b></h3>    	            	
     	            	<h1 className="empty-app-text">You Currently have no <br />
     	            	Apps to display</h1>

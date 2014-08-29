@@ -52,7 +52,7 @@ var Header = React.createClass({
     			<div className="container-fluid">    			    
     			    <div className="navbar-header">
 	    			    <ul className="nav navbar-nav">
-				        	<li className="active">
+				        	<li className="menu-icon">
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
@@ -88,7 +88,7 @@ var Header = React.createClass({
 				        </ul>
     			    </div>
     			    
-    			    <div id="user-menu" className=" navbar-right">
+    			    <div className="navbar-right">
 	    			    <ul className="nav navbar-nav">
 				        	<li>
 						        <a className="nav-bar-button" href="#">
@@ -105,7 +105,7 @@ var Header = React.createClass({
 						        <a className="nav-bar-button" data-toggle="dropdown" href="#">
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
-				    			<ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
+				    			<ul className="dropdown-menu app-dropdown-menu" role="menu">
 				                    <li className="app-dropdown-item"><a href="#" data-toggle="modal" data-target=".settings-modal-lg"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
 				                    <li className="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
 				                </ul>
