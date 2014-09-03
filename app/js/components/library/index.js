@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var data = require('../../../data.js');
+var data = require('../../../data');
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
 var apps = data.appLibrary;
 
-var Folder = require('../folder/index.js');
-var Sortable = require('../sortable/Sortable.js');
+var Folder = require('../folder');
+var Sortable = require('../sortable/Sortable');
 
 var Library = React.createClass({
 	componentWillMount : function(){
@@ -24,12 +24,12 @@ var Library = React.createClass({
     	if(showApps) {
 	    	/*var icons = this.state.appArray.map(function(app){
 	    		return(
-					<li key={app.name}>					
+					<li key={app.name}>
 						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 		                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
-		                </ul>					
-						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>						
+		                </ul>
+						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
 						<h5 className="ozp-lib-name">{app.name}</h5>
 	    			</li>
 				);
@@ -59,7 +59,7 @@ var Library = React.createClass({
     	else {
     		return (
     	            <div className="applib-main">
-    	            	<h3 className="applib"><b>Application Library</b></h3>    	            	
+    	            	<h3 className="applib"><b>Application Library</b></h3>
     	            	<h1 className="empty-app-text">You Currently have no <br />
     	            	Apps to display</h1>
     	            	<h2 className="visit-appsmall">Visit the AppsMall to discover <br />
@@ -90,12 +90,12 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
 
 		return this.transferPropsTo(
-					<li key={app.name} className={this.isDragging() ? "dragging" : ""}>					
+					<li key={app.name} className={this.isDragging() ? "dragging" : ""}>
 						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 		                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
-		                </ul>					
-						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>						
+		                </ul>
+						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
 						<h5 className="ozp-lib-name">{app.name}</h5>
 	    			</li>
 				);
