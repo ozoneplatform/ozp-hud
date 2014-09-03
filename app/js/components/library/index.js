@@ -90,15 +90,15 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
 
 		return this.transferPropsTo(
-					<li key={app.name} className={this.isDragging() ? "dragging" : ""}>
-						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
-		                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
-		                </ul>
-						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
-						<h5 className="ozp-lib-name">{app.name}</h5>
-	    			</li>
-				);
+				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={ this.sortStart } onDragOver={ this.dragOver }  onDragEnd={ this.sortEnd }>
+					<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
+					<ul className="dropdown-menu tileIcon-dropdown" role="menu">
+	                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
+	                </ul>
+					<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
+					<h5 className="ozp-lib-name">{app.name}</h5>
+    			</li>
+			);
 	}
 });
 

@@ -2,11 +2,7 @@
 var Sortable = {
   getDefaultProps: function() {
     return {
-      "data-id" : this.props.key,
-      draggable : true,
-      onDragEnd: this.sortEnd.bind(this),
-      onDragOver: this.dragOver.bind(this),
-      onDragStart: this.sortStart.bind(this)
+      draggable : true
     }
   },
   update: function(to, from) {
