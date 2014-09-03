@@ -48,3 +48,5 @@ var Sortable = {
     return this.props.data.dragging == this.props.key
   }
 }
+
+module.exports = Sortable;
