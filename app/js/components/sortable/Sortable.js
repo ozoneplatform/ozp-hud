@@ -11,9 +11,12 @@ var Sortable = {
     this.props.sort(data, to);
   },
   sortEnd: function() {
+    console.log('sortEnd');
     this.props.sort(this.props.data.items, undefined);
+    console.log(this.props.data.items);
   },
   sortStart: function(e) {
+    console.log('sortStart');
     this.dragged = e.currentTarget.dataset ?
       e.currentTarget.dataset.id :
       e.currentTarget.getAttribute('data-id');
@@ -25,15 +28,22 @@ var Sortable = {
     }
   },
   move: function(over,append) {
+    console.log('over, append');
+    console.log(over);
+    console.log(append);
     var to = Number(over.dataset.id);
+    console.log("to: "+ to);
     var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
     if(append) to++;
     if(from < to) to--;
     this.update(to,from);
   },
   dragOver: function(e) {
+    console.log('dragOver');
     e.preventDefault();
-    var over = e.currentTarget
+    var over = e.currentTarget;
+    console.log('currentTarget: ');
+    console.log(over);
     var relX = e.clientX - over.getBoundingClientRect().left;
     var relY = e.clientY - over.getBoundingClientRect().top;
     var height = over.offsetHeight / 2;
@@ -41,6 +51,7 @@ var Sortable = {
     this.move(over, placement);
   },
   isDragging: function() {
+    console.log('isDragging');
     return this.props.data.dragging == this.props.key
   }
 }

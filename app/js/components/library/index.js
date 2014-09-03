@@ -11,7 +11,7 @@ var Sortable = require('../sortable/Sortable');
 
 var Library = React.createClass({
 	componentWillMount : function(){
-		this.setState({appArray: apps});
+		this.setState({data: {items: apps}});
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;
@@ -36,12 +36,13 @@ var Library = React.createClass({
 				return(<AppBlock data={app}/>);
 			});*/
 
-	    	 var icons = this.state.appArray.map(function(app, i) {
+	    	 var icons = this.state.data.items.map(function(app, i) {
 		      return (
 		        <AppBlock
 		          sort={this.sort}
-		          data={this.state.appArray}
+		          data={this.state.data}
 		          key={i}
+		          data-id={i}
 		          item={app} />
 		      );
 		    }, this);
