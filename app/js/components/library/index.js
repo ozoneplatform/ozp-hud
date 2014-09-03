@@ -7,30 +7,22 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 var apps = data.appLibrary;
 
 var Folder = require('../folder/index.js');
-
+var Sortable = require('../sortable/Sortable.js');
 
 var Library = React.createClass({
-	
-	clickImage: function(url){
-		window.open(url);
-	},
-	
-	disconnect: function(app){
-		var i = this.state.appArray.indexOf(app);
-		this.state.appArray.splice(i, 1);
-		this.setState({appArray: apps});
-	},
-	
 	componentWillMount : function(){
 		this.setState({appArray: apps});
 	},
-
+	sort: function(items, dragging) {
+		var data = this.state.data;
+		data.items = items;
+		data.dragging = dragging;
+		this.setState({data: data});
+  	},
     render: function () {
-    	var click = this.clickImage;
-    	var disconnnect = this.disconnect;
-    	var showApps = false;
+    	var showApps = true;
     	if(showApps) {
-	    	var icons = this.state.appArray.map(function(app){
+	    	/*var icons = this.state.appArray.map(function(app){
 	    		return(
 					<li key={app.name}>					
 						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
@@ -41,8 +33,19 @@ var Library = React.createClass({
 						<h5 className="ozp-lib-name">{app.name}</h5>
 	    			</li>
 				);
-			});
-	    	
+				return(<AppBlock data={app}/>);
+			});*/
+
+	    	 var icons = this.state.appArray.map(function(app, i) {
+		      return (
+		        <AppBlock
+		          sort={this.sort}
+		          data={this.state.appArray}
+		          key={i}
+		          item={app} />
+		      );
+		    }, this);
+
 	    	return (
 	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
@@ -69,6 +72,34 @@ var Library = React.createClass({
     	}
     }
 
+});
+
+var AppBlock = React.createClass({
+	mixins: [Sortable],
+	clickImage: function(url){
+		window.open(url);
+	},
+	disconnect: function(app){
+		var i = this.state.appArray.indexOf(app);
+		this.state.appArray.splice(i, 1);
+		this.setState({appArray: apps});
+	},
+	render: function(){
+    	var click = this.clickImage;
+    	var disconnnect = this.disconnect;
+    	var app = this.props.item;
+
+		return this.transferPropsTo(
+					<li key={app.name} className={this.isDragging() ? "dragging" : ""}>					
+						<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
+						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
+		                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
+		                </ul>					
+						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>						
+						<h5 className="ozp-lib-name">{app.name}</h5>
+	    			</li>
+				);
+	}
 });
 
 module.exports = Library;
