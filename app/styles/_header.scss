@@ -119,6 +119,7 @@
 	min-height:20px !important;
 	background: $nav-bar-bg;
 	border: 0px;
+    margin-top: 16px;
 }
 
 /*-- change navbar dropdown color --*/
@@ -180,6 +181,11 @@
     .dashboard-img {
         height: 25px;
     }
+}
+
+body > div.classBanner:last-of-type {
+  position: absolute;
+  bottom: 0px;
 }
 
 
