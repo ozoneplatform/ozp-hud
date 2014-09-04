@@ -28,7 +28,7 @@ var Library = React.createClass({
     render: function () {
     	var click = this.clickImage;
     	var disconnnect = this.disconnect;
-    	var showApps = false;
+    	var showApps = true;
     	if(showApps) {
 	    	var icons = this.state.appArray.map(function(app){
 	    		return(
@@ -56,7 +56,7 @@ var Library = React.createClass({
     	else {
     		return (
     	            <div className="applib-main">
-    	            	<h3 className="applib"><b>Application Library</b></h3>    	            	
+    	            	<h3 className="applib"><b>Application Library</b></h3>
     	            	<h1 className="empty-app-text">You Currently have no <br />
     	            	Apps to display</h1>
     	            	<h2 className="visit-appsmall">Visit the AppsMall to discover <br />
