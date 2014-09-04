@@ -48,8 +48,8 @@ var Header = React.createClass({
     render: function () {
     	var user = "J Smith";
     	return (
-    		<nav id="top-bar" className="navbar navbar-default navbar-inverse app-toolbar no-rounded-corners navbar-fixed-top" role="navigation">
-    			<div className="container-fluid">    			    
+            <nav id="top-bar" className="navbar navbar-default navbar-inverse app-toolbar no-rounded-corners" role="navigation">
+                <div className="container-fluid">
     			    <div className="navbar-header">
 	    			    <ul className="nav navbar-nav">
 				        	<li className="menu-icon">
@@ -112,8 +112,8 @@ var Header = React.createClass({
 				        	</li>
 				        </ul>
 	                </div>
-    			  </div>
-    			</nav>
+    			</div>
+            </nav>
         );
     }
 

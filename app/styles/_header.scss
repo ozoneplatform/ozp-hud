@@ -116,10 +116,10 @@
 
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
 .navbar {
-	min-height:20px !important;
+    min-height:20px !important;
 	background: $nav-bar-bg;
 	border: 0px;
-    margin-top: 16px;
+    width: 100% !important;
 }
 
 /*-- change navbar dropdown color --*/
