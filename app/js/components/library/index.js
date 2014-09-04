@@ -91,7 +91,7 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
 
 		return this.transferPropsTo(
-				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={ this.sortStart } onDragOver={ this.dragOver }  onDragEnd={ this.sortEnd }>
+				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={ this.sortStart } onDragOver={ this.dragOver }  onDrop={ this.sortEnd }>
 					<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 					<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 	                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
