@@ -19,6 +19,11 @@ var Library = React.createClass({
 		data.dragging = dragging;
 		this.setState({data: data});
   	},
+  	disconnect: function(app){
+		var i = this.state.data.items.indexOf(app);
+		this.state.data.items.splice(i, 1);
+		this.setState({data: {items: apps}});
+	},
     render: function () {
     	var showApps = true;
     	if(showApps) {
@@ -43,7 +48,8 @@ var Library = React.createClass({
 		          data={this.state.data}
 		          key={i}
 		          data-id={i}
-		          item={app} />
+		          item={app}
+		          disconnect={this.disconnect} />
 		      );
 		    }, this);
 
@@ -74,27 +80,21 @@ var Library = React.createClass({
     }
 
 });
-
 var AppBlock = React.createClass({
 	mixins: [Sortable],
 	clickImage: function(url){
 		window.open(url);
 	},
-	disconnect: function(app){
-		var i = this.state.appArray.indexOf(app);
-		this.state.appArray.splice(i, 1);
-		this.setState({appArray: apps});
-	},
 	render: function(){
     	var click = this.clickImage;
-    	var disconnnect = this.disconnect;
     	var app = this.props.item;
-
+    	var disconnect = this.props.disconnect.bind(null,this.props.item);
 		return this.transferPropsTo(
-				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={ this.sortStart } onDragOver={ this.dragOver }  onDrop={ this.sortEnd }>
+				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart} 
+												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
 					<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 					<ul className="dropdown-menu tileIcon-dropdown" role="menu">
-	                	<li onClick={disconnnect.bind(null, app)}>Disconnect</li>
+	                	<li onClick={disconnect}>Disconnect</li>
 	                </ul>
 					<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
 					<h5 className="ozp-lib-name">{app.name}</h5>

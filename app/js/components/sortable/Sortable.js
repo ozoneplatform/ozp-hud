@@ -31,32 +31,15 @@ var Sortable = {
     }
   },
   move: function(over,append) {
-    //console.log('move');
-    //console.log('over, append');
-    //console.log(over);
-    //console.log(append);
     var to = Number(over.dataset.id);
-    //console.log("to: "+ to);
     var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
-    //console.log('from ' + from);
-    if(append) to++;
-    if(from < to) to--;
     this.update(to,from);
   },
   dragOver: function(e) {
-    //console.log('dragOver');
     e.preventDefault();
-    var over = e.currentTarget;
-    //console.log('currentTarget: ');
-    console.log(over.dataset.id);
-    var relX = e.clientX - over.getBoundingClientRect().left;
-    var relY = e.clientY - over.getBoundingClientRect().top;
-    var height = over.offsetHeight / 2;
-    console.log("relY: " + relY);
-    console.log("height: " + height);
-    var placement = this.placement ? this.placement(relX, relY, over) : relY > height;
-    console.log(placement);
-    this.move(over, placement);
+    if(this.props.data.dragging !== Number(e.currentTarget.dataset.id)){
+      this.move(e.currentTarget,true);
+    }
   },
   isDragging: function() {
    if(this.props.data.dragging == this.props.key){
