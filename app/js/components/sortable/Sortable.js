@@ -11,7 +11,7 @@ var Sortable = {
     this.props.sort(data, to);
   },
   sortEnd: function(e) {
-    console.log('sortEnd');
+    //console.log('sortEnd');
     this.props.sort(this.props.data.items, undefined);
     //console.log(this.props.data.items);
     e.stopPropagation();
@@ -19,7 +19,7 @@ var Sortable = {
 
   },
   sortStart: function(e) {
-    console.log('sortStart');
+    //console.log('sortStart');
     this.dragged = e.currentTarget.dataset ?
       e.currentTarget.dataset.id :
       e.currentTarget.getAttribute('data-id');
@@ -31,7 +31,7 @@ var Sortable = {
     }
   },
   move: function(over,append) {
-    console.log('move');
+    //console.log('move');
     //console.log('over, append');
     //console.log(over);
     //console.log(append);
@@ -44,20 +44,23 @@ var Sortable = {
     this.update(to,from);
   },
   dragOver: function(e) {
-    console.log('dragOver');
+    //console.log('dragOver');
     e.preventDefault();
     var over = e.currentTarget;
     //console.log('currentTarget: ');
-    //console.log(over);
+    console.log(over.dataset.id);
     var relX = e.clientX - over.getBoundingClientRect().left;
     var relY = e.clientY - over.getBoundingClientRect().top;
     var height = over.offsetHeight / 2;
-    var placement = this.placement ? this.placement(relX, relY, over) : relY > height
+    console.log("relY: " + relY);
+    console.log("height: " + height);
+    var placement = this.placement ? this.placement(relX, relY, over) : relY > height;
+    console.log(placement);
     this.move(over, placement);
   },
   isDragging: function() {
    if(this.props.data.dragging == this.props.key){
-       console.log('isDragging ' + this.props['data-id']);
+       //console.log('isDragging ' + this.props['data-id']);
    }
     return this.props.data.dragging == this.props.key
   }
