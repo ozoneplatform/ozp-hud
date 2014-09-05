@@ -31,16 +31,16 @@ var Settings = React.createClass({
 	    							<div className="btn-group settings-dropdown">
 	    							<button className="btn btn-default dropdown-toggle settings-dropdown-button settings-btn" type="button" data-toggle="dropdown">Select Timezone <span className="caret"></span></button>
 	    							<ul className="dropdown-menu settings-dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Coordinated Universal Time (Z)</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Samoa Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hawaii-Aleutian Statdard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Alaska Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Pacific Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Mountain Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Central Statdard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Eastern Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Atlantic Standard Time</a></li>
-	    								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chamorro Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Coordinated Universal Time (Z)</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Samoa Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Hawaii-Aleutian Statdard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Alaska Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Pacific Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Mountain Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Central Statdard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Eastern Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Atlantic Standard Time</a></li>
+	    								<li role="presentation"><a role="menuitem" tabIndex="-1" href="#">Chamorro Standard Time</a></li>
 	    							</ul>
 	    							</div>
 	    						</div>
