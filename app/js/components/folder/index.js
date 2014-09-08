@@ -14,7 +14,7 @@ var Folder = React.createClass({
 		var modalID = 'folder-modal-lg-' + this.state.folderName.replace(/ /g,'');
 
 		var thumbnails = apps.map(function(app){
-			return(<img key={app.name} src={app.thumb}/>);
+			return(<img key={app.name} src={app.img}/>);
 
 		});
 

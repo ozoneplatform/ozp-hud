@@ -4,12 +4,23 @@ var React = require('react');
 var data = require('../../../data');
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
-var apps = data.appLibrary;
+//var apps = data.appLibrary;
 
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
 var Library = React.createClass({
+	
+	clickImage: function(url){
+		window.open(url);
+	},
+	
+	disconnect: function(app){
+		var i = this.state.appArray.indexOf(app);
+		this.state.appArray.splice(i, 1);
+		this.setState({appArray: this.state.appArray});
+	},
+
 	componentWillMount : function(){
 		this.setState({data: {items: apps}});
         /*var scope = this;
@@ -18,6 +29,7 @@ var Library = React.createClass({
             type: "GET",
             dataType: "json",
             url: "http://localhost:8080/marketplace/api/profile/self/library",
+            //url: "http://localhost:8080/marketplace/api/profile/1/library",
             async: false,
             success: function(data) {
                 for (var i = 0; i < data.length; i++) {
@@ -62,7 +74,7 @@ var Library = React.createClass({
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
-			            <li><Folder /></li>
+                        <li><Folder /></li>
 					</ul>
 	            </div>
 	        );
