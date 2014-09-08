@@ -12,6 +12,24 @@ var Sortable = require('../sortable/Sortable');
 var Library = React.createClass({
 	componentWillMount : function(){
 		this.setState({data: {items: apps}});
+        /*var scope = this;
+        var restApps = [];
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "http://localhost:8080/marketplace/api/profile/self/library",
+            async: false,
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var temp = {};
+                    temp.img = data[i].serviceItem.imageSmallUrl;
+                    temp.name = data[i].serviceItem.title;
+                    temp.url = data[i].serviceItem.imageSmallUrl;
+                    restApps.push(temp);
+                }
+            }
+         });
+        this.setState({appArray: restApps});*/
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;
@@ -27,18 +45,17 @@ var Library = React.createClass({
     render: function () {
     	var showApps = true;
     	if(showApps) {
-
-	    	 var icons = this.state.data.items.map(function(app, i) {
-		      return (
-		        <AppBlock
-		          sort={this.sort}
-		          data={this.state.data}
-		          key={i}
-		          data-id={i}
-		          item={app}
-		          disconnect={this.disconnect} />
-		      );
-		    }, this);
+	        var icons = this.state.data.items.map(function(app, i) {
+		    return (
+                <AppBlock
+                    sort={this.sort}
+                    data={this.state.data}
+                    key={i}
+                    data-id={i}
+                    item={app}
+                    disconnect={this.disconnect} />
+                );
+            }, this);
 
 	    	return (
 	            <div className="applib-main">
