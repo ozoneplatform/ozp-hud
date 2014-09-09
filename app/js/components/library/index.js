@@ -22,26 +22,41 @@ var Library = React.createClass({
 	},
 
 	componentWillMount : function(){
-		this.setState({data: {items: apps}});
-        /*var scope = this;
+        var scope = this;
         var restApps = [];
+        var folders = [];
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "http://localhost:8080/marketplace/api/profile/self/library",
-            //url: "http://localhost:8080/marketplace/api/profile/1/library",
             async: false,
             success: function(data) {
+                var folderList = [];
                 for (var i = 0; i < data.length; i++) {
                     var temp = {};
-                    temp.img = data[i].serviceItem.imageSmallUrl;
+                    if(folderList.indexOf(data[i].folder) === -1)
+                    {
+                        folderList.push(data[i].folder);
+                    }
+                    else
+                    {
+                        folders.push(data[i].folder);
+                    }
+
+                    temp.folder = data[i].folder;
+                    temp.img = data[i].serviceItem.imageLargeUrl;
                     temp.name = data[i].serviceItem.title;
-                    temp.url = data[i].serviceItem.imageSmallUrl;
+                    temp.url = data[i].serviceItem.launchUrl;
                     restApps.push(temp);
                 }
+            },
+            failure: function(){
+                console.log("MarketPlace REST call failed. Loading with no applications");
             }
          });
-        this.setState({appArray: restApps});*/
+        this.setState({data: {items: restApps}});
+        this.setState({folders: folders});
+        //this.setState({appArray: restApps});
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;
@@ -52,29 +67,38 @@ var Library = React.createClass({
   	disconnect: function(app){
 		var i = this.state.data.items.indexOf(app);
 		this.state.data.items.splice(i, 1);
-		this.setState({data: {items: apps}});
+		this.setState({data: {items: this.state.data.items}});
 	},
     render: function () {
-    	var showApps = true;
-    	if(showApps) {
+    	if(this.state.data.items.length >= 1) {
 	        var icons = this.state.data.items.map(function(app, i) {
-		    return (
-                <AppBlock
-                    sort={this.sort}
-                    data={this.state.data}
-                    key={i}
-                    data-id={i}
-                    item={app}
-                    disconnect={this.disconnect} />
-                );
+                if(this.state.folders.indexOf(app.folder) === -1) {
+                    return (
+                        <AppBlock sort={this.sort} data={this.state.data} key={i} data-id={i} item={app} disconnect={this.disconnect} />
+                    );
+                }
             }, this);
 
-	    	return (
+            var tempFolders = [];
+            //var folderName;
+            this.state.data.items.map(function(app, i) {
+
+                if(this.state.folders.indexOf(app.folder) !== -1) {
+                    tempFolders.push(app);
+                    //folderName = app.folder;
+                }
+            }, this);
+
+            var folders = <Folder apps={tempFolders} folders={this.state.folders}/>;
+            //var folders = <Folder apps={tempFolders} folderName={folderName}/>;
+
+            //<li><Folder /></li>
+            return (
 	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
-                        <li><Folder /></li>
+                        {folders}
 					</ul>
 	            </div>
 	        );
