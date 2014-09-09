@@ -72,33 +72,33 @@ var Library = React.createClass({
     render: function () {
     	if(this.state.data.items.length >= 1) {
 	        var icons = this.state.data.items.map(function(app, i) {
-                if(this.state.folders.indexOf(app.folder) === -1) {
+                if(!app.folder) {
                     return (
                         <AppBlock sort={this.sort} data={this.state.data} key={i} data-id={i} item={app} disconnect={this.disconnect} />
                     );
                 }
             }, this);
 
-            var tempFolders = [];
-            //var folderName;
+            /*var tempFolders = [];
+            var folderName;
             this.state.data.items.map(function(app, i) {
 
                 if(this.state.folders.indexOf(app.folder) !== -1) {
                     tempFolders.push(app);
-                    //folderName = app.folder;
+                    folderName = app.folder;
                 }
             }, this);
 
-            var folders = <Folder apps={tempFolders} folders={this.state.folders}/>;
-            //var folders = <Folder apps={tempFolders} folderName={folderName}/>;
+            var folders = <Folder apps={tempFolders} folderName={folderName}/>;*/
 
             //<li><Folder /></li>
+            //{folders}
             return (
 	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
-                        {folders}
+
 					</ul>
 	            </div>
 	        );
