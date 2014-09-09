@@ -45,7 +45,6 @@ var Library = React.createClass({
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {icons}
-			            <li><Folder /></li>
 					</ul>
 	            </div>
 	        );
@@ -77,15 +76,28 @@ var AppBlock = React.createClass({
     	var click = this.clickImage;
     	var app = this.props.item;
     	var disconnect = this.props.disconnect.bind(null,this.props.item);
+    	var boxContent;
+    	if(app.name !== 'Folder'){
+    		boxContent = (
+    				<div>
+	    				<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
+						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
+		                	<li onClick={disconnect}>Disconnect</li>
+		                </ul>
+						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
+						<h5 className="ozp-lib-name">{app.name}</h5>
+					</div>
+					);
+    	}else{
+    		boxContent = (
+    				<Folder />
+    			);
+    	}
+
 		return this.transferPropsTo(
 				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart} 
 												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
-					<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-					<ul className="dropdown-menu tileIcon-dropdown" role="menu">
-	                	<li onClick={disconnect}>Disconnect</li>
-	                </ul>
-					<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
-					<h5 className="ozp-lib-name">{app.name}</h5>
+					{boxContent}
     			</li>
 			);
 	}
