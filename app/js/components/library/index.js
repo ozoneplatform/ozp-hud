@@ -22,7 +22,6 @@ var Library = React.createClass({
 	},
 
 	componentWillMount : function(){
-        var scope = this;
         var restApps = [];
         var folders = [];
         $.ajax({
@@ -31,18 +30,8 @@ var Library = React.createClass({
             url: "http://localhost:8080/marketplace/api/profile/self/library",
             async: false,
             success: function(data) {
-                var folderList = [];
                 for (var i = 0; i < data.length; i++) {
                     var temp = {};
-                    if(folderList.indexOf(data[i].folder) === -1)
-                    {
-                        folderList.push(data[i].folder);
-                    }
-                    else
-                    {
-                        folders.push(data[i].folder);
-                    }
-
                     temp.folder = data[i].folder;
                     temp.img = data[i].serviceItem.imageLargeUrl;
                     temp.name = data[i].serviceItem.title;
