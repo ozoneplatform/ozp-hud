@@ -78,7 +78,8 @@ var Library = React.createClass({
                 }
             }
         }, this);
-
+//console.log("foldersAndApps");
+//console.log(foldersAndApps);
         if(this.state.data.items.length >= 1) {
             var data = this.state.data;
             var disconnect = this.disconnect;
@@ -139,10 +140,8 @@ var AppBlock = React.createClass({
 					</div>
 					);
     	}else{
-    		console.log(app);
-    		console.log(app.items);
     		boxContent = (
-    				<Folder folder={app}/>
+    				<Folder folder={app} disconnect={this.props.disconnect}/>
     			);
     	}
 

@@ -20,7 +20,6 @@ var Folder = React.createClass({
 		var modalID = 'folder-modal-lg-' + this.state.folderName.replace(/\W/g, '')
 
 		var thumbnails = apps.map(function(app){
-            console.log(app);
 			return(<img key={app.name} src={app.img}/>);
 
 		});
@@ -32,7 +31,7 @@ var Folder = React.createClass({
 						</div>
 					</a>
 					<h5 className="ozp-lib-name">{this.state.folderName}</h5>
-					<FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.disconnect} modalID={modalID} rename={this.rename}/>
+					<FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={this.rename}/>
 
 				</div>
 			);

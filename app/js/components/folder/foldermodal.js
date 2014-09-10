@@ -18,7 +18,18 @@ var FolderModal = React.createClass({
 		$('#'+this.props.folderName.replace(/\W/g, '')+'-input').show();
 
 	},
-	
+	disconnectWrapper: function(app){
+		console.log(this.state.data.items.length);
+		console.log(app);
+		if(this.state.data.items.length === 1){
+			$('#' + this.props.modalID).modal('hide');
+		}
+
+		var i = this.state.data.items.indexOf(app);
+		this.state.data.items.splice(i, 1);
+		this.setState({data:{items: this.state.data.items}});
+		this.props.disconnect(app);
+	},
 	render: function(){
     	var click = this.clickImage;
     	var disconnect = this.props.disconnect;
@@ -31,7 +42,7 @@ var FolderModal = React.createClass({
 		          key={i}
 		          data-id={i}
 		          item={app}
-		          disconnect={disconnect} />
+		          disconnect={this.disconnectWrapper} />
 		      );
 		    }, this);
 		return (
