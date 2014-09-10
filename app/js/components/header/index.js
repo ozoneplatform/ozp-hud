@@ -91,7 +91,7 @@ var Header = React.createClass({
     			    <div className="navbar-right">
 	    			    <ul className="nav navbar-nav">
 						    <Alerts />
-				        	<li>
+				        	<li className="no-hover">
 						        <a className="nav-bar-button nav-bar-icon" id="ozp-clock" href="#">
 				    				<b>{this.state.time}</b>
 				    			</a>
