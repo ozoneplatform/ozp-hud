@@ -1,11 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var data = require('../../../data');
 var appsMallLogo  = './images/AppsMall_Icon.png';
-
-//var apps = data.appLibrary;
-
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
@@ -88,16 +84,9 @@ var Library = React.createClass({
             var disconnect = this.disconnect;
             var sort = this.sort;
             var applicationList = foldersAndApps.map(function(app, i){
-                if(!app.folder) {
                     return (
                         <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} />
                     );
-                }
-                else {
-                    return (
-                        <Folder apps={app.items} folderName={app.folder}/>
-                    );
-                }
             });
 
             return (
@@ -105,6 +94,7 @@ var Library = React.createClass({
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
 			            {applicationList}
+
 					</ul>
 	            </div>
 	        );
@@ -136,15 +126,30 @@ var AppBlock = React.createClass({
     	var click = this.clickImage;
     	var app = this.props.item;
     	var disconnect = this.props.disconnect.bind(null,this.props.item);
+    	var boxContent;
+    	if(app.folder === null){
+    		boxContent = (
+    				<div>
+	    				<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
+						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
+		                	<li onClick={disconnect}>Disconnect</li>
+		                </ul>
+						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
+						<h5 className="ozp-lib-name">{app.name}</h5>
+					</div>
+					);
+    	}else{
+    		console.log(app);
+    		console.log(app.items);
+    		boxContent = (
+    				<Folder folder={app}/>
+    			);
+    	}
+
 		return this.transferPropsTo(
 				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart} 
 												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
-					<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-					<ul className="dropdown-menu tileIcon-dropdown" role="menu">
-	                	<li onClick={disconnect}>Disconnect</li>
-	                </ul>
-					<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
-					<h5 className="ozp-lib-name">{app.name}</h5>
+					{boxContent}
     			</li>
 			);
 	}

@@ -7,6 +7,7 @@
 	border-radius: 15px;
     margin: 0 25px 0 0;
 
+
 	img{
 		padding: 5px;
 		height: 35px;
@@ -37,8 +38,13 @@
 	.close {
     	color: white !important;
 	}
-	h2{
+	.folder-header{
 		text-align: center;
+
+		.folder-name-text-field{
+			text-align: center;
+			background: none;
+		}
 	}
 }
 .modal-dialog{

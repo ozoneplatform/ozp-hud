@@ -27,7 +27,13 @@ module.exports = (function (){
 			{img: './images/sampleListings/SearchWell.png', name: 'Search Well', url: './images/sampleListings/SearchWell.png'},
 			{img: './images/sampleListings/Skybox.png', name: 'Skybox', url: './images/sampleListings/Skybox.png'},
 			{img: './images/sampleListings/TreeNote.png', name: 'Tree Note', url: './images/sampleListings/TreeNote.png'},
-			{img: './images/sampleListings/WhiteboardGraphs.png', name: 'Whiteboard Graphs', url: './images/sampleListings/WhiteboardGraphs.png'}
+			{img: './images/sampleListings/WhiteboardGraphs.png', name: 'Whiteboard Graphs', url: './images/sampleListings/WhiteboardGraphs.png'},
+			{folder: 'Multimedia', data: [
+				{img: './images/sampleListings/AirMail.png', name: 'Air Mail', url: './images/sampleListings/AirMail.png', thumb: './images/appIcons/paperAirplane.png'},
+				{img: './images/sampleListings/BreadBasket.png', name: 'Bread Basket', url: './images/sampleListings/BreadBasket.png', thumb: './images/appIcons/bread.png'},
+				{img: './images/sampleListings/Clipboard.png', name: 'Clipboard', url: './images/sampleListings/Clipboard.png', thumb: './images/appIcons/clipboard.png'}
+				]
+			}
 		],
 		folder: 	[
 			{img: './images/sampleListings/AirMail.png', name: 'Air Mail', url: './images/sampleListings/AirMail.png', thumb: './images/appIcons/paperAirplane.png'},
