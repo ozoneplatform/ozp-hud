@@ -12,7 +12,6 @@ var Folder = React.createClass({
 	render: function(){
 		//TODO make this work for repeated folder names
         var apps = this.props.apps;
-        debugger;
         var modalID = 'folder-modal-lg-' + this.state.folderName.replace(/ /g,'');
         var folderName = this.state.folderName;
         var thumbnails = apps.map(function(app){
