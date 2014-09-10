@@ -4,14 +4,48 @@ var React = require('react');
 var data = require('../../../data');
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
-var apps = data.appLibrary;
+//var apps = data.appLibrary;
 
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
 var Library = React.createClass({
+	
+	clickImage: function(url){
+		window.open(url);
+	},
+	
+	disconnect: function(app){
+		var i = this.state.appArray.indexOf(app);
+		this.state.appArray.splice(i, 1);
+		this.setState({appArray: this.state.appArray});
+	},
+
 	componentWillMount : function(){
-		this.setState({data: {items: apps}});
+        var restApps = [];
+        var folders = [];
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "http://localhost:8080/marketplace/api/profile/self/library",
+            async: false,
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var temp = {};
+                    temp.folder = data[i].folder;
+                    temp.img = data[i].serviceItem.imageLargeUrl;
+                    temp.name = data[i].serviceItem.title;
+                    temp.url = data[i].serviceItem.launchUrl;
+                    restApps.push(temp);
+                }
+            },
+            failure: function(){
+                console.log("MarketPlace REST call failed. Loading with no applications");
+            }
+         });
+        this.setState({data: {items: restApps}});
+        this.setState({folders: folders});
+        //this.setState({appArray: restApps});
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;
@@ -22,30 +56,55 @@ var Library = React.createClass({
   	disconnect: function(app){
 		var i = this.state.data.items.indexOf(app);
 		this.state.data.items.splice(i, 1);
-		this.setState({data: {items: apps}});
+		this.setState({data: {items: this.state.data.items}});
 	},
     render: function () {
-    	var showApps = true;
-    	if(showApps) {
+        var foldersAndApps = [];
+        this.state.data.items.map(function(app, i) {
+            if(app.folder === null)
+            {
+                foldersAndApps.push(app);
+            }
+            else
+            {
+                var index = foldersAndApps.map(function(e){ return e.folder;}).indexOf(app.folder);
+                if(index === -1)
+                {
+                    var tempFolder = {};
+                    tempFolder.folder = app.folder;
+                    tempFolder.items = [];
+                    tempFolder.items.push(app);
+                    foldersAndApps.push(tempFolder);
+                }
+                else
+                {
+                    foldersAndApps[index].items.push(app);
+                }
+            }
+        }, this);
 
-	    	 var icons = this.state.data.items.map(function(app, i) {
-		      return (
-		        <AppBlock
-		          sort={this.sort}
-		          data={this.state.data}
-		          key={i}
-		          data-id={i}
-		          item={app}
-		          disconnect={this.disconnect} />
-		      );
-		    }, this);
+        if(this.state.data.items.length >= 1) {
+            var data = this.state.data;
+            var disconnect = this.disconnect;
+            var sort = this.sort;
+            var applicationList = foldersAndApps.map(function(app, i){
+                if(!app.folder) {
+                    return (
+                        <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} />
+                    );
+                }
+                else {
+                    return (
+                        <Folder apps={app.items} folderName={app.folder}/>
+                    );
+                }
+            });
 
-	    	return (
+            return (
 	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
 	            	<ul className="nav navbar-nav applib">
-			            {icons}
-			            <li><Folder /></li>
+			            {applicationList}
 					</ul>
 	            </div>
 	        );
@@ -54,7 +113,7 @@ var Library = React.createClass({
     		return (
     	            <div className="applib-main">
     	            	<h3 className="applib"><b>Application Library</b></h3>
-    	            	<h1 className="empty-app-text">You Currently have no <br />
+    	            	<h1 className="empty-app-text">You currently have no <br />
     	            	Apps to display</h1>
     	            	<h2 className="visit-appsmall">Visit the AppsMall to discover <br />
     	            	Apps you can start using</h2>

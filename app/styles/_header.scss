@@ -184,11 +184,9 @@
 }
 
 body > div.classBanner:last-of-type {
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  bottom:0%;
 }
-
-
 
 .launch-external{
     color: white;

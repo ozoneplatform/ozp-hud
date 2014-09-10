@@ -32,7 +32,10 @@ module.exports = (function (){
 		folder: 	[
 			{img: './images/sampleListings/AirMail.png', name: 'Air Mail', url: './images/sampleListings/AirMail.png', thumb: './images/appIcons/paperAirplane.png'},
 			{img: './images/sampleListings/BreadBasket.png', name: 'Bread Basket', url: './images/sampleListings/BreadBasket.png', thumb: './images/appIcons/bread.png'},
-			{img: './images/sampleListings/Clipboard.png', name: 'Clipboard', url: './images/sampleListings/Clipboard.png', thumb: './images/appIcons/clipboard.png'}
+			{img: './images/sampleListings/Clipboard.png', name: 'Clipboard', url: './images/sampleListings/Clipboard.png', thumb: './images/appIcons/clipboard.png'},
+            {img: './images/sampleListings/ChatterBox.png', name: 'Chatter Box', url: './images/sampleListings/ChatterBox.png', thumb: './images/appIcons/paperAirplane.png'},
+            {img: './images/sampleListings/HatchLatch.png', name: 'HatchLatch', url: './images/sampleListings/HatchLatch.png', thumb: './images/appIcons/bread.png'},
+            {img: './images/sampleListings/ChartCourse.png', name: 'Chart Course', url: './images/sampleListings/ChartCourse.png', thumb: './images/appIcons/clipboard.png'}
 
 		],
 		alerts: 	[

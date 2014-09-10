@@ -3,12 +3,13 @@
 var React = require('react/addons');
 require('bootstrap');
 var data = require('../../../data.js');
-var apps = data.folder;
+//var apps = data.folder;
+var apps;
 
 
 var FolderModal = React.createClass({
 	getInitialState: function() {
-	    return {appArray: apps};
+	    return {appArray: this.props.apps};
     },
 
     clickImage: function(url){
@@ -18,7 +19,7 @@ var FolderModal = React.createClass({
 	disconnect: function(app){
 		var i = this.state.appArray.indexOf(app);
 		this.state.appArray.splice(i, 1);
-		this.setState({appArray: apps});
+		this.setState({appArray: this.state.appArray});
 	},
 
 	render: function(){
