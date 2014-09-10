@@ -19,7 +19,6 @@ var Library = React.createClass({
 
 	componentWillMount : function(){
         var restApps = [];
-        var folders = [];
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -40,8 +39,6 @@ var Library = React.createClass({
             }
          });
         this.setState({data: {items: restApps}});
-        this.setState({folders: folders});
-        //this.setState({appArray: restApps});
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;

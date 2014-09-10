@@ -53,10 +53,10 @@ var Header = React.createClass({
     			    <div className="navbar-header">
 	    			    <ul className="nav navbar-nav">
 				        	<li className="menu-icon">
-						        <a className="nav-bar-button nav-bar-icon" data-toggle="dropdown" href="#">
+						        <a className="nav-bar-button nav-bar-icon dropdown-icon" data-toggle="dropdown" href="#">
 				        			<i className="fa fa-navicon fa-2x" />
 				        		</a>
-				                <ul className="dropdown-menu" role="menu" id="app-dropdown-menu">
+				                <ul className="dropdown-menu app-dropdown-menu" role="menu" >
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-th"></i> App Library</a></li>
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
 				                    <li className="app-dropdown-item"><a href="./images/sampleSites/webtop-screenshot.png"><i className="fa fa-desktop"></i> WebTop</a></li>
@@ -80,11 +80,6 @@ var Header = React.createClass({
 				        			<i id="ozp-dashboard" className="fa fa-desktop fa-2x" />
 				        		</a>
 				        	</li>
-				        	<li>
-				        		<a className="nav-bar-button" href="#">
-				        			<img className="dashboard-img" src={dashboard} />
-				        		</a>
-				        	</li>
 				        </ul>
     			    </div>
     			    
@@ -97,7 +92,7 @@ var Header = React.createClass({
 				    			</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button nav-bar-icon" data-toggle="dropdown" href="#">
+						        <a className="nav-bar-button nav-bar-icon dropdown-icon" data-toggle="dropdown" href="#">
 						        	<i className="fa fa-user fa-2x" /><b>{" " + user}</b>
 				    			</a>
 				    			<ul className="dropdown-menu app-dropdown-menu" role="menu">

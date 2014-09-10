@@ -10,8 +10,8 @@ var HelpModal = React.createClass({
 			  <div className="modal-dialog" id="help-modal">
 			    <div className="modal-content">
 			      <div className="modal-body">
-			      	<button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-			      	<h2 className="modal-title">OZONE Help Zone</h2>			      	
+			      	<button type="button" className="close btn-close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+			      	<h2 className="modal-title help-modal-title">OZONE Help Zone</h2>
 			      	<div className="help-modal-textarea">			      	
 		      			<div className="help-modal-left">
 		      				<p>Lorem ipsum <br/> dolor sit amet <br /> consectetur adipiscing elit. <br /> Aenean euismod <br /> bibendum laoreet. <br /> Proin gravida dolor sit <br /> amet lacus accumsan et <br /> viverra justo commodo.</p>

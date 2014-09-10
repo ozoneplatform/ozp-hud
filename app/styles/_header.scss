@@ -75,12 +75,18 @@
     }
 
     .dropdown-menu {
-        margin-top: 0;
+      background-color: $nav-dropdown-bg;
+      margin-top: 0;
     }
 }
 
 .app-dropdown-menu {
     background-color: $nav-dropdown-bg;
+    border-radius: 0px !important;
+    border: 0px;
+    :hover {
+      background-color: $nav-dropdown-bg !important;
+    }
 }
 
 #ozp-logo {
@@ -110,8 +116,15 @@
 	color: $general-icon-color !important;
 }
 
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: $nav-dropdown-bg;
+  border-bottom: 4px solid $general-hover;
+}
+
 .app-dropdown-item {
-	height:20px !important;
+  height:20px !important;
+  font-weight: $general-font-weight;
+  font-family: $general-font;
 }
 
 .navbar-nav > li > a {
@@ -129,9 +142,7 @@
 
 /*-- change navbar dropdown color --*/
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
-	background-color: $nav-dropdown-bg;
 	color:$nav-font-color;
-    border-radius: 5px !important;
 }
 
 .container-fluid {
@@ -163,22 +174,23 @@
     .clearfix {
         clear: both;
     }
-    ul > li:hover:after{
-        border: 2px solid $general-hover;
-        bottom: 0;
-        content: "";
-        left: 0;
-        position: absolute;
-        width: 100%;
-        }
     ul > li.current:after{
-        border: 2px solid $general-active-el;       
-        bottom: 0;
-        content: "";
-        left: 0;
-        position: absolute;
-        width: 100%; 
+      border: 2px solid $general-active-el;
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      width: 100%;
     }
+    ul > li:hover:after{
+      border: 2px solid $general-hover;
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
     ul > li.current:hover:after{
     };
     ul > li > ul > li:hover:after{

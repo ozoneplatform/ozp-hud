@@ -9,7 +9,7 @@
 .applib {
     padding-left: 30px;
     padding-bottom: 10px;
-    color: #7A7A7A !important;
+    color: $general-font-color !important;
     font-weight: $general-font-weight;
     font-family: $general-font;
 }
@@ -56,6 +56,7 @@
 .ozp-lib-name {
 	color: white;
 	text-align: center;
+    margin: 5px 25px 0 0;
 }
 
 .tileIcon {
@@ -102,6 +103,8 @@
 
 .settings-btn{
 	border-radius:0px !important;
+    font-weight: $general-font-weight;
+    font-family: $general-font;
 }
 
 .settings-btn-group-shadow {

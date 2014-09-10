@@ -1,4 +1,4 @@
-.help-modal .modal-header, .modal-body {
+.help-modal .modal-header .close, .modal-body {
     background-color: #222222 !important;
     color: white !important;
     height: 350px;
@@ -11,7 +11,7 @@
     height: 450px;
 }
 
-.close {
+.btn-close {
     color: white !important;
 }
 
@@ -21,11 +21,20 @@
     border-style: solid;
     padding: 5px 5px 5px 5px;
     height: 250px;
+    font-weight: $general-font-weight;
+    font-family: $general-font;
+}
+
+.help-modal-title {
+  font-weight: $general-font-weight;
+  font-family: $general-font;
 }
 
 .help-modal-left {
 	float: left;
 	width: 30%;
+    font-weight: $general-font-weight;
+    font-family: $general-font;
 }
 
 .help-modal-right {
