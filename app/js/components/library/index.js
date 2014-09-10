@@ -77,7 +77,7 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
     	var disconnect = this.props.disconnect.bind(null,this.props.item);
     	var boxContent;
-    	if(app.name !== 'Folder'){
+    	if(app.folder === undefined){
     		boxContent = (
     				<div>
 	    				<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
@@ -90,7 +90,7 @@ var AppBlock = React.createClass({
 					);
     	}else{
     		boxContent = (
-    				<Folder />
+    				<Folder folder={app}/>
     			);
     	}
 

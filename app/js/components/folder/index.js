@@ -6,7 +6,7 @@ var apps = data.folder;
 
 var Folder = React.createClass({
 	getInitialState: function() {
-	    return {folderName: 'Multimedia'};
+	    return {folderName: this.props.folder.folder};
     },
 	rename: function(event){
 		this.setState({folderName: event.target.value});
