@@ -10,7 +10,7 @@ npm install -g gulp
 npm install
 ```
 
-`npm start` or `gulp dev` then go to http://localhost:8080/webpack-dev-server/dist and browser will automatically reload when any file in /app changes. Alternatively, you can also go to http://localhost:8080/dist, if auto reload is undesirable.
+`npm start` or `gulp dev` then go to http://localhost:8088/webpack-dev-server/dist and browser will automatically reload when any file in /app changes. Alternatively, you can also go to http://localhost:8088/dist, if auto reload is undesirable.
 
 ## Available tasks
 * `gulp` shows all available commands.
