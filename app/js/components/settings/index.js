@@ -9,7 +9,7 @@ var Settings = React.createClass({
     			<div className="modal-dialog settings-modal">
     				<div className="modal-content">
     					<div className="modal-body settings-body">
-	    					<button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+	    					<button type="button" className="close btn-close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
 	    		    		<h3 className="modal-title">Settings</h3>
 	    		    		<form className="form-horizontal settings-form">
 	    		    			<div className="form-group">

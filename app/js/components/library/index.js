@@ -5,6 +5,8 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
+var libraryData;
+
 var Library = React.createClass({
 	
 	clickImage: function(url){
@@ -25,6 +27,8 @@ var Library = React.createClass({
             url: "http://localhost:8080/marketplace/api/profile/self/library",
             async: false,
             success: function(data) {
+                console.log(JSON.stringify(data));
+                libraryData = data;
                 for (var i = 0; i < data.length; i++) {
                     var temp = {};
                     temp.folder = data[i].folder;
@@ -57,9 +61,16 @@ var Library = React.createClass({
 		this.setState({data: data});
   	},
   	disconnect: function(app){
+        var j;
         var i = this.state.data.items.indexOf(app);
 		this.state.data.items.splice(i, 1);
 		this.setState({data: {items: this.state.data.items}});
+       
+       for(j = 0 ; j< libraryData.length; j++) {
+        if(libraryData[j].serviceItem.id === app.id){
+            libraryData.splice(j--,1);
+        }
+       }
         $.ajax({
             type: "DELETE",
             dataType: "json",
@@ -73,6 +84,44 @@ var Library = React.createClass({
             }
         });
 	},
+    folderRename: function(targetFolder, newName){
+        var data = this.state.data;
+         var j;
+        data.items.forEach(function(app){
+
+            if(app.folder === targetFolder){
+                console.log(app.id);
+                app.folder = newName;
+            }
+        });
+       
+       for(j = 0 ; j< libraryData.length; j++) {
+        if(libraryData[j].folder === targetFolder){
+            libraryData[j].folder = newName;
+        }
+       }
+       console.log(JSON.stringify(libraryData));
+         
+       // console.log("rename:");
+       // console.log(JSON.stringify(data));
+        this.setState({data: data});
+
+    },
+    folderRenameOnBlur: function(){
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json",
+            url: "http://localhost:8080/marketplace/api/profile/self/library/",
+            data: JSON.stringify(libraryData),
+            async: true,
+            success: function(data) {
+                console.log("MarketPlace REST successful. Folder name was updated");
+            },
+            failure: function(){
+                console.log("MarketPlace REST call failed. Folder name was not updated");
+            }
+        });
+    },
     render: function () {
         var foldersAndApps = [];
         this.state.data.items.map(function(app, i) {
@@ -102,12 +151,12 @@ var Library = React.createClass({
             var data = this.state.data;
             var disconnect = this.disconnect;
             var sort = this.sort;
+            var rename = {renameFolder: this.folderRename, renameOnBlur: this.folderRenameOnBlur};
             var applicationList = foldersAndApps.map(function(app, i){
                     return (
-                        <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} />
+                        <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} rename={rename}/>
                     );
             });
-
             return (
 	            <div className="applib-main">
 	            	<h3 className="applib"><b>Application Library</b></h3>
@@ -159,7 +208,7 @@ var AppBlock = React.createClass({
 					);
     	}else{
     		boxContent = (
-    				<Folder folder={app} disconnect={this.props.disconnect}/>
+    				<Folder folder={app} disconnect={this.props.disconnect} rename={this.props.rename}/>
     			);
     	}
 

@@ -8,16 +8,14 @@ var Folder = React.createClass({
     },
 	rename: function(event){
 		this.setState({folderName: event.target.value});
+		this.props.rename.renameFolder(this.state.folderName, event.target.value);
+
 	},
-    disconnect: function(app){
-        var i = this.state.apps.indexOf(app);
-        this.state.apps.splice(i, 1);
-        this.setState({apps: this.state.apps});
-    },
 	render: function(){
 		//TODO make this work for repeated folder names
         var apps = this.state.apps;
 		var modalID = 'folder-modal-lg-' + this.state.folderName.replace(/\W/g, '')
+        var rename = {renameFolder: this.rename, renameOnBlur: this.props.rename.renameOnBlur};
 
 		var thumbnails = apps.map(function(app){
 			return(<img key={app.name} src={app.img}/>);
@@ -31,7 +29,7 @@ var Folder = React.createClass({
 						</div>
 					</a>
 					<h5 className="ozp-lib-name">{this.state.folderName}</h5>
-					<FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={this.rename}/>
+					<FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={rename} />
 
 				</div>
 			);
