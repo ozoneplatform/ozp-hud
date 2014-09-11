@@ -5,7 +5,7 @@ var Sortable = require('../sortable/Sortable');
 
 var FolderModal = React.createClass({
 	componentWillMount : function(){
-		this.setState({data: {items: this.props.apps}});
+        this.setState({data: {items: this.props.apps}});
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;

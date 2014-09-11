@@ -47,6 +47,11 @@ var Header = React.createClass({
 
     render: function () {
     	var user = "J Smith";
+        $(document).ready(function() {
+            $('.modal').on('shown.bs.modal', function() {
+                $(".classBanner").last().css({"position" : "fixed", "bottom" : "0%"});
+            })
+        });
     	return (
             <nav id="top-bar" className="navbar navbar-default navbar-inverse app-toolbar no-rounded-corners" role="navigation">
                 <div className="container-fluid">

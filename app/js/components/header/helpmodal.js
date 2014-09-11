@@ -5,7 +5,7 @@ require('bootstrap');
 
 var HelpModal = React.createClass({
 	render: function(){
-		return (
+        return (
 			<div className="modal custom fade help-modal-lg" role="dialog" aria-hidden="true">
 			  <div className="modal-dialog" id="help-modal">
 			    <div className="modal-content">
