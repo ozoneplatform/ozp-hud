@@ -57,7 +57,6 @@ var Library = React.createClass({
             url: "http://localhost:8080/marketplace/api/profile/self/library/" + app.id,
             async: true,
             success: function(data) {
-                debugger;
                 console.log("MarketPlace REST successful. Application was deleted");
             },
             failure: function(){
