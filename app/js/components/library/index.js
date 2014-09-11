@@ -17,7 +17,7 @@ var Library = React.createClass({
 		this.setState({appArray: this.state.appArray});
 	},
 
-	componentWillMount : function(){
+    getData: function(){
         var restApps = [];
         $.ajax({
             type: "GET",
@@ -38,8 +38,17 @@ var Library = React.createClass({
             failure: function(){
                 console.log("MarketPlace REST call failed. Loading with no applications");
             }
-         });
+        });
         this.setState({data: {items: restApps}});
+    },
+
+    componentWillUnmount: function() {
+        clearInterval(this.interval);
+    },
+
+	componentWillMount : function(){
+        this.interval = setInterval(this.getData, 5000);
+        this.getData();
 	},
 	sort: function(items, dragging) {
 		var data = this.state.data;
