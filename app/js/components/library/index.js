@@ -28,6 +28,7 @@ var Library = React.createClass({
                 for (var i = 0; i < data.length; i++) {
                     var temp = {};
                     temp.folder = data[i].folder;
+                    temp.id = data[i].serviceItem.id;
                     temp.img = data[i].serviceItem.imageLargeUrl;
                     temp.name = data[i].serviceItem.title;
                     temp.url = data[i].serviceItem.launchUrl;
@@ -47,9 +48,22 @@ var Library = React.createClass({
 		this.setState({data: data});
   	},
   	disconnect: function(app){
-		var i = this.state.data.items.indexOf(app);
+        var i = this.state.data.items.indexOf(app);
 		this.state.data.items.splice(i, 1);
 		this.setState({data: {items: this.state.data.items}});
+        $.ajax({
+            type: "DELETE",
+            dataType: "json",
+            url: "http://localhost:8080/marketplace/api/profile/self/library/" + app.id,
+            async: true,
+            success: function(data) {
+                debugger;
+                console.log("MarketPlace REST successful. Application was deleted");
+            },
+            failure: function(){
+                console.log("MarketPlace REST call failed. Application was not deleted");
+            }
+        });
 	},
     render: function () {
         var foldersAndApps = [];
@@ -75,8 +89,7 @@ var Library = React.createClass({
                 }
             }
         }, this);
-//console.log("foldersAndApps");
-//console.log(foldersAndApps);
+
         if(this.state.data.items.length >= 1) {
             var data = this.state.data;
             var disconnect = this.disconnect;

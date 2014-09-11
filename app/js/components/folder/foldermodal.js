@@ -49,13 +49,9 @@ var FolderModal = React.createClass({
 			<div className="modal custom fade folder-modal" id={this.props.modalID} tabIndex="-1" role="dialog" aria-hidden="true">
 			  <div className="modal-dialog">
 			    <div className="modal-content">
-					<div className="folder-header">
-						<h2><span id={this.props.folderName.replace(/\W/g, '') + '-header'} onClick={this.showInput}> {this.props.folderName}</span></h2>
-						<input type="text" id={this.props.folderName.replace(/\W/g, '') + '-input'} className="folder-name-text-field" value={this.props.folderName} onChange={this.props.rename} hidden />
-					</div>
-					
 					<div className="modal-body">
-			      		<button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h2 className="modal-title folder-modal-header"><span id={this.props.folderName.replace(/\W/g, '') + '-header'} onClick={this.showInput}> {this.props.folderName}</span></h2>
 			      			<ul className="nav navbar-nav">
 								{icons}			
 							</ul>
