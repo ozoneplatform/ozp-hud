@@ -25,7 +25,6 @@ var Library = React.createClass({
             url: "http://localhost:8080/marketplace/api/profile/self/library",
             async: false,
             success: function(data) {
-                console.log(JSON.stringify(data));
                 libraryData = data;
             },
             failure: function(){
@@ -75,7 +74,6 @@ var Library = React.createClass({
         data.items.forEach(function(app){
 
             if(app.folder === targetFolder){
-                console.log(app.serviceItem.id);
                 app.folder = newName;
             }
         });
