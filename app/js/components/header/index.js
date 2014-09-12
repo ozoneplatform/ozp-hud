@@ -64,7 +64,7 @@ var Header = React.createClass({
 				                <ul className="dropdown-menu app-dropdown-menu" role="menu" >
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-th"></i> App Library</a></li>
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-wrench"></i> App Builder</a></li>
-				                    <li className="app-dropdown-item"><a href="./images/sampleSites/webtop-screenshot.png"><i className="fa fa-desktop"></i> WebTop</a></li>
+				                    <li className="app-dropdown-item"><a href="http://ozone-development.github.io/ozp-webtop/#/grid"><i className="fa fa-desktop"></i> WebTop</a></li>
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-envelope-o"></i> Submit a Listing</a></li>
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-bar-chart-o"></i> Metrics</a></li>
 				                    <li className="app-dropdown-item"><a href="#"><i className="fa fa-terminal"></i> Developer Resources</a></li>
@@ -76,12 +76,12 @@ var Header = React.createClass({
 					    		</a>
 				        	</li>
 				        	<li>
-						        <a id="appsmall-logo" href="./images/sampleSites/AppsMall.png">
+						        <a id="appsmall-logo" href="http://ozone-development.github.io/center-ui/dist/index.html">
 					    			<img src={appsMallLogo} />
 					    		</a>
 				        	</li>
 				        	<li>
-						        <a className="nav-bar-button" href="./images/sampleSites/webtop-screenshot.png">
+						        <a className="nav-bar-button" href="http://ozone-development.github.io/ozp-webtop/#/grid">
 				        			<i id="ozp-dashboard" className="fa fa-desktop fa-2x" />
 				        		</a>
 				        	</li>
