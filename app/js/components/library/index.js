@@ -5,7 +5,7 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
-var libraryData;
+var dirtyLibrary = false;
 
 var Library = React.createClass({
 	
@@ -14,6 +14,11 @@ var Library = React.createClass({
 	},
 
     getData: function(){
+        var libraryData;
+
+        if(dirtyLibrary){
+            return;
+        }
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -51,11 +56,6 @@ var Library = React.createClass({
 		this.state.data.items.splice(i, 1);
 		this.setState({data: {items: this.state.data.items}});
        
-       for(j = 0 ; j< libraryData.length; j++) {
-        if(libraryData[j].serviceItem.id === app.id){
-            libraryData.splice(j--,1);
-        }
-       }
         $.ajax({
             type: "DELETE",
             dataType: "json",
@@ -70,8 +70,8 @@ var Library = React.createClass({
         });
 	},
     folderRename: function(targetFolder, newName){
+        dirtyLibrary = true;
         var data = this.state.data;
-         var j;
         data.items.forEach(function(app){
 
             if(app.folder === targetFolder){
@@ -79,16 +79,7 @@ var Library = React.createClass({
                 app.folder = newName;
             }
         });
-       
-       for(j = 0 ; j< libraryData.length; j++) {
-        if(libraryData[j].folder === targetFolder){
-            libraryData[j].folder = newName;
-        }
-       }
-       console.log(JSON.stringify(libraryData));
-         
-       // console.log("rename:");
-       // console.log(JSON.stringify(data));
+    
         this.setState({data: data});
 
     },
@@ -97,10 +88,11 @@ var Library = React.createClass({
             type: "PUT",
             contentType: "application/json",
             url: "http://localhost:8080/marketplace/api/profile/self/library/",
-            data: JSON.stringify(libraryData),
+            data: JSON.stringify(this.state.data.items),
             async: true,
             success: function(data) {
                 console.log("MarketPlace REST successful. Folder name was updated");
+                dirtyLibrary = false;
             },
             failure: function(){
                 console.log("MarketPlace REST call failed. Folder name was not updated");
