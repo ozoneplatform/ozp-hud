@@ -18,7 +18,7 @@ var Folder = React.createClass({
         var rename = {renameFolder: this.rename, renameOnBlur: this.props.rename.renameOnBlur};
 
 		var thumbnails = apps.map(function(app){
-			return(<img key={app.name} src={app.img}/>);
+			return(<img key={app.serviceItem.title} src={app.serviceItem.imageLargeUrl}/>);
 
 		});
 

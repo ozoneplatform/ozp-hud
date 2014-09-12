@@ -79,15 +79,15 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
     	var disconnect = this.props.disconnect.bind(null,this.props.item);
     	var boxContent;
-    	if(app.name !== 'Folder'){
+    	if(app.serviceItem.title !== 'Folder'){
     		boxContent = (
     				<div>
 	    				<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
 						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 		                	<li onClick={disconnect}>Disconnect</li>
 		                </ul>
-						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
-						<h5 className="ozp-lib-name">{app.name}</h5>
+						<img className="applib-tiles" src={app.serviceItem.imageLargeUrl} onClick={click.bind(null, app.serviceItem.launchUrl)}/>
+						<h5 className="ozp-lib-name">{app.serviceItem.title}</h5>
 					</div>
 					);
     	}else{
@@ -97,7 +97,7 @@ var AppBlock = React.createClass({
     	}
 
 		return this.transferPropsTo(
-				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart} 
+				<li key={app.serviceItem.title} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart}
 												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
 					{boxContent}
     			</li>

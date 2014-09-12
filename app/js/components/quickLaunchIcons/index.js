@@ -11,10 +11,10 @@ var QuickLaunchIcons = React.createClass({
 	render: function(){
 		var icons = apps.map(function(app){
 						return(
-							<li key={app.img}>
+							<li key={app.serviceItem.imageLargeUrl}>
 							<div>
-								<a href={app.url}>
-					    			<img src={app.img} height='35px'/>
+								<a href={app.serviceItem.launchUrl}>
+					    			<img src={app.serviceItem.imageLargeUrl} height='35px'/>
 				    			</a>
 				    			<a>
 									<i className="fa fa-external-link launch-external" />

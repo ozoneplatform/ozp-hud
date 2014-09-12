@@ -12,15 +12,8 @@ var Library = React.createClass({
 	clickImage: function(url){
 		window.open(url);
 	},
-	
-	disconnect: function(app){
-		var i = this.state.appArray.indexOf(app);
-		this.state.appArray.splice(i, 1);
-		this.setState({appArray: this.state.appArray});
-	},
 
     getData: function(){
-        var restApps = [];
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -29,21 +22,13 @@ var Library = React.createClass({
             success: function(data) {
                 console.log(JSON.stringify(data));
                 libraryData = data;
-                for (var i = 0; i < data.length; i++) {
-                    var temp = {};
-                    temp.folder = data[i].folder;
-                    temp.id = data[i].serviceItem.id;
-                    temp.img = data[i].serviceItem.imageLargeUrl;
-                    temp.name = data[i].serviceItem.title;
-                    temp.url = data[i].serviceItem.launchUrl;
-                    restApps.push(temp);
-                }
             },
             failure: function(){
                 console.log("MarketPlace REST call failed. Loading with no applications");
             }
         });
-        this.setState({data: {items: restApps}});
+        this.setState({data: {items: libraryData}});
+
     },
 
     componentWillUnmount: function() {
@@ -74,7 +59,7 @@ var Library = React.createClass({
         $.ajax({
             type: "DELETE",
             dataType: "json",
-            url: "http://localhost:8080/marketplace/api/profile/self/library/" + app.id,
+            url: "http://localhost:8080/marketplace/api/profile/self/library/" + app.serviceItem.id,
             async: true,
             success: function(data) {
                 console.log("MarketPlace REST successful. Application was deleted");
@@ -90,7 +75,7 @@ var Library = React.createClass({
         data.items.forEach(function(app){
 
             if(app.folder === targetFolder){
-                console.log(app.id);
+                console.log(app.serviceItem.id);
                 app.folder = newName;
             }
         });
@@ -202,8 +187,8 @@ var AppBlock = React.createClass({
 						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
 		                	<li onClick={disconnect}>Disconnect</li>
 		                </ul>
-						<img className="applib-tiles" src={app.img} onClick={click.bind(null, app.url)}/>
-						<h5 className="ozp-lib-name">{app.name}</h5>
+						<img className="applib-tiles" src={app.serviceItem.imageLargeUrl} onClick={click.bind(null, app.serviceItem.launchUrl)}/>
+						<h5 className="ozp-lib-name">{app.serviceItem.title}</h5>
 					</div>
 					);
     	}else{
@@ -213,7 +198,7 @@ var AppBlock = React.createClass({
     	}
 
 		return this.transferPropsTo(
-				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart} 
+				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart}
 												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
 					{boxContent}
     			</li>
