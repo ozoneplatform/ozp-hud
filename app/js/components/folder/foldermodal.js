@@ -54,7 +54,7 @@ var FolderModal = React.createClass({
 
                         <div className="folder-header">
                         <h2 className="modal-title folder-modal-header"><span id={this.props.folderName.replace(/\W/g, '') + '-header'} onClick={this.showInput}> {this.props.folderName}</span></h2>
-                        <input type="text" id={this.props.folderName.replace(/\W/g, '') + '-input'} className="folder-name-text-field" value={this.props.folderName} onChange={this.props.rename.renameFolder} onBlur={this.props.rename.renameOnBlur} hidden />
+                        <input type="text" id={this.props.folderName.replace(/\W/g, '') + '-input'} className="folder-name-text-field" value={this.props.folderName} onChange={this.props.rename.renameFolder} onBlur={this.props.rename.putToBackend} hidden />
 		      			</div>
 			      			<ul className="nav navbar-nav">
 								{icons}			

@@ -15,7 +15,7 @@ var Folder = React.createClass({
 		//TODO make this work for repeated folder names
         var apps = this.state.apps;
 		var modalID = 'folder-modal-lg-' + this.state.folderName.replace(/\W/g, '')
-        var rename = {renameFolder: this.rename, renameOnBlur: this.props.rename.renameOnBlur};
+        var rename = {renameFolder: this.rename, putToBackend: this.props.rename.putToBackend};
 
 		var thumbnails = apps.map(function(app){
 			return(<img key={app.serviceItem.title} src={app.serviceItem.imageLargeUrl}/>);

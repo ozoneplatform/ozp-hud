@@ -5,17 +5,23 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 var Folder = require('../folder');
 var Sortable = require('../sortable/Sortable');
 
-var dirtyLibrary = false;
+var dirtyLibrary = false;;
+var dragged;
 
 var Library = React.createClass({
 	
 	clickImage: function(url){
 		window.open(url);
 	},
-
+    setDirtyLibrary: function(){
+        dirtyLibrary = true;
+    },
+    clearDirtyLibrary: function(){
+        dirtyLibrary = false;
+    },
     getData: function(){
         var libraryData;
-
+        console.log(dirtyLibrary);
         if(dirtyLibrary){
             return;
         }
@@ -69,6 +75,10 @@ var Library = React.createClass({
         });
 	},
     folderRename: function(targetFolder, newName){
+        console.log('folderRename');
+        if(newName === ''){
+            return;
+        }
         dirtyLibrary = true;
         var data = this.state.data;
         data.items.forEach(function(app){
@@ -81,7 +91,8 @@ var Library = React.createClass({
         this.setState({data: data});
 
     },
-    folderRenameOnBlur: function(){
+    putToBackend: function(){
+        console.log('putToBackend');
         $.ajax({
             type: "PUT",
             contentType: "application/json",
@@ -96,6 +107,13 @@ var Library = React.createClass({
                 console.log("MarketPlace REST call failed. Folder name was not updated");
             }
         });
+    },
+    assignToFolder: function(appNum, folder){
+        dirtyLibrary = true;
+        var items = this.state.data.items;
+        items[appNum].folder = folder;
+        this.setState({data: {items: items}});
+        //this.putToBackend();
     },
     render: function () {
         var foldersAndApps = [];
@@ -121,15 +139,17 @@ var Library = React.createClass({
                 }
             }
         }, this);
-
+        console.log(foldersAndApps);
         if(this.state.data.items.length >= 1) {
             var data = this.state.data;
             var disconnect = this.disconnect;
             var sort = this.sort;
-            var rename = {renameFolder: this.folderRename, renameOnBlur: this.folderRenameOnBlur};
+            var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
+            var assignToFolder = this.assignToFolder;
+            var lock = {setDirtyLibrary: this.setDirtyLibrary, clearDirtyLibrary: this.clearDirtyLibrary};
             var applicationList = foldersAndApps.map(function(app, i){
                     return (
-                        <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} rename={rename}/>
+                        <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} rename={rename} assignToFolder={assignToFolder} lock={lock}/>
                     );
             });
             return (
@@ -170,6 +190,9 @@ var AppBlock = React.createClass({
     	var app = this.props.item;
     	var disconnect = this.props.disconnect.bind(null,this.props.item);
     	var boxContent;
+       // console.log(app);
+        var id = app.folder || app.serviceItem.title;
+        id = id.replace(/\W/g, '');
     	if(app.folder === null){
     		boxContent = (
     				<div>
@@ -186,13 +209,18 @@ var AppBlock = React.createClass({
     				<Folder folder={app} disconnect={this.props.disconnect} rename={this.props.rename}/>
     			);
     	}
-
-		return this.transferPropsTo(
-				<li key={app.name} className={this.isDragging() ? "dragging" : ""} onDragStart={this.sortStart}
-												onDragOver={this.dragOver}  onMouseUp={this.sortEnd} onDrop={this.sortEnd}>
+        // onMouseUp={this.sortEnd} 
+		/*return this.transferPropsTo(
+				<li id={id} key={id} className={this.isDragging() ? "dragging" : ""} onMouseUp={this.sortEnd} onDragStart={this.sortStart}
+												onDragOver={this.dragOver} onDrop={this.sortEnd}>
 					{boxContent}
     			</li>
-			);
+			);*/
+        return this.transferPropsTo(
+                <li id={id} className={this.isDragging() ? "dragging" : ""} onMouseUp={this.sortEnd} onDragStart={this.sortStart}
+                                                onDragOver={this.dragOver} onDrop={this.sortEnd}>
+                    {boxContent}
+                </li>);
 	}
 });
 
