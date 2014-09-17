@@ -16,7 +16,11 @@ var Sortable = {
     if(typeof dragged === 'undefined'){
       return;
     }
-    dragging = this.props.data.dragging || Number(dragged);
+    if(typeof this.props.data.dragging === 'undefined'){
+      dragging = Number(dragged);
+    }else{
+      dragging = this.props.data.dragging;
+    }
     console.log('sortEnd');
     //All this "sort" does it cause the react object state to update
     this.props.sort(this.props.data.items, undefined);
@@ -60,12 +64,17 @@ var Sortable = {
     var relX = e.clientX - over.getBoundingClientRect().left;
     var relY = e.clientY - over.getBoundingClientRect().top;
     //console.log(dragged);
-    var dragging = this.props.data.dragging || Number(dragged);
+    var dragging ;
+    if(typeof this.props.data.dragging === 'undefined'){
+      dragging = Number(dragged);
+    }else{
+      dragging = this.props.data.dragging;
+    }
     var target = e.currentTarget.dataset.id;
     //console.log('(' + relX+  ',' + relY + ')');
     //console.log(this.props['data-id']);
-    //console.log('dragging: '+  dragging);
-    //console.log('target: ' + e.currentTarget.dataset.id);
+    console.log('dragging: '+  dragging);
+    console.log('target: ' + e.currentTarget.dataset.id);
     //return;
 
     e.preventDefault();
