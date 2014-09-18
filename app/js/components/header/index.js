@@ -24,12 +24,12 @@ var Header = React.createClass({
         return {time: genTime()};
     },
 
-    getTime: function () {
+    updateTime: function () {
         this.setState({time: genTime()});
     },
 
     componentDidMount: function () {
-        this.interval = setInterval(this.getTime, 30000);
+        this.interval = setInterval(this.updateTime, 60000);
     },
 
     componentWillUnmount: function () {
