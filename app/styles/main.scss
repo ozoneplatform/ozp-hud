@@ -1,9 +1,9 @@
 $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
+@import 'variables';
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 @import "../../bower_components/font-awesome/scss/font-awesome.scss";
-@import 'colors_fonts';
 
 html, body {
     background: $general-bg;
@@ -29,8 +29,8 @@ html, body {
 }
 
 .divider-vertical {
-height: 40px;
-margin: 0 9px;
+    height: 40px;
+    margin: 0 9px;
 }
 #login-page{
 
