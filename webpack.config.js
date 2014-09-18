@@ -26,7 +26,7 @@ module.exports = {
     },
     module: {
         preLoaders: [
-            { test: /app\/*\.js$/, loader: "jshint-loader" }
+            { test: /\.js$/, loader: "jshint-loader", exclude: /node_modules|bower_components|gulp|dist/ }
         ],
         loaders: [
             { test: /\.css/, loader: "style-loader!css-loader" },
