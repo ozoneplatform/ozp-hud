@@ -33,6 +33,8 @@ var Library = React.createClass({
     },
 
     getData: function () {
+        var me = this;
+
         if (dirtyLibrary) {
             return;
         }
@@ -42,7 +44,7 @@ var Library = React.createClass({
             url: 'http://localhost:8080/marketplace/api/profile/self/library',
             async: false,
             success: function (data) {
-                this.setState({
+                me.setState({
                     data: {
                         items: data
                     }

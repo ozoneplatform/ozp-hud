@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 'use strict';
+var dragged;
 
 var Sortable = {
 
