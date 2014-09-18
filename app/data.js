@@ -1,15 +1,17 @@
+'use strict';
+
 module.exports = (function (){
 	return{
 		launcherApps: 	[
 			{img: './images/appIcons/paperAirplane.png', url: 'http://www.cnn.com'},
 			{img: './images/appIcons/bread.png', url: 'http://www.cnn.com'},
-			{img: './images/appIcons/chat.png', url: 'http://www.cnn.com'}, 
+			{img: './images/appIcons/chat.png', url: 'http://www.cnn.com'},
 			{img: './images/appIcons/clipboard.png', url: 'http://www.cnn.com'}
 		],
 		appLibrary: 	[
 			{img: './images/sampleListings/AirMail.png', name: 'Air Mail', url: './images/sampleListings/AirMail.png'},
 			{img: './images/sampleListings/BreadBasket.png', name: 'Bread Basket', url: './images/sampleListings/BreadBasket.png'},
-			{img: './images/sampleListings/ChartCourse.png', name: 'Chart Course', url: './images/sampleListings/ChartCourse.png'}, 
+			{img: './images/sampleListings/ChartCourse.png', name: 'Chart Course', url: './images/sampleListings/ChartCourse.png'},
 			{img: './images/sampleListings/ChatterBox.png', name: 'Chatter Box', url: './images/sampleListings/ChatterBox.png'},
 			{img: './images/sampleListings/Clipboard.png', name: 'Clipboard', url: './images/sampleListings/Clipboard.png'},
 			{img: './images/sampleListings/HatchLatch.png', name: 'Hatch Latch', url: './images/sampleListings/HatchLatch.png'},
@@ -45,9 +47,9 @@ module.exports = (function (){
 
 		],
 		alerts: 	[
-			{text:'OZONE Systemwide Update on 1/1/11 at 12:00pm. Server down until 2:00pm', img: './images/ozoneAlert.png', time:'12/12/12 00:00'}, 
+			{text:'OZONE Systemwide Update on 1/1/11 at 12:00pm. Server down until 2:00pm', img: './images/ozoneAlert.png', time:'12/12/12 00:00'},
 			{text: 'Air Mail Version 1.2.1 released', img: './images/appIcons/paperAirplane.png', time:'12/12/12 00:00'}
-			
+
 		]
 	};
 
