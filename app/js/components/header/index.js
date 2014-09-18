@@ -12,18 +12,10 @@ var appsLogos  = ['./images/AppsMall_Icon.png'];
 
 var genTime = function () {
     var date = new Date();
-    var hour = date.getHours();
-    var min = date.getMinutes();
-    var hourStr = hour.toString();
-    var minStr = min.toString();
-    if (hour < 10) {
-        hourStr = '0' + hourStr;
-    }
-    if (min < 10) {
-        minStr = '0' + minStr;
-    }
+    var hour = date.getUTCHours();
+    var min = date.getUTCMinutes();
 
-    return (hourStr + ':' + minStr);
+    return (hour + ':' + min + ' Z');
 };
 
 var Header = React.createClass({
@@ -32,12 +24,12 @@ var Header = React.createClass({
         return {time: genTime()};
     },
 
-    getTime: function () {
+    updateTime: function () {
         this.setState({time: genTime()});
     },
 
     componentDidMount: function () {
-        this.interval = setInterval(this.getTime, 30000);
+        this.interval = setInterval(this.updateTime, 60000);
     },
 
     componentWillUnmount: function () {
@@ -98,12 +90,12 @@ var Header = React.createClass({
                             <Alerts />
                             <li className="no-hover">
                                 <a className="nav-bar-button nav-bar-icon" id="ozp-clock" href="#">
-                                    <b>{this.state.time}</b>
+                                    {this.state.time}
                                 </a>
                             </li>
                             <li>
                                 <a className="nav-bar-button nav-bar-icon dropdown-icon" data-toggle="dropdown" href="#">
-                                    <i className="fa fa-user fa-2x" /><b>{" " + user}</b>
+                                    <i className="fa fa-user fa-2x" />{" " + user}
                                 </a>
                                 <ul className="dropdown-menu app-dropdown-menu" role="menu">
                                     <li className="app-dropdown-item"><a href="#" data-toggle="modal" data-target=".settings-modal-lg"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
