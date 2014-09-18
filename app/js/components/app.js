@@ -2,7 +2,7 @@
 
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var Header = require('./header');
 var Library = require('./library');
 var Settings = require('./settings');
@@ -14,18 +14,18 @@ var APP = React.createClass({
         return this.renderHUD();
     },
 
-	renderHUD: function(){
-		/*jshint ignore:start */
+    renderHUD: function () {
+        /*jshint ignore:start */
         return (
             <div>
-            	<Header />            	
+                <Header />
                 <Library />
                 <Settings />
-                <HelpModal />                
+                <HelpModal />
             </div>
         );
-        /*jshint ignore:end */ 
-	}
+        /*jshint ignore:end */
+    }
 });
 
 module.exports = APP;
