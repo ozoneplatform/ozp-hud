@@ -12,6 +12,14 @@ var dragged;
 
 var Library = React.createClass({
 
+    getInitialState: function () {
+        return {
+            data: {
+                items: []
+            }
+        };
+    },
+
     clickImage: function (url) {
         window.open(url);
     },
@@ -25,8 +33,6 @@ var Library = React.createClass({
     },
 
     getData: function () {
-        var libraryData;
-        console.log(dirtyLibrary);
         if (dirtyLibrary) {
             return;
         }
@@ -36,13 +42,17 @@ var Library = React.createClass({
             url: 'http://localhost:8080/marketplace/api/profile/self/library',
             async: false,
             success: function (data) {
-                libraryData = data;
+                this.setState({
+                    data: {
+                        items: data
+                    }
+                });
             },
             failure: function () {
                 console.log('MarketPlace REST call failed. Loading with no applications');
             }
         });
-        this.setState({data: {items: libraryData}});
+
 
     },
 
