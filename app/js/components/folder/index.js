@@ -7,7 +7,10 @@ var FolderModal = require('../folder/foldermodal');
 var Folder = React.createClass({
 
     getInitialState: function () {
-        return {folderName: this.props.folder.folder, apps: this.props.folder.items};
+        return {
+            folderName: this.props.folder.folder,
+            apps: this.props.folder.items
+        };
     },
 
     rename: function (event) {
@@ -36,7 +39,6 @@ var Folder = React.createClass({
                 </a>
                 <h5 className="ozp-lib-name">{this.state.folderName}</h5>
                 <FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={rename} />
-
             </div>
         );
         /*jshint ignore:end */

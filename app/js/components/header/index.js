@@ -40,7 +40,7 @@ var Header = React.createClass({
         var user = 'J Smith';
 
         $(document).ready(function () {
-            $('.modal').on('shown.bs.modal', function () {
+            $(document).on('show.bs.modal', '.modal', function () {
                 $('.classBanner').last().css({
                     position : 'fixed',
                     bottom : '0%'

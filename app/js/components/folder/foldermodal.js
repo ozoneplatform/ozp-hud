@@ -3,7 +3,6 @@
 
 require('bootstrap');
 var React = require('react');
-var Sortable = require('../sortable/Sortable');
 
 var FolderModal = React.createClass({
 
@@ -23,7 +22,7 @@ var FolderModal = React.createClass({
         $('#'+this.props.folderName.replace(/\W/g, '')+'-input').show();
     },
 
-    disconnectWrapper: function (app) {
+    disconnect: function (app) {
         if (this.state.data.items.length === 1) {
             $('#' + this.props.modalID).modal('hide');
         }
@@ -37,17 +36,19 @@ var FolderModal = React.createClass({
     render: function () {
         var click = this.clickImage;
         var disconnect = this.props.disconnect;
+        var LibraryTile = require('../library/LibraryTile');
 
         /*jshint ignore:start */
         var icons = this.state.data.items.map(function (app, i) {
             return (
-                <AppBlock
+                <LibraryTile
                     sort={this.sort}
                     data={this.state.data}
                     key={i}
                     data-id={i}
                     item={app}
-                    disconnect={this.disconnectWrapper} />
+                    disconnect={this.disconnect}
+                    rename={this.props.rename}/>
             );
         }, this);
 
@@ -74,54 +75,5 @@ var FolderModal = React.createClass({
     }
 
 });
-
-var AppBlock = React.createClass({
-
-    mixins: [Sortable],
-
-    clickImage: function (url) {
-        window.open(url);
-    },
-
-    render: function () {
-        var click = this.clickImage;
-        var app = this.props.item;
-        var disconnect = this.props.disconnect.bind(null,this.props.item);
-        var boxContent;
-
-        /*jshint ignore:start */
-        if (app.serviceItem.title !== 'Folder') {
-            boxContent = (
-                <div>
-                    <i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-                    <ul className="dropdown-menu tileIcon-dropdown" role="menu">
-                        <li onClick={disconnect}>Disconnect</li>
-                    </ul>
-                    <img className="applib-tiles" src={app.serviceItem.imageLargeUrl} onClick={click.bind(null, app.serviceItem.launchUrl)}/>
-                    <h5 className="ozp-lib-name">{app.serviceItem.title}</h5>
-                </div>
-            );
-        }
-        else {
-            boxContent = (
-                <Folder />
-            );
-        }
-
-        return this.transferPropsTo(
-            <li key={app.serviceItem.title}
-                className={this.isDragging() ? 'dragging' : ''}
-                onDragStart={this.sortStart}
-                onDragOver={this.dragOver}
-                onMouseUp={this.sortEnd}
-                onDrop={this.sortEnd}>
-                {boxContent}
-            </li>
-        );
-        /*jshint ignore:end */
-    }
-
-});
-
 
 module.exports = FolderModal;
