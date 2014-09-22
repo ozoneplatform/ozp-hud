@@ -41,7 +41,7 @@ var Library = React.createClass({
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: 'http://localhost:8080/marketplace/api/profile/self/library',
+            url: API_URL + '/api/profile/self/library',
             async: false,
             success: function (data) {
                 me.setState({
@@ -82,7 +82,7 @@ var Library = React.createClass({
         $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: 'http://localhost:8080/marketplace/api/profile/self/library/' + app.serviceItem.id,
+            url: API_URL + '/marketplace/api/profile/self/library/' + app.serviceItem.id,
             async: true,
             success: function (data) {
                 console.log('MarketPlace REST successful. Application was deleted');
@@ -116,7 +116,7 @@ var Library = React.createClass({
         $.ajax({
             type: 'PUT',
             contentType: 'application/json',
-            url: 'http://localhost:8080/marketplace/api/profile/self/library/',
+            url: API_URL + '/marketplace/api/profile/self/library/',
             data: JSON.stringify(this.state.data.items),
             async: true,
             success: function (data) {
