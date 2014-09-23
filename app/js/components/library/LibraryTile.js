@@ -48,7 +48,6 @@ var LibraryTile = React.createClass({
         return this.transferPropsTo(
             <li id={ id }
                 className={ this.isDragging() ? 'dragging' : '' }
-                onMouseUp={this.sortEnd}
                 onDragStart={this.sortStart}
                 onDragOver={this.dragOver}
                 onDrop={this.sortEnd}>
