@@ -118,7 +118,7 @@ var Library = React.createClass({
     render: function () {
         var me = this;
         var foldersAndApps = [];
-        console.log(JSON.stringify(this.state.data));
+       // console.log(JSON.stringify(this.state.data));
         this.state.data.items.map(function (app, i) {
             if (app.folder === null) {
                 foldersAndApps.push(app);
