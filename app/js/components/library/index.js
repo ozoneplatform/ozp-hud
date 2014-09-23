@@ -137,14 +137,11 @@ var Library = React.createClass({
                 }
             }
         }, this);
-//<<<<<<< Updated upstream
 
         /*jshint ignore:start */
         if (this.state.data.items.length >= 1) {
-/*=======
         console.log(JSON.stringify(foldersAndApps));
-        if(this.state.data.items.length >= 1) {
->>>>>>> Stashed changes*/
+       
             var data = this.state.data;
             var disconnect = this.disconnect;
             var sort = this.sort;
@@ -197,45 +194,7 @@ var Library = React.createClass({
         this.putToBackend();
         dirtyLibrary = false;
     }
-/*
-<<<<<<< Updated upstream
-=======
-var AppBlock = React.createClass({
-	mixins: [Sortable],
-	clickImage: function(url){
-		window.open(url);
-	},
-	render: function(){
-    	var click = this.clickImage;
-    	var app = this.props.item;
-    	var disconnect = this.props.disconnect.bind(null,this.props.item);
-    	var boxContent;
-       // console.log(app);
-        var id = app.folder || app.serviceItem.title;
-        id = id.replace(/\W/g, '');
-    	if(app.folder === null){
-    		boxContent = (
-    				<div>
-	    				<i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-						<ul className="dropdown-menu tileIcon-dropdown" role="menu">
-		                	<li onClick={disconnect}>Disconnect</li>
-		                </ul>
-						<img className="applib-tiles" src={app.serviceItem.imageLargeUrl} onClick={click.bind(null, app.serviceItem.launchUrl)}/>
-						<h5 className="ozp-lib-name">{app.serviceItem.title}</h5>
-					</div>
-					);
-    	}else{
-    		boxContent = (
-    				<Folder folder={app} disconnect={this.props.disconnect} rename={this.props.rename}/>
-    			);
-    	}
-        return this.transferPropsTo(
-                <li id={id} className={this.isDragging() ? "dragging" : ""} onMouseUp={this.sortEnd} onDragStart={this.sortStart}
-                                                onDragOver={this.dragOver} onDrop={this.sortEnd}>
-                    {boxContent}
-                </li>);
-	}
->>>>>>> Stashed changes*/
+
 });
 
 module.exports = Library;
