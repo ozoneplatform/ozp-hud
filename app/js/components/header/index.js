@@ -11,11 +11,16 @@ var Alerts = require('../alerts/index.js');
 var appsLogos  = ['./images/AppsMall_Icon.png'];
 
 var genTime = function () {
-    var date = new Date();
-    var hour = date.getUTCHours();
-    var min = date.getUTCMinutes();
-
-    return (hour + ':' + min + ' Z');
+    var d = new Date();
+    var hours = d.getUTCHours().toString();
+    if (hours.length === 1) {
+        hours = '0' + hours;
+    }
+    var minutes = d.getUTCMinutes().toString();
+    if (minutes.length === 1) {
+        minutes = '0' + minutes;
+    }
+    return hours + ':' + minutes;
 };
 
 var Header = React.createClass({
