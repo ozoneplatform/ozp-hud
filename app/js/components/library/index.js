@@ -4,8 +4,7 @@
 var React = require('react');
 
 var appsMallLogo  = './images/AppsMall_Icon.png';
-var Folder = require('../folder');
-var Sortable = require('../sortable/Sortable');
+var LibraryTile = require('./LibraryTile');
 
 var dirtyLibrary = false;
 var dragged;
@@ -24,25 +23,19 @@ var Library = React.createClass({
         window.open(url);
     },
 
-    setDirtyLibrary: function () {
-        dirtyLibrary = true;
-    },
-
-    clearDirtyLibrary: function () {
-        dirtyLibrary = false;
-    },
-
     getData: function () {
         var me = this;
 
         if (dirtyLibrary) {
             return;
         }
+
         $.ajax({
             type: 'GET',
             dataType: 'json',
             url: API_URL + '/api/profile/self/library',
             async: false,
+
             success: function (data) {
                 me.setState({
                     data: {
@@ -54,8 +47,6 @@ var Library = React.createClass({
                 console.log('MarketPlace REST call failed. Loading with no applications');
             }
         });
-
-
     },
 
     componentWillUnmount: function () {
@@ -69,7 +60,19 @@ var Library = React.createClass({
 
     sort: function (items, dragging) {
         var data = this.state.data;
-        data.items = items;
+
+        var flattenedItems = items.reduce(function(accum, current, index, array) {
+            if(current.folder !== null){
+                var flatFolder = current.items.reduce(function(a, b) {
+                    return a.concat(b);
+                }, []);
+                return accum.concat(flatFolder);
+            } else{
+                return accum.concat(current);
+            }
+        }, []);
+
+        data.items = flattenedItems;
         data.dragging = dragging;
         this.setState({data: data});
     },
@@ -82,7 +85,7 @@ var Library = React.createClass({
         $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: API_URL + '/marketplace/api/profile/self/library/' + app.serviceItem.id,
+            url: API_URL + '/api/profile/self/library/' + app.serviceItem.id,
             async: true,
             success: function (data) {
                 console.log('MarketPlace REST successful. Application was deleted');
@@ -108,74 +111,76 @@ var Library = React.createClass({
         });
 
         this.setState({data: data});
+        this.putToBackend();
 
     },
 
     putToBackend: function () {
-        console.log('putToBackend');
         $.ajax({
             type: 'PUT',
+            dataType: 'json',
             contentType: 'application/json',
-            url: API_URL + '/marketplace/api/profile/self/library/',
+            url: API_URL + '/api/profile/self/library/',
             data: JSON.stringify(this.state.data.items),
-            async: true,
             success: function (data) {
-                console.log('MarketPlace REST successful. Folder name was updated');
                 dirtyLibrary = false;
-            },
-            failure: function () {
-                console.log('MarketPlace REST call failed. Folder name was not updated');
+                console.log('PUT sucessful.');
             }
         });
     },
 
-    assignToFolder: function (appNum, folder) {
+    assignToFolder: function (app, folder) {
         dirtyLibrary = true;
         var items = this.state.data.items;
-        items[appNum].folder = folder;
+        var appIndex = items.indexOf(app);
+        items[appIndex].folder = folder;
         this.setState({data: {items: items}});
-        //this.putToBackend();
     },
 
     render: function () {
+        var me = this;
         var foldersAndApps = [];
-
         this.state.data.items.map(function (app, i) {
-            if (app.folder === null)
-            {
+            if (app.folder === null) {
                 foldersAndApps.push(app);
             }
-            else
-            {
+            else {
                 var index = foldersAndApps.map(function (e) { return e.folder;}).indexOf(app.folder);
-                if (index === -1)
-                {
+                if (index === -1) {
                     var tempFolder = {};
                     tempFolder.folder = app.folder;
                     tempFolder.items = [];
                     tempFolder.items.push(app);
                     foldersAndApps.push(tempFolder);
                 }
-                else
-                {
+                else {
                     foldersAndApps[index].items.push(app);
                 }
             }
         }, this);
 
-        console.log(foldersAndApps);
-
         /*jshint ignore:start */
-        if (this.state.data.items.length >= 1) {
-            var data = this.state.data;
+        if (this.state.data.items.length >= 1) {       
+            var data = {};
+            data.items = foldersAndApps;
+            data.dragging = this.state.data.dragging
             var disconnect = this.disconnect;
             var sort = this.sort;
             var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
             var assignToFolder = this.assignToFolder;
-            var lock = {setDirtyLibrary: this.setDirtyLibrary, clearDirtyLibrary: this.clearDirtyLibrary};
             var applicationList = foldersAndApps.map(function (app, i) {
                 return (
-                    <AppBlock sort={sort} data={data} key={i} data-id={i} item={app} disconnect={disconnect} rename={rename} assignToFolder={assignToFolder} lock={lock}/>
+                    <LibraryTile
+                        sort={sort}
+                        data={data}
+                        key={i}
+                        data-id={i}
+                        item={app}
+                        disconnect={disconnect}
+                        rename={rename}
+                        assignToFolder={ assignToFolder }
+                        onDragStart={ me.onDragStart }
+                        onDragEnd={ me.onDragEnd } />
                 );
             });
             return (
@@ -200,54 +205,15 @@ var Library = React.createClass({
             );
         }
         /*jshint ignore:end */
-    }
-
-});
-
-var AppBlock = React.createClass({
-
-    mixins: [Sortable],
-
-    clickImage: function (url) {
-        window.open(url);
     },
 
-    render: function () {
-        var click = this.clickImage;
-        var app = this.props.item;
-        var disconnect = this.props.disconnect.bind(null,this.props.item);
-        var boxContent;
-       // console.log(app);
-        var id = app.folder || app.serviceItem.title;
-        id = id.replace(/\W/g, '');
+    onDragStart: function () {
+        dirtyLibrary = true;
+    },
 
-        /*jshint ignore:start */
-        if (app.folder === null) {
-            boxContent = (
-                <div>
-                    <i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
-                    <ul className="dropdown-menu tileIcon-dropdown" role="menu">
-                        <li onClick={disconnect}>Disconnect</li>
-                    </ul>
-                    <img className="applib-tiles" src={app.serviceItem.imageLargeUrl} onClick={click.bind(null, app.serviceItem.launchUrl)}/>
-                    <h5 className="ozp-lib-name">{app.serviceItem.title}</h5>
-                </div>
-            );
-        }else{
-            boxContent = (
-                <Folder folder={app} disconnect={this.props.disconnect} rename={this.props.rename}/>
-            );
-        }
-        return this.transferPropsTo(
-            <li id={id} className={this.isDragging() ? "dragging" : ""}
-                onMouseUp={this.sortEnd}
-                onDragStart={this.sortStart}
-                onDragOver={this.dragOver}
-                onDrop={this.sortEnd}>
-                {boxContent}
-            </li>
-        );
-        /*jshint ignore:end */
+    onDragEnd: function () {
+        this.putToBackend();
+        dirtyLibrary = false;
     }
 
 });

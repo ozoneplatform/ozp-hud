@@ -1,12 +1,16 @@
 /** @jsx React.DOM */
 'use strict';
 var dragged;
+var folderNum = 1;
+
+function noop () {}
 
 var Sortable = {
-
     getDefaultProps: function () {
         return {
-            draggable : true
+            draggable : true,
+            onDragStart: noop,
+            onDragStop: noop
         };
     },
 
@@ -17,11 +21,11 @@ var Sortable = {
     },
 
     sortStart: function (e) {
-        console.log('sortStart');
-        this.props.lock.setDirtyLibrary();
+        this.props.onDragStart();
         dragged = e.currentTarget.dataset ?
             e.currentTarget.dataset.id :
             e.currentTarget.getAttribute('data-id');
+
         e.dataTransfer.effectAllowed = 'move';
 
         try {
@@ -32,7 +36,7 @@ var Sortable = {
     },
 
     sortEnd: function (e) {
-        console.log('sortEnd');
+      console.log('sortEnd');
         var dragging;
         if (typeof dragged === 'undefined') {
             return;
@@ -43,37 +47,43 @@ var Sortable = {
         else{
             dragging = this.props.data.dragging;
         }
-        console.log('sortEnd');
         //All this "sort" does it cause the react object state to update
         this.props.sort(this.props.data.items, undefined);
-        //console.log(this.props.data.items);
 
-         if (Number(e.currentTarget.dataset.id) !== dragging) {
-            console.log(this.props.data.items[dragging]);
-            this.props.assignToFolder(dragging, 'newFolder');
-            this.props.assignToFolder(Number(e.currentTarget.dataset.id), 'newFolder');
+        if (Number(e.currentTarget.dataset.id) !== dragging) {
+            console.log('(' + e.currentTarget.dataset.id + ',' + dragging + ')');
+            this.props.assignToFolder(this.props.data.items[dragging], 'New Folder' + folderNum);
+            this.props.assignToFolder(this.props.data.items[Number(e.currentTarget.dataset.id)], 'New Folder'+ folderNum);
+            this.props.rename.putToBackend();
+            folderNum++;
         }
-        this.props.rename.putToBackend();
         dragged = null;
         e.stopPropagation();
         e.preventDefault();
+        this.props.onDragStop();
     },
 
     move: function (over,append) {
         var to = Number(over.dataset.id);
         var from = this.props.data.dragging !== undefined ? this.props.data.dragging : Number(dragged);
-        this.update(to,from);
+
+        if(typeof this.props.data.dragging === 'undefined'){
+          from = Number(dragged);
+        }else{
+          from = this.props.data.dragging;
+        }
+
+
+        this.update(to, from);
     },
 
     dragOver: function (e) {
-        this.props.lock.setDirtyLibrary();
         console.log('dragOver');
 
         var over = e.currentTarget;
         var target = e.currentTarget.dataset.id;
         var relX = e.clientX - over.getBoundingClientRect().left;
         var relY = e.clientY - over.getBoundingClientRect().top;
-        //console.log(dragged);
         var dragging ;
 
         if (typeof this.props.data.dragging === 'undefined') {
@@ -84,21 +94,16 @@ var Sortable = {
         }
         //console.log('(' + relX+  ',' + relY + ')');
         //console.log(this.props['data-id']);
-        console.log('dragging: '+  dragging);
-        console.log('target: ' + e.currentTarget.dataset.id);
-        //return;
+        //console.log('dragging: '+  dragging);
+        //console.log('target: ' + e.currentTarget.dataset.id);
 
         e.preventDefault();
         if (this.props.data.dragging !== Number(e.currentTarget.dataset.id) && ((relX > 150 && dragging < target) || (relX < 50 && dragging > target))) {
-            this.move(e.currentTarget,true);
+            this.move(e.currentTarget, true);
         }
     },
 
     isDragging: function () {
-        console.log('isDragging');
-        if (this.props.data.dragging === this.props.key) {
-             //console.log('isDragging ' + this.props['data-id']);
-        }
         return this.props.data.dragging === this.props.key;
     }
 };
