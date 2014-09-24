@@ -3,7 +3,7 @@
 var React = require('react');
 require('bootstrap');
 
-var HELP_OPTIONS = 'Lorem ipsum <br/> dolor sit amet <br /> consectetur adipiscing elit. <br /> Aenean euismod <br /> bibendum laoreet. <br /> Proin gravida dolor sit <br /> amet lacus accumsan et <br /> viverra justo commodo.';
+var HELP_OPTIONS = 'Lorem ipsum dolor sit amet consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.';
 var HELP_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.';
 
 var HelpModal = React.createClass({
