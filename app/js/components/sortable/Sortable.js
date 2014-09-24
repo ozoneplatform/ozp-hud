@@ -5,8 +5,6 @@ var dragged;
 function noop () {}
 
 var Sortable = {
-//<<<<<<< Updated upstream
-
     getDefaultProps: function () {
         return {
             draggable : true,
@@ -50,12 +48,11 @@ var Sortable = {
         }
         //All this "sort" does it cause the react object state to update
         this.props.sort(this.props.data.items, undefined);
-        //console.log(this.props.data.items);
 
         if (Number(e.currentTarget.dataset.id) !== dragging) {
             console.log('(' + e.currentTarget.dataset.id + ',' + dragging + ')');
-            this.props.assignToFolder(dragging, 'Untitled');
-            this.props.assignToFolder(Number(e.currentTarget.dataset.id), 'Untitled');
+            this.props.assignToFolder(this.props.data.items[dragging], 'Untitled');
+            this.props.assignToFolder(this.props.data.items[Number(e.currentTarget.dataset.id)], 'Untitled');
             this.props.rename.putToBackend();
 
         }
@@ -96,9 +93,8 @@ var Sortable = {
         }
         //console.log('(' + relX+  ',' + relY + ')');
         //console.log(this.props['data-id']);
-        console.log('dragging: '+  dragging);
-        console.log('target: ' + e.currentTarget.dataset.id);
-        //return;
+        //console.log('dragging: '+  dragging);
+        //console.log('target: ' + e.currentTarget.dataset.id);
 
         e.preventDefault();
         if (this.props.data.dragging !== Number(e.currentTarget.dataset.id) && ((relX > 150 && dragging < target) || (relX < 50 && dragging > target))) {

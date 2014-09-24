@@ -58,7 +58,19 @@ var Library = React.createClass({
 
     sort: function (items, dragging) {
         var data = this.state.data;
-        data.items = items;
+
+        var flattenedItems = items.reduce(function(accum, current, index, array) {
+            if(current.folder !== null){
+                var flatFolder = current.items.reduce(function(a, b) {
+                    return a.concat(b);
+                }, []);
+                return accum.concat(flatFolder);
+            } else{
+                return accum.concat(current);
+            }
+        }, []);
+
+        data.items = flattenedItems;
         data.dragging = dragging;
         this.setState({data: data});
     },
@@ -108,17 +120,17 @@ var Library = React.createClass({
         });
     },
 
-    assignToFolder: function (appNum, folder) {
+    assignToFolder: function (app, folder) {
         dirtyLibrary = true;
         var items = this.state.data.items;
-        items[appNum].folder = folder;
+        var appIndex = items.indexOf(app);
+        items[appIndex].folder = folder;
         this.setState({data: {items: items}});
     },
 
     render: function () {
         var me = this;
         var foldersAndApps = [];
-       // console.log(JSON.stringify(this.state.data));
         this.state.data.items.map(function (app, i) {
             if (app.folder === null) {
                 foldersAndApps.push(app);
@@ -139,10 +151,10 @@ var Library = React.createClass({
         }, this);
 
         /*jshint ignore:start */
-        if (this.state.data.items.length >= 1) {
-        console.log(JSON.stringify(foldersAndApps));
-       
-            var data = this.state.data;
+        if (this.state.data.items.length >= 1) {       
+            var data = {};
+            data.items = foldersAndApps;
+            data.dragging = this.state.data.dragging
             var disconnect = this.disconnect;
             var sort = this.sort;
             var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
