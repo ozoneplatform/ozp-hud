@@ -20,7 +20,7 @@ var genTime = function () {
     if (minutes.length === 1) {
         minutes = '0' + minutes;
     }
-    return hours + ':' + minutes;
+    return hours + ':' + minutes + ' Z';
 };
 
 var Header = React.createClass({
