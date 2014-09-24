@@ -38,7 +38,7 @@ var Folder = React.createClass({
                     </div>
                 </a>
                 <h5 className="ozp-lib-name">{this.props.folder.folder}</h5>
-                {/*<FolderModal folderName={this.state.folderName} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={rename} />*/}
+                {<FolderModal folderName={this.props.folder.folder} apps={apps} disconnect={this.props.disconnect} modalID={modalID} rename={rename} />}
             </div>
         );
         /*jshint ignore:end */
