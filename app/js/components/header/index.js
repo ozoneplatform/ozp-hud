@@ -68,8 +68,8 @@ var Header = React.createClass({
                                 </ul>
                             </li>
                             <li className="current">
-                                <a id="ozp-logo" href="#">
-                                    <img src={logo} />
+                                <a id="nav-bar-button" href="#">
+                                    <i id="ozp-hud" className="fa fa-home fa-2x" />
                                 </a>
                             </li>
                             <li>
