@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 'use strict';
 var dragged;
+var folderNum = 1;
 
 function noop () {}
 
@@ -51,10 +52,10 @@ var Sortable = {
 
         if (Number(e.currentTarget.dataset.id) !== dragging) {
             console.log('(' + e.currentTarget.dataset.id + ',' + dragging + ')');
-            this.props.assignToFolder(this.props.data.items[dragging], 'Untitled');
-            this.props.assignToFolder(this.props.data.items[Number(e.currentTarget.dataset.id)], 'Untitled');
+            this.props.assignToFolder(this.props.data.items[dragging], 'New Folder' + folderNum);
+            this.props.assignToFolder(this.props.data.items[Number(e.currentTarget.dataset.id)], 'New Folder'+ folderNum);
             this.props.rename.putToBackend();
-
+            folderNum++;
         }
         dragged = null;
         e.stopPropagation();
