@@ -104,7 +104,7 @@ var Header = React.createClass({
                                 </a>
                                 <ul className="dropdown-menu app-dropdown-menu" role="menu">
                                     <li className="app-dropdown-item"><a href="#" data-toggle="modal" data-target=".settings-modal-lg"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
-                                    <li className="app-dropdown-item"><a href="./login.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
+                                    <li className="app-dropdown-item"><a href="./logout.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
                                 </ul>
                             </li>
                             <li>
