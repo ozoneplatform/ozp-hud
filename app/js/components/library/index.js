@@ -98,11 +98,22 @@ var Library = React.createClass({
 
     folderRename: function (targetFolder, newName) {
         console.log('folderRename');
-        if (newName === '') {
-            return;
-        }
         dirtyLibrary = true;
         var data = this.state.data;
+
+       var folderNames = [];
+        data.items.map(function (item) {
+            if(item.folder !== null){
+               folderNames.push(item.folder);
+           }
+        });
+
+        if(folderNames.indexOf(newName) !== -1){
+            window.alert('There is already a folder by that name.');
+            return;
+        }
+
+
         data.items.forEach(function (app) {
 
             if (app.folder === targetFolder) {
@@ -111,7 +122,7 @@ var Library = React.createClass({
         });
 
         this.setState({data: data});
-        this.putToBackend();
+        //this.putToBackend();
 
     },
 

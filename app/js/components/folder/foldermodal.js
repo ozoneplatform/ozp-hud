@@ -32,6 +32,14 @@ var FolderModal = React.createClass({
         this.setState({data:{items: this.props.apps}});
         this.props.disconnect(app);
     },
+    onBlur: function (){
+        if(this.props.folderName === ''){
+            window.alert('Folders must have a name.');
+            $('#'+ this.props.folderName.replace(/\W/g, '')+ '-input').focus();
+            return;
+        }
+        this.props.rename.putToBackend();
+    },
 
     render: function () {
         var click = this.clickImage;
@@ -61,7 +69,7 @@ var FolderModal = React.createClass({
 
                             <div className="folder-header">
                                 <h2 className="modal-title folder-modal-header"><span id={this.props.folderName.replace(/\W/g, '') + '-header'} onClick={this.showInput}> {this.props.folderName}</span></h2>
-                                <input type="text" id={this.props.folderName.replace(/\W/g, '') + '-input'} className="folder-name-text-field" value={this.props.folderName} onChange={this.props.rename.renameFolder} onBlur={this.props.rename.putToBackend} hidden />
+                                <input type="text" id={this.props.folderName.replace(/\W/g, '') + '-input'} className="folder-name-text-field" value={this.props.folderName} onChange={this.props.rename.renameFolder} onBlur={this.onBlur} hidden />
                             </div>
                             <ul className="nav navbar-nav">
                                 {icons}
