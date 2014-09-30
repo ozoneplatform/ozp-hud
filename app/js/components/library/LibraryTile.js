@@ -42,11 +42,11 @@ var LibraryTile = React.createClass({
         var app = this.props.item;
         var disconnect = this.props.disconnect;
         var isListing = app.folder === null || !!app.serviceItem;
-      //  var id = (app.folder || app.serviceItem.title).replace(/\W/g, '');id={ id }
+        var id = (app.folder || app.serviceItem.title).replace(/\W/g, '');
 
         /*jshint ignore:start */
         return this.transferPropsTo(
-            <li 
+            <li id={ id }
                 className={ this.isDragging() ? 'dragging' : '' }
                 onDragStart={this.sortStart}
                 onDragOver={this.dragOver}
