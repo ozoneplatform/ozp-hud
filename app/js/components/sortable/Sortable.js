@@ -38,6 +38,8 @@ var Sortable = {
     sortEnd: function (e) {
       console.log('sortEnd');
         var dragging;
+        var folderName;
+        var target = e.currentTarget.dataset.id;
         if (typeof dragged === 'undefined') {
             return;
         }
@@ -50,12 +52,23 @@ var Sortable = {
         //All this "sort" does it cause the react object state to update
         this.props.sort(this.props.data.items, undefined);
 
-        if (Number(e.currentTarget.dataset.id) !== dragging) {
-            console.log('(' + e.currentTarget.dataset.id + ',' + dragging + ')');
-            this.props.assignToFolder(this.props.data.items[dragging], 'New Folder' + folderNum);
-            this.props.assignToFolder(this.props.data.items[Number(e.currentTarget.dataset.id)], 'New Folder'+ folderNum);
+        if (Number(target) !== dragging) {
+            if(this.props.data.items[dragging].folder !== null && this.props.data.items[target].folder !== null){
+                return;
+            }else if(this.props.data.items[dragging].folder !== null){
+                folderName = this.props.data.items[dragging].folder;
+                this.props.assignToFolder(this.props.data.items[Number(target)], folderName);
+            }else if(this.props.data.items[target].folder !== null){
+                folderName = this.props.data.items[target].folder;
+                this.props.assignToFolder(this.props.data.items[dragging], folderName);
+            } else{
+                folderName = 'New Folder' + folderNum;
+                folderNum++;
+                this.props.assignToFolder(this.props.data.items[dragging], folderName);
+                this.props.assignToFolder(this.props.data.items[Number(target)], folderName);
+            }
+            console.log('(' + target + ',' + dragging + ')');            
             this.props.rename.putToBackend();
-            folderNum++;
         }
         dragged = null;
         e.stopPropagation();
