@@ -77,7 +77,7 @@ var Library = React.createClass({
         this.setState({data: data});
     },
 
-    disconnect: function (app) {
+    removeBookmark: function (app) {
         var i = this.state.data.items.indexOf(app);
         this.state.data.items.splice(i, 1);
         this.setState({data: {items: this.state.data.items}});
@@ -175,7 +175,7 @@ var Library = React.createClass({
             var data = {};
             data.items = foldersAndApps;
             data.dragging = this.state.data.dragging
-            var disconnect = this.disconnect;
+            var removeBookmark = this.removeBookmark;
             var sort = this.sort;
             var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
             var assignToFolder = this.assignToFolder;
@@ -187,7 +187,7 @@ var Library = React.createClass({
                         key={i}
                         data-id={i}
                         item={app}
-                        disconnect={disconnect}
+                        removeBookmark={removeBookmark}
                         rename={rename}
                         assignToFolder={ assignToFolder }
                         onDragStart={ me.onDragStart }

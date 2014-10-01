@@ -22,7 +22,7 @@ var FolderModal = React.createClass({
         $('#'+this.props.folderName.replace(/\W/g, '')+'-input').show();
     },
 
-    disconnect: function (app) {
+    removeBookmark: function (app) {
         if (this.props.apps.length === 1) {
             $('#' + this.props.modalID).modal('hide');
         }
@@ -30,7 +30,7 @@ var FolderModal = React.createClass({
         var i = this.props.apps.indexOf(app);
         this.props.apps.splice(i, 1);
         this.setState({data:{items: this.props.apps}});
-        this.props.disconnect(app);
+        this.props.removeBookmark(app);
     },
     onBlur: function (){
         if(this.props.folderName === ''){
@@ -43,7 +43,7 @@ var FolderModal = React.createClass({
 
     render: function () {
         var click = this.clickImage;
-        var disconnect = this.props.disconnect;
+        var removeBookmark = this.props.removeBookmark;
         var LibraryTile = require('../library/LibraryTile');
 
         /*jshint ignore:start */
@@ -55,7 +55,7 @@ var FolderModal = React.createClass({
                     key={i}
                     data-id={i}
                     item={app}
-                    disconnect={this.disconnect}
+                    removeBookmark={this.removeBookmark}
                     rename={this.props.rename}/>
             );
         }, this);
