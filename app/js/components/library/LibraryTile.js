@@ -15,7 +15,7 @@ var ApplicationTile = React.createClass({
 
     render: function () {
         var app = this.props.app;
-        var listing = app.serviceItem;
+        var listing = app.listing;
         var removeBookmark = this.props.removeBookmark;
 
         /*jshint ignore:start */
@@ -41,8 +41,8 @@ var LibraryTile = React.createClass({
         var click = this.clickImage;
         var app = this.props.item;
         var removeBookmark = this.props.removeBookmark;
-        var isListing = app.folder === null || !!app.serviceItem;
-        var id = (app.folder || app.serviceItem.title).replace(/\W/g, '');
+        var isListing = app.folder === null || !!app.listing;
+        var id = (app.folder || app.listing.title).replace(/\W/g, '');
 
         /*jshint ignore:start */
         return this.transferPropsTo(

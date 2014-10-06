@@ -19,7 +19,7 @@ var Folder = React.createClass({
 
         /*jshint ignore:start */
         var thumbnails = apps.map(function (app) {
-            return(<img key={app.serviceItem.title} src={app.serviceItem.imageLargeUrl}/>);
+            return(<img key={app.listing.title} src={app.listing.imageLargeUrl}/>);
 
         });
 

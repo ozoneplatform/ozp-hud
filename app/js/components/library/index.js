@@ -85,7 +85,7 @@ var Library = React.createClass({
         $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: API_URL + '/api/profile/self/library/' + app.serviceItem.id,
+            url: API_URL + '/api/profile/self/library/' + app.listing.id,
             async: true,
             success: function (data) {
                 console.log('MarketPlace REST successful. Application was deleted');
