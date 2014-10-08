@@ -1,8 +1,8 @@
-$icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
 @import 'variables';
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap.scss";
 @import "../../bower_components/font-awesome/scss/font-awesome.scss";
 
 html, body {
