@@ -41,7 +41,7 @@
 }
 
 .menu-icon {
-	background-color: $nav-menu-bg;
+	background-color: $gray-base;
 	:hover{
     };
 }
@@ -71,21 +71,21 @@
 
     .btn {
         height: 54px;
-        padding: 15px 34px 0 30px;        
+        padding: 15px 34px 0 30px;
     }
 
     .dropdown-menu {
-      background-color: $nav-dropdown-bg;
+      background-color: $gray-dark;
       margin-top: 0;
     }
 }
 
 .app-dropdown-menu {
-    background-color: $nav-dropdown-bg;
+    background-color: $gray-dark;
     border-radius: 0px !important;
     border: 0px;
     :hover {
-      background-color: $nav-dropdown-bg !important;
+      background-color: $gray-dark !important;
     }
 }
 
@@ -101,7 +101,7 @@
 }
 
 #ozp-hud {
-  color: $general-active-el !important;
+  color: $link-color !important;
 }
 
 
@@ -117,28 +117,28 @@
 }
 
 .nav-bar-icon {
-	color: $general-icon-color !important;
+	color: $white !important;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: $nav-dropdown-bg;
-  border-bottom: 4px solid $general-hover;
+  background-color: $gray-dark;
+  border-bottom: 4px solid $yellow;
 }
 
 .app-dropdown-item {
   height:20px !important;
-  font-weight: $general-font-weight;
-  font-family: $general-font;
+  // font-weight: $general-font-weight;
+  // font-family: $general-font;
 }
 
 .navbar-nav > li > a {
-    padding-top: 5px !important; 
+    padding-top: 5px !important;
     padding-bottom:5px !important;
 }
 
 .navbar {
     min-height:20px !important;
-	background: $nav-bar-bg;
+	background: $navbar-inverse-bg;
 	border: 0px;
     width: 100% !important;
 }
@@ -146,17 +146,17 @@
 
 /*-- change navbar dropdown color --*/
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
-	color:$nav-font-color;
+	color:$white;
 }
 
 .container-fluid {
 	padding-left: 0px;
 }
 
-#ozp-notifications {    
-   &:active {    
+#ozp-notifications {
+   &:active {
        > i {
-           color: $general-active-el !important;
+           color: $link-color !important;
        }
    }
 }
@@ -179,7 +179,7 @@
         clear: both;
     }
     ul > li.current:after{
-      border: 2px solid $general-active-el;
+      border: 2px solid $link-color;
       bottom: 0;
       content: "";
       left: 0;
@@ -187,7 +187,7 @@
       width: 100%;
     }
     ul > li:hover:after{
-      border: 2px solid $general-hover;
+      border: 2px solid $yellow;
       bottom: 0;
       content: "";
       left: 0;
@@ -216,4 +216,3 @@ body > div.classBanner:last-of-type {
 .launch-external{
     color: white;
 }
-

@@ -1,14 +1,14 @@
 .help-modal .modal-header .close, .modal-body {
-    background-color: $modal-background-color !important;
+    background-color: $modal-content-bg !important;
     color: white !important;
     height: 350px;
     border-style: solid;
     border-width: 1px;
-    border-color: $modal-border-color;
+    border-color: $modal-content-border-color;
 }
 
 .settings-modal .settings-body{
-    background-color: $modal-background-color !important;
+    background-color: $modal-content-border-color !important;
     color: white !important;
     height: 450px;
 }
@@ -28,21 +28,21 @@
     border-style: solid;
     padding: 5px 5px 5px 5px;
     height: 250px;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .help-modal-title {
-  font-weight: $general-font-weight;
-  font-family: $general-font;
+  // font-weight: $general-font-weight;
+  // font-family: $general-font;
 }
 
 .help-modal-left {
 	float: left;
 	width: 30%;
     margin-top: 9px;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .help-modal-right {

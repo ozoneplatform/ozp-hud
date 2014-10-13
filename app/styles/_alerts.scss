@@ -17,7 +17,7 @@
 			table-layout: fixed;
 			width: 280px;
 			//border: 1px solid red;
-			background: $page-bg;
+			background: $body-bg;
 			border-collapse: separate;
 			border-spacing: 5px 10px;
 			border-radius: 10px !important;
@@ -45,7 +45,7 @@
 		}
 }
 
-.ozp-notifications {        
+.ozp-notifications {
          .fa-bell {
             color: #1872A6 !important;
         }
@@ -54,4 +54,3 @@
 #notification-number{
 	color: white !important;
 }
-

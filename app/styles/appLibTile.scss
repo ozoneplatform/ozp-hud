@@ -4,14 +4,14 @@
     top: 56px;
     width: 100%;
     height: auto !important;
-}  
+}
 
 .applib {
     padding-left: 30px;
     padding-bottom: 10px;
-    color: $general-font-color !important;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    color: $white !important;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .applib-tiles {
@@ -26,18 +26,18 @@
 	color: #7A7A7A !important;
 	font-size: 2.6em;
     line-height: 1.2em;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .visit-appsmall {
 	text-align: center;
-	color: $general-active-el;
+	color: $blue;
 	font-size: 1.8em;
     line-height: 1.3em;
     margin-top: 18px;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .visit-button-text {
@@ -47,10 +47,10 @@
 .empty-text-button {
 	font-weight: bold;
 	border-style: none;
-	background-color: $general-bg;	
-	color: $general-active-el;
+	background-color: $gray-base;
+	color: $blue;
 	font-size: 1.2em;
-	font-family: $general-font;
+	// font-family: $general-font;
 }
 
 .ozp-lib-name {
@@ -67,7 +67,7 @@
 	width: 45px;
 	height: 25px;
 	color: white !important;
-	background-color: $general-black;
+	background-color: $gray-base;
 	&:hover, &:focus {
         cursor: pointer;
 		cursor: hand;
@@ -79,7 +79,7 @@
 	width: 60px;
 	top: 24px;
 	left: 41px;
-	background-color: $general-black;	
+	background-color: $gray-base;
 	color: white;
 	margin-top: 0;
 	text-align: center;
@@ -91,7 +91,7 @@
 
 .setting-labels {
 	font-size: 1.4em;
-	font-weight: $general-font-weight;
+	// font-weight: $general-font-weight;
 	padding-left: 45px;
 	padding-top: 10px;
 }
@@ -103,8 +103,8 @@
 
 .settings-btn{
 	border-radius:0px !important;
-    font-weight: $general-font-weight;
-    font-family: $general-font;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .settings-btn-group-shadow {

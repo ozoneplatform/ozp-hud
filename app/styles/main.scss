@@ -1,12 +1,13 @@
 $icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
-@import 'variables';
+
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap.scss";
 @import "../../bower_components/font-awesome/scss/font-awesome.scss";
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables-dark.scss';
 
 html, body {
-    background: $general-bg;
+    background: $body-bg;
 }
 
 #main {
@@ -48,13 +49,13 @@ html, body {
         color: white;
         width: 300px;
         margin: 0 auto;
-        font-family: $general-font;
-        font-weight: $general-font-weight;
+        // font-family: $general-font;
+        // font-weight: $general-font-weight;
         font-size: 14px;
     }
     label{
-        font-family: $general-font;
-        font-weight: $general-font-weight;
+        // font-family: $general-font;
+        // font-weight: $general-font-weight;
         font-size: 14px;
         height: auto;
         width: auto;
