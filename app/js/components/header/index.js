@@ -10,36 +10,7 @@ var Alerts = require('../alerts/index.js');
 
 var appsLogos  = ['./images/AppsMall_Icon.png'];
 
-var genTime = function () {
-    var d = new Date();
-    var hours = d.getUTCHours().toString();
-    if (hours.length === 1) {
-        hours = '0' + hours;
-    }
-    var minutes = d.getUTCMinutes().toString();
-    if (minutes.length === 1) {
-        minutes = '0' + minutes;
-    }
-    return hours + ':' + minutes + ' Z';
-};
-
 var Header = React.createClass({
-
-    getInitialState: function () {
-        return {time: genTime()};
-    },
-
-    updateTime: function () {
-        this.setState({time: genTime()});
-    },
-
-    componentDidMount: function () {
-        this.interval = setInterval(this.updateTime, 60000);
-    },
-
-    componentWillUnmount: function () {
-        clearInterval(this.interval);
-    },
 
     render: function () {
         var user = 'J Smith';
@@ -93,11 +64,6 @@ var Header = React.createClass({
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
                             <Alerts />
-                            <li className="no-hover">
-                                <a className="nav-bar-button nav-bar-icon" id="ozp-clock" href="#">
-                                    {this.state.time}
-                                </a>
-                            </li>
                             <li>
                                 <a className="nav-bar-button nav-bar-icon dropdown-icon" data-toggle="dropdown" href="#">
                                     <i className="fa fa-user fa-2x" />{" " + user}
