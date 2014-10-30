@@ -49,7 +49,7 @@ var Header = React.createClass({
                                 </a>
                             </li>
                             <li>
-                                <a id="appsmall-logo" href="http://ozone-development.github.io/center-ui/index.html">
+                                <a id="appsmall-logo" href={CENTER_URL}>
                                     <img src={appsMallLogo} />
                                 </a>
                             </li>
