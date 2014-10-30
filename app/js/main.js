@@ -1,7 +1,14 @@
 /** @jsx React.DOM */
-var APP = require('./components/app');
 var React = require('react');
 var $ = require('jquery');
+
+$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    options.xhrFields = {
+        withCredentials: true
+    };
+});
+
+var APP = require('./components/app');
 
 // Enable React developer tools
 window.React = React;
