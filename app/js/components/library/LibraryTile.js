@@ -17,6 +17,7 @@ var ApplicationTile = React.createClass({
         var app = this.props.app;
         var listing = app.listing;
         var removeBookmark = this.props.removeBookmark;
+        var openTechPOC = this.props.openTechPOC;
 
         /*jshint ignore:start */
         return (
@@ -24,6 +25,7 @@ var ApplicationTile = React.createClass({
                 <i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
                 <ul className="dropdown-menu tileIcon-dropdown" role="menu">
                     <li onClick={ removeBookmark.bind(null, app) }>Remove Bookmark</li>
+                    <li onClick={ openTechPOC.bind(null, app) }>Technical Support</li>
                 </ul>
                 <img className="applib-tiles" src={ listing.imageLargeUrl } onClick={ launchApplication.bind(null, listing.launchUrl) }/>
                 <h5 className="ozp-lib-name">{ listing.title }</h5>
@@ -41,6 +43,7 @@ var LibraryTile = React.createClass({
         var click = this.clickImage;
         var app = this.props.item;
         var removeBookmark = this.props.removeBookmark;
+        var openTechPOC = this.props.openTechPOC;
         var isListing = app.folder === null || !!app.listing;
         var id = (app.folder || app.listing.title).replace(/\W/g, '');
 
@@ -53,7 +56,7 @@ var LibraryTile = React.createClass({
                 onDrop={this.sortEnd}>
                 {
                     isListing ?
-                        <ApplicationTile app={ app } removeBookmark={ removeBookmark }/> :
+                        <ApplicationTile app={ app } removeBookmark={ removeBookmark } openTechPOC={ openTechPOC }/> :
                         <Folder folder={app} removeBookmark={ removeBookmark } rename={this.props.rename}/>
                 }
             </li>

@@ -96,6 +96,11 @@ var Library = React.createClass({
         });
     },
 
+    openTechPOC: function (app) {
+        console.log('opening tech POC for ' + app.listing.id);
+
+    },
+
     folderRename: function (targetFolder, newName) {
         console.log('folderRename');
         dirtyLibrary = true;
@@ -171,11 +176,12 @@ var Library = React.createClass({
         }, this);
 
         /*jshint ignore:start */
-        if (this.state.data.items.length >= 1) {       
+        if (this.state.data.items.length >= 1) {
             var data = {};
             data.items = foldersAndApps;
             data.dragging = this.state.data.dragging
             var removeBookmark = this.removeBookmark;
+            var openTechPOC = this.openTechPOC;
             var sort = this.sort;
             var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
             var assignToFolder = this.assignToFolder;
@@ -188,6 +194,7 @@ var Library = React.createClass({
                         data-id={i}
                         item={app}
                         removeBookmark={removeBookmark}
+                        openTechPOC={openTechPOC}
                         rename={rename}
                         assignToFolder={ assignToFolder }
                         onDragStart={ me.onDragStart }
