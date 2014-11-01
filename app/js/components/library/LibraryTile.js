@@ -23,7 +23,7 @@ var ApplicationTile = React.createClass({
             <div>
                 <i className="fa fa-ellipsis-h fa-2x tileIcon" data-toggle="dropdown"></i>
                 <ul className="dropdown-menu tileIcon-dropdown" role="menu">
-                    <li onClick={ removeBookmark.bind(null, app) }>Remove Bookmark</li>
+                    <li><a href="javascript:;" onClick={ removeBookmark.bind(null, app) }>Remove Bookmark</a></li>
                     <li><a href={ CENTER_URL+'/#/home/quickview/'+app.listing.id+ '/resources' } target="_blank">Technical Support</a></li>
                 </ul>
                 <img className="applib-tiles" src={ listing.imageLargeUrl } onClick={ launchApplication.bind(null, listing.launchUrl) }/>
