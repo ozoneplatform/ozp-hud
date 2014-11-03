@@ -12,7 +12,10 @@ module.exports = Reflux.createActions([
      */
     'updateLibrary',
 
-    //remove the specified library entry on the backend
+    /**
+     * remove the specified library entry on the backend
+     * @param libraryEntry
+     */
     'removeFromLibrary',
 
     /**

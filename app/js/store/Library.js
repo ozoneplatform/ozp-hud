@@ -3,7 +3,7 @@
 var Reflux = require('reflux');
 var Immutable = require('immutable');
 var LibraryActions = require('../actions/Library');
-var LibraryApi  = require('../../api/Library').LibraryApi;
+var LibraryApi  = require('../api/Library').LibraryApi;
 
 /**
  * This store manages the simple list of library entries
@@ -26,11 +26,11 @@ var LibraryStore = Reflux.createStore({
     },
 
     onFetchLibrary: function () {
-        LibraryApi.get().then(this.updateLibrary);
+        LibraryApi.get().then(this.updateLibrary.bind(this));
     },
 
     onReorderLibrary: function(libraryEntries) {
-        LibraryApi.save(libraryEntries).then(this.updateLibrary);
+        LibraryApi.save(libraryEntries).then(this.updateLibrary.bind(this));
     },
 
     onRemoveFromLibrary: function(libraryEntry) {

@@ -6,11 +6,25 @@ var LibraryStore = require('./Library');
 var LibraryActions = require('../actions/Library');
 
 /**
- * Simple class to represent a folder
+ * Simple immutable class to represent a folder.
+ * @param folder Another Folder object to copy.  Can be null to create a totally new folder
+ * @param entry An entry to add to the folder
  */
-function Folder(initialEntry) {
-    this.entries = [initialEntry];
-    this.name = initialEntry.folderName;
+function Folder(folder, entry) {
+    if (folder) {
+        if (entry.folderName !== folder.name) {
+            throw new Error('Attempting to add entry to wrong folder');
+        }
+
+        this.name = folder.name;
+        this.entries = folder.entries.push(entry);
+    }
+    else {
+        this.entries = Immutable.List.of(entry);
+        this.name = entry.folderName;
+    }
+
+    Object.freeze(this);
 }
 
 /**
@@ -21,7 +35,7 @@ function updateFolderName(newFolder, entry) {
     var newEntry = Object.create(null, entry);
     newEntry.folderName = name;
 
-    return newEntry;
+    return Object.freeze(newEntry);
 }
 
 /**
@@ -64,15 +78,15 @@ var FolderLibraryStore = Reflux.createStore({
         this.flatLibrary = Immutable.List();
 
         this.listenTo(LibraryStore, this.onBackingStoreChange);
-        this.listenToMany(LibraryApi);
+        this.listenToMany(LibraryActions);
     },
 
     onBackingStoreChange: function(entries) {
 
         //a list where each element is either an entry or a folder of entries
-        var folderedEntries = entries.reduce(function(acc, ent) {
-            if (ent.folderName == null) {
-                return acc.concat(ent);
+        var folderedEntries = entries.reduce(function(acc, ent, index) {
+            if (!ent.folderName) {
+                return acc.push(ent);
             }
             else {
                 var existingFolder = acc.find(function(el) {
@@ -80,14 +94,13 @@ var FolderLibraryStore = Reflux.createStore({
                 });
 
                 if (existingFolder) {
-                    existingFolder.entries.push(ent);
-                    return acc;
+                    return acc.splice(index, 1, new Folder(existingFolder, ent));
                 }
                 else {
-                    return acc.concat(new Folder(ent));
+                    return acc.push(new Folder(null, ent));
                 }
             }
-        }, []);
+        }, Immutable.List());
 
         this.flatLibrary = entries;
 
@@ -96,13 +109,13 @@ var FolderLibraryStore = Reflux.createStore({
 
     onReorder: function(newBefore, toMove, newAfter) {
         if (!(newBefore || newAfter)) {
-            throw new Error("Trying to reorder without specifying either adjacency");
+            throw new Error('Trying to reorder without specifying either adjacency');
         }
 
         if ((newBefore && getFolderName(newBefore) !== getFolderName(toMove)) ||
                     (newAfter && getFolderName(newAfter) !== getFolderName(toMove))) {
-            throw new Error("Attempting to reorder of items that are not " +
-                    "in the same folder");
+            throw new Error('Attempting to reorder of items that are not ' +
+                    'in the same folder');
         }
 
         var currentIndex = this.flatLibrary.indexOf(getIndexableItem(toMove)),
@@ -123,7 +136,7 @@ var FolderLibraryStore = Reflux.createStore({
     onCreateFolder: function(name, entries) {
         if (entries.find(function(entry) { return !!entry.folderName; })) {
             throw new Error(
-                "Trying to create folder with an entry that is already in a folder");
+                'Trying to create folder with an entry that is already in a folder');
         }
 
         //this index at which the folder will be inserted
@@ -155,5 +168,13 @@ var FolderLibraryStore = Reflux.createStore({
         LibraryActions.updateLibrary(data);
     }
 });
+
+/**
+ * Publicly exported function to check if an object is a folder.  The Folder constructor
+ * itself is not exported to force all folder creation to happen in this module
+ */
+FolderLibraryStore.isFolder = function(item) {
+    return item instanceof Folder;
+};
 
 module.exports = FolderLibraryStore;
