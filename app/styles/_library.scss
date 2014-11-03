@@ -1,0 +1,135 @@
+.ApplicationLibrary {
+    @extend .list-unstyled;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.LibraryTile {
+    display: inline-block;
+    position: relative;
+
+    margin-right: 40px;
+    margin-bottom: 30px;
+
+    vertical-align: top;
+
+    h5 {
+        text-align: center;
+        color: $white;
+    }
+}
+
+.LibraryTile__img {
+    width: 200px;
+    height: 120px;
+    display: block;
+
+    border: 1px solid $gray-darkest;
+}
+
+.LibraryTile__actionMenu > ul {
+    //overridden when toggle is checked
+    display: none;
+
+    @extend .list-unstyled;
+
+    width: 120px;
+
+    font-size: .8em;
+
+    background-color: $gray-base;
+
+    border: 1px solid $gray-darkest;
+
+    > li {
+        $spacing: 5px;
+
+        padding-top: $spacing;
+        padding-bottom: $spacing;
+
+        > a {
+            color: $white;
+            border-left: 3px solid transparent;
+
+            padding-left: $spacing;
+            padding-right: $spacing;
+
+            display: block;
+        }
+
+        &:hover > a {
+            color: $blue-light;
+            border-color: $blue-light;
+
+            text-decoration: none;
+        }
+    }
+}
+
+.LibraryTile__actionMenuButton {
+    //style as font-awesome horizontal ellipsis
+    @extend .fa;
+    @extend .fa-ellipsis-h;
+
+    display: block;
+    text-align: center;
+
+    background-color: $gray-base;
+    font-size: 1.3em;
+    color: $white;
+    border: 1px solid $gray-darkest;
+
+    position: relative;
+    margin-right: 0;
+    margin-left: auto;
+    width: 50px;
+    height: 21px;
+    padding: 0;
+
+    cursor: pointer;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    &::before {
+        position: absolute;
+        width: 50px;
+        height: 20px;
+        left: -1px;
+    }
+}
+
+.LibraryTile__actionMenu {
+    position: absolute;
+
+    top: 2px;
+    right: 2px;
+    z-index: 1;
+
+    > input {
+        //the toggle checkbox is hidden
+        display: none;
+
+        //when the checkbox is checked, display the menu
+        &:checked {
+            & ~ ul {
+                display: block;
+            }
+
+            & + .LibraryTile__actionMenuButton {
+                color: $blue-light;
+            }
+        }
+    }
+}
+
+.LibraryTile__actionMenuButton:hover,
+.LibraryTile__actionMenu > input:checked + .LibraryTile__actionMenuButton {
+    border-top: 3px solid $blue-light;
+
+    &::before {
+        top: -2px;
+    }
+}
