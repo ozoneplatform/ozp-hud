@@ -21,11 +21,11 @@ var Library = React.createClass({
         return {library: Immutable.List()};
     },
 
-    componentWillUnmount: function () {
+    componentDidUnmount: function () {
         clearInterval(this.interval);
     },
 
-    componentWillMount : function () {
+    componentDidMount : function () {
         this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
         LibraryActions.fetchLibrary();
     },

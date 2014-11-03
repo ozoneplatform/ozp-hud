@@ -24,7 +24,7 @@ module.exports.LibraryApi = {
         });
     },
     del: function(listingId) {
-        $.ajax({
+        return $.ajax({
             type: 'DELETE',
             dataType: 'json',
             url: API_URL + '/api/profile/self/library/' + encodeURIComponent(listingId)

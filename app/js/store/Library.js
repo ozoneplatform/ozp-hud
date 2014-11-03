@@ -34,11 +34,11 @@ var LibraryStore = Reflux.createStore({
     },
 
     onRemoveFromLibrary: function(libraryEntry) {
-        var idToRemove = libraryEntry.library.id,
+        var idToRemove = libraryEntry.listing.id,
             me = this;
 
         LibraryApi.del(idToRemove).then(function() {
-            this.library = me.library.filter(function (entry) {
+            me.library = me.library.filter(function (entry) {
                 return entry.listing.id !== idToRemove;
             });
 

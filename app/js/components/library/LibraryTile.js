@@ -9,6 +9,13 @@ var Folder = require('../folder');
 var LibraryActions = require('../../actions/Library');
 
 var ActionMenu = React.createClass({
+    componentDidUpdate: function(prevProps) {
+        //if we are now a different listing, close the action menu
+        if (prevProps.entry.listing.id !== this.props.entry.listing.id) {
+            this.refs.checkbox.getDOMNode().checked = false;
+        }
+    },
+
     render: function() {
         var entry = this.props.entry,
             listing = entry.listing,
@@ -20,7 +27,7 @@ var ActionMenu = React.createClass({
         //use hidden checkbox to manage menu toggle state
         return (
             <label className="LibraryTile__actionMenu">
-                <input type="checkbox" />
+                <input ref="checkbox" type="checkbox" />
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
                     <li><a href="javascript:;" onClick={removeBookmark}>Remove Bookmark</a></li>
