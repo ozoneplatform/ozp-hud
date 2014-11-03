@@ -43,7 +43,8 @@
     "url": "https://spdx.org/licenses/Apache-2.0"
   },
   "dependencies": {
-    "react": "^0.11.1",
-    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass"
+    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass",
+    "immutable": "^3.0.2",
+    "react": "^0.11.1"
   }
 }
