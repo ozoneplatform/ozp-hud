@@ -209,7 +209,7 @@ var Library = React.createClass({
                     <h3 className="applib"><b>Application Library</b></h3>
                     <h1 className="empty-app-text">You currently have no <br /> Apps to display</h1>
                     <h2 className="visit-appsmall">Visit the AppsMall to discover <br />Apps you can start using</h2>
-                    <form method="get" action="http://ozone-development.github.io/center-ui/index.html">
+                    <form method="get" action={CENTER_URL}>
                         <p className="visit-button-text"><button type="submit" className="empty-text-button"><img src={appsMallLogo} /> AppsMall</button></p>
                     </form>
                 </div>
