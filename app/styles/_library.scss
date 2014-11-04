@@ -3,14 +3,18 @@
     margin-left: 40px;
     margin-right: 40px;
 
+    position: relative;
+
     color: $gray-lightest;
+
+    > li {
+        display: inline-block;
+    }
 }
 
 .LibraryTile, .FolderTile {
-    display: inline-block;
     position: relative;
 
-    margin-right: 40px;
     margin-bottom: 30px;
 
     vertical-align: top;
@@ -20,10 +24,6 @@
 
     h5 {
         text-align: center;
-    }
-
-    &:last-child {
-        margin-right: 0;
     }
 }
 
@@ -160,4 +160,9 @@
     &::before {
         top: -2px;
     }
+}
+
+.DropSeparator {
+    width: 40px;
+    height: 155px;
 }

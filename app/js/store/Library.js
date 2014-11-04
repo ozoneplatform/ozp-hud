@@ -29,7 +29,7 @@ var LibraryStore = Reflux.createStore({
         LibraryApi.get().then(this.updateLibrary.bind(this));
     },
 
-    onReorderLibrary: function(libraryEntries) {
+    onUpdateLibrary: function(libraryEntries) {
         LibraryApi.save(libraryEntries).then(this.updateLibrary.bind(this));
     },
 

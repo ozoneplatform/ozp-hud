@@ -29,7 +29,7 @@ var ActionMenu = React.createClass({
                 <input ref="checkbox" type="checkbox" />
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
-                    <li><a href="javascript:;" onClick={removeBookmark}>Remove Bookmark</a></li>
+                    <li><a onClick={removeBookmark}>Remove Bookmark</a></li>
                     <li><a href={techSupportHref} target="_blank">Technical Support</a></li>
                 </ul>
             </label>
@@ -40,7 +40,17 @@ var ActionMenu = React.createClass({
 
 var LibraryTile = React.createClass({
 
-    mixins: [ Sortable ],
+    onDragStart: function(evt) {
+        var entry = this.props.entry,
+            json = JSON.stringify(entry),
+            dt = evt.dataTransfer;
+
+        dt.setData('application/vnd.ozp-library-entry-v1+json', json);
+        dt.setData('application/json', json);
+        dt.setData('text/plain', entry.listing.title);
+
+        dt.effectAllowed = 'move';
+    },
 
     render: function() {
         var entry = this.props.entry,
@@ -49,10 +59,12 @@ var LibraryTile = React.createClass({
 
         /* jshint ignore:start */
         return (
-            <li className="LibraryTile">
+            <li className="LibraryTile" data-listing-id={listing.id}
+                    draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
-                <a href={listing.launchUrl} target="_blank">
-                    <img className="LibraryTile__img" src={listing.imageLargeUrl} />
+                <a href={listing.launchUrl} target="_blank" draggable="false">
+                    <img draggable="false" className="LibraryTile__img"
+                        src={listing.imageLargeUrl} />
                 </a>
                 <h5>{listing.title}</h5>
             </li>

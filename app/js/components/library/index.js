@@ -12,9 +12,42 @@ var FolderTile = require('./FolderTile');
 
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
-//var dirtyLibrary = false;
-//var dragged;
+var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json';
 
+/**
+ * A separator for use as a drop target for reordering listings. This should be inserted between
+ * each item in the library
+ */
+var DropSeparator = React.createClass({
+
+    onDrag: function(evt) {
+        var dt = evt.dataTransfer;
+
+        if ((dt.types.indexOf(libraryEntryDataType) !== - 1) &&
+                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
+            evt.preventDefault();
+            dt.dropEffect = 'move';
+            console.log('prevented default', evt);
+        }
+        else {
+            console.log('default not prevented', evt);
+        }
+    },
+
+    render: function() {
+        /* jshint ignore:start */
+        return (
+            <li className="DropSeparator"
+                onDragEnter={this.onDrag} onDragOver={this.onDrag}
+                onDrop={this.props.onDrop} />
+        );
+        /* jshint ignore:end */
+    }
+});
+
+/**
+ * The view of the user's Application Library
+ */
 var Library = React.createClass({
     mixins: [Reflux.connect(FolderLibraryStore, 'library')],
 
@@ -27,81 +60,88 @@ var Library = React.createClass({
     },
 
     componentDidMount : function () {
-        this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
+        //this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
         LibraryActions.fetchLibrary();
     },
 
-    //sort: function (items, dragging) {
-        //var data = this.state.data;
+    onDrop: function(evt) {
+        //given a DOM node that should be either a LibraryTile or a FolderTile, find the
+        //record in the state that it was generated from
+        function getModelByNode(node) {
+            if (node) {
+                var listingId = node.dataset.listingId,
+                    folderName = node.dataset.folderName;
 
-        //var flattenedItems = items.reduce(function(accum, current, index, array) {
-            //if(current.folder !== null){
-                //var flatFolder = current.items.reduce(function(a, b) {
-                    //return a.concat(b);
-                //}, []);
-                //return accum.concat(flatFolder);
-            //} else{
-                //return accum.concat(current);
-            //}
-        //}, []);
+                if (listingId) {
+                    return me.state.library.find(function(ent) {
+                        return !FolderLibraryStore.isFolder(ent) &&
+                            ent.listing.id === parseInt(listingId, 10);
+                    });
+                }
+                else if (folderName) {
+                    return me.state.library.find(function(ent) {
+                        return FolderLibraryStore.isFolder(ent) &&
+                            ent.name === folderName;
+                    });
+                }
+                else {
+                    return null;
+                }
+            }
+            else {
+                return null;
+            }
+        }
 
-        //data.items = flattenedItems;
-        //data.dragging = dragging;
-        //this.setState({data: data});
-    //},
+        var me = this,
+            data = JSON.parse(evt.dataTransfer.getData(libraryEntryDataType)),
+            dropTarget = evt.target,
+            previousNode = dropTarget.previousSibling,
+            nextNode = dropTarget.nextSibling,
 
-    //folderRename: function (targetFolder, newName) {
-        //console.log('folderRename');
-        //dirtyLibrary = true;
-        //var data = this.state.data;
+            //we want the actual object from the store, not a deserialized copy of it
+            entry = this.state.library.find(function(ent) {
+                return !FolderLibraryStore.isFolder(ent) &&
+                    ent.listing.id === data.listing.id;
+            }),
+            previousEntry = getModelByNode(previousNode),
+            nextEntry = getModelByNode(nextNode);
 
-       //var folderNames = [];
-        //data.items.map(function (item) {
-            //if(item.folder !== null){
-               //folderNames.push(item.folder);
-           //}
-        //});
+        evt.preventDefault();
 
-        //if(folderNames.indexOf(newName) !== -1){
-            //window.alert('There is already a folder by that name.');
-            //return;
-        //}
-
-
-        //data.items.forEach(function (app) {
-
-            //if (app.folder === targetFolder) {
-                //app.folder = newName;
-            //}
-        //});
-
-        //this.setState({data: data});
-        ////this.putToBackend();
-
-    //},
-
-    //assignToFolder: function (app, folder) {
-        //dirtyLibrary = true;
-        //var items = this.state.data.items;
-        //var appIndex = items.indexOf(app);
-        //items[appIndex].folder = folder;
-        //this.setState({data: {items: items}});
-    //},
+        LibraryActions.reorder(previousEntry, entry, nextEntry);
+    },
 
     render: function () {
-        var elements = this.state.library.map(function(item) {
+        function makeDropSeparator() {
             /* jshint ignore:start */
-            return FolderLibraryStore.isFolder(item) ?
-                <FolderTile key={'folder-' + item.name} folder={item} />
-                :
-                <LibraryTile key={'listing-' + item.listing.id} entry={item} />
+            return <DropSeparator onDrop={me.onDrop} />;
             /* jshint ignore:end */
-        });
+        }
+
+        var me = this,
+            elements = this.state.library.map(function(item) {
+                    /* jshint ignore:start */
+                    return FolderLibraryStore.isFolder(item) ?
+                        <FolderTile key={'folder-' + item.name} folder={item} /> :
+                        <LibraryTile key={'listing-' + item.listing.id} entry={item} />
+                    /* jshint ignore:end */
+                })
+                .reduce(function(acc, elem) {
+                    //intersperse with DropSeparators
+                    return acc.push(elem).push(makeDropSeparator());
+                    /* jshint ignore:end */
+                }, Immutable.List())
+                //need a additional separator at the beginning
+                .unshift(makeDropSeparator());
+
 
         if (elements.size) {
             /* jshint ignore:start */
             return (
-                <ol className="LibraryTiles">{elements.toArray()}</ol>
+                <ol className="LibraryTiles">
+                    {elements.toArray()}
+                </ol>
             );
             /* jshint ignore:end */
         }
@@ -119,17 +159,7 @@ var Library = React.createClass({
             );
             /* jshint ignore:end */
         }
-    },
-
-    //onDragStart: function () {
-        //dirtyLibrary = true;
-    //},
-
-    //onDragEnd: function () {
-        //this.putToBackend();
-        //dirtyLibrary = false;
-    //}
-
+    }
 });
 
 module.exports = Library;

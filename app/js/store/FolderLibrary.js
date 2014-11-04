@@ -125,7 +125,7 @@ var FolderLibraryStore = Reflux.createStore({
 
         var currentIndex = this.flatLibrary.indexOf(getIndexableItem(toMove)),
             targetIndex = newBefore ?
-                this.flatLibrary.indexof(getIndexableItem(newBefore)) + 1 :
+                this.flatLibrary.indexOf(getIndexableItem(newBefore)) + 1 :
                 this.flatLibrary.indexOf(getIndexableItem(newAfter)),
             destIndex = currentIndex < targetIndex ? targetIndex - 1 : targetIndex;
 
