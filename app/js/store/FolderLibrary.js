@@ -12,7 +12,7 @@ var LibraryActions = require('../actions/Library');
  */
 function Folder(folder, entry) {
     if (folder) {
-        if (entry.folderName !== folder.name) {
+        if (entry.folder !== folder.name) {
             throw new Error('Attempting to add entry to wrong folder');
         }
 
@@ -21,7 +21,7 @@ function Folder(folder, entry) {
     }
     else {
         this.entries = Immutable.List.of(entry);
-        this.name = entry.folderName;
+        this.name = entry.folder;
     }
 
     Object.freeze(this);
@@ -29,11 +29,11 @@ function Folder(folder, entry) {
 
 /**
  * @return a new entry that is just like the old one but with
- * its folderName set to the old foldername
+ * its folder set to the old foldername
  */
 function updateFolderName(newFolder, entry) {
     var newEntry = Object.create(null, entry);
-    newEntry.folderName = name;
+    newEntry.folder = name;
 
     return Object.freeze(newEntry);
 }
@@ -48,7 +48,7 @@ function getFolderName(item) {
         return null;
     }
     else {
-        return item.folderName;
+        return item.folder;
     }
 }
 
@@ -84,17 +84,18 @@ var FolderLibraryStore = Reflux.createStore({
     onBackingStoreChange: function(entries) {
 
         //a list where each element is either an entry or a folder of entries
-        var folderedEntries = entries.reduce(function(acc, ent, index) {
-            if (!ent.folderName) {
+        var folderedEntries = entries.reduce(function(acc, ent) {
+            if (!ent.folder) {
                 return acc.push(ent);
             }
             else {
                 var existingFolder = acc.find(function(el) {
-                    return el instanceof Folder && el.name === ent.folderName;
+                    return el instanceof Folder && el.name === ent.folder;
                 });
 
                 if (existingFolder) {
-                    return acc.splice(index, 1, new Folder(existingFolder, ent));
+                    var folderIndex = acc.indexOf(existingFolder);
+                    return acc.splice(folderIndex, 1, new Folder(existingFolder, ent));
                 }
                 else {
                     return acc.push(new Folder(null, ent));
@@ -134,7 +135,7 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onCreateFolder: function(name, entries) {
-        if (entries.find(function(entry) { return !!entry.folderName; })) {
+        if (entries.find(function(entry) { return !!entry.folder; })) {
             throw new Error(
                 'Trying to create folder with an entry that is already in a folder');
         }
@@ -155,7 +156,7 @@ var FolderLibraryStore = Reflux.createStore({
 
     onUnFolder: function(name) {
         function findFolderEntry(entry) {
-            return entry.folderName === name;
+            return entry.folder === name;
         }
 
         var folderIndex = this.flatLibrary.findIndex(findFolderEntry),

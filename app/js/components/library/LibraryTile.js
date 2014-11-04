@@ -5,7 +5,6 @@
 
 var React = require('react');
 var Sortable = require('../sortable/Sortable');
-var Folder = require('../folder');
 var LibraryActions = require('../../actions/Library');
 
 var ActionMenu = React.createClass({

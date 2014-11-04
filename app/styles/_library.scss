@@ -1,10 +1,10 @@
-.ApplicationLibrary {
+.LibraryTiles {
     @extend .list-unstyled;
     margin-left: 40px;
     margin-right: 40px;
 }
 
-.LibraryTile {
+.LibraryTile, .FolderTile {
     display: inline-block;
     position: relative;
 
@@ -13,9 +13,33 @@
 
     vertical-align: top;
 
+    width: 200px;
+    height: 155px;
+
     h5 {
         text-align: center;
         color: $white;
+    }
+}
+
+.FolderTile {
+    .FolderTile__folderView {
+        border: 2px solid $gray-dark;
+        border-radius: 5px;
+
+        width: 100%;
+        height: 120px;
+
+        padding: 5px;
+
+        display: block;
+    }
+
+    img {
+        width: 32px;
+        height: 32px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 

@@ -1,60 +1,65 @@
-.app-folder{
-	height: 120px;
-	width: 200px;
-	border: solid;
-	border-color: #CCCDD1;
-	border-width: 2px;
-	border-radius: 15px;
-    margin: 0 25px 0 0;
+/*.app-folder{*/
+    /*height: 120px;*/
+    /*width: 200px;*/
+    /*border: solid;*/
+    /*border-color: #CCCDD1;*/
+    /*border-width: 2px;*/
+    /*border-radius: 15px;*/
+    /*margin: 0 25px 0 0;*/
 
 
-	img{
-		padding: 5px;
-		height: 35px;
-		width: 58px;
-	}
-}
+    /*img{*/
+        /*padding: 5px;*/
+        /*height: 35px;*/
+        /*width: 58px;*/
+    /*}*/
+/*}*/
 
-.folder-modal{
+/*.folder-modal{*/
 
-	.modal-content{
-		margin-right: auto;
-		margin-left: auto;
-		width: 710px;
-		border-color: transparent !important;
-        background-color: transparent !important;
-    	color: white;
+    /*.modal-content{*/
+        /*margin-right: auto;*/
+        /*margin-left: auto;*/
+        /*width: 710px;*/
+        /*border-color: transparent !important;*/
+        /*background-color: transparent !important;*/
+        /*color: white;*/
 
-	}
-	.modal-body{
-		height: 0px;
-		width: 710px;
-		border: solid;
-		border-color: #CCCDD1;
-		border-width: 2px;
-		border-radius: 15px;
-		display: inline-table;
-	}
-	.close {
-    	color: white !important;
-    	opacity: 1;
-	}
-	.folder-header{
-		text-align: center;
+    /*}*/
+    /*.modal-body{*/
+        /*height: 0px;*/
+        /*width: 710px;*/
+        /*border: solid;*/
+        /*border-color: #CCCDD1;*/
+        /*border-width: 2px;*/
+        /*border-radius: 15px;*/
+        /*display: inline-table;*/
+    /*}*/
+    /*.close {*/
+        /*color: white !important;*/
+        /*opacity: 1;*/
+    /*}*/
+    /*.folder-header{*/
+        /*text-align: center;*/
 
-		.folder-name-text-field{
-			text-align: center;
-			background: none;
-		}
-	}
-}
+        /*.folder-name-text-field{*/
+            /*text-align: center;*/
+            /*background: none;*/
+        /*}*/
+    /*}*/
+/*}*/
 
-.folder-modal-header{
-  text-align: center;
-  padding-bottom: 20px;
-//   font-weight: $general-font-weight;
-//   font-family: $general-font;
-}
-.modal-dialog{
-	width: 810px;
+/*.folder-modal-header{*/
+    /*text-align: center;*/
+    /*padding-bottom: 20px;*/
+/*}*/
+/*.modal-dialog{*/
+    /*width: 810px;*/
+/*}*/
+
+.FolderModal {
+    .modal-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }

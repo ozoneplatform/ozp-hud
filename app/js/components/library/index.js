@@ -8,6 +8,7 @@ var Immutable = require('immutable');
 var LibraryActions = require('../../actions/Library');
 var FolderLibraryStore = require('../../store/FolderLibrary');
 var LibraryTile = require('./LibraryTile');
+var FolderTile = require('./FolderTile');
 
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
@@ -99,7 +100,7 @@ var Library = React.createClass({
         if (elements.size) {
             /* jshint ignore:start */
             return (
-                <ul className="ApplicationLibrary">{elements.toArray()}</ul>
+                <ol className="LibraryTiles">{elements.toArray()}</ol>
             );
             /* jshint ignore:end */
         }

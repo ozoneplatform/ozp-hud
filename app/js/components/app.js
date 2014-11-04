@@ -3,18 +3,15 @@
 'use strict';
 
 var React = require('react');
+
 var Header = require('./header');
 var Library = require('./library');
 var Settings = require('./settings');
 var HelpModal = require('./header/helpmodal.js');
 
-var APP = React.createClass({
+var App = React.createClass({
 
     render: function () {
-        return this.renderHUD();
-    },
-
-    renderHUD: function () {
         /*jshint ignore:start */
         return (
             <div>
@@ -22,10 +19,11 @@ var APP = React.createClass({
                 <Library />
                 <Settings />
                 <HelpModal />
+                <this.props.activeRouteHandler />
             </div>
         );
         /*jshint ignore:end */
     }
 });
 
-module.exports = APP;
+module.exports = App;
