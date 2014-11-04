@@ -92,8 +92,9 @@ var Library = React.createClass({
         var elements = this.state.library.map(function(item) {
             /* jshint ignore:start */
             return FolderLibraryStore.isFolder(item) ?
-                <FolderTile folder={item} /> :
-                <LibraryTile entry={item} />
+                <FolderTile key={'folder-' + item.name} folder={item} />
+                :
+                <LibraryTile key={'listing-' + item.listing.id} entry={item} />
             /* jshint ignore:end */
         });
 

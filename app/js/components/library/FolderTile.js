@@ -12,8 +12,10 @@ var FolderTile = React.createClass({
     render: function() {
         var folder = this.props.folder,
             entryIcons = folder.entries.map(function(entry) {
+                var src = entry.listing.imageMediumUrl;
+
                 /* jshint ignore:start */
-                return <img src={entry.listing.imageMediumUrl} />;
+                return <img key={src} src={src} />;
                 /* jshint ignore:end */
             });
 

@@ -58,7 +58,7 @@ var FolderModal = React.createClass({
     render: function() {
         var libraryTiles = this.state.entries.map(function(entry) {
             /* jshint ignore:start */
-            return <LibraryTile entry={entry} />
+            return <LibraryTile key={entry.listing.id} entry={entry} />
             /* jshint ignore:end */
         });
 
