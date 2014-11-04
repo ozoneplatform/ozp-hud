@@ -74,8 +74,11 @@ var FolderLibraryStore = Reflux.createStore({
     //reference to the data from the LibraryStore
     flatLibrary: null,
 
+    folderedEntries: null,
+
     init: function() {
         this.flatLibrary = Immutable.List();
+        this.folderedEntries = Immutable.List();
 
         this.listenTo(LibraryStore, this.onBackingStoreChange);
         this.listenToMany(LibraryActions);
@@ -104,6 +107,7 @@ var FolderLibraryStore = Reflux.createStore({
         }, Immutable.List());
 
         this.flatLibrary = entries;
+        this.folderedEntries = folderedEntries;
 
         this.trigger(folderedEntries);
     },
@@ -167,6 +171,10 @@ var FolderLibraryStore = Reflux.createStore({
                 .filter(Array.prototype.contains.bind(folderedEntries));
 
         LibraryActions.updateLibrary(data);
+    },
+
+    getDefaultData: function() {
+        return this.folderedEntries;
     }
 });
 

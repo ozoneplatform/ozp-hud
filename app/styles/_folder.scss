@@ -1,65 +1,48 @@
-/*.app-folder{*/
-    /*height: 120px;*/
-    /*width: 200px;*/
-    /*border: solid;*/
-    /*border-color: #CCCDD1;*/
-    /*border-width: 2px;*/
-    /*border-radius: 15px;*/
-    /*margin: 0 25px 0 0;*/
-
-
-    /*img{*/
-        /*padding: 5px;*/
-        /*height: 35px;*/
-        /*width: 58px;*/
-    /*}*/
-/*}*/
-
-/*.folder-modal{*/
-
-    /*.modal-content{*/
-        /*margin-right: auto;*/
-        /*margin-left: auto;*/
-        /*width: 710px;*/
-        /*border-color: transparent !important;*/
-        /*background-color: transparent !important;*/
-        /*color: white;*/
-
-    /*}*/
-    /*.modal-body{*/
-        /*height: 0px;*/
-        /*width: 710px;*/
-        /*border: solid;*/
-        /*border-color: #CCCDD1;*/
-        /*border-width: 2px;*/
-        /*border-radius: 15px;*/
-        /*display: inline-table;*/
-    /*}*/
-    /*.close {*/
-        /*color: white !important;*/
-        /*opacity: 1;*/
-    /*}*/
-    /*.folder-header{*/
-        /*text-align: center;*/
-
-        /*.folder-name-text-field{*/
-            /*text-align: center;*/
-            /*background: none;*/
-        /*}*/
-    /*}*/
-/*}*/
-
-/*.folder-modal-header{*/
-    /*text-align: center;*/
-    /*padding-bottom: 20px;*/
-/*}*/
-/*.modal-dialog{*/
-    /*width: 810px;*/
-/*}*/
-
 .FolderModal {
+    color: $gray-lightest;
+
+    .modal-dialog {
+        margin-top: 100px;
+    }
+
     .modal-body {
-        padding-left: 0;
-        padding-right: 0;
+        padding: 0;
+
+        border-width: 0;
+
+        background-color: transparent;
+    }
+
+    .modal-header {
+        border-width: 0;
+
+        padding: 10px;
+
+        h3 {
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .modal-content {
+        background-color: $gray-darkest;
+        border: 2px solid $gray-darker;
+        border-radius: 5px;
+    }
+
+    .close {
+        color: inherit;
+        font-size: 1.8em;
+        font-weight: bold;
+
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .FolderModal > .modal-dialog {
+        width: 1004px;
     }
 }

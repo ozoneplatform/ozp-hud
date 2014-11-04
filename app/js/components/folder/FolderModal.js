@@ -5,12 +5,15 @@ var React = require('react');
 var Reflux = require('reflux');
 var Immutable = require('immutable');
 
+var Router = require('react-router');
+var Navigation = Router.Navigation;
+
 var FolderLibraryStore = require('../../store/FolderLibrary');
 
 var LibraryTile = require('../library/LibraryTile');
 
 var FolderModal = React.createClass({
-    mixins: [Reflux.listenTo(FolderLibraryStore, 'onStoreChange')],
+    mixins: [Reflux.listenTo(FolderLibraryStore, 'onStoreChange', 'onStoreChange'), Navigation],
 
     getInitialState: function() {
         return {
@@ -31,11 +34,25 @@ var FolderModal = React.createClass({
     },
 
     componentDidMount: function () {
-        $(this.getDOMNode()).modal({
-            backdrop: 'static',
-            keyboard: false,
-            show: true
-        });
+        var me = this;
+
+        $(this.getDOMNode())
+            .one('hidden.bs.modal', function () {
+                me.onHidden();
+            })
+            .modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+    },
+
+    onHidden: function() {
+        this.goBack();
+    },
+
+    close: function () {
+        $(this.getDOMNode()).modal('hide');
     },
 
     render: function() {
@@ -52,7 +69,7 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             <button className="close" onClick={this.close}>&times;</button>
-                            <h2>{this.state.name}</h2>
+                            <h3>{this.state.name}</h3>
                         </div>
                         <div className="modal-body">
                             <ol className="LibraryTiles">{libraryTiles.toArray()}</ol>
