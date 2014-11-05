@@ -10,6 +10,8 @@ var FolderLibraryStore = require('../../store/FolderLibrary');
 var LibraryTile = require('./LibraryTile');
 var FolderTile = require('./FolderTile');
 
+var Folder = require('../../api/Folder');
+
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
 var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json';
@@ -49,19 +51,21 @@ var DropSeparator = React.createClass({
  * The view of the user's Application Library
  */
 var Library = React.createClass({
-    mixins: [Reflux.connect(FolderLibraryStore, 'library')],
+    mixins: [Reflux.ListenerMixin],
 
     getInitialState: function() {
         return {library: Immutable.List()};
     },
 
-    componentDidUnmount: function () {
-        clearInterval(this.interval);
+    onStoreChange: function(library) {
+        this.setState({library: library});
     },
 
     componentDidMount : function () {
-        //this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
-        LibraryActions.fetchLibrary();
+        this.listenTo(this.props.store, this.onStoreChange);
+
+        //immediately get whatever data is in the store
+        this.onStoreChange(this.props.store.getDefaultData());
     },
 
     onDrop: function(evt) {
@@ -74,13 +78,13 @@ var Library = React.createClass({
 
                 if (listingId) {
                     return me.state.library.find(function(ent) {
-                        return !FolderLibraryStore.isFolder(ent) &&
+                        return !(ent instanceof Folder) &&
                             ent.listing.id === parseInt(listingId, 10);
                     });
                 }
                 else if (folderName) {
                     return me.state.library.find(function(ent) {
-                        return FolderLibraryStore.isFolder(ent) &&
+                        return ent instanceof Folder &&
                             ent.name === folderName;
                     });
                 }
@@ -101,7 +105,7 @@ var Library = React.createClass({
 
             //we want the actual object from the store, not a deserialized copy of it
             entry = this.state.library.find(function(ent) {
-                return !FolderLibraryStore.isFolder(ent) &&
+                return !(ent instanceof Folder) &&
                     ent.listing.id === data.listing.id;
             }),
             previousEntry = getModelByNode(previousNode),
@@ -122,7 +126,7 @@ var Library = React.createClass({
         var me = this,
             elements = this.state.library.map(function(item) {
                     /* jshint ignore:start */
-                    return FolderLibraryStore.isFolder(item) ?
+                    return item instanceof Folder ?
                         <FolderTile key={'folder-' + item.name} folder={item} /> :
                         <LibraryTile key={'listing-' + item.listing.id} entry={item} />
                     /* jshint ignore:end */

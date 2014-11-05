@@ -41,5 +41,11 @@ module.exports = Reflux.createActions([
      * Delete a folder and put its contents in its place in the top-level list
      * @param name The folder name
      */
-    'unFolder'
+    'unFolder',
+
+    /**
+     * Indicate that a specific folder is being viewed
+     * @param name The folder name
+     */
+    'viewFolder'
 ]);

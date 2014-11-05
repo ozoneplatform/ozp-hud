@@ -5,27 +5,7 @@ var Immutable = require('immutable');
 var LibraryStore = require('./Library');
 var LibraryActions = require('../actions/Library');
 
-/**
- * Simple immutable class to represent a folder.
- * @param folder Another Folder object to copy.  Can be null to create a totally new folder
- * @param entry An entry to add to the folder
- */
-function Folder(folder, entry) {
-    if (folder) {
-        if (entry.folder !== folder.name) {
-            throw new Error('Attempting to add entry to wrong folder');
-        }
-
-        this.name = folder.name;
-        this.entries = folder.entries.push(entry);
-    }
-    else {
-        this.entries = Immutable.List.of(entry);
-        this.name = entry.folder;
-    }
-
-    Object.freeze(this);
-}
+var Folder = require('../api/Folder');
 
 /**
  * @return a new entry that is just like the old one but with
@@ -177,13 +157,5 @@ var FolderLibraryStore = Reflux.createStore({
         return this.folderedEntries;
     }
 });
-
-/**
- * Publicly exported function to check if an object is a folder.  The Folder constructor
- * itself is not exported to force all folder creation to happen in this module
- */
-FolderLibraryStore.isFolder = function(item) {
-    return item instanceof Folder;
-};
 
 module.exports = FolderLibraryStore;

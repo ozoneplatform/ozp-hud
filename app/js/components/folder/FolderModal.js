@@ -8,33 +8,19 @@ var Immutable = require('immutable');
 var Router = require('react-router');
 var Navigation = Router.Navigation;
 
-var FolderLibraryStore = require('../../store/FolderLibrary');
+var Library = require('../library');
 
-var LibraryTile = require('../library/LibraryTile');
+var CurrentFolderStore = require('../../store/CurrentFolder');
+
+var LibraryActions = require('../../actions/Library');
 
 var FolderModal = React.createClass({
-    mixins: [Reflux.listenTo(FolderLibraryStore, 'onStoreChange', 'onStoreChange'), Navigation],
-
-    getInitialState: function() {
-        return {
-            name: '',
-            entries: Immutable.List()
-        };
-    },
-
-    onStoreChange: function(library) {
-        var name = this.props.params.name,
-            folder = library.find(function(item) {
-                return FolderLibraryStore.isFolder(item) && item.name === name;
-            });
-
-        if (folder) {
-            this.setState(folder);
-        }
-    },
+    mixins: [Navigation],
 
     componentDidMount: function () {
         var me = this;
+
+        LibraryActions.viewFolder(this.props.params.name);
 
         $(this.getDOMNode())
             .one('hidden.bs.modal', function () {
@@ -56,12 +42,6 @@ var FolderModal = React.createClass({
     },
 
     render: function() {
-        var libraryTiles = this.state.entries.map(function(entry) {
-            /* jshint ignore:start */
-            return <LibraryTile key={entry.listing.id} entry={entry} />
-            /* jshint ignore:end */
-        });
-
         /* jshint ignore:start */
         return (
             <div className="modal FolderModal">
@@ -69,10 +49,10 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             <button className="close" onClick={this.close}>&times;</button>
-                            <h3>{this.state.name}</h3>
+                            <h3>{this.props.params.name}</h3>
                         </div>
                         <div className="modal-body">
-                            <ol className="LibraryTiles">{libraryTiles.toArray()}</ol>
+                            <Library store={CurrentFolderStore} />
                         </div>
                     </div>
                 </div>
