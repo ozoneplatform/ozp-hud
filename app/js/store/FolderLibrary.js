@@ -45,6 +45,12 @@ function getIndexableItem(item) {
     }
 }
 
+function toFlatLibrary(folderedLibrary) {
+    return folderedLibrary.flatMap(function(item) {
+        return item instanceof Folder ? item.entries : Immutable.List.of(item);
+    });
+}
+
 /**
  * This store provides a view in front of LibraryStore which
  * organizes the entries into folders.  It contains the logic for implementing various
@@ -103,54 +109,46 @@ var FolderLibraryStore = Reflux.createStore({
                     'in the same folder');
         }
 
-        var currentIndex = this.flatLibrary.indexOf(getIndexableItem(toMove)),
-            targetIndex = newBefore ?
-                this.flatLibrary.indexOf(getIndexableItem(newBefore)) + 1 :
-                this.flatLibrary.indexOf(getIndexableItem(newAfter)),
-            destIndex = currentIndex < targetIndex ? targetIndex - 1 : targetIndex;
+        var removalIndex = this.folderedEntries.indexOf(toMove),
+            folderedEntriesAfterRemove = this.folderedEntries
+                .splice(removalIndex, 1),
+            insertionIndex = newBefore ?
+                folderedEntriesAfterRemove.indexOf(newBefore) + 1 :
+                folderedEntriesAfterRemove.indexOf(newAfter),
+            newFolderedEntries = folderedEntriesAfterRemove.splice(insertionIndex, 0, toMove);
 
-        var data = this.flatLibrary
-            //remove the entry at its old location
-            .splice(currentIndex, 1)
-            //add the entry at the new location
-            .splice(destIndex, 0, toMove);
-
-        LibraryActions.updateLibrary(data);
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
     onCreateFolder: function(name, entries) {
-        if (entries.find(function(entry) { return !!entry.folder; })) {
-            throw new Error(
-                'Trying to create folder with an entry that is already in a folder');
+        if (entries.find(function(entry) { return entry.folder || entry instanceof Folder; })) {
+            throw new Error('Trying to create folder with invalid entries');
         }
 
-        //this index at which the folder will be inserted
-        var data,
-            folderIndex = this.flatLibrary.indexOf(entries[0]),
-            newEntries = entries.map(updateFolderName.bind(null, name));
+        var folderIndex = this.folderedEntries.indexOf(entries[0]),
+            newEntries = entries.map(updateFolderName.bind(null, name)),
+            newFolder = new Folder(name, newEntries),
+            newFolderedEntries = this.folderedEntries
+                //add folder
+                .splice(folderIndex, 0, newFolder)
+                //remove old, unfoldered entries
+                .filter(Immutable.List.prototype.contains.bind(entries));
 
-        data = this.flatLibrary
-            //add folder
-            .splice(folderIndex, 0, newEntries)
-            //remove old, unfoldered entries
-            .filter(Array.prototype.contains.bind(entries));
-
-        LibraryActions.updateLibrary(data);
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
     onUnFolder: function(name) {
         function findFolderEntry(entry) {
-            return entry.folder === name;
+            return entry instanceof Folder && entry.name === name;
         }
 
-        var folderIndex = this.flatLibrary.findIndex(findFolderEntry),
-            folderedEntries = this.flatLibrary.filter(findFolderEntry),
+        var folderIndex = this.folderedEntries.findIndex(findFolderEntry),
+            folder = this.folderedEntries.find(findFolderEntry),
+            folderedEntries = folder.entries,
             newEntries = folderedEntries.map(updateFolderName.bind(null, null)),
-            data = this.flatLibrary
-                .splice(folderIndex, 0, newEntries)
-                .filter(Array.prototype.contains.bind(folderedEntries));
+            newFolderedEntries = this.folderedEntries.splice(folderIndex, 1, newEntries);
 
-        LibraryActions.updateLibrary(data);
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
     getDefaultData: function() {

@@ -14,7 +14,8 @@ var Folder = require('../../api/Folder');
 
 var appsMallLogo  = './images/AppsMall_Icon.png';
 
-var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json';
+var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json',
+    folderDataType = 'application/vnd.ozp-library-folder-v1+json';
 
 /**
  * A separator for use as a drop target for reordering listings. This should be inserted between
@@ -29,7 +30,8 @@ var DropSeparator = React.createClass({
     onDrag: function(evt) {
         var dt = evt.dataTransfer;
 
-        if ((dt.types.indexOf(libraryEntryDataType) !== - 1) &&
+        if (((dt.types.indexOf(libraryEntryDataType) !== - 1) ||
+            (dt.types.indexOf(folderDataType) !== - 1)) &&
                 dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
             evt.preventDefault();
             dt.dropEffect = 'move';
@@ -117,16 +119,23 @@ var Library = React.createClass({
         }
 
         var me = this,
-            data = JSON.parse(evt.dataTransfer.getData(libraryEntryDataType)),
+            dt = evt.dataTransfer,
+            json = dt.getData(libraryEntryDataType) || dt.getData(folderDataType),
+            data = JSON.parse(json),
             dropTarget = evt.target,
             previousNode = dropTarget.previousSibling,
             nextNode = dropTarget.nextSibling,
 
             //we want the actual object from the store, not a deserialized copy of it
-            entry = this.state.library.find(function(ent) {
-                return !(ent instanceof Folder) &&
-                    ent.listing.id === data.listing.id;
-            }),
+            entry = data.listing ?
+                this.state.library.find(function(ent) {
+                    return !(ent instanceof Folder) &&
+                        ent.listing.id === data.listing.id;
+                }) :
+                this.state.library.find(function(ent) {
+                    return (ent instanceof Folder) &&
+                        ent.name === data.name;
+                }),
             previousEntry = getModelByNode(previousNode),
             nextEntry = getModelByNode(nextNode);
 
