@@ -44,6 +44,12 @@ module.exports = Reflux.createActions([
     'unFolder',
 
     /**
+     * Remove the specified Listing from its folder and place it at the top level
+     * @param entry The listing to remove from the folder
+     */
+    'removeFromFolder',
+
+    /**
      * Indicate that a specific folder is being viewed
      * @param name The folder name
      */

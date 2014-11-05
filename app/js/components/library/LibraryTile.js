@@ -6,6 +6,7 @@
 var React = require('react');
 var Sortable = require('../sortable/Sortable');
 var LibraryActions = require('../../actions/Library');
+var Constants = require('../../Constants');
 
 var ActionMenu = React.createClass({
     componentDidUpdate: function(prevProps) {
@@ -45,7 +46,7 @@ var LibraryTile = React.createClass({
             json = JSON.stringify(entry),
             dt = evt.dataTransfer;
 
-        dt.setData('application/vnd.ozp-library-entry-v1+json', json);
+        dt.setData(Constants.libraryEntryDataType, json);
         dt.setData('application/json', json);
         dt.setData('text/plain', entry.listing.title);
 

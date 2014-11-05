@@ -151,6 +151,37 @@ var FolderLibraryStore = Reflux.createStore({
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
+    onRemoveFromFolder: function(entry) {
+        if (entry instanceof Folder || !entry.folder) {
+            throw new Error('Cannot remove this item from folder');
+        }
+
+        function findFolderEntry(item) {
+            return item instanceof Folder && item.name === entry.folder;
+        }
+
+        var folderIndex = this.folderedEntries.findIndex(findFolderEntry),
+            folder = this.folderedEntries.get(folderIndex),
+            newEntry = Object.freeze({folder: null, listing: entry.listing}),
+            newFolderedEntries = folder.entries.size > 1 ?
+
+                //remove entry from folder and place it next to it
+                this.folderedEntries
+                    .update(folderIndex, function(folder) {
+                        var newEntries = folder.entries.filter(function(e) {
+                            return e === entry;
+                        });
+
+                        return new Folder(newEntries);
+                    })
+                    .splice(folderIndex + 1, 0, newEntry) :
+
+                //folder would be empty - replace it with the entry
+                this.folderedEntries.splice(folderIndex, 1, newEntry);
+
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+    },
+
     getDefaultData: function() {
         return this.folderedEntries;
     }

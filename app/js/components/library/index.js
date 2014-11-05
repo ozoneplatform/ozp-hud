@@ -9,13 +9,9 @@ var LibraryActions = require('../../actions/Library');
 var FolderLibraryStore = require('../../store/FolderLibrary');
 var LibraryTile = require('./LibraryTile');
 var FolderTile = require('./FolderTile');
-
 var Folder = require('../../api/Folder');
+var Constants = require('../../Constants');
 
-var appsMallLogo  = './images/AppsMall_Icon.png';
-
-var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json',
-    folderDataType = 'application/vnd.ozp-library-folder-v1+json';
 
 /**
  * A separator for use as a drop target for reordering listings. This should be inserted between
@@ -30,16 +26,12 @@ var DropSeparator = React.createClass({
     onDrag: function(evt) {
         var dt = evt.dataTransfer;
 
-        if (((dt.types.indexOf(libraryEntryDataType) !== - 1) ||
-            (dt.types.indexOf(folderDataType) !== - 1)) &&
-                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
+        if (((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) ||
+                (dt.types.indexOf(Constants.folderDataType) !== - 1)) &&
+                    dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
             evt.preventDefault();
             dt.dropEffect = 'move';
             this.setState({dropHighlight: true});
-            console.log('prevented default', evt);
-        }
-        else {
-            console.log('default not prevented', evt);
         }
     },
 
@@ -120,7 +112,8 @@ var Library = React.createClass({
 
         var me = this,
             dt = evt.dataTransfer,
-            json = dt.getData(libraryEntryDataType) || dt.getData(folderDataType),
+            json = dt.getData(Constants.libraryEntryDataType) ||
+                dt.getData(Constants.folderDataType),
             data = JSON.parse(json),
             dropTarget = evt.target,
             previousNode = dropTarget.previousSibling,
@@ -185,7 +178,7 @@ var Library = React.createClass({
                     <h1 className="empty-app-text">You currently have no <br /> Apps to display</h1>
                     <h2 className="visit-appsmall">Visit the AppsMall to discover <br />Apps you can start using</h2>
                     <form method="get" action="http://ozone-development.github.io/center-ui/index.html">
-                        <p className="visit-button-text"><button type="submit" className="empty-text-button"><img src={appsMallLogo} /> AppsMall</button></p>
+                        <p className="visit-button-text"><button type="submit" className="empty-text-button"><img src={Constants.appsMallLogo} /> AppsMall</button></p>
                     </form>
                 </div>
             );

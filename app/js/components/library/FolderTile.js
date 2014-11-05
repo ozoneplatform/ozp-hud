@@ -7,6 +7,7 @@ var React = require('react');
 var Sortable = require('../sortable/Sortable');
 var LibraryActions = require('../../actions/Library');
 var Link = require('react-router').Link;
+var Constants = require('../../Constants');
 
 var FolderTile = React.createClass({
 
@@ -15,7 +16,7 @@ var FolderTile = React.createClass({
             json = JSON.stringify(folder),
             dt = evt.dataTransfer;
 
-        dt.setData('application/vnd.ozp-library-folder-v1+json', json);
+        dt.setData(Constants.folderDataType, json);
         dt.setData('application/json', json);
         dt.setData('text/plain', folder.name);
 
