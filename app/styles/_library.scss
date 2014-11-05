@@ -165,4 +165,9 @@
 .DropSeparator {
     width: 40px;
     height: 155px;
+
+    &.drag-hover {
+        opacity: .3;
+        background-color: $white;
+    }
 }

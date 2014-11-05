@@ -22,6 +22,10 @@ var libraryEntryDataType = 'application/vnd.ozp-library-entry-v1+json';
  */
 var DropSeparator = React.createClass({
 
+    getInitialState: function() {
+        return { dropHighlight: false };
+    },
+
     onDrag: function(evt) {
         var dt = evt.dataTransfer;
 
@@ -29,6 +33,7 @@ var DropSeparator = React.createClass({
                 dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
             evt.preventDefault();
             dt.dropEffect = 'move';
+            this.setState({dropHighlight: true});
             console.log('prevented default', evt);
         }
         else {
@@ -36,12 +41,26 @@ var DropSeparator = React.createClass({
         }
     },
 
+    onDragLeave: function() {
+        this.setState({dropHighlight: false});
+    },
+
+    onDrop: function(evt) {
+        this.onDragLeave();
+        this.props.onDrop(evt);
+    },
+
     render: function() {
+        var classes = React.addons.classSet({
+            DropSeparator: true,
+            'drag-hover': this.state.dropHighlight
+        });
+
         /* jshint ignore:start */
         return (
-            <li className="DropSeparator"
+            <li className={classes}
                 onDragEnter={this.onDrag} onDragOver={this.onDrag}
-                onDrop={this.props.onDrop} />
+                onDragLeave={this.onDragLeave} onDrop={this.onDrop} />
         );
         /* jshint ignore:end */
     }
