@@ -72,7 +72,12 @@ var Library = React.createClass({
     },
 
     onStoreChange: function(library) {
-        this.setState({library: library});
+        //this conditional is necessary because, when a folder modal is closed, the same event
+        //will both unmount this component and cause this function to get called (the unmount
+        //happens first).  Since setState on an unmounted component is illegal, we have to check
+        if (this.isMounted()) {
+            this.setState({library: library});
+        }
     },
 
     componentDidMount : function () {

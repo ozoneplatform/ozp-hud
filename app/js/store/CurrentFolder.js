@@ -14,6 +14,7 @@ var CurrentFolderStore = Reflux.createStore({
     init: function() {
         this.listenTo(FolderLibraryStore, this.onBackingStoreChange);
         this.listenTo(LibraryActions.viewFolder, this.onNameChange);
+        this.listenTo(LibraryActions.stopViewingFolder, this.onNameChange.bind(this, null));
 
         this.name = null;
     },

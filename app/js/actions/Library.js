@@ -60,5 +60,10 @@ module.exports = Reflux.createActions([
      * Indicate that a specific folder is being viewed
      * @param name The folder name
      */
-    'viewFolder'
+    'viewFolder',
+
+    /**
+     * Indicate that no specific folder is currently being viewed
+     */
+    'stopViewingFolder'
 ]);

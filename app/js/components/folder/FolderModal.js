@@ -18,27 +18,34 @@ var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.connect(CurrentFolderStore, 'folder')],
 
     componentDidMount: function () {
-        var me = this;
-
         LibraryActions.viewFolder(this.props.params.name);
+    },
 
-        $(this.getDOMNode())
-            .one('hidden.bs.modal', function () {
-                me.onHidden();
-            })
-            .modal({
-                backdrop: 'static',
-                keyboard: false,
-                show: true
-            });
+    componentDidUpdate: function() {
+        var me = this,
+            oldNode = this.node;
+        this.node = this.getDOMNode();
+
+        if (this.node && !oldNode) {
+            $(this.node)
+                .one('hidden.bs.modal', function () {
+                    me.onHidden();
+                })
+                .modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                });
+        }
+        else if (!this.node && oldNode) {
+            //the modal was closed/removed, call hide on it to make sure bootstrap's listeners
+            //were cleaned up
+            $(oldNode).modal('hide');
+        }
     },
 
     onHidden: function() {
         this.goBack();
-    },
-
-    close: function () {
-        $(this.getDOMNode()).modal('hide');
     },
 
     onDragOver: function(evt) {
@@ -77,14 +84,17 @@ var FolderModal = React.createClass({
 
     render: function() {
         /* jshint ignore:start */
-        return (
-            <div className="modal FolderModal"
+        return (this.state && this.state.folder.size) ? (
+            <div className="modal FolderModal" data-show="true"
                     onDragEnter={this.onDragOver} onDragOver={this.onDragOver}
                     onDrop={this.onDrop}>
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <button className="close" onClick={this.close}>&times;</button>
+                            <button className="close"
+                                    onClick={LibraryActions.stopViewingFolder}>
+                                &times;
+                            </button>
                             <h3>{this.props.params.name}</h3>
                         </div>
                         <div className="modal-body">
@@ -93,7 +103,7 @@ var FolderModal = React.createClass({
                     </div>
                 </div>
             </div>
-        );
+        ) : null;
         /* jshint ignore:end */
     }
 });
