@@ -12,10 +12,11 @@ var Folder = require('../api/Folder');
  * its folder set to the old foldername
  */
 function updateFolderName(newFolder, entry) {
-    var newEntry = Object.create(null, entry);
-    newEntry.folder = name;
+    var folderName = newFolder ?
+        (newFolder instanceof Folder ? newFolder.name : newFolder) :
+        null;
 
-    return Object.freeze(newEntry);
+    return Object.freeze({folder: folderName, listing: entry.listing});
 }
 
 /**
@@ -45,10 +46,20 @@ function getIndexableItem(item) {
     }
 }
 
+/**
+ * Convert a folderedEntries data strcture into a flat list of entries
+ */
 function toFlatLibrary(folderedLibrary) {
     return folderedLibrary.flatMap(function(item) {
         return item instanceof Folder ? item.entries : Immutable.List.of(item);
     });
+}
+
+/**
+ * returns whether or not the item is a folder with the given name
+ */
+function isMatchingFolder(name, item) {
+    return item instanceof Folder && item.name === name;
 }
 
 /**
@@ -98,6 +109,10 @@ var FolderLibraryStore = Reflux.createStore({
         this.trigger(folderedEntries);
     },
 
+    findFolder: function(name) {
+        return this.folderedEntries.find(isMatchingFolder.bind(null, name));
+    },
+
     onReorder: function(newBefore, toMove, newAfter) {
         if (!(newBefore || newAfter)) {
             throw new Error('Trying to reorder without specifying either adjacency');
@@ -109,6 +124,14 @@ var FolderLibraryStore = Reflux.createStore({
                     'in the same folder');
         }
 
+
+        var reorderMethod = getFolderName(toMove) ? 'reorderWithinFolder' : 'reorderTopLevel',
+            newFolderedEntries = this[reorderMethod](newBefore, toMove, newAfter);
+
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+    },
+
+    reorderTopLevel: function(newBefore, toMove, newAfter) {
         var removalIndex = this.folderedEntries.indexOf(toMove),
             folderedEntriesAfterRemove = this.folderedEntries
                 .splice(removalIndex, 1),
@@ -117,7 +140,29 @@ var FolderLibraryStore = Reflux.createStore({
                 folderedEntriesAfterRemove.indexOf(newAfter),
             newFolderedEntries = folderedEntriesAfterRemove.splice(insertionIndex, 0, toMove);
 
-        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+        return newFolderedEntries;
+    },
+
+    reorderWithinFolder: function(newBefore, toMove, newAfter) {
+        var folderIndex = this.folderedEntries.findIndex(
+                isMatchingFolder.bind(null, toMove.folder)),
+            folder = this.folderedEntries.get(folderIndex),
+            entries = folder.entries,
+            removalIndex = entries.indexOf(toMove);
+
+        if (removalIndex === -1) {
+            throw new Error('Entry not found in expected folder');
+        }
+
+        var entriesAfterRemove = entries.splice(removalIndex, 1),
+            insertionIndex = newBefore ?
+                entriesAfterRemove.indexOf(newBefore) + 1 :
+                entriesAfterRemove.indexOf(newAfter),
+            newEntries = entriesAfterRemove.splice(insertionIndex, 0, toMove),
+            newFolder = new Folder(null, newEntries),
+            newFolderedEntries = this.folderedEntries.set(folderIndex, newFolder);
+
+        return newFolderedEntries;
     },
 
     onCreateFolder: function(name, entries) {
@@ -125,25 +170,21 @@ var FolderLibraryStore = Reflux.createStore({
             throw new Error('Trying to create folder with invalid entries');
         }
 
-        var folderIndex = this.folderedEntries.indexOf(entries[0]),
+        var folderIndex = this.folderedEntries.indexOf(entries.get(0)),
             newEntries = entries.map(updateFolderName.bind(null, name)),
-            newFolder = new Folder(name, newEntries),
+            newFolder = new Folder(null, newEntries),
             newFolderedEntries = this.folderedEntries
                 //add folder
                 .splice(folderIndex, 0, newFolder)
                 //remove old, unfoldered entries
-                .filter(Immutable.List.prototype.contains.bind(entries));
+                .filterNot(Immutable.List.prototype.contains.bind(entries));
 
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
     onUnFolder: function(name) {
-        function findFolderEntry(entry) {
-            return entry instanceof Folder && entry.name === name;
-        }
-
-        var folderIndex = this.folderedEntries.findIndex(findFolderEntry),
-            folder = this.folderedEntries.find(findFolderEntry),
+        var folderIndex = this.folderedEntries.findIndex(isMatchingFolder.bind(null, name)),
+            folder = this.folderedEntries.get(folderIndex),
             folderedEntries = folder.entries,
             newEntries = folderedEntries.map(updateFolderName.bind(null, null)),
             newFolderedEntries = this.folderedEntries.splice(folderIndex, 1, newEntries);
@@ -156,28 +197,37 @@ var FolderLibraryStore = Reflux.createStore({
             throw new Error('Cannot remove this item from folder');
         }
 
-        function findFolderEntry(item) {
-            return item instanceof Folder && item.name === entry.folder;
-        }
-
-        var folderIndex = this.folderedEntries.findIndex(findFolderEntry),
+        var folderIndex = this.folderedEntries.findIndex(
+                    isMatchingFolder.bind(null, entry.folder)),
             folder = this.folderedEntries.get(folderIndex),
-            newEntry = Object.freeze({folder: null, listing: entry.listing}),
+            newEntry = updateFolderName(null, entry),
             newFolderedEntries = folder.entries.size > 1 ?
 
                 //remove entry from folder and place it next to it
                 this.folderedEntries
                     .update(folderIndex, function(folder) {
                         var newEntries = folder.entries.filter(function(e) {
-                            return e === entry;
+                            return e !== entry;
                         });
 
-                        return new Folder(newEntries);
+                        return new Folder(null, newEntries);
                     })
                     .splice(folderIndex + 1, 0, newEntry) :
 
                 //folder would be empty - replace it with the entry
                 this.folderedEntries.splice(folderIndex, 1, newEntry);
+
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+    },
+
+    onAddToFolder: function(folder, entry) {
+        var newEntry = updateFolderName(folder, entry),
+            newFolder = new Folder(folder, newEntry),
+            folderIndex = this.folderedEntries.indexOf(folder),
+            entryIndex = this.folderedEntries.indexOf(entry),
+            newFolderedEntries = this.folderedEntries
+                .set(folderIndex, newFolder)
+                .splice(entryIndex, 1);
 
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },

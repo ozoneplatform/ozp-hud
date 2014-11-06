@@ -41,6 +41,10 @@ var ActionMenu = React.createClass({
 
 var LibraryTile = React.createClass({
 
+    getInitialState: function() {
+        return {dropHighlight: true};
+    },
+
     onDragStart: function(evt) {
         var entry = this.props.entry,
             json = JSON.stringify(entry),
@@ -53,14 +57,41 @@ var LibraryTile = React.createClass({
         dt.effectAllowed = 'move';
     },
 
+    onDragOver: function(evt) {
+        var dt = evt.dataTransfer;
+
+        if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
+                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
+            evt.preventDefault();
+            dt.dropEffect = 'move';
+            this.setState({dropHighlight: true});
+        }
+    },
+
+    onDragLeave: function() {
+        this.setState({dropHighlight: false});
+    },
+
+    onDrop: function(evt) {
+        this.onDragLeave();
+        this.props.onDrop(evt);
+    },
+
     render: function() {
         var entry = this.props.entry,
-            listing = entry.listing;
+            listing = entry.listing,
+            classes = React.addons.classSet({
+                LibraryTile: true,
+                'drag-hover': this.state.dropHighlight
+            });
 
 
         /* jshint ignore:start */
         return (
-            <li className="LibraryTile" data-listing-id={listing.id}
+            <li className={classes} data-listing-id={listing.id}
+                    onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
+                    onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
+                    onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
                 <a href={listing.launchUrl} target="_blank" draggable="false">

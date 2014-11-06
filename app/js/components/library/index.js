@@ -54,7 +54,8 @@ var DropSeparator = React.createClass({
         return (
             <li className={classes}
                 onDragEnter={this.onDrag} onDragOver={this.onDrag}
-                onDragLeave={this.onDragLeave} onDrop={this.onDrop} />
+                onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
+                onDrop={this.onDrop} />
         );
         /* jshint ignore:end */
     }
@@ -81,37 +82,55 @@ var Library = React.createClass({
         this.onStoreChange(this.props.store.getDefaultData());
     },
 
-    onDrop: function(evt) {
-        //given a DOM node that should be either a LibraryTile or a FolderTile, find the
-        //record in the state that it was generated from
-        function getModelByNode(node) {
-            if (node) {
-                var listingId = node.dataset.listingId,
-                    folderName = node.dataset.folderName;
+    /**
+     * Find an entry or folder in the library that "matches" the passed in object, meaning
+     * that it has the same listing id or folder name.  This is needed by drag and drop since
+     * the passed data there must be serialized as a string
+     */
+    getModelByData: function(data) {
+        return data.listing ?
+            this.state.library.find(function(ent) {
+                return !(ent instanceof Folder) &&
+                    ent.listing.id === data.listing.id;
+            }) :
+            this.state.library.find(function(ent) {
+                return (ent instanceof Folder) &&
+                    ent.name === data.name;
+            });
+    },
 
-                if (listingId) {
-                    return me.state.library.find(function(ent) {
-                        return !(ent instanceof Folder) &&
-                            ent.listing.id === parseInt(listingId, 10);
-                    });
-                }
-                else if (folderName) {
-                    return me.state.library.find(function(ent) {
-                        return ent instanceof Folder &&
-                            ent.name === folderName;
-                    });
-                }
-                else {
-                    return null;
-                }
+    /**
+     * given a DOM node that should be either a LibraryTile or a FolderTile, find the
+     * record in the state that it was generated from
+     */
+    getModelByNode: function(node) {
+        if (node) {
+            var listingId = node.dataset.listingId,
+                folderName = node.dataset.folderName;
+
+            if (listingId) {
+                return this.state.library.find(function(ent) {
+                    return !(ent instanceof Folder) &&
+                        ent.listing.id === parseInt(listingId, 10);
+                });
+            }
+            else if (folderName) {
+                return this.state.library.find(function(ent) {
+                    return ent instanceof Folder &&
+                        ent.name === folderName;
+                });
             }
             else {
                 return null;
             }
         }
+        else {
+            return null;
+        }
+    },
 
-        var me = this,
-            dt = evt.dataTransfer,
+    onDrop: function(evt) {
+        var dt = evt.dataTransfer,
             json = dt.getData(Constants.libraryEntryDataType) ||
                 dt.getData(Constants.folderDataType),
             data = JSON.parse(json),
@@ -120,21 +139,32 @@ var Library = React.createClass({
             nextNode = dropTarget.nextSibling,
 
             //we want the actual object from the store, not a deserialized copy of it
-            entry = data.listing ?
-                this.state.library.find(function(ent) {
-                    return !(ent instanceof Folder) &&
-                        ent.listing.id === data.listing.id;
-                }) :
-                this.state.library.find(function(ent) {
-                    return (ent instanceof Folder) &&
-                        ent.name === data.name;
-                }),
-            previousEntry = getModelByNode(previousNode),
-            nextEntry = getModelByNode(nextNode);
+            entry = this.getModelByData(data),
+            previousEntry = this.getModelByNode(previousNode),
+            nextEntry = this.getModelByNode(nextNode);
 
         evt.preventDefault();
+        evt.stopPropagation();
 
         LibraryActions.reorder(previousEntry, entry, nextEntry);
+    },
+
+    onDropOnItem: function(evt) {
+        var dt = evt.dataTransfer,
+            json = dt.getData(Constants.libraryEntryDataType) ||
+                dt.getData(Constants.folderDataType),
+            data = JSON.parse(json),
+            dropTarget = evt.currentTarget,
+            droppedEntry = this.getModelByData(data),
+            targetItem = this.getModelByNode(dropTarget);
+
+        if (targetItem instanceof Folder) {
+            LibraryActions.addToFolder(targetItem, droppedEntry);
+        }
+        else {
+            LibraryActions.createFolder('New Folder',
+                    Immutable.List.of(targetItem, droppedEntry));
+        }
     },
 
     render: function () {
@@ -148,8 +178,10 @@ var Library = React.createClass({
             elements = this.state.library.map(function(item) {
                     /* jshint ignore:start */
                     return item instanceof Folder ?
-                        <FolderTile key={'folder-' + item.name} folder={item} /> :
-                        <LibraryTile key={'listing-' + item.listing.id} entry={item} />
+                        <FolderTile key={'folder-' + item.name} folder={item}
+                            onDrop={me.onDropOnItem}/> :
+                        <LibraryTile key={'listing-' + item.listing.id} entry={item}
+                            onDrop={me.onDropOnItem}/>
                     /* jshint ignore:end */
                 })
                 .reduce(function(acc, elem) {

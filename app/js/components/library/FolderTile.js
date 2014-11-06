@@ -11,6 +11,10 @@ var Constants = require('../../Constants');
 
 var FolderTile = React.createClass({
 
+    getInitialState: function() {
+        return {dropHighlight: true};
+    },
+
     onDragStart: function(evt) {
         var folder = this.props.folder,
             json = JSON.stringify(folder),
@@ -23,8 +27,32 @@ var FolderTile = React.createClass({
         dt.effectAllowed = 'move';
     },
 
+    onDragOver: function(evt) {
+        var dt = evt.dataTransfer;
+
+        if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
+                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
+            evt.preventDefault();
+            dt.dropEffect = 'move';
+            this.setState({dropHighlight: true});
+        }
+    },
+
+    onDragLeave: function() {
+        this.setState({dropHighlight: false});
+    },
+
+    onDrop: function(evt) {
+        this.onDragLeave();
+        this.props.onDrop(evt);
+    },
+
     render: function() {
         var folder = this.props.folder,
+            classes = React.addons.classSet({
+                FolderTile: true,
+                'drag-hover': this.state.dropHighlight
+            }),
             entryIcons = folder.entries.map(function(entry) {
                 var src = entry.listing.imageMediumUrl;
 
@@ -35,8 +63,11 @@ var FolderTile = React.createClass({
 
         /* jshint ignore:start */
         return (
-            <li className="FolderTile" data-folder-name={folder.name} draggable="true"
-                    onDragStart={this.onDragStart}>
+            <li className={classes} data-folder-name={folder.name}
+                    onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
+                    onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
+                    onDrop={this.onDrop}
+                    draggable="true" onDragStart={this.onDragStart}>
                 <Link className="FolderTile__folderView" to="folder"
                         params={{name: folder.name}} draggable="false">
                     {entryIcons.toArray()}

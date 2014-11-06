@@ -50,6 +50,13 @@ module.exports = Reflux.createActions([
     'removeFromFolder',
 
     /**
+     * Add the entry to specified folder
+     * @param folder the Folder object to add to
+     * @param entry the library entry to add to the folder
+     */
+    'addToFolder',
+
+    /**
      * Indicate that a specific folder is being viewed
      * @param name The folder name
      */
