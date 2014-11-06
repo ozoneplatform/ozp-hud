@@ -23,6 +23,10 @@ var DropSeparator = React.createClass({
         return { dropHighlight: false };
     },
 
+    getDefaultProps: function() {
+        return {allowFolderCreate: true};
+    },
+
     onDrag: function(evt) {
         var dt = evt.dataTransfer;
 
@@ -180,13 +184,14 @@ var Library = React.createClass({
         }
 
         var me = this,
+            onDropOnItem = this.props.allowFolderCreate ? this.onDropOnItem : undefined,
             elements = this.state.library.map(function(item) {
                     /* jshint ignore:start */
                     return item instanceof Folder ?
                         <FolderTile key={'folder-' + item.name} folder={item}
-                            onDrop={me.onDropOnItem}/> :
+                            onDrop={onDropOnItem}/> :
                         <LibraryTile key={'listing-' + item.listing.id} entry={item}
-                            onDrop={me.onDropOnItem}/>
+                            onDrop={onDropOnItem}/>
                     /* jshint ignore:end */
                 })
                 .reduce(function(acc, elem) {

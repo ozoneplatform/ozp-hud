@@ -98,7 +98,7 @@ var FolderModal = React.createClass({
                             <h3>{this.props.params.name}</h3>
                         </div>
                         <div className="modal-body">
-                            <Library store={CurrentFolderStore} />
+                            <Library allowFolderCreate={false} store={CurrentFolderStore} />
                         </div>
                     </div>
                 </div>

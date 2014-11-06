@@ -60,11 +60,14 @@ var LibraryTile = React.createClass({
     onDragOver: function(evt) {
         var dt = evt.dataTransfer;
 
-        if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
-                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
-            evt.preventDefault();
-            dt.dropEffect = 'move';
-            this.setState({dropHighlight: true});
+        //only allow drop if we have a function to handle it
+        if (this.props.onDrop) {
+            if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
+                    dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
+                evt.preventDefault();
+                dt.dropEffect = 'move';
+                this.setState({dropHighlight: true});
+            }
         }
     },
 
