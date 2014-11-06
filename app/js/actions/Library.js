@@ -32,7 +32,6 @@ module.exports = Reflux.createActions([
 
     /**
      * Create a new folder At the position of the first entry in the entries array
-     * @param name the name of the folder
      * @param entries The initial entries in this folder (as an array)
      */
     'createFolder',

@@ -23,10 +23,6 @@ var DropSeparator = React.createClass({
         return { dropHighlight: false };
     },
 
-    getDefaultProps: function() {
-        return {allowFolderCreate: true};
-    },
-
     onDrag: function(evt) {
         var dt = evt.dataTransfer;
 
@@ -73,6 +69,10 @@ var Library = React.createClass({
 
     getInitialState: function() {
         return {library: Immutable.List()};
+    },
+
+    getDefaultProps: function() {
+        return {allowFolderCreate: true};
     },
 
     onStoreChange: function(library) {
@@ -171,8 +171,7 @@ var Library = React.createClass({
             LibraryActions.addToFolder(targetItem, droppedEntry);
         }
         else {
-            LibraryActions.createFolder('New Folder',
-                    Immutable.List.of(targetItem, droppedEntry));
+            LibraryActions.createFolder(Immutable.List.of(targetItem, droppedEntry));
         }
     },
 

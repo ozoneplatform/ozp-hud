@@ -7,6 +7,8 @@ var LibraryActions = require('../actions/Library');
 
 var Folder = require('../api/Folder');
 
+var newFolderBaseName = 'New Folder';
+
 /**
  * @return a new entry that is just like the old one but with
  * its folder set to the old foldername
@@ -68,13 +70,9 @@ function isMatchingFolder(name, item) {
  * high-level reordering and foldering actions
  */
 var FolderLibraryStore = Reflux.createStore({
-    //reference to the data from the LibraryStore
-    flatLibrary: null,
-
     folderedEntries: null,
 
     init: function() {
-        this.flatLibrary = Immutable.List();
         this.folderedEntries = Immutable.List();
 
         this.listenTo(LibraryStore, this.onBackingStoreChange);
@@ -103,7 +101,6 @@ var FolderLibraryStore = Reflux.createStore({
             }
         }, Immutable.List());
 
-        this.flatLibrary = entries;
         this.folderedEntries = folderedEntries;
 
         this.trigger(folderedEntries);
@@ -111,6 +108,28 @@ var FolderLibraryStore = Reflux.createStore({
 
     findFolder: function(name) {
         return this.folderedEntries.find(isMatchingFolder.bind(null, name));
+    },
+
+    newFolderName: function() {
+        var me = this,
+            folderNum = 0,
+
+            //ES6 Iterator over numbers starting at 0
+            iterator = {
+                next: function() {
+                    return { value: folderNum++, done: false };
+                }
+            },
+            //infinite sequence of generated folder names
+            nameSequence = Immutable.Seq(iterator).map(function(num) {
+                return num ? newFolderBaseName + ' ' + num : newFolderBaseName;
+            }),
+            //find the first generated name that isn't already in use
+            newName = nameSequence.find(function(name) {
+                return !me.findFolder(name);
+            });
+
+        return newName;
     },
 
     onReorder: function(newBefore, toMove, newAfter) {
@@ -165,12 +184,13 @@ var FolderLibraryStore = Reflux.createStore({
         return newFolderedEntries;
     },
 
-    onCreateFolder: function(name, entries) {
+    onCreateFolder: function(entries) {
         if (entries.find(function(entry) { return entry.folder || entry instanceof Folder; })) {
             throw new Error('Trying to create folder with invalid entries');
         }
 
-        var folderIndex = this.folderedEntries.indexOf(entries.get(0)),
+        var name = this.newFolderName(),
+            folderIndex = this.folderedEntries.indexOf(entries.get(0)),
             newEntries = entries.map(updateFolderName.bind(null, name)),
             newFolder = new Folder(null, newEntries),
             newFolderedEntries = this.folderedEntries
