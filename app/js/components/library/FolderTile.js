@@ -8,6 +8,7 @@ var Sortable = require('../sortable/Sortable');
 var LibraryActions = require('../../actions/Library');
 var Link = require('react-router').Link;
 var Constants = require('../../Constants');
+var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var FolderTitle = require('../folder/FolderTitle');
 
@@ -15,30 +16,24 @@ var FolderTile = React.createClass({
 
     getInitialState: function() {
         return {
-            dropHighlight: true,
+            dropHighlight: false,
             editingTitle: false
         };
     },
 
     onDragStart: function(evt) {
-        var folder = this.props.folder,
-            json = JSON.stringify(folder),
-            dt = evt.dataTransfer;
+        var folder = this.props.folder;
 
-        dt.setData(Constants.folderDataType, json);
-        dt.setData('application/json', json);
-        dt.setData('text/plain', folder.name);
-
-        dt.effectAllowed = 'move';
+        DragAndDropUtils.startDrag(folder, folder.name, Constants.folderDataType,
+                this.refs.folderView.getDOMNode(), evt);
     },
 
     onDragOver: function(evt) {
-        var dt = evt.dataTransfer;
+        var allowDrop =
+            DragAndDropUtils.dragOver(
+                    [Constants.libraryDataType, Constants.folderDataType], evt);
 
-        if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
-                dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
-            evt.preventDefault();
-            dt.dropEffect = 'move';
+        if (allowDrop) {
             this.setState({dropHighlight: true});
         }
     },
@@ -73,7 +68,7 @@ var FolderTile = React.createClass({
                     onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
                     onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
-                <Link className="FolderTile__folderView" to="folder"
+                <Link ref="folderView" className="FolderTile__folderView" to="folder"
                         params={{name: folder.name}} draggable="false">
                     {entryIcons.toArray()}
                 </Link>

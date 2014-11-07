@@ -13,6 +13,8 @@ var Library = require('../library');
 var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
+var DragAndDropUtils = require('../../util/DragAndDrop');
+
 var Folder = require('../../api/Folder');
 
 var FolderTitle = require('./FolderTitle');
@@ -40,25 +42,11 @@ var FolderModal = React.createClass({
     },
 
     onDragOver: function(evt) {
-        var dt = evt.dataTransfer;
-
-        //if drag is directly on this element (the background around the modal) and not
-        //on the modal itself
-        if (evt.currentTarget === evt.target) {
-            if (((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) ||
-                    (dt.types.indexOf(Constants.folderDataType) !== - 1)) &&
-                        dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
-                evt.preventDefault();
-                dt.dropEffect = 'move';
-            }
-        }
+        DragAndDropUtils.dragOver([Constants.libraryDataType], evt);
     },
 
     onDrop: function(evt) {
-        var dt = evt.dataTransfer,
-            json = dt.getData(Constants.libraryEntryDataType) ||
-                dt.getData(Constants.folderDataType),
-            data = JSON.parse(json),
+        var data = DragAndDropUtils.getDropInfo(evt).data,
             entry = data.listing ?
                 this.state.folder.find(function(ent) {
                     return !(ent instanceof Folder) &&

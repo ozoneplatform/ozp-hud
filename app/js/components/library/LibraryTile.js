@@ -7,6 +7,7 @@ var React = require('react');
 var Sortable = require('../sortable/Sortable');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
+var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var ActionMenu = React.createClass({
     componentDidUpdate: function(prevProps) {
@@ -42,32 +43,23 @@ var ActionMenu = React.createClass({
 var LibraryTile = React.createClass({
 
     getInitialState: function() {
-        return {dropHighlight: true};
+        return {dropHighlight: false};
     },
 
     onDragStart: function(evt) {
-        var entry = this.props.entry,
-            json = JSON.stringify(entry),
-            dt = evt.dataTransfer;
+        var entry = this.props.entry;
 
-        dt.setData(Constants.libraryEntryDataType, json);
-        dt.setData('application/json', json);
-        dt.setData('text/plain', entry.listing.title);
-
-        dt.effectAllowed = 'move';
+        DragAndDropUtils.startDrag(entry, entry.listing.title, Constants.libraryEntryDataType,
+                this.refs.banner.getDOMNode(), evt);
     },
 
     onDragOver: function(evt) {
-        var dt = evt.dataTransfer;
+        var allowDrop =
+            DragAndDropUtils.dragOver(
+                    [Constants.libraryDataType, Constants.folderDataType], evt);
 
-        //only allow drop if we have a function to handle it
-        if (this.props.onDrop) {
-            if ((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) &&
-                    dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
-                evt.preventDefault();
-                dt.dropEffect = 'move';
-                this.setState({dropHighlight: true});
-            }
+        if (allowDrop) {
+            this.setState({dropHighlight: true});
         }
     },
 
@@ -98,7 +90,7 @@ var LibraryTile = React.createClass({
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
                 <a href={listing.launchUrl} target="_blank" draggable="false">
-                    <img draggable="false" className="LibraryTile__img"
+                    <img ref="banner" draggable="false" className="LibraryTile__img"
                         src={listing.imageLargeUrl} />
                 </a>
                 <h5>{listing.title}</h5>

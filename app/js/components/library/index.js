@@ -11,7 +11,7 @@ var LibraryTile = require('./LibraryTile');
 var FolderTile = require('./FolderTile');
 var Folder = require('../../api/Folder');
 var Constants = require('../../Constants');
-
+var DragAndDropUtils = require('../../util/DragAndDrop');
 
 /**
  * A separator for use as a drop target for reordering listings. This should be inserted between
@@ -24,13 +24,11 @@ var DropSeparator = React.createClass({
     },
 
     onDrag: function(evt) {
-        var dt = evt.dataTransfer;
+        var allowDrop =
+            DragAndDropUtils.dragOver(
+                    [Constants.libraryDataType, Constants.folderDataType], evt);
 
-        if (((dt.types.indexOf(Constants.libraryEntryDataType) !== - 1) ||
-                (dt.types.indexOf(Constants.folderDataType) !== - 1)) &&
-                    dt.effectAllowed.toLowerCase().indexOf('move') !== -1) {
-            evt.preventDefault();
-            dt.dropEffect = 'move';
+        if (allowDrop) {
             this.setState({dropHighlight: true});
         }
     },
@@ -114,8 +112,8 @@ var Library = React.createClass({
      */
     getModelByNode: function(node) {
         if (node) {
-            var listingId = node.dataset.listingId,
-                folderName = node.dataset.folderName;
+            var listingId = node.getAttribute('data-listing-id'),
+                folderName = node.getAttribute('data-folder-name');
 
             if (listingId) {
                 return this.state.library.find(function(ent) {
@@ -139,11 +137,9 @@ var Library = React.createClass({
     },
 
     onDrop: function(evt) {
-        var dt = evt.dataTransfer,
-            json = dt.getData(Constants.libraryEntryDataType) ||
-                dt.getData(Constants.folderDataType),
-            data = JSON.parse(json),
-            dropTarget = evt.target,
+        var dropInfo = DragAndDropUtils.getDropInfo(evt),
+            data = dropInfo.data,
+            dropTarget = dropInfo.node,
             previousNode = dropTarget.previousSibling,
             nextNode = dropTarget.nextSibling,
 
@@ -159,11 +155,9 @@ var Library = React.createClass({
     },
 
     onDropOnItem: function(evt) {
-        var dt = evt.dataTransfer,
-            json = dt.getData(Constants.libraryEntryDataType) ||
-                dt.getData(Constants.folderDataType),
-            data = JSON.parse(json),
-            dropTarget = evt.currentTarget,
+        var dropInfo = DragAndDropUtils.getDropInfo(evt),
+            data = dropInfo.data,
+            dropTarget = dropInfo.node,
             droppedEntry = this.getModelByData(data),
             targetItem = this.getModelByNode(dropTarget);
 
