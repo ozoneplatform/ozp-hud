@@ -4,8 +4,7 @@
 'use strict';
 
 var React = require('react');
-var Sortable = require('../sortable/Sortable');
-var LibraryActions = require('../../actions/Library');
+var Immutable = require('immutable');
 var Link = require('react-router').Link;
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
@@ -30,8 +29,7 @@ var FolderTile = React.createClass({
 
     onDragOver: function(evt) {
         var allowDrop =
-            DragAndDropUtils.dragOver(
-                    [Constants.libraryDataType, Constants.folderDataType], evt);
+            DragAndDropUtils.dragOver(Immutable.List.of(Constants.libraryEntryDataType), evt);
 
         if (allowDrop) {
             this.setState({dropHighlight: true});

@@ -26,7 +26,8 @@ var DropSeparator = React.createClass({
     onDrag: function(evt) {
         var allowDrop =
             DragAndDropUtils.dragOver(
-                    [Constants.libraryDataType, Constants.folderDataType], evt);
+                Immutable.List([Constants.libraryEntryDataType, Constants.folderDataType]),
+                evt);
 
         if (allowDrop) {
             this.setState({dropHighlight: true});
@@ -161,11 +162,13 @@ var Library = React.createClass({
             droppedEntry = this.getModelByData(data),
             targetItem = this.getModelByNode(dropTarget);
 
-        if (targetItem instanceof Folder) {
-            LibraryActions.addToFolder(targetItem, droppedEntry);
-        }
-        else {
-            LibraryActions.createFolder(Immutable.List.of(targetItem, droppedEntry));
+        if (droppedEntry !== targetItem) {
+            if (targetItem instanceof Folder) {
+                LibraryActions.addToFolder(targetItem, droppedEntry);
+            }
+            else {
+                LibraryActions.createFolder(Immutable.List.of(targetItem, droppedEntry));
+            }
         }
     },
 

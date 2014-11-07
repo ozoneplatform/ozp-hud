@@ -42,7 +42,9 @@ var FolderModal = React.createClass({
     },
 
     onDragOver: function(evt) {
-        DragAndDropUtils.dragOver([Constants.libraryDataType], evt);
+        if (evt.target === evt.currentTarget) {
+            DragAndDropUtils.dragOver(Immutable.List.of(Constants.libraryEntryDataType), evt);
+        }
     },
 
     onDrop: function(evt) {
