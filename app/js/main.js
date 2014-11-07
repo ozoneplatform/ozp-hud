@@ -26,7 +26,7 @@ window.jQuery = $;
 /*jshint ignore:start */
 React.renderComponent(
     <Routes>
-        <Route path="/" handler={App}>
+        <Route name="main" path="/" handler={App}>
             <Route name="folder" path="folder/:name" handler={FolderModal} />
         </Route>
     </Routes>,

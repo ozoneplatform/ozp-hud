@@ -37,6 +37,13 @@ module.exports = Reflux.createActions([
     'createFolder',
 
     /**
+     * Rename the folder currently named `oldName` to be named `newName`
+     * @param oldName the current name of the folder
+     * @param newName The name that the folder is being changed to have
+     */
+    'renameFolder',
+
+    /**
      * Delete a folder and put its contents in its place in the top-level list
      * @param name The folder name
      */
@@ -66,3 +73,6 @@ module.exports = Reflux.createActions([
      */
     'stopViewingFolder'
 ]);
+
+//module.exports.viewFolder.sync = true;
+//module.exports.stopViewingFolder.sync = true;

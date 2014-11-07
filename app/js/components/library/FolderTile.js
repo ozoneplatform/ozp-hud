@@ -9,10 +9,15 @@ var LibraryActions = require('../../actions/Library');
 var Link = require('react-router').Link;
 var Constants = require('../../Constants');
 
+var FolderTitle = require('../folder/FolderTitle');
+
 var FolderTile = React.createClass({
 
     getInitialState: function() {
-        return {dropHighlight: true};
+        return {
+            dropHighlight: true,
+            editingTitle: false
+        };
     },
 
     onDragStart: function(evt) {
@@ -72,7 +77,7 @@ var FolderTile = React.createClass({
                         params={{name: folder.name}} draggable="false">
                     {entryIcons.toArray()}
                 </Link>
-                <h5>{folder.name}</h5>
+                <FolderTitle name={folder.name} element={React.DOM.h5}/>
             </li>
         );
         /* jshint ignore:end */

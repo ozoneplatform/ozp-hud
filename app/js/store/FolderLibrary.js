@@ -107,7 +107,12 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     findFolder: function(name) {
-        return this.folderedEntries.find(isMatchingFolder.bind(null, name));
+        var index = this.findFolderIndex(name);
+        return index === -1 ? null : this.folderedEntries.get(index);
+    },
+
+    findFolderIndex: function(name) {
+        return this.folderedEntries.findIndex(isMatchingFolder.bind(null, name));
     },
 
     newFolderName: function() {
@@ -163,8 +168,7 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     reorderWithinFolder: function(newBefore, toMove, newAfter) {
-        var folderIndex = this.folderedEntries.findIndex(
-                isMatchingFolder.bind(null, toMove.folder)),
+        var folderIndex = this.findFolderIndex(toMove.folder),
             folder = this.folderedEntries.get(folderIndex),
             entries = folder.entries,
             removalIndex = entries.indexOf(toMove);
@@ -202,8 +206,19 @@ var FolderLibraryStore = Reflux.createStore({
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
     },
 
+    onRenameFolder: function(oldName, newName) {
+        var folderIndex = this.findFolderIndex(oldName),
+            folder = this.folderedEntries.get(folderIndex),
+            entries = folder.entries,
+            newEntries = entries.map(updateFolderName.bind(null, newName)),
+            newFolder = new Folder(null, newEntries),
+            newFolderedEntries = this.folderedEntries.splice(folderIndex, 1, newFolder);
+
+        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+    },
+
     onUnFolder: function(name) {
-        var folderIndex = this.folderedEntries.findIndex(isMatchingFolder.bind(null, name)),
+        var folderIndex = this.findFolderIndex(name),
             folder = this.folderedEntries.get(folderIndex),
             folderedEntries = folder.entries,
             newEntries = folderedEntries.map(updateFolderName.bind(null, null)),
@@ -217,8 +232,7 @@ var FolderLibraryStore = Reflux.createStore({
             throw new Error('Cannot remove this item from folder');
         }
 
-        var folderIndex = this.folderedEntries.findIndex(
-                    isMatchingFolder.bind(null, entry.folder)),
+        var folderIndex = this.findFolderIndex(entry.folder),
             folder = this.folderedEntries.get(folderIndex),
             newEntry = updateFolderName(null, entry),
             newFolderedEntries = folder.entries.size > 1 ?

@@ -46,6 +46,16 @@
         margin-left: 5px;
         margin-right: 5px;
     }
+
+    h5 {
+        cursor: pointer;
+
+        &[contenteditable=true] {
+            background-color: $gray-darkest;
+            outline: 0px solid transparent;
+            cursor: text;
+        }
+    }
 }
 
 .LibraryTile__img {

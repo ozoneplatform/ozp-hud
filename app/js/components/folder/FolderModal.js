@@ -6,6 +6,7 @@ var Reflux = require('reflux');
 var Immutable = require('immutable');
 
 var Router = require('react-router');
+var Link = Router.Link;
 var Navigation = Router.Navigation;
 
 var Library = require('../library');
@@ -14,38 +15,28 @@ var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
 var Folder = require('../../api/Folder');
 
+var FolderTitle = require('./FolderTitle');
+
 var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.connect(CurrentFolderStore, 'folder')],
 
-    componentDidMount: function () {
-        LibraryActions.viewFolder(this.props.params.name);
-    },
-
-    componentDidUpdate: function() {
-        var me = this,
-            oldNode = this.node;
-        this.node = this.getDOMNode();
-
-        if (this.node && !oldNode) {
-            $(this.node)
-                .one('hidden.bs.modal', function () {
-                    me.onHidden();
-                })
-                .modal({
-                    backdrop: 'static',
-                    keyboard: false,
-                    show: true
-                });
-        }
-        else if (!this.node && oldNode) {
-            //the modal was closed/removed, call hide on it to make sure bootstrap's listeners
-            //were cleaned up
-            $(oldNode).modal('hide');
+    statics: {
+        willTransitionTo: function(transition, params) {
+            LibraryActions.viewFolder(params.name);
         }
     },
 
-    onHidden: function() {
-        this.goBack();
+    componentDidMount: function() {
+        $(this.getDOMNode())
+            .modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+    },
+
+    componentWillUnmount: function() {
+        $(this.getDOMNode()).modal('hide');
     },
 
     onDragOver: function(evt) {
@@ -80,22 +71,31 @@ var FolderModal = React.createClass({
 
         evt.preventDefault();
         LibraryActions.removeFromFolder(entry);
+
+        //if the last listing was dragged out, close the folder
+        if (this.state.folder.size === 1) {
+            this.transitionTo('/');
+        }
+    },
+
+    onNameChange: function(newName) {
+        this.transitionTo('folder', {name: newName});
     },
 
     render: function() {
         /* jshint ignore:start */
-        return (this.state && this.state.folder.size) ? (
+        return (
             <div className="modal FolderModal" data-show="true"
                     onDragEnter={this.onDragOver} onDragOver={this.onDragOver}
                     onDrop={this.onDrop}>
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <button className="close"
-                                    onClick={LibraryActions.stopViewingFolder}>
+                            <Link className="close" to="main">
                                 &times;
-                            </button>
-                            <h3>{this.props.params.name}</h3>
+                            </Link>
+                            <FolderTitle name={this.props.params.name} element={React.DOM.h3}
+                                onChange={this.onNameChange}/>
                         </div>
                         <div className="modal-body">
                             <Library allowFolderCreate={false} store={CurrentFolderStore} />
@@ -103,7 +103,7 @@ var FolderModal = React.createClass({
                     </div>
                 </div>
             </div>
-        ) : null;
+        );
         /* jshint ignore:end */
     }
 });

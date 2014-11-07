@@ -19,8 +19,16 @@
         padding: 10px;
 
         h3 {
-            margin: 0;
+            margin: 0 auto;
             text-align: center;
+            width: 90%;
+            cursor: pointer;
+
+            &[contentEditable=true] {
+                background-color: $gray-base;
+                outline: 0px solid transparent;
+                cursor: text;
+            }
         }
     }
 
