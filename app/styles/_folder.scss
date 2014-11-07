@@ -24,10 +24,8 @@
             width: 90%;
             cursor: pointer;
 
-            &[contentEditable=true] {
+            &[contenteditable=true] {
                 background-color: $gray-base;
-                outline: 0px solid transparent;
-                cursor: text;
             }
         }
     }

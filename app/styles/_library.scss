@@ -52,8 +52,6 @@
 
         &[contenteditable=true] {
             background-color: $gray-darkest;
-            outline: 0px solid transparent;
-            cursor: text;
         }
     }
 }
@@ -179,5 +177,39 @@
     &.drag-hover {
         opacity: .3;
         background-color: $white;
+    }
+}
+
+.FolderTitle {
+    text-align: center;
+
+    h1, h2, h3, h4, h5, h6 {
+        &[contenteditable=true] {
+            outline: 0px solid transparent;
+            cursor: text;
+        }
+    }
+
+    .validation-err-msg {
+        color: $white;
+        background-color: $red-orange-dark;
+        margin: 5px auto;
+        padding: 10px;
+
+        border-radius: 4px;
+
+        display: none;
+    }
+}
+
+.FolderTitle.error {
+    h1, h2, h3, h4, h5, h6 {
+        &[contenteditable=true] {
+            outline: 1px solid $red-orange-dark;
+        }
+    }
+
+    .validation-err-msg {
+        display: inline-block;
     }
 }

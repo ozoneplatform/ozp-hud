@@ -1,25 +1,39 @@
+/** @jsx React.DOM */
 'use strict';
 
 var React = require('react');
 var LibraryActions = require('../../actions/Library');
+var FolderLibrary = require('../../store/FolderLibrary');
 
 var FolderTitle = React.createClass({
     getInitialState: function() {
-        return { editing: false };
+        return { editing: false, error: false };
     },
 
-    onNameChange: function() {
-        var newName = this.refs.name.getDOMNode().innerText,
-            oldName = this.props.name;
+    onNameChange: function(evt) {
+        var newName = this.refs.name.getDOMNode().innerText.trim(),
+            oldName = this.props.name,
+            error = false;
 
         if (newName !== oldName) {
-            LibraryActions.renameFolder(oldName, newName);
+            if (FolderLibrary.findFolder(newName)) {
+                evt.preventDefault();
+                evt.stopPropagation();
+
+                this.setState({error: true});
+                error = true;
+            }
+            else {
+                LibraryActions.renameFolder(oldName, newName);
+            }
         }
 
-        this.setState({editing: false});
+        if (!error) {
+            this.setState({editing: false, error: false});
 
-        if (this.props.onChange) {
-            this.props.onChange(newName);
+            if (this.props.onChange) {
+                this.props.onChange(newName);
+            }
         }
     },
 
@@ -38,17 +52,30 @@ var FolderTitle = React.createClass({
     },
     render: function() {
         //element prop should be a react virtual DOM element constructor
-        var element = this.props.element;
+        var element = this.props.element,
+            classes = React.addons.classSet({
+                FolderTitle: true,
+                error: this.state.error
+            });
 
-        return element({
-                ref: 'name',
-                onBlur: this.onNameChange,
-                onDoubleClick: this.editTitle,
-                onKeyDown: this.finishEditOnEnter,
-                contentEditable: this.state.editing
-            },
-            this.props.name
+        /* jshint ignore:start */
+        return (
+            <div className={classes}>
+                <span className="small validation-err-msg">
+                    There is already a folder with this name
+                </span>
+                {element({
+                        ref: 'name',
+                        onBlur: this.onNameChange,
+                        onDoubleClick: this.editTitle,
+                        onKeyDown: this.finishEditOnEnter,
+                        contentEditable: this.state.editing
+                    },
+                    this.props.name
+                )}
+            </div>
         );
+        /* jshint ignore:end */
     }
 });
 
