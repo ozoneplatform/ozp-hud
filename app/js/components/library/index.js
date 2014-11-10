@@ -59,7 +59,7 @@ var Library = React.createClass({
             elements = this.state.library
                 .map(function(elem, index, list) {
                     //create list of all (prev, current, next) tuples
-                    return [list.get(index - 1), elem, list.get(index + 1)];
+                    return [index ? list.get(index - 1) : undefined, elem, list.get(index + 1)];
                 })
                 .map(function(tuple) {
                     var prev= tuple[0],
