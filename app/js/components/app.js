@@ -3,29 +3,44 @@
 'use strict';
 
 var React = require('react');
+
 var Header = require('./header');
 var Library = require('./library');
+var EmptyLibrary = require('./library/EmptyLibrary');
 var Settings = require('./settings');
 var HelpModal = require('./header/helpmodal.js');
 
-var APP = React.createClass({
+var LibraryActions = require('../actions/Library');
+var FolderLibraryStore = require('../store/FolderLibrary');
 
-    render: function () {
-        return this.renderHUD();
+
+var App = React.createClass({
+
+    componentDidMount: function() {
+        this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
+        LibraryActions.fetchLibrary();
     },
 
-    renderHUD: function () {
+    componentDidUnmount: function () {
+        clearInterval(this.interval);
+    },
+
+    render: function () {
         /*jshint ignore:start */
         return (
             <div>
                 <Header />
-                <Library />
+                <div className="FolderLibrary">
+                    <h3>Application Library</h3>
+                    <Library store={FolderLibraryStore} emptyView={EmptyLibrary}/>
+                </div>
                 <Settings />
                 <HelpModal />
+                <this.props.activeRouteHandler />
             </div>
         );
         /*jshint ignore:end */
     }
 });
 
-module.exports = APP;
+module.exports = App;

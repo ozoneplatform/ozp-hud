@@ -2,231 +2,104 @@
 'use strict';
 
 var React = require('react');
+var Reflux = require('reflux');
+var Immutable = require('immutable');
 
-var appsMallLogo  = './images/AppsMall_Icon.png';
+var LibraryActions = require('../../actions/Library');
+
 var LibraryTile = require('./LibraryTile');
+var FolderTile = require('./FolderTile');
+var LibraryItem = require('./LibraryItem');
+var Folder = require('../../api/Folder');
+var DragAndDropUtils = require('../../util/DragAndDrop');
 
-var dirtyLibrary = false;
-var dragged;
+var DefaultEmptyView = React.createClass({
+    render: function() {
+        /* jshint ignore:start */
+        return <span>Empty</span>;
+        /* jshint ignore:end */
+    }
+});
 
+/**
+ * The view of the user's Application Library
+ */
 var Library = React.createClass({
+    mixins: [Reflux.ListenerMixin],
 
-    getInitialState: function () {
+    getInitialState: function() {
+        return {library: Immutable.List()};
+    },
+
+    getDefaultProps: function() {
         return {
-            data: {
-                items: []
-            }
+            allowFolderCreate: true,
+            emptyView: DefaultEmptyView
         };
     },
 
-    clickImage: function (url) {
-        window.open(url);
-    },
-
-    getData: function () {
-        var me = this;
-
-        if (dirtyLibrary) {
-            return;
+    onStoreChange: function(library) {
+        //this conditional is necessary because, when a folder modal is closed, the same event
+        //will both unmount this component and cause this function to get called (the unmount
+        //happens first).  Since setState on an unmounted component is illegal, we have to check
+        if (this.isMounted()) {
+            this.setState({library: library});
         }
-
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: API_URL + '/api/profile/self/library',
-            async: false,
-
-            success: function (data) {
-                me.setState({
-                    data: {
-                        items: data
-                    }
-                });
-            },
-            failure: function () {
-                console.log('MarketPlace REST call failed. Loading with no applications');
-            }
-        });
     },
 
-    componentWillUnmount: function () {
-        clearInterval(this.interval);
-    },
+    componentDidMount : function () {
+        this.listenTo(this.props.store, this.onStoreChange);
 
-    componentWillMount : function () {
-        this.interval = setInterval(this.getData, 5000);
-        this.getData();
-    },
-
-    sort: function (items, dragging) {
-        var data = this.state.data;
-
-        var flattenedItems = items.reduce(function(accum, current, index, array) {
-            if(current.folder !== null){
-                var flatFolder = current.items.reduce(function(a, b) {
-                    return a.concat(b);
-                }, []);
-                return accum.concat(flatFolder);
-            } else{
-                return accum.concat(current);
-            }
-        }, []);
-
-        data.items = flattenedItems;
-        data.dragging = dragging;
-        this.setState({data: data});
-    },
-
-    removeBookmark: function (app) {
-        var i = this.state.data.items.indexOf(app);
-        this.state.data.items.splice(i, 1);
-        this.setState({data: {items: this.state.data.items}});
-
-        $.ajax({
-            type: 'DELETE',
-            dataType: 'json',
-            url: API_URL + '/api/profile/self/library/' + app.listing.id,
-            async: true,
-            success: function (data) {
-                console.log('MarketPlace REST successful. Application was deleted');
-            },
-            failure: function () {
-                console.log('MarketPlace REST call failed. Application was not deleted');
-            }
-        });
-    },
-
-    folderRename: function (targetFolder, newName) {
-        console.log('folderRename');
-        dirtyLibrary = true;
-        var data = this.state.data;
-
-       var folderNames = [];
-        data.items.map(function (item) {
-            if(item.folder !== null){
-               folderNames.push(item.folder);
-           }
-        });
-
-        if(folderNames.indexOf(newName) !== -1){
-            window.alert('There is already a folder by that name.');
-            return;
-        }
-
-
-        data.items.forEach(function (app) {
-
-            if (app.folder === targetFolder) {
-                app.folder = newName;
-            }
-        });
-
-        this.setState({data: data});
-        //this.putToBackend();
-
-    },
-
-    putToBackend: function () {
-        $.ajax({
-            type: 'PUT',
-            dataType: 'json',
-            contentType: 'application/json',
-            url: API_URL + '/api/profile/self/library/',
-            data: JSON.stringify(this.state.data.items),
-            success: function (data) {
-                dirtyLibrary = false;
-                console.log('PUT sucessful.');
-            }
-        });
-    },
-
-    assignToFolder: function (app, folder) {
-        dirtyLibrary = true;
-        var items = this.state.data.items;
-        var appIndex = items.indexOf(app);
-        items[appIndex].folder = folder;
-        this.setState({data: {items: items}});
+        //immediately get whatever data is in the store
+        this.onStoreChange(this.props.store.getDefaultData());
     },
 
     render: function () {
-        var me = this;
-        var foldersAndApps = [];
-        this.state.data.items.map(function (app, i) {
-            if (app.folder === null) {
-                foldersAndApps.push(app);
-            }
-            else {
-                var index = foldersAndApps.map(function (e) { return e.folder;}).indexOf(app.folder);
-                if (index === -1) {
-                    var tempFolder = {};
-                    tempFolder.folder = app.folder;
-                    tempFolder.items = [];
-                    tempFolder.items.push(app);
-                    foldersAndApps.push(tempFolder);
-                }
-                else {
-                    foldersAndApps[index].items.push(app);
-                }
-            }
-        }, this);
+        var me = this,
+            elements = this.state.library
+                .map(function(elem, index, list) {
+                    //create list of all (prev, current, next) tuples
+                    return [index ? list.get(index - 1) : undefined, elem, list.get(index + 1)];
+                })
+                .map(function(tuple) {
+                    var prev= tuple[0],
+                        curr = tuple[1],
+                        next = tuple[2],
+                        store = me.props.store,
+                        tile;
 
-        /*jshint ignore:start */
-        if (this.state.data.items.length >= 1) {
-            var data = {};
-            data.items = foldersAndApps;
-            data.dragging = this.state.data.dragging
-            var removeBookmark = this.removeBookmark;
-            var sort = this.sort;
-            var rename = {renameFolder: this.folderRename, putToBackend: this.putToBackend};
-            var assignToFolder = this.assignToFolder;
-            var applicationList = foldersAndApps.map(function (app, i) {
-                return (
-                    <LibraryTile
-                        sort={sort}
-                        data={data}
-                        key={i}
-                        data-id={i}
-                        item={app}
-                        removeBookmark={removeBookmark}
-                        rename={rename}
-                        assignToFolder={ assignToFolder }
-                        onDragStart={ me.onDragStart }
-                        onDragEnd={ me.onDragEnd } />
-                );
-            });
+                    /* jshint ignore:start */
+                    tile = curr instanceof Folder ?
+                        <FolderTile store={store} key={'folder-' + curr.name} folder={curr} /> :
+                        <LibraryTile store={store}
+                            allowFolderCreate={me.props.allowFolderCreate}
+                            key={'listing-' + curr.listing.id} entry={curr} />;
+
+                    return (
+                        <LibraryItem store={store} prev={prev} curr={curr} next={next}>
+                            {tile}
+                        </LibraryItem>
+                    );
+                    /* jshint ignore:end */
+                });
+
+        if (elements.size) {
+            /* jshint ignore:start */
             return (
-                <div className="applib-main">
-                    <h3 className="applib"><b>Application Library</b></h3>
-                    <ul className="nav navbar-nav applib">
-                        {applicationList}
-                    </ul>
-                </div>
+                <ol className="LibraryTiles">
+                    {elements.toArray()}
+                </ol>
             );
+            /* jshint ignore:end */
         }
         else {
+            /* jshint ignore:start */
             return (
-                <div className="applib-main">
-                    <h3 className="applib"><b>Application Library</b></h3>
-                    <h1 className="empty-app-text">You currently have no <br /> Apps to display</h1>
-                    <h2 className="visit-appsmall">Visit the AppsMall to discover <br />Apps you can start using</h2>
-                    <form method="get" action={CENTER_URL}>
-                        <p className="visit-button-text"><button type="submit" className="empty-text-button"><img src={appsMallLogo} /> AppsMall</button></p>
-                    </form>
-                </div>
+                <this.props.emptyView />
             );
+            /* jshint ignore:end */
         }
-        /*jshint ignore:end */
-    },
-
-    onDragStart: function () {
-        dirtyLibrary = true;
-    },
-
-    onDragEnd: function () {
-        this.putToBackend();
-        dirtyLibrary = false;
     }
-
 });
 
 module.exports = Library;

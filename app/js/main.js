@@ -1,6 +1,13 @@
 /** @jsx React.DOM */
 'use strict';
 var React = require('react');
+
+var Router = require('react-router');
+var Routes = Router.Routes;
+var Route = Router.Route;
+
+var FolderModal = require('./components/folder/FolderModal');
+
 var $ = require('jquery');
 
 $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
@@ -9,7 +16,7 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     };
 });
 
-var APP = require('./components/app');
+var App = require('./components/app');
 
 // Enable React developer tools
 window.React = React;
@@ -17,5 +24,12 @@ window.$ = $;
 window.jQuery = $;
 
 /*jshint ignore:start */
-React.renderComponent(<APP />, document.getElementById('main'));
+React.renderComponent(
+    <Routes>
+        <Route name="main" path="/" handler={App}>
+            <Route name="folder" path="folder/:name" handler={FolderModal} />
+        </Route>
+    </Routes>,
+    document.getElementById('main')
+);
 /*jshint ignore:end */
