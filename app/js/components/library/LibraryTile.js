@@ -86,10 +86,9 @@ var LibraryTile = React.createClass({
 
         /* jshint ignore:start */
         return (
-            <li className={classes} data-listing-id={listing.id}
+            <div className={classes} data-listing-id={listing.id}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
-                    onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
-                    onDrop={this.onDrop}
+                    onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
                 <a href={listing.launchUrl} target="_blank" draggable="false">
@@ -97,7 +96,7 @@ var LibraryTile = React.createClass({
                         src={listing.imageLargeUrl} />
                 </a>
                 <h5>{listing.title}</h5>
-            </li>
+            </div>
         );
         /* jshint ignore:end */
     }

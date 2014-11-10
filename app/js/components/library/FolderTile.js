@@ -61,17 +61,16 @@ var FolderTile = React.createClass({
 
         /* jshint ignore:start */
         return (
-            <li className={classes} data-folder-name={folder.name}
+            <div className={classes} data-folder-name={folder.name}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
-                    onDragLeave={this.onDragLeave} onDragStop={this.onDragLeave}
-                    onDrop={this.onDrop}
+                    onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <Link ref="folderView" className="FolderTile__folderView" to="folder"
                         params={{name: folder.name}} draggable="false">
                     {entryIcons.toArray()}
                 </Link>
                 <FolderTitle name={folder.name} element={React.DOM.h5}/>
-            </li>
+            </div>
         );
         /* jshint ignore:end */
     }

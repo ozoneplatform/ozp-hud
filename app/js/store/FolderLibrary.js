@@ -148,11 +148,13 @@ var FolderLibraryStore = Reflux.createStore({
                     'in the same folder');
         }
 
+        if (toMove !== newBefore && toMove !== newAfter) {
+            var reorderMethod = getFolderName(toMove) ?
+                    'reorderWithinFolder' : 'reorderTopLevel',
+                newFolderedEntries = this[reorderMethod](newBefore, toMove, newAfter);
 
-        var reorderMethod = getFolderName(toMove) ? 'reorderWithinFolder' : 'reorderTopLevel',
-            newFolderedEntries = this[reorderMethod](newBefore, toMove, newAfter);
-
-        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+            LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+        }
     },
 
     reorderTopLevel: function(newBefore, toMove, newAfter) {
@@ -268,6 +270,18 @@ var FolderLibraryStore = Reflux.createStore({
 
     getDefaultData: function() {
         return this.folderedEntries;
+    },
+
+    getModelByData: function(data) {
+        return data.listing ?
+            this.folderedEntries.find(function(ent) {
+                return !(ent instanceof Folder) &&
+                    ent.listing.id === data.listing.id;
+            }) :
+            this.folderedEntries.find(function(ent) {
+                return (ent instanceof Folder) &&
+                    ent.name === data.name;
+            });
     }
 });
 

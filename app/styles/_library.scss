@@ -1,22 +1,23 @@
 .LibraryTiles {
     @extend .list-unstyled;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 0;
 
     position: relative;
 
     color: $gray-lightest;
+}
 
-    > li {
-        display: inline-block;
-    }
+.LibraryTiles__item {
+    display: inline-block;
 }
 
 .LibraryTile, .FolderTile {
+    display: inline-block;
     position: relative;
     box-sizing: content-box;
 
     border: 2px solid transparent;
+    border-radius: 5px;
     transition: border-color 0.5s ease 0.1s;
 
     margin-bottom: 30px;
@@ -32,7 +33,6 @@
 
     &.drag-hover {
         border-color: $gray-lighter;
-        border-radius: 5px;
     }
 }
 
@@ -180,13 +180,18 @@
 }
 
 .DropSeparator {
-    transition: width 0.5s ease 0.1s;
-    padding: 0 20px;
+    display: inline-block;
+
+    border: 2px solid transparent;
+    border-radius: 4px;
+
+    transition: all 0.5s ease 0.1s;
     height: 155px;
-    width: 0;
+    width: 20px;
 
     &.drag-hover {
-        width: 200px;
+        background-color: $gray;
+        border-color: $gray-lightest;
     }
 }
 
@@ -222,4 +227,18 @@
     .validation-err-msg {
         display: inline-block;
     }
+}
+
+.FolderLibrary {
+    > h3 {
+        padding-left: 40px;
+        color: $gray-lightest;
+    }
+}
+
+.FolderLibrary__empty {
+    width: 600px;
+    margin: 200px auto 0 auto;
+
+    text-align:center;
 }

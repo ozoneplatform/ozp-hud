@@ -39,6 +39,13 @@ var CurrentFolderStore = Reflux.createStore({
             });
 
         return folder ? folder.entries : Immutable.List();
+    },
+
+    getModelByData: function(data) {
+        return this.getDefaultData().find(function(ent) {
+            return !(ent instanceof Folder) &&
+                ent.listing.id === data.listing.id;
+        });
     }
 });
 
