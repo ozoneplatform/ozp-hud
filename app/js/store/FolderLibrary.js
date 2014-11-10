@@ -36,20 +36,7 @@ function getFolderName(item) {
 }
 
 /**
- * @return the object upon which the position of item is based.  For normal entries, this is the
- * item itself.  For folders, it is the first entry in the folder
- */
-function getIndexableItem(item) {
-    if (item instanceof Folder) {
-        return item.entries[0];
-    }
-    else {
-        return item;
-    }
-}
-
-/**
- * Convert a folderedEntries data strcture into a flat list of entries
+ * Convert a folderedEntries data structure into a flat list of entries
  */
 function toFlatLibrary(folderedLibrary) {
     return folderedLibrary.flatMap(function(item) {

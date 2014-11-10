@@ -9,6 +9,8 @@ var Link = require('react-router').Link;
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
+var LibraryActions = require('../../actions/Library');
+
 var FolderTitle = require('../folder/FolderTitle');
 
 var FolderTile = React.createClass({
@@ -41,8 +43,12 @@ var FolderTile = React.createClass({
     },
 
     onDrop: function(evt) {
+        var dropInfo = DragAndDropUtils.getDropInfo(evt),
+            data = dropInfo.data,
+            droppedEntry = this.props.store.getModelByData(data);
+
+        LibraryActions.addToFolder(this.props.folder, droppedEntry);
         this.onDragLeave();
-        this.props.onDrop(evt);
     },
 
     render: function() {

@@ -54,7 +54,7 @@ var LibraryTile = React.createClass({
     },
 
     onDragOver: function(evt) {
-        if (this.props.onDrop) {
+        if (this.props.allowFolderCreate) {
             var allowDrop =
                 DragAndDropUtils.dragOver(
                     Immutable.List([Constants.libraryEntryDataType]),
@@ -71,8 +71,12 @@ var LibraryTile = React.createClass({
     },
 
     onDrop: function(evt) {
+        var dropInfo = DragAndDropUtils.getDropInfo(evt),
+            data = dropInfo.data,
+            droppedEntry = this.props.store.getModelByData(data);
+
+        LibraryActions.createFolder(Immutable.List.of(this.props.entry, droppedEntry));
         this.onDragLeave();
-        this.props.onDrop(evt);
     },
 
     render: function() {

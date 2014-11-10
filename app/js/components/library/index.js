@@ -54,26 +54,8 @@ var Library = React.createClass({
         this.onStoreChange(this.props.store.getDefaultData());
     },
 
-    onDropOnItem: function(evt) {
-        var dropInfo = DragAndDropUtils.getDropInfo(evt),
-            data = dropInfo.data,
-            dropTarget = dropInfo.node,
-            droppedEntry = this.props.store.getModelByData(data),
-            targetItem = this.getModelByNode(dropTarget);
-
-        if (droppedEntry !== targetItem) {
-            if (targetItem instanceof Folder) {
-                LibraryActions.addToFolder(targetItem, droppedEntry);
-            }
-            else {
-                LibraryActions.createFolder(Immutable.List.of(targetItem, droppedEntry));
-            }
-        }
-    },
-
     render: function () {
         var me = this,
-            onDropOnItem = this.props.allowFolderCreate ? this.onDropOnItem : undefined,
             elements = this.state.library
                 .map(function(elem, index, list) {
                     //create list of all (prev, current, next) tuples
@@ -83,24 +65,25 @@ var Library = React.createClass({
                     var prev= tuple[0],
                         curr = tuple[1],
                         next = tuple[2],
+                        store = me.props.store,
                         tile;
 
                     /* jshint ignore:start */
                     tile = curr instanceof Folder ?
-                        <FolderTile key={'folder-' + curr.name} folder={curr}
-                            onDrop={onDropOnItem}/> :
-                        <LibraryTile key={'listing-' + curr.listing.id} entry={curr}
-                            onDrop={onDropOnItem}/>;
+                        <FolderTile store={store} key={'folder-' + curr.name} folder={curr} /> :
+                        <LibraryTile store={store}
+                            allowFolderCreate={me.props.allowFolderCreate}
+                            key={'listing-' + curr.listing.id} entry={curr} />;
 
                     return (
-                        <LibraryItem store={me.props.store} prev={prev} curr={curr} next={next}>
+                        <LibraryItem store={store} prev={prev} curr={curr} next={next}>
                             {tile}
                         </LibraryItem>
                     );
                     /* jshint ignore:end */
                 });
 
-        if (elements.size > 1) {
+        if (elements.size) {
             /* jshint ignore:start */
             return (
                 <ol className="LibraryTiles">
