@@ -70,6 +70,8 @@ var LibraryTile = React.createClass({
 
         LibraryActions.createFolder(Immutable.List.of(this.props.entry, droppedEntry));
         this.onDragLeave();
+
+        evt.preventDefault();
     },
 
     render: function() {

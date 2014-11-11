@@ -45,7 +45,14 @@ var DragAndDropUtils = {
         }
         else {
             var acceptableType = acceptableTypes.find(function(type) {
-                return dt.types.indexOf(type) !== - 1;
+                //firefox doesn't support indexOf but supports contains.
+                //chrome only supports indexOf
+                if (dt.types.contains) {
+                    return dt.types.contains(type);
+                }
+                else {
+                    return dt.types.indexOf(type) !== - 1;
+                }
             });
 
             if (acceptableType && isMove) {

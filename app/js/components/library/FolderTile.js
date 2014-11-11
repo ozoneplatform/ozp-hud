@@ -49,6 +49,8 @@ var FolderTile = React.createClass({
 
         LibraryActions.addToFolder(this.props.folder, droppedEntry);
         this.onDragLeave();
+
+        evt.preventDefault();
     },
 
     render: function() {
