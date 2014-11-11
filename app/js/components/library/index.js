@@ -76,7 +76,8 @@ var Library = React.createClass({
                             key={'listing-' + curr.listing.id} entry={curr} />;
 
                     return (
-                        <LibraryItem store={store} prev={prev} curr={curr} next={next}>
+                        <LibraryItem key={tile.props.key}
+                                store={store} prev={prev} curr={curr} next={next}>
                             {tile}
                         </LibraryItem>
                     );

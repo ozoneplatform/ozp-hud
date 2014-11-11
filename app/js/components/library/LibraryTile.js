@@ -10,13 +10,6 @@ var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var ActionMenu = React.createClass({
-    componentDidUpdate: function(prevProps) {
-        //if we are now a different listing, close the action menu
-        if (prevProps.entry.listing.id !== this.props.entry.listing.id) {
-            this.refs.checkbox.getDOMNode().checked = false;
-        }
-    },
-
     render: function() {
         var entry = this.props.entry,
             listing = entry.listing,
