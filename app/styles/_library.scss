@@ -238,8 +238,15 @@
 }
 
 .FolderLibrary__empty {
-    width: 600px;
+    width: 450px;
     margin: 200px auto 0 auto;
 
     text-align:center;
+    color: $white;
+
+    a {
+        color: $blue-light;
+        font-weight: bold;
+        font-size: 2em;
+    }
 }

@@ -61,7 +61,7 @@ var FolderTile = React.createClass({
                 var src = entry.listing.imageMediumUrl;
 
                 /* jshint ignore:start */
-                return <img key={src} src={src} draggable="false" />;
+                return <img key={entry.listing.id} src={src} draggable="false" />;
                 /* jshint ignore:end */
             });
 
