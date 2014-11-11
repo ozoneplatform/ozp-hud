@@ -20,7 +20,7 @@ var Folder = require('../../api/Folder');
 var FolderTitle = require('./FolderTitle');
 
 var FolderModal = React.createClass({
-    mixins: [Navigation, Reflux.connect(CurrentFolderStore, 'folder')],
+    mixins: [Navigation, Reflux.ListenerMixin],
 
     statics: {
         willTransitionTo: function(transition, params) {
@@ -28,13 +28,36 @@ var FolderModal = React.createClass({
         }
     },
 
+    onStoreUpdate: function(data) {
+        this.setState({folder: data});
+    },
+
     componentDidMount: function() {
+        this.listenTo(LibraryActions.removeFromLibrary, this.onRemoveFromLibrary);
+        this.listenTo(CurrentFolderStore, this.onStoreUpdate);
+
         $(this.getDOMNode())
             .modal({
                 backdrop: 'static',
                 keyboard: false,
                 show: true
             });
+    },
+
+    /**
+     * When an entry is explicitly removed from the library, check to see if it was the
+     * only listing in this folder.  Close the modal if so
+     */
+    onRemoveFromLibrary: function(entry) {
+        var entries = this.state.folder;
+
+        if (entries.size === 1 && entries.get(0) === entry) {
+            this._close();
+        }
+    },
+
+    _close: function() {
+        this.transitionTo('/');
     },
 
     componentWillUnmount: function() {
@@ -64,10 +87,13 @@ var FolderModal = React.createClass({
 
         //if the last listing was dragged out, close the folder
         if (this.state.folder.size === 1) {
-            this.transitionTo('/');
+            this._close();
         }
     },
 
+    /**
+     * Open the folder with the new name when this folder is renamed
+     */
     onNameChange: function(newName) {
         this.transitionTo('folder', {name: newName});
     },
