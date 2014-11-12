@@ -1,4 +1,6 @@
 {
+  "name": "hud-ui",
+  "version": "0.2.0",
   "author": "",
   "description": "",
   "scripts": {
@@ -35,8 +37,6 @@
     "webpack": "1.4.8",
     "webpack-dev-server": "1.6.5"
   },
-  "name": "hud-ui",
-  "version": "0.1.0",
   "licenses": {
     "type": "Apache-2.0",
     "url": "https://spdx.org/licenses/Apache-2.0"
