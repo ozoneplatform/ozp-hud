@@ -2,12 +2,33 @@
 'use strict';
 
 var React = require('react');
+var Reflux = require('reflux');
 var LibraryActions = require('../../actions/Library');
 var FolderLibrary = require('../../store/FolderLibrary');
+var NewFolderStore = require('../../store/NewFolder');
 
 var FolderTitle = React.createClass({
+    mixins: [Reflux.ListenerMixin],
+
     getInitialState: function() {
-        return { editing: false, error: false };
+        var newFolderName = NewFolderStore.getDefaultData();
+
+        return { editing: this.props.name === newFolderName, error: false };
+    },
+
+    componentDidMount: function() {
+        this.listenTo(NewFolderStore, this.onNewFolderChange);
+
+        if (this.state.editing) {
+            this.refs.name.getDOMNode().focus();
+
+            //highlight the contents of the contenteditable region
+            document.execCommand('selectAll', false, null);
+        }
+    },
+
+    onNewFolderChange: function(newFolderName) {
+        this.setState({ editing: this.props.name === newFolderName });
     },
 
     onNameChange: function(evt) {
@@ -50,6 +71,7 @@ var FolderTitle = React.createClass({
             evt.preventDefault();
         }
     },
+
     render: function() {
         //element prop should be a react virtual DOM element constructor
         var element = this.props.element,

@@ -37,6 +37,12 @@ module.exports = Reflux.createActions([
     'createFolder',
 
     /**
+     * Indicate that a new folder has been created with the specified auto-generated name
+     * @param name The current name for the new folder
+     */
+    'folderCreated',
+
+    /**
      * Rename the folder currently named `oldName` to be named `newName`
      * @param oldName the current name of the folder
      * @param newName The name that the folder is being changed to have

@@ -193,6 +193,7 @@ var FolderLibraryStore = Reflux.createStore({
                 .filterNot(Immutable.List.prototype.contains.bind(entries));
 
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+        LibraryActions.folderCreated(name);
     },
 
     onRenameFolder: function(oldName, newName) {
