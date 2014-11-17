@@ -36,17 +36,15 @@ var FolderTitle = React.createClass({
             oldName = this.props.name,
             error = false;
 
-        if (newName !== oldName) {
-            if (FolderLibrary.findFolder(newName)) {
-                evt.preventDefault();
-                evt.stopPropagation();
+        if (newName !== oldName && FolderLibrary.findFolder(newName)) {
+            evt.preventDefault();
+            evt.stopPropagation();
 
-                this.setState({error: true});
-                error = true;
-            }
-            else {
-                LibraryActions.renameFolder(oldName, newName);
-            }
+            this.setState({error: true});
+            error = true;
+        }
+        else {
+            LibraryActions.renameFolder(oldName, newName);
         }
 
         if (!error) {
@@ -61,6 +59,9 @@ var FolderTitle = React.createClass({
     editTitle: function() {
         this.setState({editing: true}, function() {
             this.refs.name.getDOMNode().focus();
+
+            //highlight the contents of the contenteditable region
+            document.execCommand('selectAll', false, null);
         });
     },
 

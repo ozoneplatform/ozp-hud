@@ -16,7 +16,7 @@ var NewFolderStore = Reflux.createStore({
 
     setName: function(name) {
         this.newFolderName = name;
-        this.trigger();
+        this.trigger(this.newFolderName);
     },
 
     onFolderCreated: function(name) {

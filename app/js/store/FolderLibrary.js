@@ -197,14 +197,16 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onRenameFolder: function(oldName, newName) {
-        var folderIndex = this.findFolderIndex(oldName),
-            folder = this.folderedEntries.get(folderIndex),
-            entries = folder.entries,
-            newEntries = entries.map(updateFolderName.bind(null, newName)),
-            newFolder = new Folder(null, newEntries),
-            newFolderedEntries = this.folderedEntries.splice(folderIndex, 1, newFolder);
+        if (oldName !== newName) {
+            var folderIndex = this.findFolderIndex(oldName),
+                folder = this.folderedEntries.get(folderIndex),
+                entries = folder.entries,
+                newEntries = entries.map(updateFolderName.bind(null, newName)),
+                newFolder = new Folder(null, newEntries),
+                newFolderedEntries = this.folderedEntries.splice(folderIndex, 1, newFolder);
 
-        LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+            LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+        }
     },
 
     onUnFolder: function(name) {
