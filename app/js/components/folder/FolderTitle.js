@@ -22,11 +22,16 @@ var FolderTitle = React.createClass({
     },
 
     focusForEdit: function() {
-        if (this.state.editing) {
-            this.refs.name.getDOMNode().focus();
+        var node = this.refs.name.getDOMNode(),
+            wasFocused = document.activeElement === node;
 
-            //highlight the contents of the contenteditable region
-            document.execCommand('selectAll', false, null);
+        if (this.state.editing) {
+            node.focus();
+
+            if (!wasFocused) {
+                //highlight the contents of the contenteditable region
+                document.execCommand('selectAll', false, null);
+            }
         }
     },
 
