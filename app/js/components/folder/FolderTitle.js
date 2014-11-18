@@ -18,13 +18,20 @@ var FolderTitle = React.createClass({
 
     componentDidMount: function() {
         this.listenTo(NewFolderStore, this.onNewFolderChange);
+        this.focusForEdit();
+    },
 
+    focusForEdit: function() {
         if (this.state.editing) {
             this.refs.name.getDOMNode().focus();
 
             //highlight the contents of the contenteditable region
             document.execCommand('selectAll', false, null);
         }
+    },
+
+    componentDidUpdate: function() {
+        this.focusForEdit();
     },
 
     onNewFolderChange: function(newFolderName) {
@@ -36,12 +43,11 @@ var FolderTitle = React.createClass({
             oldName = this.props.name,
             error = false;
 
-        if (newName !== oldName && FolderLibrary.findFolder(newName)) {
-            evt.preventDefault();
-            evt.stopPropagation();
-
-            this.setState({error: true});
-            error = true;
+        if (newName === '') {
+            error = 'Folder name cannot be blank';
+        }
+        else if (newName !== oldName && FolderLibrary.findFolder(newName)) {
+            error = 'There is already a folder with this name';
         }
         else {
             LibraryActions.renameFolder(oldName, newName);
@@ -53,6 +59,12 @@ var FolderTitle = React.createClass({
             if (this.props.onChange) {
                 this.props.onChange(newName);
             }
+        }
+        else {
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            this.setState({error: error});
         }
     },
 
@@ -78,15 +90,13 @@ var FolderTitle = React.createClass({
         var element = this.props.element,
             classes = React.addons.classSet({
                 FolderTitle: true,
-                error: this.state.error
+                error: !!this.state.error
             });
 
         /* jshint ignore:start */
         return (
             <div className={classes}>
-                <span className="small validation-err-msg">
-                    There is already a folder with this name
-                </span>
+                <span className="small validation-err-msg">{this.state.error}</span>
                 {element({
                         ref: 'name',
                         onBlur: this.onNameChange,
