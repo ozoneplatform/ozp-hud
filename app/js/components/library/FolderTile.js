@@ -65,7 +65,10 @@ var FolderTile = React.createClass({
                 /* jshint ignore:start */
                 return <img key={entry.listing.id} src={src} draggable="false" />;
                 /* jshint ignore:end */
-            });
+            }),
+
+            //react-router doesn't handle slashes correctly so we must escape them ourselves
+            nameParam = folder.name.replace(/\//g, '%2F');
 
         /* jshint ignore:start */
         return (
@@ -74,7 +77,7 @@ var FolderTile = React.createClass({
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <Link ref="folderView" className="FolderTile__folderView" to="folder"
-                        params={{name: folder.name}} draggable="false">
+                        params={{name: nameParam}} draggable="false">
                     {entryIcons.toArray()}
                 </Link>
                 <FolderTitle name={folder.name} element={React.DOM.h5}/>

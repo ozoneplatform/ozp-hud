@@ -23,12 +23,16 @@ var FolderTitle = require('./FolderTitle');
 //This has been known to change from version to version of bootstrap
 var backgroundDropClass = 'modal-backdrop';
 
+function unescapeFolderName(name) {
+    return name.replace(/%2F/g, '/');
+}
+
 var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.ListenerMixin],
 
     statics: {
         willTransitionTo: function(transition, params) {
-            LibraryActions.viewFolder(params.name);
+            LibraryActions.viewFolder(unescapeFolderName(params.name));
         }
     },
 
@@ -103,6 +107,9 @@ var FolderModal = React.createClass({
     },
 
     render: function() {
+        //undo the manual escaping of slashes that we must do because react-router doesn't
+        var folderName = unescapeFolderName(this.props.params.name);
+
         /* jshint ignore:start */
         return (
             <div className="modal FolderModal" data-show="true"
@@ -114,7 +121,7 @@ var FolderModal = React.createClass({
                             <Link className="close" to="main">
                                 &times;
                             </Link>
-                            <FolderTitle name={this.props.params.name} element={React.DOM.h3}
+                            <FolderTitle name={folderName} element={React.DOM.h3}
                                 onChange={this.onNameChange}/>
                         </div>
                         <div className="modal-body">
