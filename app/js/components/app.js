@@ -17,12 +17,12 @@ var FolderLibraryStore = require('../store/FolderLibrary');
 var App = React.createClass({
 
     componentDidMount: function() {
-        this.interval = setInterval(LibraryActions.fetchLibrary, 5000);
+        window.addEventListener('focus', LibraryActions.fetchLibrary);
         LibraryActions.fetchLibrary();
     },
 
     componentDidUnmount: function () {
-        clearInterval(this.interval);
+        window.removeEventListener('focus', LibraryActions.fetchLibrary);
     },
 
     render: function () {
