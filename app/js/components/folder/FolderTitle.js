@@ -32,7 +32,7 @@ var FolderTitle = React.createClass({
     },
 
     onNameChange: function(evt) {
-        var newName = this.refs.name.getDOMNode().innerText.trim(),
+        var newName = this.refs.name.getDOMNode().textContent.trim(),
             oldName = this.props.name,
             error = false;
 
