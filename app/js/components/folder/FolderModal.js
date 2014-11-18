@@ -19,6 +19,10 @@ var Folder = require('../../api/Folder');
 
 var FolderTitle = require('./FolderTitle');
 
+//the classname of the element on which a drag out of the folder would drop.
+//This has been known to change from version to version of bootstrap
+var backgroundDropClass = 'modal-backdrop';
+
 var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.ListenerMixin],
 
@@ -65,7 +69,7 @@ var FolderModal = React.createClass({
     },
 
     onDragOver: function(evt) {
-        if (evt.target === evt.currentTarget) {
+        if (evt.target.classList.contains(backgroundDropClass)) {
             DragAndDropUtils.dragOver(Immutable.List.of(Constants.libraryEntryDataType), evt);
         }
     },
