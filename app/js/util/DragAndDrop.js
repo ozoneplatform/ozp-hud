@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 var Constants = require('../Constants');
 
-var ie9DragAndDrop = !('draggable' in document.createElement('span'));
+var ieDragAndDrop = !('draggable' in document.createElement('span'));
 
 
 /**
@@ -16,14 +16,22 @@ var DragAndDropUtils = {
         var json = JSON.stringify(data),
             dt = evt.dataTransfer;
 
-        if (ie9DragAndDrop) {
+        if (ieDragAndDrop) {
             dt.setData('Text', json);
         }
         else {
-            dt.setData(dataType, json);
-            dt.setData('application/json', json);
-            dt.setData('text/plain', title);
-            dt.setDragImage(dragImageNode, -15, -15);
+            try {
+                dt.setData(dataType, json);
+                dt.setData('application/json', json);
+                dt.setData('text/plain', title);
+                dt.setDragImage(dragImageNode, -15, -15);
+            }
+            catch (e) {
+                //probably IE11, fall back to old drag and drop style
+                ieDragAndDrop = true;
+                DragAndDropUtils.startDrag.apply(this, arguments);
+                return;
+            }
         }
 
         dt.effectAllowed = 'move';
@@ -40,7 +48,7 @@ var DragAndDropUtils = {
             retval = true;
         }
 
-        if (ie9DragAndDrop && isMove) {
+        if (ieDragAndDrop && isMove) {
             allowDrop();
         }
         else {
@@ -70,7 +78,7 @@ var DragAndDropUtils = {
      */
     getDropInfo: function(evt) {
         var dt = evt.dataTransfer,
-            json = ie9DragAndDrop ?
+            json = ieDragAndDrop ?
                 dt.getData('Text') :
                 (dt.getData(Constants.libraryEntryDataType) ||
                 dt.getData(Constants.folderDataType)),
