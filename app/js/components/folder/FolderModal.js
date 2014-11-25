@@ -24,16 +24,12 @@ var FolderTitle = require('./FolderTitle');
 //NOTE: This property currently can't handle regex special characters
 var backgroundDropClass = 'modal-backdrop';
 
-function unescapeFolderName(name) {
-    return name.replace(/%2F/g, '/');
-}
-
 var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.ListenerMixin],
 
     statics: {
         willTransitionTo: function(transition, params) {
-            LibraryActions.viewFolder(unescapeFolderName(params.name));
+            LibraryActions.viewFolder(decodeURIComponent(params.name));
         }
     },
 
@@ -105,12 +101,12 @@ var FolderModal = React.createClass({
      * Open the folder with the new name when this folder is renamed
      */
     onNameChange: function(newName) {
-        this.transitionTo('folder', {name: newName});
+        this.transitionTo('folder', {name: encodeURIComponent(newName)});
     },
 
     render: function() {
         //undo the manual escaping of slashes that we must do because react-router doesn't
-        var folderName = unescapeFolderName(this.props.params.name);
+        var folderName = decodeURIComponent(this.props.params.name);
 
         /* jshint ignore:start */
         return (

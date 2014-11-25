@@ -67,8 +67,8 @@ var FolderTile = React.createClass({
                 /* jshint ignore:end */
             }),
 
-            //react-router doesn't handle slashes correctly so we must escape them ourselves
-            nameParam = folder.name.replace(/\//g, '%2F');
+            //react-router doesn't handle special characters correctly so we must escape them ourselves
+            nameParam = encodeURIComponent(folder.name);
 
         /* jshint ignore:start */
         return (
