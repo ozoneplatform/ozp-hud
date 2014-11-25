@@ -93,6 +93,14 @@ var FolderTitle = React.createClass({
         }
     },
 
+    //retrieve the plain text from a paste and prevent rich-text pasting
+    interceptPaste: function(evt) {
+        var text = evt.clipboardData.getData('text/plain');
+
+        evt.preventDefault();
+        document.execCommand('insertText', false, text);
+    },
+
     render: function() {
         //element prop should be a react virtual DOM element constructor
         var element = this.props.element,
@@ -110,6 +118,7 @@ var FolderTitle = React.createClass({
                         onBlur: this.onNameChange,
                         onDoubleClick: this.editTitle,
                         onKeyDown: this.finishEditOnEnter,
+                        onPaste: this.interceptPaste,
                         contentEditable: this.state.editing
                     },
                     this.props.name
