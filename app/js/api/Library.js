@@ -2,9 +2,11 @@
 
 var $ = require('jquery');
 
+var url = API_URL + '/api/profile/self/library';
+
 module.exports.LibraryApi = {
     get: function() {
-        return $.getJSON(API_URL + '/api/profile/self/library')
+        return $.getJSON(url)
             .fail(function(response) {
                 console.log('Error fetching library', response.status,
                     response.responseJSON || response.responseText);
@@ -16,7 +18,7 @@ module.exports.LibraryApi = {
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
-            url: API_URL + '/api/profile/self/library',
+            url: url,
             data: JSON.stringify(libraryEntries)
         }).fail(function(response) {
             console.error('Error updating library', response.status,
@@ -27,7 +29,7 @@ module.exports.LibraryApi = {
         return $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: API_URL + '/api/profile/self/library/' + encodeURIComponent(listingId)
+            url: url + encodeURIComponent(listingId)
         }).fail(function(response) {
             console.error('Error removing Listing with id ' + listingId + 'from library',
                     response.status, response.responseJSON || response.responseText);
