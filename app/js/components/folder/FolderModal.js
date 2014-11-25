@@ -20,7 +20,8 @@ var Folder = require('../../api/Folder');
 var FolderTitle = require('./FolderTitle');
 
 //the classname of the element on which a drag out of the folder would drop.
-//This has been known to change from version to version of bootstrap
+//This has been known to change from version to version of bootstrap.
+//NOTE: This property currently can't handle regex special characters
 var backgroundDropClass = 'modal-backdrop';
 
 function unescapeFolderName(name) {
@@ -73,7 +74,8 @@ var FolderModal = React.createClass({
     },
 
     onDragOver: function(evt) {
-        if (evt.target.classList.contains(backgroundDropClass)) {
+        //IE9 doesn't support the much more convenient classList property
+        if (evt.target.className.match('(\\s|^)' + backgroundDropClass + '(\\s|$)')) {
             DragAndDropUtils.dragOver(Immutable.List.of(Constants.libraryEntryDataType), evt);
         }
     },
