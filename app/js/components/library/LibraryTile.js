@@ -14,8 +14,8 @@ var ActionMenu = React.createClass({
         var entry = this.props.entry,
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry),
-            techSupportHref = CENTER_URL + '/#/home/quickview/' +
-                encodeURIComponent(listing.id) + '/resources';
+            techSupportHref = CENTER_URL + '/#/home?listing=' +
+                encodeURIComponent(listing.id) + '&action=view&tab=resources';
 
         /* jshint ignore:start */
         //use hidden checkbox to manage menu toggle state
