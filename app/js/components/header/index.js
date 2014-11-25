@@ -8,22 +8,10 @@ var appsMallLogo  = './images/AppsMall_Icon.png';
 var dashboard  = './images/DashboardIconStatic.png';
 var Alerts = require('../alerts/index.js');
 
-var appsLogos  = ['./images/AppsMall_Icon.png'];
-
 var Header = React.createClass({
 
     render: function () {
         var user = 'J Smith';
-
-        $(document).ready(function () {
-            $(document).on('show.bs.modal', '.modal', function () {
-                $('.classBanner').last().css({
-                    position : 'fixed',
-                    bottom : '0%'
-                });
-            });
-        });
-
         /*jshint ignore:start */
         return (
             <nav id="top-bar" className="navbar navbar-default navbar-inverse app-toolbar no-rounded-corners" role="navigation">
@@ -69,12 +57,12 @@ var Header = React.createClass({
                                     <i className="fa fa-user fa-2x" />{" " + user}
                                 </a>
                                 <ul className="dropdown-menu app-dropdown-menu" role="menu">
-                                    <li className="app-dropdown-item"><a href="#" data-toggle="modal" data-target=".settings-modal-lg"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
+                                    <li className="app-dropdown-item"><a href="#" data-toggle="modal"><i className="fa fa-cogs"></i> Preferences and Settings</a></li>
                                     <li className="app-dropdown-item"><a href="./logout.html"><i className="fa fa-sign-out"></i> Log Out</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a className="nav-bar-button nav-bar-icon" href="#" data-toggle="modal" data-target=".help-modal-lg">
+                                <a className="nav-bar-button nav-bar-icon" href="#" data-toggle="modal" data-target="#help-modal">
                                     <i className="fa fa-question-circle fa-2x" />
                                 </a>
                             </li>

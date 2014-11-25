@@ -1,27 +1,30 @@
-.help-modal .modal-header .close,
-.help-modal .modal-body {
-    background-color: $modal-content-bg !important;
-    color: white !important;
-    height: 350px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: $modal-content-border-color;
+.modal-body {
+    height:100%;
 }
 
-.settings-modal .settings-body{
+.modal-content {
+    background: #fff;
+    overflow: auto !important;
+    height: 90%;
+}
+
+.settings-modal .settings-body {
     background-color: $modal-content-border-color !important;
     color: white !important;
     height: 450px;
 }
 
 .btn-close {
-    color: white !important;
+    color: #666 !important;
     opacity: 1;
+    text-shadow:none;
+    &:hover {
+        color:#000 !important;
+    }
 }
-.close:hover{
+.close:hover {
     opacity:1;
 }
-
 
 .help-text {
     background-color: grey !important;
@@ -29,30 +32,6 @@
     border-style: solid;
     padding: 5px 5px 5px 5px;
     height: 250px;
-    // font-weight: $general-font-weight;
-    // font-family: $general-font;
-}
-
-.help-modal-title {
-  // font-weight: $general-font-weight;
-  // font-family: $general-font;
-}
-
-.help-modal-left {
-	float: left;
-	width: 30%;
-    margin-top: 9px;
-    // font-weight: $general-font-weight;
-    // font-family: $general-font;
-}
-
-.help-modal-right {
-	float: right;
-	width: 70%;
-}
-
-.help-modal-textarea {
-	width: 100%;
 }
 
 .modal-dialog-center {

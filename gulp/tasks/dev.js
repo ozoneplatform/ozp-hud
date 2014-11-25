@@ -19,7 +19,7 @@ gulp.task('dev', ['sass', 'copy', 'vendor', 'fonts'], function () {
 
     server.listen(8088, "0.0.0.0", function (err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "http://localhost:8088/webpack-dev-server/dist");
+        gutil.log("[webpack-dev-server]", "http://0.0.0.0:8088/dist");
     });
 
     // refresh app on sass, images and html changes

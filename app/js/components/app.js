@@ -17,11 +17,19 @@ var FolderLibraryStore = require('../store/FolderLibrary');
 var App = React.createClass({
 
     componentDidMount: function() {
+        $(document).on('show.bs.modal', '.modal', function () {
+            $('.classBanner').last().css({
+                position : 'fixed',
+                bottom : '0%'
+            });
+        });
+
         window.addEventListener('focus', LibraryActions.fetchLibrary);
         LibraryActions.fetchLibrary();
     },
 
     componentDidUnmount: function () {
+        $(document).off('show.bs.modal', '.modal');
         window.removeEventListener('focus', LibraryActions.fetchLibrary);
     },
 
