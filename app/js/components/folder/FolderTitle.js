@@ -51,6 +51,9 @@ var FolderTitle = React.createClass({
         if (newName === '') {
             error = 'Folder name cannot be blank';
         }
+        else if (newName.length > 256) {
+            error = 'Folder name cannot be longer than 256 characters';
+        }
         else if (newName !== oldName && FolderLibrary.findFolder(newName)) {
             error = 'There is already a folder with this name';
         }
