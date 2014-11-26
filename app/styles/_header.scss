@@ -41,9 +41,7 @@
 }
 
 .menu-icon {
-	background-color: $gray-base;
-	:hover{
-    };
+    background-color: $gray-base;
 }
 
 
@@ -56,9 +54,9 @@
 
 #appsmall-logo-link {
     > img {
-    	position: absolute;
-    	padding: 5px 0 0 0;
-    	color: white;
+        position: absolute;
+        padding: 5px 0 0 0;
+        color: white;
         width: 36px;
         height: 42px;
     }
@@ -75,8 +73,8 @@
     }
 
     .dropdown-menu {
-      background-color: $gray-dark;
-      margin-top: 0;
+        background-color: $gray-dark;
+        margin-top: 0;
     }
 }
 
@@ -85,14 +83,14 @@
     border-radius: 0px !important;
     border: 0px;
     :hover {
-      background-color: $gray-dark !important;
+        background-color: $gray-dark !important;
     }
 }
 
 #ozp-logo {
     > img {
-    	height: 30px;
-    	width: 30px;
+        height: 30px;
+        width: 30px;
     }
 }
 
@@ -101,34 +99,34 @@
 }
 
 #ozp-hud {
-  color: $link-color !important;
+    color: $link-color !important;
 }
 
 
 #appsmall-logo {
     > img {
-    	height: 30px;
-    	width: 19px;
+        height: 30px;
+        width: 19px;
     }
 }
 
 #ozp-clock {
-	margin-top:7px;
+     margin-top:7px;
 }
 
 .nav-bar-icon {
-	color: $white !important;
+     color: $white !important;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: $gray-dark;
-  border-bottom: 4px solid $yellow;
+    background-color: $gray-dark;
+    border-bottom: 4px solid $yellow;
 }
 
 .app-dropdown-item {
-  height:20px !important;
-  // font-weight: $general-font-weight;
-  // font-family: $general-font;
+    height:20px !important;
+    // font-weight: $general-font-weight;
+    // font-family: $general-font;
 }
 
 .navbar-nav > li > a {
@@ -138,27 +136,27 @@
 
 .navbar {
     min-height:20px !important;
-	background: $navbar-inverse-bg;
-	border: 0px;
+    background: $navbar-inverse-bg;
+    border: 0px;
     width: 100% !important;
 }
 
 
 /*-- change navbar dropdown color --*/
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
-	color:$white;
+    color:$white;
 }
 
 .container-fluid {
-	padding-left: 0px;
+    padding-left: 0px;
 }
 
 #ozp-notifications {
-   &:active {
-       > i {
+    &:active {
+        > i {
            color: $link-color !important;
-       }
-   }
+        }
+    }
 }
 
 
@@ -178,39 +176,14 @@
     .clearfix {
         clear: both;
     }
-    ul > li.current:after{
-      border: 2px solid $link-color;
-      bottom: 0;
-      content: "";
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
-    ul > li:hover:after{
-      border: 2px solid $yellow;
-      bottom: 0;
-      content: "";
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
-
-    ul > li.current:hover:after{
-    };
-    ul > li > ul > li:hover:after{
-        border: 0;
-    };
-    ul > .no-hover:hover:after {
-        border: none;
-    }
     .dashboard-img {
         height: 25px;
     }
 }
 
 body > div.classBanner:last-of-type {
-  position: fixed;
-  bottom:0%;
+    position: fixed;
+    bottom:0%;
 }
 
 .launch-external{
