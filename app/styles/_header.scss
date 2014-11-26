@@ -2,7 +2,6 @@
     position: relative;
     height: 55px;
     background: #fff;
-    border-bottom: 1px solid #d5d5d5;
     padding-left: 0px;
 
     .navbar-form {
@@ -38,6 +37,7 @@
             }
         }
     }
+
 }
 
 .menu-icon {
@@ -120,13 +120,10 @@
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: $gray-dark;
-    border-bottom: 4px solid $yellow;
 }
 
 .app-dropdown-item {
     height:20px !important;
-    // font-weight: $general-font-weight;
-    // font-family: $general-font;
 }
 
 .navbar-nav > li > a {
@@ -135,7 +132,7 @@
 }
 
 .navbar {
-    min-height:20px !important;
+    min-height: 20px !important;
     background: $navbar-inverse-bg;
     border: 0px;
     width: 100% !important;
@@ -184,8 +181,4 @@
 body > div.classBanner:last-of-type {
     position: fixed;
     bottom:0%;
-}
-
-.launch-external{
-    color: white;
 }
