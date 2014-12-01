@@ -21,7 +21,7 @@ var HelpModal = React.createClass({
                                 <h4 className="modal-title">OZONE Help Zone</h4>
                         </div>
                         <div className="modal-body">
-                            <embed width="100%" height="100%" name="plugin" src={helpPDF} type="application/pdf"></embed>
+                            <embed width="100%" height="500px" name="plugin" src={helpPDF} type="application/pdf"></embed>
                         </div>
                     </div>
                 </div>
