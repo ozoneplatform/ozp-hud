@@ -1,10 +1,8 @@
-/** @jsx React.DOM */
 'use strict';
-var React = require('react');
 
+var React = require('react');
 var Router = require('react-router');
-var Routes = Router.Routes;
-var Route = Router.Route;
+var { Route } = Router;
 
 var FolderModal = require('./components/folder/FolderModal');
 
@@ -24,12 +22,13 @@ window.$ = $;
 window.jQuery = $;
 
 /*jshint ignore:start */
-React.renderComponent(
-    <Routes>
-        <Route name="main" path="/" handler={App}>
-            <Route name="folder" path="folder/:name" handler={FolderModal} />
-        </Route>
-    </Routes>,
-    document.getElementById('main')
+var Routes = (
+    <Route name="main" path="/" handler={App}>
+        <Route name="folder" path="folder/:name" handler={FolderModal} />
+    </Route>
 );
+
+Router.run(Routes, function (Handler, state) {
+    React.render(<Handler params={ state.params } />, document.getElementById('main'));
+});
 /*jshint ignore:end */

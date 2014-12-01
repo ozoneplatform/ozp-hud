@@ -3,7 +3,7 @@
 'use strict';
 
 var React = require('react');
-
+var { RouteHandler } = require('react-router');
 var Header = require('./header');
 var Library = require('./library');
 var EmptyLibrary = require('./library/EmptyLibrary');
@@ -44,7 +44,7 @@ var App = React.createClass({
                 </div>
                 <Settings />
                 <HelpModal />
-                <this.props.activeRouteHandler />
+                <RouteHandler params={ this.props.params } />
             </div>
         );
         /*jshint ignore:end */
