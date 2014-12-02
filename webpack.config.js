@@ -4,6 +4,7 @@ var webpack = require("webpack");
 var ENV = process.env.NODE_ENV || "development";
 var API_URL = process.env.API_URL || "https://localhost:8443/marketplace";
 var CENTER_URL = process.env.CENTER_URL || "http://localhost:8000/dist";
+var HELP_URL = process.env.HELP_URL || "assets/PlaceholderUserGuide.pdf";
 
 module.exports = {
     // This is the main file that should include all other JS files
@@ -48,7 +49,8 @@ module.exports = {
                 "NODE_ENV": JSON.stringify(ENV),
             },
             "API_URL": JSON.stringify(API_URL),
-            "CENTER_URL": JSON.stringify(CENTER_URL)
+            "CENTER_URL": JSON.stringify(CENTER_URL),
+            "HELP_URL": JSON.stringify(HELP_URL)
         }),
         new webpack.ProvidePlugin({
             $: "jquery",

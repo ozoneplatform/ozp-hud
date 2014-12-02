@@ -1,19 +1,37 @@
 'use strict';
 
 var React = require('react');
-require('bootstrap');
-
-var HELP_OPTIONS = 'Lorem ipsum dolor sit amet consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.';
-var HELP_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.';
-
-var helpPDF = 'assets/PlaceholderUserGuide.pdf';
 
 var HelpModal = React.createClass({
+
+    propTypes: {
+        onShown: React.PropTypes.func,
+        onHidden: React.PropTypes.func
+    },
+
+    componentDidMount: function() {
+        $(this.getDOMNode())
+            .one('shown.bs.modal', () => {
+                if (this.props.onShown) {
+                    this.props.onShown();
+                }
+            })
+            .one('hidden.bs.modal', () => {
+                if (this.props.onHidden) {
+                    this.props.onHidden();
+                }
+            })
+            .modal({
+                backdrop: 'static',
+                keyboard: false,
+                show: true
+            });
+    },
 
     render: function () {
         /*jshint ignore:start */
         return (
-            <div id="help-modal" className="modal custom fade" role="dialog" aria-hidden="true">
+            <div id="help-modal" className="modal fade" role="dialog" aria-hidden="true">
                 <div className="modal-dialog  modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -21,7 +39,7 @@ var HelpModal = React.createClass({
                                 <h4 className="modal-title">OZONE Help Zone</h4>
                         </div>
                         <div className="modal-body">
-                            <embed width="100%" height="500px" name="plugin" src={helpPDF} type="application/pdf"></embed>
+                            <iframe style={{width:"100%", height:"500px", border: 'none'}} src={HELP_URL} />
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,6 @@ var Header = require('./header');
 var Library = require('./library');
 var EmptyLibrary = require('./library/EmptyLibrary');
 var Settings = require('./settings');
-var HelpModal = require('./header/helpmodal.js');
 
 var LibraryActions = require('../actions/Library');
 var FolderLibraryStore = require('../store/FolderLibrary');
@@ -43,7 +42,6 @@ var App = React.createClass({
                     <Library store={FolderLibraryStore} emptyView={EmptyLibrary}/>
                 </div>
                 <Settings />
-                <HelpModal />
                 <RouteHandler params={ this.props.params } />
             </div>
         );

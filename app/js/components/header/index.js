@@ -2,13 +2,19 @@
 'use strict';
 
 var React = require('react');
-require('bootstrap');
 var logo  = './images/Swirl_LtBG_50x50.png';
 var appsMallLogo  = './images/AppsMall_Icon.png';
 var dashboard  = './images/DashboardIconStatic.png';
-var Alerts = require('../alerts/index.js');
+var Alerts = require('../alerts');
+var HelpModal = require('./helpmodal');
 
 var Header = React.createClass({
+
+    getInitialState: function() {
+        return {
+            showHelp: false
+        };
+    },
 
     render: function () {
         var user = 'J Smith';
@@ -62,16 +68,27 @@ var Header = React.createClass({
                                 </ul>
                             </li>
                             <li>
-                                <a className="nav-bar-button nav-bar-icon" href="#" data-toggle="modal" data-target="#help-modal">
+                                <a className="nav-bar-button nav-bar-icon" href="#" data-toggle="modal" onClick={this.showHelpModal}>
                                     <i className="fa fa-question-circle fa-2x" />
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
+                {
+                    this.state.showHelp && <HelpModal  onHidden={this.onModalHidden} />
+                }
             </nav>
         );
         /*jshint ignore:end */
+    },
+
+    showHelpModal: function () {
+        this.setState({ showHelp: true });
+    },
+
+    onModalHidden: function () {
+        this.setState({ showHelp: false });
     }
 
 });
