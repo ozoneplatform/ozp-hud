@@ -1,3 +1,16 @@
+### 0.4.2 (2015-01-07)
+
+
+#### Bug Fixes
+
+* **Folder:** Upgrade react router to fix Firefox % routing ([063f58fb](https://github.com/ozone-development/hud-ui.git/commit/063f58fbeb2a69a6c96c6793b0f58ccd6bf834c8))
+* **Links:** Make a variable for Webtop link ([1c5ccb9e](https://github.com/ozone-development/hud-ui.git/commit/1c5ccb9e275ae65d9761209919bd968c9855adf9))
+* **Navbar:** OZF-655 Fixed navbar color ([77bf2707](https://github.com/ozone-development/hud-ui.git/commit/77bf270769b6a0472ea432d710cc7bb55198b2a3))
+
+
+### 0.4.2 (2015-01-07)
+
+
 ### 0.4.1 (2014-12-24)
 
 
