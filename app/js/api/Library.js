@@ -29,7 +29,7 @@ module.exports.LibraryApi = {
         return $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: url + encodeURIComponent(listingId)
+            url: url + `/${encodeURIComponent(listingId)}`
         }).fail(function(response) {
             console.error('Error removing Listing with id ' + listingId + 'from library',
                     response.status, response.responseJSON || response.responseText);
