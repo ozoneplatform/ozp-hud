@@ -88,3 +88,24 @@ embed {
 @import 'alerts';
 @import 'modal';
 @import 'folder';
+
+/*=======================
+= Classification Banner =
+=======================*/
+
+@import "../../bower_components/ozp-classification/classification.css";
+
+body {
+    margin-top:20px;
+}
+
+body > div.classBanner:first-of-type {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+body > div.classBanner:last-of-type {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+}

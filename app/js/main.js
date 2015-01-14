@@ -1,5 +1,6 @@
 'use strict';
 
+require('bootstrap');
 var React = require('react');
 var Router = require('react-router');
 var { Route } = Router;
