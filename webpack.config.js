@@ -3,7 +3,7 @@ var webpack = require("webpack");
 
 var ENV = process.env.NODE_ENV || "development";
 var API_URL = process.env.API_URL || "https://localhost:8443/marketplace";
-var CENTER_URL = process.env.CENTER_URL || "http://localhost:8000/dist";
+var CENTER_URL = (process.env.CENTER_URL || "http://localhost:8000/dist") + '/#';
 var WEBTOP_URL = process.env.WEBTOP_URL || "http://localhost:9000/#/grid/sticky-0/0";
 var HELP_URL = process.env.HELP_URL || "assets/PlaceholderUserGuide.pdf";
 
