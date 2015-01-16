@@ -21,9 +21,9 @@ var Header = React.createClass({
                 <div className="container-fluid">
                     <div className="navbar-left">
                         <ul className="nav navbar-nav">
-                            <li><a className="lrg" href="#"><i className="icon-home"></i></a></li>
+                            <li className="active"><a className="lrg" href="#"><i className="icon-home"></i></a></li>
                             <li><a className="lrg" href={CENTER_URL}><i className="icon-shopping"></i></a></li>
-                            <li className="active"><a className="lrg" href={WEBTOP_URL}><i className="icon-layout"></i></a></li>
+                            <li><a className="lrg" href={WEBTOP_URL}><i className="icon-layout"></i></a></li>
                         </ul>
                     </div>
 
