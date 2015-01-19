@@ -2,11 +2,18 @@
 'use strict';
 
 var React = require('react');
+var Reflux = require('reflux');
 var Alerts = require('../alerts');
 var HelpModal = require('./helpmodal');
 var Alerts = require('../alerts');
 
+var ProfileStore = require('../../store/Profile');
+
+var Role = require('../../Constants').Role;
+
 var Header = React.createClass({
+
+    mixins: [Reflux.connect(ProfileStore, 'profile')],
 
     getInitialState: function() {
         return {
@@ -52,7 +59,10 @@ var Header = React.createClass({
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Manage</li>
                                     <li><a href={CENTER_URL + '/user-management/my-listings'}><i className="icon-layers"></i>Listing Management</a></li>
-                                    <li><a href={CENTER_URL + '/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
+                                    {
+                                        this.isAdmin() &&
+                                        <li><a href={CENTER_URL + '/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
+                                    }
                                     <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li>
                                     <li><a className="caboose" href="./logout.html"><i className="icon-arrow-right"></i>Logout</a></li>
                                 </ul>
@@ -66,6 +76,12 @@ var Header = React.createClass({
             </nav>
         );
         /*jshint ignore:end */
+    },
+
+    isAdmin: function() {
+        var profile = this.state.profile;
+
+        return this.state.profile && (Role[profile.highestRole] >= Role.APPSMALL_STEWARD);
     },
 
     showHelpModal: function () {
