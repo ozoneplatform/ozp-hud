@@ -37,13 +37,12 @@ var Header = React.createClass({
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
                             <li className="dropdown">
-                                <a href="#" data-toggle="dropdown"><i className="icon-bell-filled"></i></a>
+                                <a href="#" data-toggle="dropdown"><i className="icon-bell-filled active"></i></a>
                                 <Alerts />
                             </li>
                             <li>
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question"></i></a>
                             </li>
-                            <li className="navbar-spacer"></li>
                             <li className="dropdown">
                                 <a href="#" className="lrg" data-toggle="dropdown"><i className="icon-menu"></i></a>
                                 <ul className="dropdown-menu">
@@ -53,7 +52,6 @@ var Header = React.createClass({
                                     <li><a href="#"><i className="icon-cog"></i>Settings</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
-                                    <li><a href="#"><i className="icon-wrench"></i>Build a Dashboard</a></li>
                                     <li><a href={CENTER_URL + '/edit'}><i className="icon-square-plus"></i>Submit a Listing</a></li>
                                     <li><a href={DEVELOPER_RESOURCES_URL}><i className="icon-cloud"></i>Developer Resources</a></li>
                                     <li className="divider"></li>
@@ -64,7 +62,6 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
                                     }
                                     <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li>
-                                    <li><a className="caboose" href="./logout.html"><i className="icon-arrow-right"></i>Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
