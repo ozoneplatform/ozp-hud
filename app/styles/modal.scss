@@ -3,7 +3,7 @@
 }
 
 .modal-content {
-    background: #fff;
+    background: $body-bg;
     overflow: auto !important;
     height: 90%;
 }
@@ -27,7 +27,7 @@
 }
 
 .help-text {
-    background-color: grey !important;
+    background-color: $body-bg !important;
     border-color: white !important;
     border-style: solid;
     padding: 5px 5px 5px 5px;

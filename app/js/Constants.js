@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    appsMallLogo: './images/AppsMall_Icon.png',
+    mpLogo: './images/O3Marketplace_Logo_Dark_small.png',
 
     libraryEntryDataType: 'application/vnd.ozp-library-entry-v1+json',
     folderDataType: 'application/vnd.ozp-library-folder-v1+json',

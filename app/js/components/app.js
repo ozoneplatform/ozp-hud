@@ -38,7 +38,7 @@ var App = React.createClass({
             <div>
                 <Header />
                 <div className="FolderLibrary">
-                    <h3>Application Library</h3>
+                    <h1>Application Library</h1>
                     <Library store={FolderLibraryStore} emptyView={EmptyLibrary}/>
                 </div>
                 <Settings />
