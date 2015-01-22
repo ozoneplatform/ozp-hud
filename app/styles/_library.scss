@@ -86,7 +86,7 @@
     width: 120px;
 
     font-size: .8em;
-
+    font-weight: 300;
     background-color: $gray-base;
 
     border: 1px solid $gray-darkest;
@@ -108,7 +108,6 @@
         }
 
         &:hover > a {
-            color: $blue;
             border-color: $blue;
 
             text-decoration: none;
@@ -153,8 +152,8 @@
 .LibraryTile__actionMenu {
     position: absolute;
 
-    top: 2px;
-    right: 2px;
+    top: 1px;
+    right: 1px;
     z-index: 1;
 
     > input {
