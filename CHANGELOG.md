@@ -1,3 +1,22 @@
+## 0.5.0 (2015-01-22)
+
+
+#### Bug Fixes
+
+* **Library:** OZF-800 Selecting the Remove Bookmark on the listing does not actually remove th ([38d4012e](https://github.com/ozone-development/hud-ui.git/commit/38d4012e880744347043178660c4b58d5277baf4))
+* **Links:** Set Webtop link variable for ghpages ([b7f4f2a6](https://github.com/ozone-development/hud-ui.git/commit/b7f4f2a6b80ae76c5221873db479ffda92d6f2ed))
+* **User Menu:** OZF-832 Remove Marketplace Settings link for non-admins ([e621d3b7](https://github.com/ozone-development/hud-ui.git/commit/e621d3b762fcb748243f1050ec7233ec26f79554))
+
+
+#### Features
+
+* **Unified Toolbar:**
+  * Add config for Developer Resources and Metrics ([5bf87691](https://github.com/ozone-development/hud-ui.git/commit/5bf87691afddf0028cad97ef7cb39321c456791b))
+  * Set HUD icon to default ([b2c9346c](https://github.com/ozone-development/hud-ui.git/commit/b2c9346cf29c253a949fcf0471fc96aeab63f239))
+  * Links to Center are incorrect ([ef071946](https://github.com/ozone-development/hud-ui.git/commit/ef07194653b2ae2a7ce2707c8be5f43a65182784))
+  * Implement Unified Toolbar ([5bae2158](https://github.com/ozone-development/hud-ui.git/commit/5bae2158ece7f7425bcb78d10857571f29d053bf))
+
+
 ### 0.4.2 (2015-01-07)
 
 
@@ -6,9 +25,6 @@
 * **Folder:** Upgrade react router to fix Firefox % routing ([063f58fb](https://github.com/ozone-development/hud-ui.git/commit/063f58fbeb2a69a6c96c6793b0f58ccd6bf834c8))
 * **Links:** Make a variable for Webtop link ([1c5ccb9e](https://github.com/ozone-development/hud-ui.git/commit/1c5ccb9e275ae65d9761209919bd968c9855adf9))
 * **Navbar:** OZF-655 Fixed navbar color ([77bf2707](https://github.com/ozone-development/hud-ui.git/commit/77bf270769b6a0472ea432d710cc7bb55198b2a3))
-
-
-### 0.4.2 (2015-01-07)
 
 
 ### 0.4.1 (2014-12-24)
