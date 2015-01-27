@@ -4,6 +4,8 @@
 var React = require('react');
 var Constants = require('../../Constants');
 
+var { CENTER_URL } = require('../../OzoneConfig');
+
 var EmptyLibrary = React.createClass({
     render: function() {
         return (

@@ -11,6 +11,14 @@ var ProfileStore = require('../../store/Profile');
 
 var Role = require('../../Constants').Role;
 
+var {
+    CENTER_URL,
+    WEBTOP_URL,
+    DEVELOPER_RESOURCES_URL,
+    METRICS_URL,
+    HUD_URL
+} = require('../../OzoneConfig');
+
 var Header = React.createClass({
 
     mixins: [Reflux.connect(ProfileStore, 'profile')],

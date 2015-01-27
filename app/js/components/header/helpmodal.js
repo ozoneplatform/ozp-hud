@@ -2,6 +2,8 @@
 
 var React = require('react');
 
+var { HELP_URL } = require('../../OzoneConfig');
+
 var HelpModal = React.createClass({
 
     propTypes: {
