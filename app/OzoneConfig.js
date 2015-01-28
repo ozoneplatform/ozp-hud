@@ -19,7 +19,7 @@ window.OzoneConfig = {
     "HELP_URL": '/* @echo HELP_URL */',
     // @endif
     // @ifndef HELP_URL
-    "HELP_URL": "assets/PlaceholderUserGuide.pdf",
+    "HELP_URL": "https://localhost:8088/dist/assets/PlaceholderUserGuide.pdf",
     // @endif
     // @ifdef METRICS_URL
     "METRICS_URL": '/* @echo METRICS_URL */',
