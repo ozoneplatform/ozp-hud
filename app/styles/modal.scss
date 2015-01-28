@@ -3,7 +3,7 @@
 }
 
 .modal-content {
-    background: $body-bg;
+    background: $gray-dark;
     overflow: auto !important;
     height: 90%;
 }
@@ -15,11 +15,11 @@
 }
 
 .btn-close {
-    color: #666 !important;
+    color: $gray-lighter !important;
     opacity: 1;
     text-shadow:none;
     &:hover {
-        color:#000 !important;
+        color:$white !important;
     }
 }
 .close:hover {

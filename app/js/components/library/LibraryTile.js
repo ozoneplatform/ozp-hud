@@ -26,8 +26,9 @@ var ActionMenu = React.createClass({
                 <input ref="checkbox" type="checkbox" />
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
+                    <li><a href={listing.launchUrl} target="_blank">Open in new tab</a></li>
+                    <li><a href={techSupportHref} target="_blank">Get help</a></li>
                     <li><a onClick={removeBookmark}>Remove Bookmark</a></li>
-                    <li><a href={techSupportHref} target="_blank">Technical Support</a></li>
                 </ul>
             </label>
         );
