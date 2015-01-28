@@ -55,19 +55,19 @@ var Header = React.createClass({
                                 <a href="#" className="lrg" data-toggle="dropdown"><i className="icon-menu"></i></a>
                                 <ul className="dropdown-menu">
                                     <li className="dropdown-header">Personalize</li>
-                                    <li><a href={HUD_URL}><i className="icon-ribbon"></i>Bookmarks</a></li>
+                                    <li><a href='#'><i className="icon-ribbon"></i>Bookmarks</a></li>
                                     <li><a href="#"><i className="icon-head"></i>Profile</a></li>
                                     <li><a href="#"><i className="icon-cog"></i>Settings</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
-                                    <li><a href={CENTER_URL + '/edit'}><i className="icon-square-plus"></i>Submit a Listing</a></li>
+                                    <li><a href={CENTER_URL + '#/edit'}><i className="icon-square-plus"></i>Submit a Listing</a></li>
                                     <li><a href={DEVELOPER_RESOURCES_URL}><i className="icon-cloud"></i>Developer Resources</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Manage</li>
-                                    <li><a href={CENTER_URL + '/user-management/my-listings'}><i className="icon-layers"></i>Listing Management</a></li>
+                                    <li><a href={CENTER_URL + '#/user-management/my-listings'}><i className="icon-layers"></i>Listing Management</a></li>
                                     {
                                         this.isAdmin() &&
-                                        <li><a href={CENTER_URL + '/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
+                                        <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
                                     }
                                     <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li>
                                 </ul>
