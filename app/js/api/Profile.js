@@ -2,7 +2,7 @@
 
 var $ = require('jquery');
 
-var { API_URL } = require('../OzoneConfig');
+var { API_URL } = require('OzoneConfig');
 
 var selfUrl = API_URL + '/api/profile/self';
 

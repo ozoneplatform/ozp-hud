@@ -50,5 +50,8 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         })
-    ]
+    ],
+    externals: {
+        OzoneConfig: 'OzoneConfig'
+    }
 };

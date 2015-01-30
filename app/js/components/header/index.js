@@ -17,7 +17,7 @@ var {
     DEVELOPER_RESOURCES_URL,
     METRICS_URL,
     HUD_URL
-} = require('../../OzoneConfig');
+} = require('OzoneConfig');
 
 var Header = React.createClass({
 

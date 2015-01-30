@@ -9,7 +9,7 @@ var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
-var { CENTER_URL } = require('../../OzoneConfig');
+var { CENTER_URL } = require('OzoneConfig');
 
 var ActionMenu = React.createClass({
     render: function() {
