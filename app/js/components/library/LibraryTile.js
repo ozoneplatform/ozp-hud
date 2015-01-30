@@ -9,15 +9,14 @@ var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
-var { CENTER_URL } = require('OzoneConfig');
+var ListingDetailsLink = require('../ListingDetailsLink');
+
 
 var ActionMenu = React.createClass({
     render: function() {
         var entry = this.props.entry,
             listing = entry.listing,
-            removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry),
-            techSupportHref = CENTER_URL + '/#/home?listing=' +
-                encodeURIComponent(listing.id) + '&action=view&tab=resources';
+            removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry);
 
         /* jshint ignore:start */
         //use hidden checkbox to manage menu toggle state
@@ -27,7 +26,11 @@ var ActionMenu = React.createClass({
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
                     <li><a href={listing.launchUrl} target="_blank">Open in new tab</a></li>
-                    <li><a href={techSupportHref} target="_blank">Get help</a></li>
+                    <li>
+                        <ListingDetailsLink listingId={listing.id} tab="resources">
+                            Get help
+                        </ListingDetailsLink>
+                    </li>
                     <li><a onClick={removeBookmark}>Remove Bookmark</a></li>
                 </ul>
             </label>

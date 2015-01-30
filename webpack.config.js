@@ -21,21 +21,34 @@ module.exports = {
         alias: {
             react$: "react/addons",
             jquery$: "jquery/dist/jquery",
-            bootstrap$: "bootstrap-sass/assets/javascripts/bootstrap"
+            bootstrap$: "bootstrap-sass/assets/javascripts/bootstrap",
+            'ozp-react-commons': 'ozp-react-commons/app/js'
         },
         // Tell webpack to look for required files in bower and node
         modulesDirectories: ['bower_components', 'node_modules'],
     },
     module: {
         preLoaders: [
-            { test: /\.js$/, loader: "jshint-loader", exclude: /node_modules|bower_components|gulp|dist/ }
+            { test: /\.js$/, loader: "jshint-loader", exclude: /node_modules|bower_components|gulp|dist/ },
+            {
+                test: /\.js$/,
+                loader: "jshint-loader",
+                include: /node_modules\/ozp-react-commons/,
+                exclude: /node_modules\/ozp-react-commons\/node_modules/
+            }
         ],
         loaders: [
             { test: /\.css/, loader: "style-loader!css-loader" },
             { test: /\.gif/, loader: "url-loader?limit=10000&mimetype=image/gif" },
             { test: /\.jpg/, loader: "url-loader?limit=10000&mimetype=image/jpg" },
             { test: /\.png/, loader: "url-loader?limit=10000&mimetype=image/png" },
-            { test: /\.js$/, loader: "jsx-loader?harmony=true&insertPragma=React.DOM" }
+            { test: /\.js$/, loader: "jsx-loader?harmony=true&insertPragma=React.DOM", exclude: /node_modules|bower_components|gulp|dist/ },
+            {
+                test: /\.jsx?$/,
+                loader: "jsx-loader?harmony=true&insertPragma=React.DOM",
+                include: /node_modules\/ozp-react-commons/,
+                exclude: /node_modules\/ozp-react-commons\/node_modules/
+            }
         ],
         noParse: /\.min\.js/
     },

@@ -2,16 +2,16 @@
 
 var Reflux = require('reflux');
 
-var ProfileApi = require('../api/Profile').ProfileApi;
+var SelfApi = require('../api/Self').SelfApi;
 
-var ProfileStore = Reflux.createStore({
+var SelfStore = Reflux.createStore({
 
     currentProfile: null,
 
     init: function() {
         var me = this;
 
-        ProfileApi.fetchSelf().then(function(profile) {
+        SelfApi.fetchSelf().then(function(profile) {
             me.currentProfile = profile;
 
             me.trigger(profile);
@@ -23,4 +23,4 @@ var ProfileStore = Reflux.createStore({
     }
 });
 
-module.exports = ProfileStore;
+module.exports = SelfStore;
