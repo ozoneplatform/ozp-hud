@@ -8,7 +8,12 @@ var ListingDetailsLink = require('../ListingDetailsLink');
 var CurrentProfileWindow = React.createClass({
     render: function() {
         /*jshint ignore:start */
-        return <ProfileWindow listingLinkEl={ListingDetailsLink} profileId="self" />;
+        return (
+            <ProfileWindow
+                listingLinkEl={ListingDetailsLink}
+                profileId="self"
+                backRoute="/"/>
+        );
         /*jshint ignore:end */
     }
 });
