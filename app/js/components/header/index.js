@@ -6,8 +6,9 @@ var Reflux = require('reflux');
 var Alerts = require('../alerts');
 var HelpModal = require('./helpmodal');
 var Alerts = require('../alerts');
+var { Link } = require('react-router');
 
-var ProfileStore = require('../../store/Profile');
+var SelfStore = require('../../store/Self');
 
 var Role = require('../../Constants').Role;
 
@@ -21,7 +22,7 @@ var {
 
 var Header = React.createClass({
 
-    mixins: [Reflux.connect(ProfileStore, 'profile')],
+    mixins: [Reflux.connect(SelfStore, 'profile')],
 
     getInitialState: function() {
         return {
@@ -56,7 +57,11 @@ var Header = React.createClass({
                                 <ul className="dropdown-menu">
                                     <li className="dropdown-header">Personalize</li>
                                     <li><a href='#'><i className="icon-ribbon"></i>Bookmarks</a></li>
-                                    <li><a href="#"><i className="icon-head"></i>Profile</a></li>
+                                    <li>
+                                        <Link to="profile">
+                                            <i className="icon-head"/>Profile
+                                        </Link>
+                                    </li>
                                     <li><a href="#"><i className="icon-cog"></i>Settings</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>

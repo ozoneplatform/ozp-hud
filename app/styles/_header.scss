@@ -22,22 +22,22 @@
   & li:hover, & li:hover, & ul.dropdown-menu > li > a:hover{
     border-left-color: $blue !important;
   }
-  
+
   & a:hover, & a:focus{
     border-top-color: $blue !important;
   }
-  
+
   & > .open > a {
-    
+
     background-color: $gray-darker !important;
     border-top: 4px solid $blue !important;
     color: $blue !important;
-    
+
     &:hover, &:focus {
       background-color: $gray-darker !important;
       border-top: 4px solid $blue !important;
       color: $blue !important;
     }
-    
+
   }
 }

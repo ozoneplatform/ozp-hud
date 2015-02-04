@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass#72e5334b01d74f789e8fb89ce0aa73c2575342eb",
+    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#v0.1.1",
     "gulp-preprocess": "^1.2.0",
     "immutable": "^3.0.2",
     "react": "^0.12.1",

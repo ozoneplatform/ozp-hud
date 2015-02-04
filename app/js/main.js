@@ -6,6 +6,7 @@ var Router = require('react-router');
 var { Route } = Router;
 
 var FolderModal = require('./components/folder/FolderModal');
+var CurrentProfileWindow = require('./components/header/CurrentProfileWindow');
 
 var $ = require('jquery');
 
@@ -26,6 +27,7 @@ window.jQuery = $;
 var Routes = (
     <Route name="main" path="/" handler={App}>
         <Route name="folder" path="folder/:name" handler={FolderModal} />
+        <Route name="profile" path="profile" handler={CurrentProfileWindow} />
     </Route>
 );
 

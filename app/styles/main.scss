@@ -3,6 +3,7 @@ $icon-font-path: "../../bower_components/font-awesome/fonts/";
 @import "../../bower_components/ubuntu-fontface/_ubuntu-base.scss";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-dark.scss";
 @import "../../bower_components/font-awesome/scss/font-awesome.scss";
+@import "../../node_modules/ozp-react-commons/app/styles/commons.scss";
 
 html, body {
     background: $body-bg;
@@ -89,6 +90,13 @@ embed {
       color: #eeeeef;
       margin-right: 35px;
     }
+}
+
+.close {
+    font-size: 3em;
+    font-weight: lighter;
+    top: 0;
+    margin-top: -10px;
 }
 
 @import 'variables';
