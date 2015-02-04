@@ -89,8 +89,6 @@
     font-weight: 300;
     background-color: $gray-base;
 
-    border: 1px solid $gray-darkest;
-
     > li {
         $spacing: 5px;
 
@@ -98,7 +96,7 @@
         padding-bottom: $spacing;
 
         > a {
-            color: inherit;
+            color: $gray-lighter;
             border-left: 3px solid transparent;
 
             padding-left: $spacing;
@@ -109,7 +107,7 @@
 
         &:hover > a {
             border-color: $blue;
-
+            color:$white;
             text-decoration: none;
         }
     }
@@ -124,8 +122,9 @@
     text-align: center;
 
     background-color: $gray-base;
+    color: $gray-lighter;
     font-size: 1.3em;
-    border: 1px solid $gray-darkest;
+    border-top: 3px solid transparent;
 
     position: relative;
     margin-right: 0;
@@ -140,18 +139,24 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
+    
+    
     &::before {
         position: absolute;
         width: 25px;
         height: 20px;
         left: -1px;
+        top: -2px;
+    }
+    
+    &:hover{
+      border-top: 3px solid $blue;
+      color: $white;
     }
 }
 
 .LibraryTile__actionMenu {
     position: absolute;
-
     top: 1px;
     right: 1px;
     z-index: 1;
@@ -173,7 +178,6 @@
     }
 }
 
-.LibraryTile__actionMenuButton:hover,
 .LibraryTile__actionMenu > input:checked + .LibraryTile__actionMenuButton {
     border-top: 3px solid $blue;
 

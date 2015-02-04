@@ -22,6 +22,16 @@ html, body {
     box-shadow: 0 0 3px rgba(0, 0, 0, .1);
 }
 
+h1 {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-size: ceil($font-size-base * 1.75);
+}
+
+.activeIcon {
+  color: $blue !important;
+}
+
 @media (max-width: 1023px) and (min-width: 800px) {
     #main {
         width: 800px !important;
