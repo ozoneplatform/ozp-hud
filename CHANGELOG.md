@@ -1,3 +1,11 @@
+## 0.6.0 (2015-02-04)
+
+
+#### Bug Fixes
+
+* **Global Navbar:** OZF-894 The links in the Global Navbar are incorrect ([8d952165](https://github.com/ozone-development/hud-ui.git/commit/8d9521655f0211388547082f78713c399ebd86de))
+
+
 ## 0.5.0 (2015-01-22)
 
 
