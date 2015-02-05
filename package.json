@@ -60,7 +60,7 @@
     "url": "https://spdx.org/licenses/Apache-2.0"
   },
   "dependencies": {
-    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass#be93007239beb3c966686ea8448ac4191d848060",
+    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass#f7af9424caf977e0880273c837cc40bf979b9101",
     "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#v0.1.1",
     "gulp-preprocess": "^1.2.0",
     "immutable": "^3.0.2",
