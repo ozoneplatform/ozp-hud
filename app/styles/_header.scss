@@ -9,8 +9,23 @@
   border-top: 4px solid $blue !important;
 }
 
+.container-fluid {
+  max-width: 1500px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .dropdown-header {
   font-weight: 500 !important;
+}
+
+.navbar-left {
+  margin-left: 5px !important;
+}
+
+.navbar-right {
+  right: 0px !important;
+  margin-right: 65px !important;
 }
 
 .navbar-default .navbar-nav

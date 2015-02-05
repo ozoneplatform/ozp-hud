@@ -37,7 +37,7 @@ var HelpModal = React.createClass({
                 <div className="modal-dialog  modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true"><i className="icon-cross"></i></span><span className="sr-only">Close</span></button>
                                 <h4 className="modal-title">OZONE Help Zone</h4>
                         </div>
                         <div className="modal-body">

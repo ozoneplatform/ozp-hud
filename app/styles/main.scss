@@ -17,10 +17,11 @@ html, body {
     min-height: 100%;
     height: auto !important;
     width: 100% !important;
+    max-width: 1500px !important;
 
-    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .1);
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .1);
-    box-shadow: 0 0 3px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
+    -webkit-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
+    box-shadow: 0 0 3px rgba(25, 31, 37, .1);
 }
 
 h1 {
@@ -50,7 +51,7 @@ embed {
 }
 
 .close {
-    font-size: 3em;
+    font-size: 2em;
     font-weight: lighter;
     top: 0;
     margin-top: -10px;
