@@ -14,6 +14,12 @@
     height: 450px;
 }
 
+.modal-header .close {
+  margin-top: -10px !important;
+  margin-right: -8px !important;
+  font-size: 200%;
+}
+
 .btn-close {
     color: $gray-lighter !important;
     opacity: 1;
@@ -22,9 +28,10 @@
         color:$white !important;
     }
 }
-.close:hover {
+.close:hover, .close:focus {
     opacity:1;
 }
+
 
 .help-text {
     background-color: $body-bg !important;
