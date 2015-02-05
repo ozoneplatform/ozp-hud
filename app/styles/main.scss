@@ -49,49 +49,6 @@ embed {
     height: 40px;
     margin: 0 9px;
 }
-#login-page{
-
-    .login-logo{
-        height: 237px;
-        width: 320px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 30px;
-
-    }
-
-    form{
-        color: white;
-        width: 300px;
-        margin: 0 auto;
-        font-size: 14px;
-    }
-    label{
-        font-size: 14px;
-        height: auto;
-        width: auto;
-    }
-    .login-btn{
-        width: 275px;
-        height: 30px;
-        background-color: #1A71A6;
-        border-color: white;
-        margin: 7px;
-    }
-    .login-text-field{
-        width: 200px;
-        height: 25px;
-        margin: 7px;
-        background-color: #313836;
-        border-style: none;
-    }
-    .logout-text{
-      text-align: center;
-      color: $gray-lightest;
-      margin-right: 35px;
-    }
-}
 
 .close {
     font-size: 2em;
