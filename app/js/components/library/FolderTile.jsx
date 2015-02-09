@@ -11,7 +11,7 @@ var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var LibraryActions = require('../../actions/Library');
 
-var FolderTitle = require('../folder/FolderTitle');
+var FolderTitle = require('../folder/FolderTitle.jsx');
 
 var FolderTile = React.createClass({
 

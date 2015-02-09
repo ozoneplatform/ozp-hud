@@ -2,8 +2,8 @@
 
 var React = require('react');
 
-var ProfileWindow = require('ozp-react-commons/components/profile/ProfileWindow');
-var ListingDetailsLink = require('../ListingDetailsLink');
+var ProfileWindow = require('ozp-react-commons/components/profile/ProfileWindow.jsx');
+var ListingDetailsLink = require('../ListingDetailsLink.jsx');
 
 var CurrentProfileWindow = React.createClass({
     render: function() {

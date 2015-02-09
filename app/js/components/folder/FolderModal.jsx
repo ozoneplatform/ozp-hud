@@ -9,7 +9,7 @@ var Router = require('react-router');
 var Link = Router.Link;
 var Navigation = Router.Navigation;
 
-var Library = require('../library');
+var Library = require('../library/index.jsx');
 var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
@@ -17,7 +17,7 @@ var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var Folder = require('../../api/Folder');
 
-var FolderTitle = require('./FolderTitle');
+var FolderTitle = require('./FolderTitle.jsx');
 
 //the classname of the element on which a drag out of the folder would drop.
 //This has been known to change from version to version of bootstrap.

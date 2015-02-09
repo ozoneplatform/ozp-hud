@@ -4,10 +4,10 @@
 
 var React = require('react');
 var { RouteHandler } = require('react-router');
-var Header = require('./header');
-var Library = require('./library');
-var EmptyLibrary = require('./library/EmptyLibrary');
-var Settings = require('./settings');
+var Header = require('./header/index.jsx');
+var Library = require('./library/index.jsx');
+var EmptyLibrary = require('./library/EmptyLibrary.jsx');
+var Settings = require('./settings/index.jsx');
 
 var LibraryActions = require('../actions/Library');
 var FolderLibraryStore = require('../store/FolderLibrary');

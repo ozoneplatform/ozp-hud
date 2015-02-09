@@ -9,7 +9,7 @@ var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
-var ListingDetailsLink = require('../ListingDetailsLink');
+var ListingDetailsLink = require('../ListingDetailsLink.jsx');
 
 
 var ActionMenu = React.createClass({

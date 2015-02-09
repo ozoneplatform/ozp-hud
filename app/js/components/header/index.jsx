@@ -3,9 +3,8 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var Alerts = require('../alerts');
-var HelpModal = require('./helpmodal');
-var Alerts = require('../alerts');
+var Alerts = require('../alerts/index.jsx');
+var HelpModal = require('./helpmodal.jsx');
 var { Link } = require('react-router');
 
 var SelfStore = require('../../store/Self');
@@ -90,7 +89,7 @@ var Header = React.createClass({
         );
         /*jshint ignore:end */
     },
-    
+
     isOrgSteward: function(){
         var profile = this.state.profile;
 

@@ -7,9 +7,9 @@ var Immutable = require('immutable');
 
 var LibraryActions = require('../../actions/Library');
 
-var LibraryTile = require('./LibraryTile');
-var FolderTile = require('./FolderTile');
-var LibraryItem = require('./LibraryItem');
+var LibraryTile = require('./LibraryTile.jsx');
+var FolderTile = require('./FolderTile.jsx');
+var LibraryItem = require('./LibraryItem.jsx');
 var Folder = require('../../api/Folder');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 

@@ -5,8 +5,8 @@ var React = require('react');
 var Router = require('react-router');
 var { Route } = Router;
 
-var FolderModal = require('./components/folder/FolderModal');
-var CurrentProfileWindow = require('./components/header/CurrentProfileWindow');
+var FolderModal = require('./components/folder/FolderModal.jsx');
+var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
 
 var $ = require('jquery');
 
@@ -16,7 +16,7 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     };
 });
 
-var App = require('./components/app');
+var App = require('./components/app.jsx');
 
 // Enable React developer tools
 window.React = React;
