@@ -32,6 +32,9 @@ var Header = React.createClass({
 
     render: function () {
         /*jshint ignore:start */
+        var Metrics = (this.isAdmin() || this.isOrgSteward()) ?
+            <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li> : '';
+
         return (
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
@@ -74,7 +77,7 @@ var Header = React.createClass({
                                         this.isAdmin() &&
                                         <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
                                     }
-                                    <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li>
+                                    { Metrics }
                                 </ul>
                             </li>
                         </ul>
@@ -86,6 +89,12 @@ var Header = React.createClass({
             </nav>
         );
         /*jshint ignore:end */
+    },
+    
+    isOrgSteward: function(){
+        var profile = this.state.profile;
+
+        return this.state.profile && (Role[profile.highestRole] >= Role.ORG_STEWARD);
     },
 
     isAdmin: function() {
