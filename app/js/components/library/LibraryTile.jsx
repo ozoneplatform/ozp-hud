@@ -1,6 +1,3 @@
-/**
- * @jsx React.DOM
- */
 'use strict';
 
 var React = require('react');
@@ -10,6 +7,7 @@ var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var ListingDetailsLink = require('../ListingDetailsLink.jsx');
+var LaunchLink = require('ozp-react-commons/components/LaunchLink.jsx');
 
 
 var ActionMenu = React.createClass({
@@ -18,7 +16,6 @@ var ActionMenu = React.createClass({
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry);
 
-        /* jshint ignore:start */
         //use hidden checkbox to manage menu toggle state
         return (
             <label className="LibraryTile__actionMenu">
@@ -35,7 +32,6 @@ var ActionMenu = React.createClass({
                 </ul>
             </label>
         );
-        /* jshint ignore:end */
     }
 });
 
@@ -89,21 +85,19 @@ var LibraryTile = React.createClass({
             });
 
 
-        /* jshint ignore:start */
         return (
             <div className={classes} data-listing-id={listing.id}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
-                <a href={listing.launchUrl} target="_blank" draggable="false">
+                <LaunchLink listing={listing} newTab={false} draggable="false">
                     <img ref="banner" draggable="false" className="LibraryTile__img"
                         src={listing.imageLargeUrl} />
-                </a>
+                </LaunchLink>
                 <h5>{listing.title}</h5>
             </div>
         );
-        /* jshint ignore:end */
     }
 });
 
