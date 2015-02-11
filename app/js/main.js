@@ -9,6 +9,9 @@ var { Route } = Router;
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
+var HudSettingsWindow = require('./components/HudSettingsWindow.jsx');
+
+var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
 var $ = require('jquery');
 
@@ -25,15 +28,16 @@ window.React = React;
 window.$ = $;
 window.jQuery = $;
 
-/*jshint ignore:start */
 var Routes = (
     <Route name="main" path="/" handler={App}>
         <Route name="folder" path="folder/:name" handler={FolderModal} />
         <Route name="profile" path="profile" handler={CurrentProfileWindow} />
+        <Route name="settings" path="settings" handler={HudSettingsWindow} />
     </Route>
 );
 
 Router.run(Routes, function (Handler, state) {
     React.render(<Handler params={ state.params } />, document.getElementById('main'));
 });
-/*jshint ignore:end */
+
+ProfileActions.fetchSelf();

@@ -64,7 +64,11 @@ var Header = React.createClass({
                                             <i className="icon-head"/>Profile
                                         </Link>
                                     </li>
-                                    <li><a href="#"><i className="icon-cog"></i>Settings</a></li>
+                                    <li>
+                                        <Link to="settings">
+                                            <i className="icon-cog"></i>Settings
+                                        </Link>
+                                    </li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
                                     <li><a href={CENTER_URL + '#/edit'}><i className="icon-square-plus"></i>Submit a Listing</a></li>
