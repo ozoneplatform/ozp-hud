@@ -1,5 +1,7 @@
 'use strict';
 
+window.Object.assign = require('object-assign');
+
 require('bootstrap');
 var React = require('react');
 var Router = require('react-router');
