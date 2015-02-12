@@ -109,7 +109,6 @@ var FolderTitle = React.createClass({
                 error: !!this.state.error
             });
 
-        /* jshint ignore:start */
         return (
             <div className={classes}>
                 <span className="small validation-err-msg">{this.state.error}</span>
@@ -125,7 +124,6 @@ var FolderTitle = React.createClass({
                 )}
             </div>
         );
-        /* jshint ignore:end */
     }
 });
 

@@ -31,7 +31,6 @@ var HelpModal = React.createClass({
     },
 
     render: function () {
-        /*jshint ignore:start */
         return (
             <div id="help-modal" className="modal fade" role="dialog" aria-hidden="true">
                 <div className="modal-dialog  modal-lg">
@@ -47,7 +46,6 @@ var HelpModal = React.createClass({
                 </div>
             </div>
         );
-        /*jshint ignore:end */
     }
 
 });

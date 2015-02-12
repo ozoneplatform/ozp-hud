@@ -5,7 +5,6 @@ var React = require('react');
 var Alerts = React.createClass({
 
     render: function () {
-        /*jshint ignore:start */
         return (
             <ul className="dropdown-menu">
                 <li>
@@ -33,7 +32,6 @@ var Alerts = React.createClass({
                 </li>
             </ul>
         );
-        /*jshint ignore:end */
     }
 
 });

@@ -1,7 +1,5 @@
 'use strict';
 
-var $ = require('jquery');
-
 var Constants = require('../Constants');
 
 var ieDragAndDrop = !('draggable' in document.createElement('span'));

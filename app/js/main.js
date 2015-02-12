@@ -15,7 +15,7 @@ var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
 var $ = require('jquery');
 
-$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+$.ajaxPrefilter(function(options) {
     options.xhrFields = {
         withCredentials: true
     };

@@ -6,7 +6,6 @@ var React = require('react');
 var Settings = React.createClass({
 
     render: function () {
-        /*jshint ignore:start */
         return (
             <div className="modal custom fade settings-modal-lg" role="dialog" aria-hidden="true">
                 <div className="modal-dialog settings-modal">
@@ -64,7 +63,6 @@ var Settings = React.createClass({
                 </div>
             </div>
         );
-        /*jshint ignore:end */
     }
 
 });

@@ -9,7 +9,6 @@ var { CENTER_URL } = require('OzoneConfig');
 var EmptyLibrary = React.createClass({
     render: function() {
         return (
-            /* jshint ignore:start */
             <div className="FolderLibrary__empty">
                 <h2>You have no bookmarked apps to display</h2>
                 <h4>Visit Marketplace to discover new apps that you can start using.</h4>
@@ -17,7 +16,6 @@ var EmptyLibrary = React.createClass({
                     <img src={Constants.mpLogo} alt="Marketplace"/>
                 </a>
             </div>
-            /* jshint ignore:end */
         );
     }
 });

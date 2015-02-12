@@ -62,15 +62,12 @@ var FolderTile = React.createClass({
             entryIcons = folder.entries.map(function(entry) {
                 var src = entry.listing.imageMediumUrl;
 
-                /* jshint ignore:start */
                 return <img key={entry.listing.id} src={src} draggable="false" />;
-                /* jshint ignore:end */
             }),
 
             //react-router doesn't handle special characters correctly so we must escape them ourselves
             nameParam = encodeURIComponent(folder.name);
 
-        /* jshint ignore:start */
         return (
             <div className={classes} data-folder-name={folder.name}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
@@ -83,7 +80,6 @@ var FolderTile = React.createClass({
                 <FolderTitle name={folder.name} element={React.DOM.h5}/>
             </div>
         );
-        /* jshint ignore:end */
     }
 });
 

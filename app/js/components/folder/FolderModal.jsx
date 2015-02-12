@@ -108,7 +108,6 @@ var FolderModal = React.createClass({
         //undo the manual escaping of slashes that we must do because react-router doesn't
         var folderName = decodeURIComponent(this.props.params.name);
 
-        /* jshint ignore:start */
         return (
             <div className="modal FolderModal" data-show="true"
                     onDragEnter={this.onDragOver} onDragOver={this.onDragOver}
@@ -129,7 +128,6 @@ var FolderModal = React.createClass({
                 </div>
             </div>
         );
-        /* jshint ignore:end */
     }
 });
 

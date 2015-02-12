@@ -26,13 +26,11 @@ var ListingDetailsLink = React.createClass({
     render: function() {
         var uri = this.getURI();
 
-        /*jshint ignore:start */
         return (
             <a className={this.props.className} href={uri}>
                 {this.props.children}
             </a>
         );
-        /*jshint ignore:end */
     }
 });
 
