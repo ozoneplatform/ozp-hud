@@ -7,7 +7,6 @@ var DragAndDropUtils = require('../../util/DragAndDrop');
 var Constants = require('../../Constants');
 
 var LibraryActions = require('../../actions/Library');
-var FolderLibraryStore = require('../../store/FolderLibrary');
 
 /**
  * A separator for use as a drop target for reordering listings. This should be inserted between
@@ -55,14 +54,12 @@ var DropSeparator = React.createClass({
             'drag-hover': this.state.dropHighlight
         });
 
-        /* jshint ignore:start */
         return (
             <span className={classes}
                 onDragEnter={this.onDrag} onDragOver={this.onDrag}
                 onDragLeave={this.onDragLeave}
                 onDrop={this.onDrop} />
         );
-        /* jshint ignore:end */
     }
 });
 
@@ -80,13 +77,11 @@ var LibraryItem = React.createClass({
             next = this.props.next;
 
         return (
-            /* jshint ignore:start */
             <li className="LibraryTiles__item">
                 <DropSeparator store={store} prev={prev} next={curr}/>
                 {this.props.children}
                 <DropSeparator store={store} prev={curr} next={next}/>
             </li>
-            /* jshint ignore:end */
         );
     }
 });

@@ -33,7 +33,6 @@ var App = React.createClass({
     },
 
     render: function () {
-        /*jshint ignore:start */
         return (
             <div>
                 <Header />
@@ -45,7 +44,6 @@ var App = React.createClass({
                 <RouteHandler params={ this.props.params } />
             </div>
         );
-        /*jshint ignore:end */
     }
 });
 

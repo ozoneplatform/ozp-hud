@@ -1,6 +1,3 @@
-/**
- * @jsx React.DOM
- */
 'use strict';
 
 var React = require('react');
@@ -10,6 +7,9 @@ var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var ListingDetailsLink = require('../ListingDetailsLink.jsx');
+var WebtopLaunchLink = require('ozp-react-commons/components/WebtopLaunchLink.jsx');
+var TabLaunchLink = require('ozp-react-commons/components/TabLaunchLink.jsx');
+var LaunchLink = require('ozp-react-commons/components/LaunchLink.jsx');
 
 
 var ActionMenu = React.createClass({
@@ -18,14 +18,22 @@ var ActionMenu = React.createClass({
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry);
 
-        /* jshint ignore:start */
         //use hidden checkbox to manage menu toggle state
         return (
             <label className="LibraryTile__actionMenu">
                 <input ref="checkbox" type="checkbox" />
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
-                    <li><a href={listing.launchUrl} target="_blank">Open in new tab</a></li>
+                    <li>
+                        <WebtopLaunchLink listing={listing} newTab={false}>
+                            Launch in Webtop
+                        </WebtopLaunchLink>
+                    </li>
+                    <li>
+                        <TabLaunchLink listing={listing} newTab={true}>
+                            Launch in new tab
+                        </TabLaunchLink>
+                    </li>
                     <li>
                         <ListingDetailsLink listingId={listing.id} tab="resources">
                             Get help
@@ -35,7 +43,6 @@ var ActionMenu = React.createClass({
                 </ul>
             </label>
         );
-        /* jshint ignore:end */
     }
 });
 
@@ -86,24 +93,26 @@ var LibraryTile = React.createClass({
             classes = React.addons.classSet({
                 LibraryTile: true,
                 'drag-hover': this.state.dropHighlight
-            });
+            }),
+            newTabSpec = {
+                webtop: false,
+                tab: true
+            };
 
 
-        /* jshint ignore:start */
         return (
             <div className={classes} data-listing-id={listing.id}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
-                <a href={listing.launchUrl} target="_blank" draggable="false">
+                <LaunchLink listing={listing} newTab={newTabSpec} draggable="false">
                     <img ref="banner" draggable="false" className="LibraryTile__img"
                         src={listing.imageLargeUrl} />
-                </a>
+                </LaunchLink>
                 <h5>{listing.title}</h5>
             </div>
         );
-        /* jshint ignore:end */
     }
 });
 

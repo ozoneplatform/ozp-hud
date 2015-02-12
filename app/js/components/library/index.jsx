@@ -5,19 +5,15 @@ var React = require('react');
 var Reflux = require('reflux');
 var Immutable = require('immutable');
 
-var LibraryActions = require('../../actions/Library');
 
 var LibraryTile = require('./LibraryTile.jsx');
 var FolderTile = require('./FolderTile.jsx');
 var LibraryItem = require('./LibraryItem.jsx');
 var Folder = require('../../api/Folder');
-var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var DefaultEmptyView = React.createClass({
     render: function() {
-        /* jshint ignore:start */
         return <span>Empty</span>;
-        /* jshint ignore:end */
     }
 });
 
@@ -68,7 +64,6 @@ var Library = React.createClass({
                         store = me.props.store,
                         tile;
 
-                    /* jshint ignore:start */
                     tile = curr instanceof Folder ?
                         <FolderTile store={store} key={'folder-' + curr.name} folder={curr} /> :
                         <LibraryTile store={store}
@@ -81,24 +76,19 @@ var Library = React.createClass({
                             {tile}
                         </LibraryItem>
                     );
-                    /* jshint ignore:end */
                 });
 
         if (elements.size) {
-            /* jshint ignore:start */
             return (
                 <ol className="LibraryTiles">
                     {elements.toArray()}
                 </ol>
             );
-            /* jshint ignore:end */
         }
         else {
-            /* jshint ignore:start */
             return (
                 <this.props.emptyView />
             );
-            /* jshint ignore:end */
         }
     }
 });

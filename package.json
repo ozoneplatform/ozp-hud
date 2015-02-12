@@ -52,7 +52,7 @@
     "react-hot-loader": "0.5.0",
     "script-loader": "0.6.0",
     "url-loader": "0.5.5",
-    "webpack": "1.4.8",
+    "webpack": "1.5.3",
     "webpack-dev-server": "1.6.5"
   },
   "licenses": {
@@ -61,11 +61,13 @@
   },
   "dependencies": {
     "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass#f7af9424caf977e0880273c837cc40bf979b9101",
-    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#master",
     "gulp-preprocess": "1.2.0",
     "immutable": "3.0.2",
+    "object-assign": "^1.0.0",
+    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#master",
     "react": "0.12.2",
     "react-router": "0.11.6",
-    "reflux": "0.1.15"
+    "reflux": "0.1.15",
+    "object-assign": "1.0.0"
   }
 }
