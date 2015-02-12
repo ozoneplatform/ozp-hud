@@ -7,7 +7,7 @@ var Alerts = require('../alerts/index.jsx');
 var HelpModal = require('./helpmodal.jsx');
 var { Link } = require('react-router');
 
-var SelfStore = require('../../store/Self');
+var SelfStore = require('ozp-react-commons/stores/SelfStore');
 
 var Role = require('../../Constants').Role;
 
@@ -21,17 +21,23 @@ var {
 
 var Header = React.createClass({
 
-    mixins: [Reflux.connect(SelfStore, 'profile')],
+    mixins: [Reflux.listenTo(SelfStore, 'onStoreChange')],
 
     getInitialState: function() {
         return {
-            showHelp: false
+            showHelp: false,
+            profile: SelfStore.getDefaultData().currentUser
         };
     },
 
+    onStoreChange: function(profileData) {
+        this.setState({profile: profileData.currentUser});
+    },
+
     render: function () {
-        /*jshint ignore:start */
-        var Metrics = (this.isAdmin() || this.isOrgSteward()) ?
+        var profile = this.state.profile,
+            isAdmin = profile && profile.isAdmin(),
+            Metrics = (profile && (isAdmin || this.isOrgSteward())) ?
             <li><a href={METRICS_URL}><i className="icon-bar-graph-2"></i>Metrics</a></li> : '';
 
         return (
@@ -77,7 +83,7 @@ var Header = React.createClass({
                                     <li className="dropdown-header">Manage</li>
                                     <li><a href={CENTER_URL + '#/user-management/my-listings'}><i className="icon-layers"></i>Listing Management</a></li>
                                     {
-                                        this.isAdmin() &&
+                                        isAdmin &&
                                         <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings"></i>Marketplace Settings</a></li>
                                     }
                                     { Metrics }
@@ -91,19 +97,12 @@ var Header = React.createClass({
                 }
             </nav>
         );
-        /*jshint ignore:end */
     },
 
     isOrgSteward: function(){
         var profile = this.state.profile;
 
         return this.state.profile && (Role[profile.highestRole] >= Role.ORG_STEWARD);
-    },
-
-    isAdmin: function() {
-        var profile = this.state.profile;
-
-        return this.state.profile && (Role[profile.highestRole] >= Role.APPSMALL_STEWARD);
     },
 
     showHelpModal: function () {
@@ -113,7 +112,6 @@ var Header = React.createClass({
     onModalHidden: function () {
         this.setState({ showHelp: false });
     }
-
 });
 
 module.exports = Header;

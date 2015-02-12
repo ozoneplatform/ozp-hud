@@ -10,12 +10,9 @@ var LibraryApi  = require('../api/Library').LibraryApi;
  */
 var LibraryStore = Reflux.createStore({
     //the actual object storing the library records
-    library: null,
+    library: Immutable.List(),
 
-    init: function() {
-        this.library = Immutable.List();
-        this.listenToMany(LibraryActions);
-    },
+    listenables: LibraryActions,
 
     updateLibrary: function(entries) {
         this.library = Immutable.List(entries.map(function(e) {
