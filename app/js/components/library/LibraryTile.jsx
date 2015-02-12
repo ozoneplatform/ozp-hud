@@ -82,7 +82,11 @@ var LibraryTile = React.createClass({
             classes = React.addons.classSet({
                 LibraryTile: true,
                 'drag-hover': this.state.dropHighlight
-            });
+            }),
+            newTabSpec = {
+                webtop: false,
+                tab: true
+            };
 
 
         return (
@@ -91,7 +95,7 @@ var LibraryTile = React.createClass({
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
-                <LaunchLink listing={listing} newTab={false} draggable="false">
+                <LaunchLink listing={listing} newTab={newTabSpec} draggable="false">
                     <img ref="banner" draggable="false" className="LibraryTile__img"
                         src={listing.imageLargeUrl} />
                 </LaunchLink>
