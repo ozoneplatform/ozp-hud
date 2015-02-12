@@ -7,6 +7,8 @@ var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var ListingDetailsLink = require('../ListingDetailsLink.jsx');
+var WebtopLaunchLink = require('ozp-react-commons/components/WebtopLaunchLink.jsx');
+var TabLaunchLink = require('ozp-react-commons/components/TabLaunchLink.jsx');
 var LaunchLink = require('ozp-react-commons/components/LaunchLink.jsx');
 
 
@@ -22,7 +24,16 @@ var ActionMenu = React.createClass({
                 <input ref="checkbox" type="checkbox" />
                 <span className="LibraryTile__actionMenuButton" />
                 <ul>
-                    <li><a href={listing.launchUrl} target="_blank">Open in new tab</a></li>
+                    <li>
+                        <WebtopLaunchLink listing={listing} newTab={false}>
+                            Launch in Webtop
+                        </WebtopLaunchLink>
+                    </li>
+                    <li>
+                        <TabLaunchLink listing={listing} newTab={true}>
+                            Launch in new tab
+                        </TabLaunchLink>
+                    </li>
                     <li>
                         <ListingDetailsLink listingId={listing.id} tab="resources">
                             Get help
