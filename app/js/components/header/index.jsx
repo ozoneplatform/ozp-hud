@@ -3,7 +3,7 @@
 
 var React = require('react');
 var Reflux = require('reflux');
-var Alerts = require('../alerts/index.jsx');
+var UserNotificationDropdown = require('ozp-react-commons/components/notification/UserNotificationDropdown.jsx');
 var HelpModal = require('./helpmodal.jsx');
 var { Link } = require('react-router');
 
@@ -53,10 +53,7 @@ var Header = React.createClass({
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
-                            <li className="dropdown">
-                                <a href="#" data-toggle="dropdown"><i className="icon-bell-filled activeIcon"></i></a>
-                                <Alerts />
-                            </li>
+                            <UserNotificationDropdown />
                             <li>
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question"></i></a>
                             </li>

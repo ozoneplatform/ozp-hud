@@ -15,9 +15,9 @@ html, body {
     margin: 0 auto;
     display: block;
     min-height: 100%;
-    height: auto !important;
-    width: 100% !important;
-    max-width: 1500px !important;
+    height: auto;
+    width: 100%;
+    max-width: 1500px;
 
     -moz-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
     -webkit-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
@@ -61,7 +61,6 @@ embed {
 @import 'header';
 @import 'search';
 @import 'library';
-@import 'alerts';
 @import 'modal';
 @import 'folder';
 
