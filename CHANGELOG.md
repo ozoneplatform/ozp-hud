@@ -1,3 +1,34 @@
+## 0.7.0 (2015-02-18)
+
+
+#### Bug Fixes
+
+* **Center Link:** Ensure that ListingDetails links include trailing slash before # ([4d21e9ce](https://github.com/ozone-development/hud-ui.git/commit/4d21e9ce90d0c8da60cde7e8abca74b40694004c))
+* **build:**
+  * fix build errors on Windows ([e16a5b88](https://github.com/ozone-development/hud-ui.git/commit/e16a5b8843ce6bc4a249216a8b59d0691e024757))
+  * fix build errors on Windows ([615e0d38](https://github.com/ozone-development/hud-ui.git/commit/615e0d381f49b6f9afb12250fd286392331498d1))
+  * fix build errors on Windows ([9bfb5e40](https://github.com/ozone-development/hud-ui.git/commit/9bfb5e408281090839949dcc0d7ed1be5a4807c2))
+* **styling:**
+  * Close, shadows, variables ([ade7ad08](https://github.com/ozone-development/hud-ui.git/commit/ade7ad08276d68a7eebc4f4201ac1d6e85c7e388))
+  * help modal & Bootstrap SASS ([603188a2](https://github.com/ozone-development/hud-ui.git/commit/603188a2a8f03722a7564786bb84b693da06265b))
+  * Fixed global toolbar ([842d09f3](https://github.com/ozone-development/hud-ui.git/commit/842d09f324f44ce949d4072bb1c6e47d0bc23839))
+  * Updating toolbar & dropdowns ([b847d8e9](https://github.com/ozone-development/hud-ui.git/commit/b847d8e9c2e1f9634d404bd8598ac7dab45467dd))
+
+
+#### Features
+
+* **Launch:**
+  * OZF-715 Fix menu launch options ([a7968bf0](https://github.com/ozone-development/hud-ui.git/commit/a7968bf000a6dfe46b07b4e5ae2eda475e0b955e))
+  * Launch into new tab if not webtop ([f3530d34](https://github.com/ozone-development/hud-ui.git/commit/f3530d34b7be2ae83b58d3fb78b1497536f1699a))
+  * Integrate preference-based launching ([daada707](https://github.com/ozone-development/hud-ui.git/commit/daada707667e57812033d61456155ec023af91bf))
+* **Notifications:** OZF-838 use common components ([eb46dad8](https://github.com/ozone-development/hud-ui.git/commit/eb46dad87550c248a81861f9a99be8a735ca9097))
+* **Profile Window:**
+  * OZF-573 Profile Window ([789a5e80](https://github.com/ozone-development/hud-ui.git/commit/789a5e80d5b38c1dd464a3e9b4f4f90a1ca37021))
+  * Configurable close button ([c88428e7](https://github.com/ozone-development/hud-ui.git/commit/c88428e718fb63e99c5b98a026cbef7c47c93fc3))
+  * OZF-907 Integrate Profile window ([c6fbf361](https://github.com/ozone-development/hud-ui.git/commit/c6fbf36118c66678764f70393507322c874e9df7))
+* **Settings Window:** OZF-593 Basic settings window integration ([a539c423](https://github.com/ozone-development/hud-ui.git/commit/a539c4232fdfef887b73a4f0f88fe368c1231559))
+
+
 ## 0.6.0 (2015-02-04)
 
 
