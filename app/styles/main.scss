@@ -74,13 +74,15 @@ body {
     margin-top:20px;
 }
 
-body > div.classBanner:first-of-type {
+body > div.classBanner {
     position: fixed;
-    top: 0;
-    z-index: 100;
-}
-body > div.classBanner:last-of-type {
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
+    z-index: 1000000;
+
+    &:first-of-type {
+        top: 0px;
+    }
+
+    &:last-of-type {
+        bottom: 0px;
+    }
 }
