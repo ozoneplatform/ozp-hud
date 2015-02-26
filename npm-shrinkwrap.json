@@ -7254,7 +7254,7 @@
     "ozp-react-commons": {
       "version": "0.1.1",
       "from": "../../../../tmp/npm-24513-64a5ad85/git-cache-38e6471f138b/c0e4536b688d4ffe8a650b5064e45fcdbab6e76d",
-      "resolved": "git://github.com/ozone-development/ozp-react-commons.git#c0e4536b688d4ffe8a650b5064e45fcdbab6e76d",
+      "resolved": "../ozp-react-commons",
       "dependencies": {
         "es5-shim": {
           "version": "4.1.0",

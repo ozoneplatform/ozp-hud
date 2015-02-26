@@ -2,7 +2,9 @@ var gulp = require('gulp');
 var preprocess = require('gulp-preprocess');
 
 gulp.task('config', function() {
-    return gulp.src(['app/OzoneConfig.js'])
-        .pipe(preprocess())
+    return gulp.src(['node_modules/ozp-react-commons/app/OzoneConfig.js'])
+        .pipe(preprocess({
+            context: { APP_TITLE: process.env.APP_TITLE || 'OZONE HUD'}
+        }))
         .pipe(gulp.dest('dist'));
 });
