@@ -88,6 +88,9 @@
     font-size: .8em;
     font-weight: 300;
     background-color: $gray-base;
+    border-bottom: 1px solid $gray-darkest;
+    border-right: 1px solid $gray-darkest;
+    margin-right: -1px;
 
     > li {
         $spacing: 5px;
