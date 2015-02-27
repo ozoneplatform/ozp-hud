@@ -44,4 +44,4 @@ Router.run(Routes, function (Handler, state) {
 
 ProfileActions.fetchSelf();
 
-document.getElementsByTagName('title')[0].innerText = APP_TITLE;
+document.title = APP_TITLE;
