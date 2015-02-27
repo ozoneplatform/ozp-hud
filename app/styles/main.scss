@@ -57,6 +57,14 @@ embed {
     margin-top: -10px;
 }
 
+.icons {
+    display: inline-block;
+    font-family: icons;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
 @import 'variables';
 @import 'header';
 @import 'search';
