@@ -13,6 +13,8 @@ var HudSettingsWindow = require('./components/HudSettingsWindow.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
+var { APP_TITLE } = require('ozp-react-commons/OzoneConfig');
+
 var $ = require('jquery');
 
 $.ajaxPrefilter(function(options) {
@@ -41,3 +43,5 @@ Router.run(Routes, function (Handler, state) {
 });
 
 ProfileActions.fetchSelf();
+
+document.title = APP_TITLE;
