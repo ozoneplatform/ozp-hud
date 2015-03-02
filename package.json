@@ -13,7 +13,7 @@
     "install": "bower install",
     "start": "gulp dev",
     "build": "NODE_ENV=\"production\" gulp build",
-    "buildGhPages": "API_URL=\"https://www.owfgoss.org/ng/dev/mp\" CENTER_URL=\"http://ozone-development.github.io/center-ui\" WEBTOP_URL=\"http://ozone-development.github.io/ozp-webtop/#/grid/sticky-0/0\" HELP_URL=\"http://ozone-development.github.io/hud-ui/assets/PlaceholderUserGuide.pdf\" gulp build",
+    "buildGhPages": "API_URL=\"https://www.owfgoss.org/ng/dev/mp\" CENTER_URL=\"http://ozone-development.github.io/center-ui\" WEBTOP_URL=\"http://ozone-development.github.io/ozp-webtop/\" HELP_URL=\"http://ozone-development.github.io/hud-ui/assets/PlaceholderUserGuide.pdf\" gulp build",
     "deployGhPages": "npm run buildGhPages && gulp deploy",
     "changelog": "gulp changelog"
   },
