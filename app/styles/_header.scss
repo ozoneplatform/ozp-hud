@@ -18,7 +18,7 @@
   & li > a {
     font-weight: 300 !important;
   }
-  
+
   & li:hover, & li:hover, & ul.dropdown-menu > li > a:hover{
     border-left-color: $blue !important;
   }
@@ -40,4 +40,8 @@
     }
 
   }
+}
+
+.icon-shopping-grayLightest:hover {
+  @extend .icon-shopping-blue;
 }

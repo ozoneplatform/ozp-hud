@@ -1,9 +1,25 @@
 $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
 @import "../../bower_components/ubuntu-fontface/_ubuntu-base.scss";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-dark.scss";
-@import "../../bower_components/font-awesome/scss/font-awesome.scss";
+@import "bootstrap.scss";
 @import "../../node_modules/ozp-react-commons/app/styles/commons.scss";
+@import "../../node_modules/icons/dist/css/sprite.scss";
+
+// Catchall baseclass
+[class^="icon-"], [class*=" icon-"] {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'icons';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 html, body {
     background: $body-bg;
