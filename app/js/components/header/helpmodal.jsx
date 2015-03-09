@@ -38,7 +38,7 @@ var HelpModal = React.createClass({
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal">
                                 <span aria-hidden="true">
-                                    <i className="icon-cross-grayLightest"></i>
+                                    <i className="icon-cross-18-grayLightest"></i>
                                 </span>
                                 <span className="sr-only">Close</span>
                             </button>
