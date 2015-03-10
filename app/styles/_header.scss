@@ -37,4 +37,10 @@
             color: $blue !important;
         }
     }
+
+    .user-menu-dropdown.open {
+        .icon-menu-grayLightest {
+            @extend .icon-menu-blue;
+        }
+    }
 }
