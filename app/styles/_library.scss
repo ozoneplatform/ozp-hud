@@ -87,7 +87,7 @@
 
     font-size: .8em;
     font-weight: 300;
-    background-color: $gray-darker;
+    background-color: $gray-base;
 
     > li {
         $spacing: 5px;
@@ -96,7 +96,7 @@
         padding-bottom: $spacing;
 
         > a {
-            color: $gray-lightest;
+            color: $gray-lighter;
             border-left: 3px solid transparent;
 
             padding-left: $spacing;
@@ -164,12 +164,7 @@
             }
 
             & + .LibraryTile__actionMenuButton {
-                background: $gray-darker;
                 color: $blue;
-
-                .icon-caret-down-14-grayLightest{
-                  @extend .icon-caret-down-14-blue;
-                }
             }
         }
     }
