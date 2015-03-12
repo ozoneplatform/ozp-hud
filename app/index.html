@@ -14,6 +14,11 @@
 <body>
     <div id="main"></div>
 
+    <script>
+        if (!window.console) window.console = {};
+        if (!window.console.log) window.console.log = function () { };
+    </script>
+
     <script src="assets/vendor/es5-shim.js"></script>
     <script src="OzoneConfig.js"></script>
     <script src="assets/main.js"></script>
