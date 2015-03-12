@@ -67,7 +67,7 @@
     "gulp-preprocess": "1.2.0",
     "immutable": "3.0.2",
     "object-assign": "1.0.0",
-    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#master",
+    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#temp-master",
     "react": "0.12.2",
     "react-router": "0.12.4",
     "reflux": "0.1.15"
