@@ -38,7 +38,7 @@ var Header = React.createClass({
         var profile = this.state.profile,
             isAdmin = profile && profile.isAdmin(),
             Metrics = (profile && (isAdmin || this.isOrgSteward())) ?
-                <li><a href={METRICS_URL}><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
+                <li><a href={METRICS_URL} target="_blank"><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
 
         return (
             <nav className="navbar navbar-default">
