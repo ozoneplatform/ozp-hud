@@ -10446,13 +10446,18 @@
     },
     "ozp-react-commons": {
       "version": "0.1.1",
-      "from": "../../../../var/folders/bp/vyp_l35j0lz95xks7qlbtrr40000gn/T/npm-21904-5576485d/git-cache-143857a3b641/520cdab031c17ef672233a8a60ee91c63e0a5e3f",
+      "from": "../../../../var/folders/bp/vyp_l35j0lz95xks7qlbtrr40000gn/T/npm-27455-531a5642/git-cache-530c6947eba6/520cdab031c17ef672233a8a60ee91c63e0a5e3f",
       "resolved": "git://github.com/ozone-development/ozp-react-commons#520cdab031c17ef672233a8a60ee91c63e0a5e3f",
       "dependencies": {
         "es5-shim": {
           "version": "4.1.0",
-          "from": "https://registry.npmjs.org/es5-shim/-/es5-shim-4.1.0.tgz",
+          "from": "es5-shim@>=4.0.6 <5.0.0",
           "resolved": "https://registry.npmjs.org/es5-shim/-/es5-shim-4.1.0.tgz"
+        },
+        "lodash-amd": {
+          "version": "2.4.1",
+          "from": "lodash-amd@2.4.1",
+          "resolved": "https://registry.npmjs.org/lodash-amd/-/lodash-amd-2.4.1.tgz"
         }
       }
     },
