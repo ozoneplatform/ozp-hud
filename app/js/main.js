@@ -2,6 +2,7 @@
 
 window.Object.assign = require('object-assign');
 
+require('console-polyfill');
 require('bootstrap');
 var React = require('react');
 var Router = require('react-router');
