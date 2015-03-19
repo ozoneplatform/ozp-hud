@@ -22,7 +22,9 @@ var ActionMenu = React.createClass({
         return (
             <label className="LibraryTile__actionMenu">
                 <input ref="checkbox" type="checkbox" />
-                <span className="LibraryTile__actionMenuButton" />
+                <span className="LibraryTile__actionMenuButton">
+                     <i className="icon-caret-down-14-grayLightest" />
+                </span>
                 <ul>
                     <li>
                         <WebtopLaunchLink listing={listing} newTab={false}>

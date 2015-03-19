@@ -8,5 +8,8 @@ gulp.task('copy', function() {
         '!app/js/**/*',
         '!app/styles',
         '!app/styles/**/*']
-        ).pipe(gulp.dest('dist'));
+        ).pipe(gulp.dest('dist'))
+        .on('end', function(){
+            gulp.run('version');
+        });
 });

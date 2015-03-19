@@ -142,16 +142,12 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    
-    
-    &::before {
-        position: absolute;
-        width: 25px;
-        height: 20px;
-        left: -1px;
-        top: -2px;
+
+
+    > i {
+        top: -3px;
     }
-    
+
     &:hover{
       border-top: 3px solid $blue;
       color: $white;
