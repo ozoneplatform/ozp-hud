@@ -115,7 +115,7 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             <Link className="close" to="main">
-                                <i className="icon-cross"/>
+                                <i className="icon-cross-14-grayLightest"/>
                             </Link>
                             <FolderTitle name={folderName} element={React.DOM.h3}
                                 onChange={this.onNameChange}/>
