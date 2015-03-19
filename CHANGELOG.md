@@ -1,3 +1,51 @@
+### 0.7.1 (2015-03-19)
+
+
+#### Bug Fixes
+
+* **Dependencies:**
+  * update to master ozp-react-commons ([16bd11ae](https://github.com/ozone-development/hud-ui.git/commit/16bd11ae586a2e6c637d363ef9d33d92d03c5575))
+  * update icon dep ([89cd26c4](https://github.com/ozone-development/hud-ui.git/commit/89cd26c4eade96855ee56d6823c6986d26e61996))
+  * update icon dep ([a26d10b8](https://github.com/ozone-development/hud-ui.git/commit/a26d10b80170ffbafd0d5694edb01f82a12aa92d))
+* **Dependency:**
+  * fix dependency for ozp-react-commons (master) ([d1b7b283](https://github.com/ozone-development/hud-ui.git/commit/d1b7b283ef11b454ca630e996536a59927f3784c))
+  * fixed shrinkwrap ([1ad4a18e](https://github.com/ozone-development/hud-ui.git/commit/1ad4a18e00383b9eddb1fd35ccd3b27ce82858c7))
+* **IE:** #83 Add IE compat header ([dda01232](https://github.com/ozone-development/hud-ui.git/commit/dda01232642b5677410c3e5b8245344448d1fbe3))
+* **Icons:**
+  * user menu icon active state ([ed9f43ff](https://github.com/ozone-development/hud-ui.git/commit/ed9f43ff1ca58a008211bb912de6558b2aa1b585))
+  * fixed folder close icon ([ebaa4c3e](https://github.com/ozone-development/hud-ui.git/commit/ebaa4c3e12fb968f90a9975b0bd49fcfef2d6dff))
+  * updated icon for help modal close ([60d689cb](https://github.com/ozone-development/hud-ui.git/commit/60d689cbe5cea8036b9ed8426961d6e7d1fed494))
+  * updated iconset ([7d9c62f0](https://github.com/ozone-development/hud-ui.git/commit/7d9c62f022d0a9840bba2efe0b4c5c090b179aba))
+* **Metrics:** Open metrics in new tab ([84db45f0](https://github.com/ozone-development/hud-ui.git/commit/84db45f0d15683446de3412369dcc018ae90c4ad))
+* **Notifications:**
+  * fix Date parsing in IE11 and Firefox ([bad94465](https://github.com/ozone-development/hud-ui.git/commit/bad9446581c9749b1c10e1faddfded28cb9c9833))
+  * handle dates correctly in IE ([5c31a495](https://github.com/ozone-development/hud-ui.git/commit/5c31a495b4a91d52e16a56ddb229d36c726d73b5))
+  * classification banners should be on top ([10d58531](https://github.com/ozone-development/hud-ui.git/commit/10d5853148279c9bc83cd1eeb8d936f2f03d7965))
+* **Shrinkwrap:** fixing the shrinkwrap ([d5f06d9b](https://github.com/ozone-development/hud-ui.git/commit/d5f06d9b36747e1f76948ff46d4e458a4e3d4afd))
+* **TRR:**
+  * added console-polyfill to handle console logging ([fdbe3b2e](https://github.com/ozone-development/hud-ui.git/commit/fdbe3b2eb25ed282b7f04a092e760a3234a872d4))
+  * update to window.console for React elements using warn ([a209151a](https://github.com/ozone-development/hud-ui.git/commit/a209151ae2369c0d31dbba302a306927728a50ce))
+  * IE9 weird issue with console logging #122 ([955dbc89](https://github.com/ozone-development/hud-ui.git/commit/955dbc89846f786d954f6ceeef31c470b0b84c81))
+* **gh-pages:** Update WEBTOP_URL in buildGhPages script ([adb70420](https://github.com/ozone-development/hud-ui.git/commit/adb70420b90c35118c4f36634d58703d7116a3e9))
+* **ozp-react-commons:** Changed hash to metrics fix ([50358ca4](https://github.com/ozone-development/hud-ui.git/commit/50358ca41056614fda6b430bf1d219fa894bb46b))
+* **styling:**
+  * Updated app menu styles ([521b4e6f](https://github.com/ozone-development/hud-ui.git/commit/521b4e6fbe92d2178f86502cc706e428c051bf1e))
+  * Removing App Library-specific padding ([b7d76ada](https://github.com/ozone-development/hud-ui.git/commit/b7d76ada63b293e9ff673a297db0739517e32a52))
+  * Added Favicon ([d5f71694](https://github.com/ozone-development/hud-ui.git/commit/d5f71694ad4961666deacec04b676eb81c474e72))
+
+
+#### Features
+
+* **Configuration:**
+  * #91 Fix title configurability in Firefox ([3523091e](https://github.com/ozone-development/hud-ui.git/commit/3523091eb8f1574056a4604fffc526aaf47f3d0d))
+  * #91 Make title configurable ([d4101e2f](https://github.com/ozone-development/hud-ui.git/commit/d4101e2fac63a6b064698b056e9f512e2958e9f5))
+* **Icons:**
+  * replace remaining font icons with svg ([e051c9b2](https://github.com/ozone-development/hud-ui.git/commit/e051c9b230bad7ae8c002aec5e9307d65fdb232e))
+  * Integrate with icons to use svgs ([f257dda6](https://github.com/ozone-development/hud-ui.git/commit/f257dda6f967f16ac24453b53ba508ec938ec059))
+* **Title:** #91 Make page title configurable ([0ff53f5b](https://github.com/ozone-development/hud-ui.git/commit/0ff53f5bf23ad32510b7c50c5576cdf9e89f797a))
+* **Version:** Add version.txt to dist ([74741f74](https://github.com/ozone-development/hud-ui.git/commit/74741f7417ac3625f13b188329b38d2e1383e781))
+
+
 ## 0.7.0 (2015-02-18)
 
 
