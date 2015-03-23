@@ -4,7 +4,7 @@ var webpack = require("webpack");
 var webpackConfig = require("../../webpack.config.js");
 var WebpackDevServer = require('webpack-dev-server');
 
-gulp.task('dev', ['sass', 'copy', 'config', 'vendor', 'fonts', 'svg'], function () {
+gulp.task('dev', ['sass', 'copy', 'config', 'vendor', 'fonts', 'svg', 'jqueryUndupe'], function () {
     var devConfig = Object.create(webpackConfig);
     devConfig.devtool = "eval";
     devConfig.debug = true;
