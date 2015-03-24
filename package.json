@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "babel-runtime": "4.6.6",
-    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass#138ca41e070f4c186eba6726a971a28f0168e9ea",
+    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass",
     "gulp-preprocess": "1.2.0",
     "icons": "git://github.com/ozone-development/icons",
     "immutable": "3.0.2",

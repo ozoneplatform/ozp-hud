@@ -117,10 +117,6 @@
 }
 
 .LibraryTile__actionMenuButton {
-    //style as font-awesome horizontal ellipsis
-    @extend .icons;
-    @extend .icon-caret-down;
-
     display: block;
     text-align: center;
 
@@ -151,6 +147,10 @@
     &:hover{
       border-top: 3px solid $blue;
       color: $white;
+
+      > .icon-caret-down-14-grayLightest{
+          @extend .icon-caret-down-14-white;
+      }
     }
 }
 
@@ -168,10 +168,15 @@
         &:checked {
             & ~ ul {
                 display: block;
+                background: $gray-darker;
             }
 
             & + .LibraryTile__actionMenuButton {
                 color: $blue;
+
+                > .icon-caret-down-14-grayLightest{
+                    @extend .icon-caret-down-14-blue;
+                }
             }
         }
     }
@@ -179,6 +184,7 @@
 
 .LibraryTile__actionMenu > input:checked + .LibraryTile__actionMenuButton {
     border-top: 3px solid $blue;
+    background: $gray-darker;
 
     &::before {
         top: -2px;
