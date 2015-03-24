@@ -21,6 +21,35 @@ $icon-font-path: "../../bower_components/font-awesome/fonts/";
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cross-18 {
+    @extend .icon-cross-18-grayLightest;
+
+    &:hover, &:focus{
+        @extend .icon-cross-18-blue;
+    }
+}
+.icon-cross-16 {
+    @extend .icon-cross-16-grayLightest;
+
+    &:hover, &:focus{
+        @extend .icon-cross-16-blue;
+    }
+}
+.icon-cross-14 {
+    @extend .icon-cross-14-grayLightest;
+
+    &:hover, &:focus{
+        @extend .icon-cross-14-blue;
+    }
+}
+.icon-cross-10 {
+    @extend .icon-cross-10-grayLightest;
+
+    &:hover, &:focus{
+        @extend .icon-cross-10-blue;
+    }
+}
+
 html, body {
     background: $body-bg;
     font-family: 'Ubuntu';
