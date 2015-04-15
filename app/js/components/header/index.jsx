@@ -15,7 +15,8 @@ var {
     WEBTOP_URL,
     DEVELOPER_RESOURCES_URL,
     METRICS_URL,
-    HUD_URL
+    HUD_URL,
+    FEEDBACK_ADDRESS
 } = require('OzoneConfig');
 
 var Header = React.createClass({
@@ -83,6 +84,7 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Marketplace Settings</a></li>
                                     }
                                     { Metrics }
+                                    <li><a href={FEEDBACK_ADDRESS} className="caboose"><i className="icon-mail-white"></i>Submit Feedback</a></li>
                                 </ul>
                             </li>
                         </ul>
