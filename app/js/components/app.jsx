@@ -35,7 +35,7 @@ var App = React.createClass({
             <div>
                 <Header />
                 <div className="FolderLibrary">
-                    <h1>Application Library</h1>
+                    <h1>My Bookmarks</h1>
                     <Library store={FolderLibraryStore} emptyView={EmptyLibrary}/>
                 </div>
                 <Settings />
