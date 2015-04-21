@@ -1,3 +1,24 @@
+### 0.7.2 (2015-03-31)
+
+
+#### Bug Fixes
+
+* **GHPages:** update information for new names of repos ([ba6e823c](https://github.com/ozone-development/hud-ui.git/commit/ba6e823cbf50a5dbf0aa32d6a48187cd4a904352))
+* **Notifications:** #62 working with temp-master ozp-react-commons ([7c4a3c25](https://github.com/ozone-development/hud-ui.git/commit/7c4a3c25538f93fb49c00b63f149880124f778d1))
+* **close:** Fixing close buttons ([5fb61721](https://github.com/ozone-development/hud-ui.git/commit/5fb6172163d509a668f8dca77bf81954bdd7d87a))
+* **style:** Updating styling and hovers ([6c3f25c7](https://github.com/ozone-development/hud-ui.git/commit/6c3f25c7d4f7fbaf7fcdc2d4c151f476da07cd15))
+* **styling:**
+  * #68 Folder styling updated ([e4cd541f](https://github.com/ozone-development/hud-ui.git/commit/e4cd541fcbf204633475ab045686fa332771df79))
+  * Update action menu icon ([8a5c9db4](https://github.com/ozone-development/hud-ui.git/commit/8a5c9db42d520daec006cc4b032e60c77746d719))
+  * Fixing dropdown menu ([3ec7b120](https://github.com/ozone-development/hud-ui.git/commit/3ec7b12024b37ba3dcff50343e98da5b1f7451c3))
+
+
+#### Features
+
+* **Configuration:** #91 Fix title configurability in Firefox ([1c09f1e6](https://github.com/ozone-development/hud-ui.git/commit/1c09f1e6aba710f9a67136d35133e3058012ca8a))
+* **Title:** Configurable title ([2bb61b03](https://github.com/ozone-development/hud-ui.git/commit/2bb61b033c21eea5dc2dea9d1671dc12a8dba8cc))
+
+
 ### 0.7.1 (2015-03-19)
 
 
