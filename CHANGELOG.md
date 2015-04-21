@@ -1,3 +1,15 @@
+### 0.7.3 (2015-04-21)
+
+
+#### Bug Fixes
+
+* **Feedback Link:** #77 Link now includes mailto: ([6ca9b3b6](https://github.com/ozone-development/hud-ui.git/commit/6ca9b3b6b1e63c18730e165fa152dd95e084b18c))
+* **Styling:** Fixed Feedback Link styling ([bd822294](https://github.com/ozone-development/hud-ui.git/commit/bd822294dc9151820e8178b1c7b3aa0e760127de))
+* **style:** #77 Added "Submit Feedback" link ([8e8dc2e4](https://github.com/ozone-development/hud-ui.git/commit/8e8dc2e458383377f1ed273cee35d1ffdc19113a))
+* **styling:** font weights to numbers ([1f85c864](https://github.com/ozone-development/hud-ui.git/commit/1f85c864e6bb8e36ce9bbf8bdf619d505ba2562a))
+* **title:** Fixed page title to match Toolbar ([73577836](https://github.com/ozone-development/hud-ui.git/commit/7357783670244265fe26c3d9dc169051a3f91315))
+
+
 ### 0.7.2 (2015-03-31)
 
 
