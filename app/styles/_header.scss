@@ -43,4 +43,15 @@
             @extend .icon-menu-blue;
         }
     }
+
+    .open .dropdown-menu > li > a.caboose {
+    	background-color: $gray-dark !important;
+    	color: $white !important;
+        font-weight: 500 !important;
+
+    	&:hover, &:focus {
+    		background-color: $blue !important;
+    		border-left-color: $blue-dark !important;
+    	}
+    }
 }
