@@ -23,7 +23,9 @@ var LibraryStore = Reflux.createStore({
     },
 
     onFetchLibrary: function () {
-        LibraryApi.get().then(this.updateLibrary.bind(this));
+        LibraryApi.get().then(this.updateLibrary.bind(this)).then(()=>{
+            LibraryActions.hasLoaded();
+        });
     },
 
     onUpdateLibrary: function(libraryEntries) {
