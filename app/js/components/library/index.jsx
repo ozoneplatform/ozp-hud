@@ -52,9 +52,10 @@ var Library = React.createClass({
     componentDidMount : function () {
         this.listenTo(this.props.store, this.onStoreChange);
 
-        this.listenTo(LibraryActions.fetchLibrary, ()=>{
+        this.listenTo(LibraryActions.hasLoaded, ()=>{
             this.setState({hasLoaded: true});
         });
+
         //immediately get whatever data is in the store
         this.onStoreChange(this.props.store.getDefaultData());
     },
@@ -88,19 +89,16 @@ var Library = React.createClass({
                 });
 
         if (this.state.hasLoaded && elements.size) {
-            console.log('has loaded and has items');
             return (
                 <ol className="LibraryTiles">
                     {elements.toArray()}
                 </ol>
             );
         } else if (this.state.hasLoaded){
-            console.log('has lodaded, but empty');
             return (
                 <this.props.emptyView />
             );
         } else{
-            console.log('still loading');
             return (
                 <LoadingMask />
             );
