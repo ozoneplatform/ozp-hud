@@ -84,7 +84,7 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Marketplace Settings</a></li>
                                     }
                                     { Metrics }
-                                    <li><a href={'mailto:'+FEEDBACK_ADDRESS} className="caboose"><i className="icon-mail"></i>Submit Feedback</a></li>
+                                    <li><a href={FEEDBACK_ADDRESS} className="caboose"><i className="icon-mail"></i>Submit Feedback</a></li>
                                 </ul>
                             </li>
                         </ul>
