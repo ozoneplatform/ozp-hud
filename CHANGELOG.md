@@ -1,3 +1,16 @@
+### 0.7.4 (2015-04-28)
+
+
+#### Bug Fixes
+
+* **feedback:** feedback link ([d7008b27](https://github.com/ozone-development/ozp-hud.git/commit/d7008b27ae1ffff4cb42cb91c89f7816a481b585))
+
+
+#### Features
+
+* **Loading:** Loading indicator added to fix confusion with no apps #64 ([748440fc](https://github.com/ozone-development/ozp-hud.git/commit/748440fcbc39601a1eb50a72d0798ed6521befd0))
+
+
 ### 0.7.3 (2015-04-21)
 
 
