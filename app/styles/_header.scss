@@ -44,14 +44,22 @@
         }
     }
 
-    .open .dropdown-menu > li > a.caboose {
-    	background-color: $gray-dark !important;
-    	color: $white !important;
-        font-weight: 500 !important;
 
-    	&:hover, &:focus {
-    		background-color: $blue !important;
-    		border-left-color: $blue-dark !important;
-    	}
+}
+
+.navbar-default .navbar-nav .dropdown-menu > li > a.caboose {
+background-color: $gray-dark !important;
+
+    > .icon-mail {
+        @extend .icon-mail-grayLightest;
     }
+
+    &:hover, &:focus {
+
+        > .icon-mail {
+            @extend .icon-mail-white;
+        }
+
+    }
+
 }

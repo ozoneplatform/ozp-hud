@@ -13,6 +13,10 @@ module.exports = Reflux.createActions([
     'updateLibrary',
 
     /**
+     * Indicates when the page has loaded 
+    */
+    'hasLoaded',
+    /**
      * remove the specified library entry on the backend
      * @param libraryEntry
      */

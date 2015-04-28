@@ -9,6 +9,9 @@ var LibraryTile = require('./LibraryTile.jsx');
 var FolderTile = require('./FolderTile.jsx');
 var LibraryItem = require('./LibraryItem.jsx');
 var Folder = require('../../api/Folder');
+var LoadingMask = require('../LoadMask.jsx');
+
+var LibraryActions = require('../../actions/Library');
 
 var DefaultEmptyView = React.createClass({
     render: function() {
@@ -23,7 +26,10 @@ var Library = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     getInitialState: function() {
-        return {library: Immutable.List()};
+        return {
+            library: Immutable.List(),
+            hasLoaded: 0
+        };
     },
 
     getDefaultProps: function() {
@@ -44,6 +50,10 @@ var Library = React.createClass({
 
     componentDidMount : function () {
         this.listenTo(this.props.store, this.onStoreChange);
+
+        this.listenTo(LibraryActions.hasLoaded, ()=>{
+            this.setState({hasLoaded: true});
+        });
 
         //immediately get whatever data is in the store
         this.onStoreChange(this.props.store.getDefaultData());
@@ -77,16 +87,19 @@ var Library = React.createClass({
                     );
                 });
 
-        if (elements.size) {
+        if (this.state.hasLoaded && elements.size) {
             return (
                 <ol className="LibraryTiles">
                     {elements.toArray()}
                 </ol>
             );
-        }
-        else {
+        } else if (this.state.hasLoaded){
             return (
                 <this.props.emptyView />
+            );
+        } else{
+            return (
+                <LoadingMask />
             );
         }
     }
