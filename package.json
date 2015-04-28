@@ -3,9 +3,9 @@
   "version": "0.7.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ozone-development/hud-ui.git"
+    "url": "https://github.com/ozone-development/ozp-hud.git"
   },
-  "homepage": "https://github.com/ozone-development/hud-ui/blob/master/README.md",
+  "homepage": "https://github.com/ozone-development/ozp-hud/blob/master/README.md",
   "bugs": "https://www.owfgoss.org/jira/browse/OZF",
   "author": "",
   "description": "",
