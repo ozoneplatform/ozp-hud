@@ -28,7 +28,8 @@ var Library = React.createClass({
     getInitialState: function() {
         return {
             library: Immutable.List(),
-            hasLoaded: 0
+            hasLoaded: 0,
+            loadMsg: '',
         };
     },
 
@@ -57,6 +58,12 @@ var Library = React.createClass({
 
         //immediately get whatever data is in the store
         this.onStoreChange(this.props.store.getDefaultData());
+
+        setTimeout(()=>{
+          this.setState({
+            loadMsg: 'The request is taking longer than usual, there may be a serverside issue.'
+          });
+        }, 20000);
     },
 
     render: function () {
@@ -99,7 +106,7 @@ var Library = React.createClass({
             );
         } else{
             return (
-                <LoadingMask />
+                <LoadingMask message={this.state.loadMsg}/>
             );
         }
     }
