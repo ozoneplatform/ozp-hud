@@ -1,3 +1,34 @@
+### 0.7.6 (2015-05-12)
+
+
+### 0.7.5 (2015-05-05)
+
+
+### 0.7.4 (2015-04-28)
+
+
+#### Bug Fixes
+
+* **feedback:** feedback link ([d7008b27](https://github.com/ozone-development/ozp-hud.git/commit/d7008b27ae1ffff4cb42cb91c89f7816a481b585))
+
+
+#### Features
+
+* **Loading:** Loading indicator added to fix confusion with no apps #64 ([748440fc](https://github.com/ozone-development/ozp-hud.git/commit/748440fcbc39601a1eb50a72d0798ed6521befd0))
+
+
+### 0.7.3 (2015-04-21)
+
+
+#### Bug Fixes
+
+* **Feedback Link:** #77 Link now includes mailto: ([6ca9b3b6](https://github.com/ozone-development/hud-ui.git/commit/6ca9b3b6b1e63c18730e165fa152dd95e084b18c))
+* **Styling:** Fixed Feedback Link styling ([bd822294](https://github.com/ozone-development/hud-ui.git/commit/bd822294dc9151820e8178b1c7b3aa0e760127de))
+* **style:** #77 Added "Submit Feedback" link ([8e8dc2e4](https://github.com/ozone-development/hud-ui.git/commit/8e8dc2e458383377f1ed273cee35d1ffdc19113a))
+* **styling:** font weights to numbers ([1f85c864](https://github.com/ozone-development/hud-ui.git/commit/1f85c864e6bb8e36ce9bbf8bdf619d505ba2562a))
+* **title:** Fixed page title to match Toolbar ([73577836](https://github.com/ozone-development/hud-ui.git/commit/7357783670244265fe26c3d9dc169051a3f91315))
+
+
 ### 0.7.2 (2015-03-31)
 
 

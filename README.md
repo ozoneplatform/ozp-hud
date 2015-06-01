@@ -18,5 +18,5 @@ See `scripts` key in `package.json` for all options.
 * `npm run build` generates production build at ./dist directory with minified versions of JS and CSS. Contents of ./dist directory can then be copied to a web server.
 * `npm run deployGhPages` runs a build with demo configs and deploys ./dist to github pages.
 
-[travis-url]: https://travis-ci.org/ozone-development/hud-ui
-[travis-image]: https://travis-ci.org/ozone-development/hud-ui.svg
+[travis-url]: https://travis-ci.org/ozone-development/ozp-hud
+[travis-image]: https://travis-ci.org/ozone-development/ozp-hud.svg
