@@ -14,10 +14,15 @@ var LibraryStore = Reflux.createStore({
 
     listenables: LibraryActions,
 
+    init: function(){
+      this.listenTo(LibraryActions.viewFolder, LibraryActions.fetchLibrary);
+    },
+
     updateLibrary: function(entries) {
         this.library = Immutable.List(entries.map(function(e) {
             return Object.freeze(e);
         }));
+
 
         this.trigger(this.library);
     },
