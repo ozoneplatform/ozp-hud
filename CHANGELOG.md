@@ -1,3 +1,11 @@
+### 0.7.8 (2015-06-09)
+
+
+#### Features
+
+* **Docs and Videos:** Added docs and videos to help modal #90 ([6459ebcd](https://github.com/ozone-development/ozp-hud.git/commit/6459ebcdcb2d0e2fd6b017b5179111976ea947c3))
+
+
 ### 0.7.7 (2015-06-02)
 
 
