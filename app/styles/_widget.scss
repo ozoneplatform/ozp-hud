@@ -1,0 +1,53 @@
+.Widget {
+	
+	height: 400px;
+	width: 800px;
+	border: 2px solid white;
+	overflow: hidden;
+	background: $gray-darkest;
+	padding: 20px;
+	margin-bottom: 50px;
+
+	li {
+		list-style: none;
+	}
+
+	.scrollable {
+		max-height: 200px;
+		overflow: auto;
+	}
+
+	.MyListings {
+		height: 100px;
+
+		.MyListings__counts {
+
+			div {
+				display: block;
+				float: left;
+				width: 100px;
+			}
+		}
+	}	
+
+	.RecentActivity__activities {
+
+		padding-top: 20px;
+
+	    .recent-activity-icon {
+	        float: left;
+	        max-height: 30px;
+	        max-width: 30px;
+	        margin-right: 10px;
+	    }
+
+	    .icon-caret-right {
+	        margin-top: 6px;
+	    }
+
+	}
+
+	h3 {
+		clear: both;
+	}
+}

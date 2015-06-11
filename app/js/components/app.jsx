@@ -9,6 +9,7 @@ var Settings = require('./settings/index.jsx');
 
 var LibraryActions = require('../actions/Library');
 var FolderLibraryStore = require('../store/FolderLibrary');
+var ListingActions = require('../actions/Listing');
 
 
 var App = React.createClass({
@@ -28,6 +29,11 @@ var App = React.createClass({
     componentDidUnmount: function () {
         $(document).off('show.bs.modal', '.modal');
         window.removeEventListener('focus', LibraryActions.fetchLibrary);
+    },
+
+    componentWillMount: function () {
+        ListingActions.fetchListings();
+        ListingActions.fetchAllChangeLogs();
     },
 
     render: function () {
