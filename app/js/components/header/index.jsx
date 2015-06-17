@@ -35,6 +35,14 @@ var Header = React.createClass({
         this.setState({profile: profileData.currentUser});
     },
 
+    componentDidMount: function(){
+      $(this.refs.hastooltips.getDOMNode()).find('.tooltiped').each(function(){
+        $(this).tooltip({
+          delay: 400
+        });
+      });
+    },
+
     render: function () {
         var profile = this.state.profile,
             isAdmin = profile && profile.isAdmin(),
@@ -44,23 +52,23 @@ var Header = React.createClass({
         var feedbackTarget = this.isEmail() ? "_self" : "_blank";
 
         return (
-            <nav className="navbar navbar-default">
+            <nav ref="hastooltips" className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-left">
                         <ul className="nav navbar-nav">
-                            <li className="active"><a className="lrg" href={HUD_URL}><i className="icon-home-blue"></i></a></li>
-                            <li><a href={CENTER_URL}><i className="icon-shopping-grayLightest"></i></a></li>
-                            <li><a href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="HUD" className="active tooltiped"><a className="lrg" href={HUD_URL}><i className="icon-home-blue"></i></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Center" className="tooltiped"><a href={CENTER_URL}><i className="icon-shopping-grayLightest"></i></a></li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Webtop" className="tooltiped"><a href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i></a></li>
                         </ul>
                     </div>
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
                             <UserNotificationDropdown />
-                            <li>
+                            <li className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Help">
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>
-                            <li className="dropdown user-menu-dropdown">
+                            <li data-toggle="tooltip" data-placement="bottom" title="Menu" className="tooltiped dropdown user-menu-dropdown">
                                 <a href="#" data-toggle="dropdown"><i className="icon-menu-grayLightest"></i></a>
                                 <ul className="dropdown-menu">
                                     <li className="dropdown-header">Personalize</li>
