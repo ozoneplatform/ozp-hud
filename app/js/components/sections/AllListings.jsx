@@ -145,7 +145,7 @@ var AllListings = React.createClass({
                         <div className="AllListings__submitted">
                             <i className="icon-loader-36-blue"></i>
                             <span>{ counts.PENDING }</span><br />
-                            <span>Submitted</span>
+                            <span>Pending, Org.</span>
                         </div>
                         <div className="AllListings__rejected">
                             <i className="icon-reload-36-blue"></i>
