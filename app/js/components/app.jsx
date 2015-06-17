@@ -3,16 +3,15 @@
 var React = require('react');
 var { RouteHandler } = require('react-router');
 var Header = require('./header/index.jsx');
-var Library = require('./library/index.jsx');
-var EmptyLibrary = require('./library/EmptyLibrary.jsx');
 var Settings = require('./settings/index.jsx');
 
-var LibraryActions = require('../actions/Library');
-var FolderLibraryStore = require('../store/FolderLibrary');
-var ListingActions = require('../actions/Listing');
-
+var MyListings = require('./sections/MyListings.jsx');
+var AllListings = require('./sections/AllListings.jsx');
+var Library = require('./sections/Library.jsx');
 
 var App = React.createClass({
+
+
 
     componentDidMount: function() {
         $(document).on('show.bs.modal', '.modal', function () {
@@ -21,29 +20,15 @@ var App = React.createClass({
                 bottom : '0%'
             });
         });
-
-        window.addEventListener('focus', LibraryActions.fetchLibrary);
-        LibraryActions.fetchLibrary();
-    },
-
-    componentDidUnmount: function () {
-        $(document).off('show.bs.modal', '.modal');
-        window.removeEventListener('focus', LibraryActions.fetchLibrary);
-    },
-
-    componentWillMount: function () {
-        ListingActions.fetchListings();
-        ListingActions.fetchAllChangeLogs();
     },
 
     render: function () {
         return (
             <div>
                 <Header />
-                <div className="FolderLibrary">
-                    <h1>My Bookmarks</h1>
-                    <Library store={FolderLibraryStore} emptyView={EmptyLibrary}/>
-                </div>
+                <MyListings />
+                <AllListings />
+                <Library />
                 <Settings />
                 <RouteHandler params={ this.props.params } />
             </div>

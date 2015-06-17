@@ -11,21 +11,8 @@ var centerUrl = CENTER_URL.indexOf('/', CENTER_URL.length - 1) === -1 ?
  * A component for creating <a> tags that link to the listing details view in the store
  */
 var ListingDetailsLink = React.createClass({
-    
-    propTypes: {
-        listingId: React.PropTypes.number.isRequired,
-        tab: React.PropTypes.string
-    },
-
-    getDefaultProps: function() {
-        return {tab: 'overview'};
-    },
-
     getURI: function() {
-        var id = this.props.listingId,
-            tab = this.props.tab;
-
-        return `${centerUrl}#/home?listing=${encodeURIComponent(id)}&action=view&tab=${tab}`;
+        return `${centerUrl}#/user-management/recent-activity`;
     },
 
     render: function() {
