@@ -10,9 +10,9 @@ var EmptyLibrary = React.createClass({
         return (
             <div className="FolderLibrary__empty">
                 <h2>You have no bookmarked apps to display</h2>
-                <h4>Visit Marketplace to discover new apps that you can start using.</h4>
+                <h4>Visit Center to discover new apps that you can start using.</h4>
                 <a target="_blank" href={CENTER_URL}>
-                    <img src={Constants.mpLogo} alt="Marketplace"/>
+                    <img src={Constants.mpLogo} alt="Center"/>
                 </a>
             </div>
         );
