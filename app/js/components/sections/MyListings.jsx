@@ -2,60 +2,11 @@
 
 var Reflux = require('reflux');
 var React = require('react');
-var ListingApi = require('../../api/Listing');
-var ListingActions = require('../../actions/Listing');
 var ChangeLog = require('./ChangeLog.jsx');
-
-var ListingStore = Reflux.createStore({
-
-    listenables: [ ListingActions ],
-
-    listings: [],
-    changelogs: [],
-
-    onFetchListings: function () {
-        var me = this;
-
-        ListingApi.getOwnedListings().then(function(response) {
-            me.listings = response._embedded.item;
-            me.doTrigger();
-        });
-    },
-
-    doTrigger: function() {
-        this.trigger(this.getDefaultData());
-    },
-
-    getDefaultData: function() {
-        return this.listings;
-    }
-
-});
-
-var ChangeLogStore = Reflux.createStore({
-
-    listenables: [ ListingActions ],
-
-    changelogs: [],
-
-    onFetchAllChangeLogs: function () {
-        var me = this;
-
-        ListingApi.getOwnedChangeLogs().then(function(response) {
-            me.changelogs = response._embedded.item;
-            me.doTrigger();
-        });
-    },
-
-    doTrigger: function() {
-        this.trigger(this.getDefaultData());
-    },
-
-    getDefaultData: function() {
-        return this.changelogs;
-    }
-
-});
+var ListingActions = require('../../actions/Listing');
+var ListingStore = require('../../store/Listing');
+var ChangeLogStore = require('../../store/ChangeLog');
+var ListingManagementLink = require('../ListingManagementLink.jsx');
 
 var MyListings = React.createClass({
 
@@ -63,6 +14,11 @@ var MyListings = React.createClass({
         Reflux.connect(ListingStore, 'listings'),
         Reflux.connect(ChangeLogStore, 'changelogs')
     ],
+
+    componentWillMount: function () {
+        ListingActions.fetchOwnedChangeLogs();
+        ListingActions.fetchOwnedListings();
+    },
 
     getInitialState: function() {
         return {
@@ -72,8 +28,11 @@ var MyListings = React.createClass({
     },
     
     renderChangeLogs: function () {
-        return this.state.changelogs.map(function (changeLog) {
+        if (!Array.isArray(this.state.changelogs)) {
+            this.state.changelogs = [this.state.changelogs];
+        }
 
+        return this.state.changelogs.map(function (changeLog) {
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
                     { changeLog.listing.iconUrl ? <img className="recent-activity-icon" src={ changeLog.listing.iconUrl } /> : <div></div> }
@@ -84,6 +43,10 @@ var MyListings = React.createClass({
     },
 
     renderCounts: function () {
+        if (!Array.isArray(this.state.listings)) {
+            this.state.listings = [this.state.listings];
+        }
+
         var counts = this.state.listings.reduce(function (acc, i) {
             (acc[i.approvalStatus])++;
             return acc;
@@ -96,24 +59,24 @@ var MyListings = React.createClass({
         });
 
         return (
-            <div className="MyListings__counts">
+            <div className="Listings__counts">
                 <div className="MyListings__approved">
-                    <i className="icon-thumbs-up-14-greenDark"></i>
+                    <i className="icon-thumbs-up-36-green"></i>
                     <span>{counts.APPROVED}</span><br />
                     <span>Approved</span>
                 </div>
                 <div className="MyListings__pending">
-                    <i className="icon-loader-12-blueDark"></i>
+                    <i className="icon-loader-36-blue"></i>
                     <span>{counts.APPROVED_ORG + counts.PENDING}</span><br />
                     <span>Pending</span>
                 </div>
                 <div className="MyListings__rejected">
-                    <i className="icon-exclamation-12-redOrangeDark"></i>
+                    <i className="icon-exclamation-36-redOrange"></i>
                     <span>{counts.REJECTED}</span><br />
                     <span>Returned</span>
                 </div>
                 <div className="MyListings__draft">
-                    <i className="icon-paper-12-grayDark"></i>
+                    <i className="icon-paper-36-white"></i>
                     <span>{counts.IN_PROGRESS}</span><br />
                     <span>Draft</span>
                 </div>
@@ -124,8 +87,9 @@ var MyListings = React.createClass({
     render: function() {
         return( 
             <div className="Widget">
-                <div className="MyListings">
+                <div className="Listings">
                     <h3>My Listings</h3>
+                    <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
                         { this.renderCounts() }
                 </div>
                 <div className="RecentActivity">

@@ -1,12 +1,13 @@
 .Widget {
 	
 	height: 400px;
-	width: 800px;
+	width: 700px;
 	border: 2px solid white;
 	overflow: hidden;
 	background: $gray-darkest;
 	padding: 20px;
 	margin-bottom: 50px;
+	float: left;
 
 	li {
 		list-style: none;
@@ -17,10 +18,10 @@
 		overflow: auto;
 	}
 
-	.MyListings {
+		.Listings {
 		height: 100px;
 
-		.MyListings__counts {
+		.Listings__counts {
 
 			div {
 				display: block;

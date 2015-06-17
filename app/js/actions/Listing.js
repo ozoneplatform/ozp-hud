@@ -2,7 +2,10 @@
 var Reflux = require('reflux');
 
 var ListingActions = Reflux.createActions(
-    ['fetchListings', 'fetchAllChangeLogs']
+    [
+    	'fetchOwnedListings', 'fetchOwnedChangeLogs',
+    	'fetchAllListings', 'fetchAllChangeLogs'
+    ]
 );
 
 module.exports = ListingActions;
