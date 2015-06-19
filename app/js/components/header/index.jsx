@@ -92,7 +92,7 @@ var Header = React.createClass({
                                     <li><a href={CENTER_URL + '#/user-management/my-listings'}><i className="icon-layers-grayLightest"></i>Listing Management</a></li>
                                     {
                                         isAdmin &&
-                                        <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Marketplace Settings</a></li>
+                                        <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
                                     }
                                     { Metrics }
                                     <li><a href={FEEDBACK_ADDRESS} className="caboose" target={feedbackTarget}><i className="icon-mail"></i>Submit Feedback</a></li>
