@@ -32,7 +32,9 @@ var ChangeLogStore = Reflux.createStore({
         var me = this;
 
         ListingApi.getOwnedChangeLogs().then(function(response) {
-            me.userChangelogs = response._embedded.item;
+            if (response._embedded) {
+                me.userChangelogs = response._embedded.item;
+            } 
             me.doUserTrigger();
         });
     },

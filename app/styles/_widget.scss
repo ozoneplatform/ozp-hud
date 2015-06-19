@@ -1,54 +1,98 @@
-.Widget {
-	
-	height: 400px;
-	width: 700px;
-	border: 2px solid white;
-	overflow: hidden;
-	background: $gray-darkest;
-	padding: 20px;
-	margin-bottom: 50px;
-	float: left;
+.layout {
 
-	li {
-		list-style: none;
-	}
+	.react-grid-item {
 
-	.scrollable {
-		max-height: 200px;
-		overflow: auto;
-	}
+		margin-top: 50px;
+		margin-bottom: 50px;
 
-		.Listings {
-		height: 100px;
+		.custom-hud-component { 
 
-		.Listings__counts {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			border: 1px solid $gray-light;
+			background: $gray-darkest;
+			padding: 10px;
 
-			div {
-				display: block;
-				float: left;
-				width: 100px;
+			li {
+				list-style: none;
+			}
+
+			.Listings__bar {
+				height: 150px;
+
+				a {
+					padding-left: 20px;
+					float: right;
+				}
+
+				.Listings__counts {
+					padding-left: 20px;
+
+					div {
+						display: block;
+						float: left;
+						width: 100px;
+					}
+				}
+			}
+
+			.RecentActivity {
+				h1 {
+					margin-top: 0px;
+					margin-bottom: 0px;
+				}
+			}
+
+			.RecentActivity__activities {
+ 
+				position:absolute;
+			    top: 230px;
+			    left: 10px;
+			    right: 20px;
+			    bottom: 0px;
+			    overflow: auto;  
+
+			    .recent-activity-icon {
+			        float: left;
+			        max-height: 30px;
+			        max-width: 30px;
+			        margin-right: 10px;
+			    }
+
+			    .icon-caret-right {
+			        margin-top: 6px;
+			    }
+
+				.RecentActivity__empty {
+					width: 50%;
+					margin: 0 auto 0 auto;
+				    text-align:center;
+				    color: $white;
+
+				    a {
+				        color: $blue;
+				        font-weight: 600;
+				        font-size: 2em;
+				    }
+				}
+
 			}
 		}
-	}	
 
-	.RecentActivity__activities {
-
-		padding-top: 20px;
-
-	    .recent-activity-icon {
-	        float: left;
-	        max-height: 30px;
-	        max-width: 30px;
-	        margin-right: 10px;
-	    }
-
-	    .icon-caret-right {
-	        margin-top: 6px;
-	    }
-
+		.react-resizable-handle {
+			position: absolute;
+			width: 14px;
+			height: 14px;
+			bottom: 0;
+			right: 0;
+			background-repeat: no-repeat;
+			background-origin: content-box;
+			box-sizing: border-box;
+			cursor: se-resize;
+			@extend .icon-caret-down-14-grayLightest;
+		}
 	}
 
-	h3 {
-		clear: both;
-	}
+	
 }

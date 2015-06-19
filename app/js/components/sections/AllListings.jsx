@@ -74,7 +74,7 @@ var AllListings = React.createClass({
 
             return (
                 <div className="Listings">
-                    <h3>Org Listings</h3>
+                    <h1>Org Listings</h1>
                     { link }
                     <div className="Listings__counts">
                         <div className="AllListings__approved">
@@ -128,8 +128,8 @@ var AllListings = React.createClass({
             });
 
             return (
-                <div className="Listings">
-                    <h3>Marketplace Listings</h3>
+                <div className="Listings__bar">
+                    <h1>Marketplace Listings</h1>
                     <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
                     <div className="Listings__counts">
                         <div className="AllListings__approved">
@@ -165,12 +165,12 @@ var AllListings = React.createClass({
 
 
     render: function() {
-        return( 
-            <div className="Widget">
+        return(
+            <div className="custom-hud-component" id="all-listings">
                 { this.renderAdminCounts() }
                 { this.renderOrgCounts() }
                 <div className="RecentActivity">
-                    <h3>Recent Activity</h3>
+                    <h1>Recent Activity</h1>
                     <div className="scrollable RecentActivity__activities">
                         { this.renderChangeLogs() }
                     </div>
