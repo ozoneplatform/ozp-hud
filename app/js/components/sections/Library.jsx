@@ -22,7 +22,7 @@ var LibraryWidget = React.createClass({
 	render: function () {
 
 		return (
-			<div className="FolderLibrary Widget">
+			<div className="custom-hud-component">
                 <h1>My Bookmarks</h1>
                 <Library store={FolderLibraryStore} emptyView={EmptyLibrary} className="scrollable"/>
             </div>

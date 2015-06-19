@@ -39,7 +39,7 @@ var MyListings = React.createClass({
                 </ChangeLog>,
                 <br/>
             ];
-        });
+        });       
     },
 
     renderCounts: function () {
@@ -86,15 +86,15 @@ var MyListings = React.createClass({
 
     render: function() {
         return( 
-            <div className="Widget">
-                <div className="Listings">
-                    <h3>My Listings</h3>
+            <div className="custom-hud-component">
+                <div className="Listings__bar">
+                    <h1>My Listings</h1>
                     <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
                         { this.renderCounts() }
                 </div>
                 <div className="RecentActivity">
-                    <h3>Recent Activity</h3>
-                    <div className="scrollable RecentActivity__activities">
+                    <h1>Recent Activity</h1>
+                    <div className="RecentActivity__activities">
                         { this.renderChangeLogs() }
                     </div>
                 </div>

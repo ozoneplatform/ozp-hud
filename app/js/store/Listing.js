@@ -24,7 +24,9 @@ var ListingStore = Reflux.createStore({
         var me = this;
 
         ListingApi.getOwnedListings().then(function(response) {
-            me.userListings = response._embedded.item;
+            if (response._embedded) {
+                me.userListings = response._embedded.item;
+            }
             me.doUserTrigger();
         });
     },
