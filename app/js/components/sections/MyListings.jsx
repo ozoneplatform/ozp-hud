@@ -4,15 +4,15 @@ var Reflux = require('reflux');
 var React = require('react');
 var ChangeLog = require('./ChangeLog.jsx');
 var ListingActions = require('../../actions/Listing');
-var ListingStore = require('../../store/Listing');
-var ChangeLogStore = require('../../store/ChangeLog');
+var ProfileStore = require('../../store/Profile');
+var ChangeLogStore = require('../../store/ProfileChangeLog');
 var ListingManagementLink = require('../ListingManagementLink.jsx');
 
 var MyListings = React.createClass({
 
     mixins: [
-        Reflux.connect(ListingStore, 'listings'),
-        Reflux.connect(ChangeLogStore, 'changelogs')
+        Reflux.connect(ProfileStore, 'mylistings'),
+        Reflux.connect(ChangeLogStore, 'mychangelogs')
     ],
 
     componentWillMount: function () {
@@ -22,17 +22,17 @@ var MyListings = React.createClass({
 
     getInitialState: function() {
         return {
-            listings: [],
-            changelogs: []
+            mylistings: [],
+            mychangelogs: []
         };
     },
     
     renderChangeLogs: function () {
-        if (!Array.isArray(this.state.changelogs)) {
-            this.state.changelogs = [this.state.changelogs];
+        if (!Array.isArray(this.state.mychangelogs)) {
+            this.state.mychangelogs = [this.state.mychangelogs];
         }
 
-        return this.state.changelogs.map(function (changeLog) {
+        return this.state.mychangelogs.map(function (changeLog) {
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
                     { changeLog.listing.iconUrl ? <img className="recent-activity-icon" src={ changeLog.listing.iconUrl } /> : <div></div> }
@@ -43,11 +43,11 @@ var MyListings = React.createClass({
     },
 
     renderCounts: function () {
-        if (!Array.isArray(this.state.listings)) {
-            this.state.listings = [this.state.listings];
+        if (!Array.isArray(this.state.mylistings)) {
+            this.state.mylistings = [this.state.mylistings];
         }
 
-        var counts = this.state.listings.reduce(function (acc, i) {
+        var counts = this.state.mylistings.reduce(function (acc, i) {
             (acc[i.approvalStatus])++;
             return acc;
         }, {
@@ -85,22 +85,28 @@ var MyListings = React.createClass({
     },
 
     render: function() {
-        return( 
-            <div className="custom-hud-component">
-                <div className="Listings__bar">
-                    <h1>My Listings</h1>
-                    <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
-                        { this.renderCounts() }
-                </div>
-                <div className="RecentActivity">
-                    <h1>Recent Activity</h1>
-                    <div className="RecentActivity__activities">
-                        { this.renderChangeLogs() }
+        if (this.state.mylistings.length > 0) {
+            return( 
+                <div className="custom-hud-component" { ...this.props }>
+                    <div className="Listings__bar">
+                        <h1>My Listings</h1>
+                        <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
+                            { this.renderCounts() }
                     </div>
+                    <div className="RecentActivity">
+                        <h1>Recent Activity</h1>
+                        <div className="RecentActivity__activities">
+                            { this.renderChangeLogs() }
+                        </div>
+                    </div>
+                    { this.props.children }
                 </div>
-            </div>
-        );
-
+            );
+        } else {
+            return(
+                <div></div>
+            );
+        }
     }
 
 });

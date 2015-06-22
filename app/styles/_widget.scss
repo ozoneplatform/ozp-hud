@@ -1,82 +1,76 @@
 .layout {
 
 	.react-grid-item {
-
 		margin-top: 50px;
 		margin-bottom: 50px;
+		overflow-x: hidden;
+		overflow-y: hidden;
+		border: 1px solid $gray-light;
+		background: $gray-darkest;
+		padding: 10px;
 
-		.custom-hud-component { 
+		li {
+			list-style: none;
+		}
 
-			height: 100%;
+		.Listings__bar {
+			height: 150px;
+
+			a {
+				padding-left: 20px;
+				float: right;
+			}
+
+			.Listings__counts {
+				padding-left: 20px;
+
+				div {
+					display: block;
+					float: left;
+					width: 100px;
+				}
+			}
+		}
+
+		.RecentActivity {
+			display: block;
 			width: 100%;
-			overflow: hidden;
-			border: 1px solid $gray-light;
-			background: $gray-darkest;
-			padding: 10px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			height: 50%;
 
-			li {
-				list-style: none;
+			h1 {
+				margin-top: 0px;
+				margin-bottom: 0px;
 			}
+		}
 
-			.Listings__bar {
-				height: 150px;
+		.RecentActivity__activities {
+		    left: 10px;
+		    right: 20px;
 
-				a {
-					padding-left: 20px;
-					float: right;
-				}
+		    .recent-activity-icon {
+		        float: left;
+		        max-height: 30px;
+		        max-width: 30px;
+		        margin-right: 10px;
+		    }
 
-				.Listings__counts {
-					padding-left: 20px;
+		    .icon-caret-right {
+		        margin-top: 6px;
+		    }
 
-					div {
-						display: block;
-						float: left;
-						width: 100px;
-					}
-				}
-			}
+			.RecentActivity__empty {
+				width: 50%;
+				margin: 0 auto 0 auto;
+			    text-align:center;
+			    color: $white;
 
-			.RecentActivity {
-				h1 {
-					margin-top: 0px;
-					margin-bottom: 0px;
-				}
-			}
-
-			.RecentActivity__activities {
- 
-				position:absolute;
-			    top: 230px;
-			    left: 10px;
-			    right: 20px;
-			    bottom: 0px;
-			    overflow: auto;  
-
-			    .recent-activity-icon {
-			        float: left;
-			        max-height: 30px;
-			        max-width: 30px;
-			        margin-right: 10px;
+			    a {
+			        color: $blue;
+			        font-weight: 600;
+			        font-size: 2em;
 			    }
-
-			    .icon-caret-right {
-			        margin-top: 6px;
-			    }
-
-				.RecentActivity__empty {
-					width: 50%;
-					margin: 0 auto 0 auto;
-				    text-align:center;
-				    color: $white;
-
-				    a {
-				        color: $blue;
-				        font-weight: 600;
-				        font-size: 2em;
-				    }
-				}
-
 			}
 		}
 
@@ -93,6 +87,11 @@
 			@extend .icon-grip-12-grayLightest;
 		}
 	}
+}
 
-	
+.react-grid-placeholder {
+	background: $gray-lightest;
+	opacity: 0.2;
+	transition-duration: 100ms;
+	z-index: 2;
 }

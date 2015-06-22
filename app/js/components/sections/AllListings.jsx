@@ -1,6 +1,7 @@
 'use strict';
 
 var Reflux = require('reflux');
+var $ = require('jquery');
 var React = require('react');
 var ChangeLog = require('./ChangeLog.jsx');
 var ListingActions = require('../../actions/Listing');
@@ -55,11 +56,15 @@ var AllListings = React.createClass({
                 this.state.listings = [this.state.listings];
             }
 
-            var listings = this.state.listings.filter(function (listing) {
-                return profile.stewardedOrganizations.indexOf(listing.organization);
+            var orglistings = [];
+
+            $.each(this.state.listings, function (index, listing) {
+                if (profile.stewardedOrganizations.indexOf(listing.agency) > -1) {
+                    orglistings.push(listing);
+                }
             });
 
-            var counts = listings.reduce(function (acc, i) {
+            var counts = orglistings.reduce(function (acc, i) {
                 (acc[i.approvalStatus])++;
                 return acc;
             }, {
@@ -73,31 +78,31 @@ var AllListings = React.createClass({
             var link = profile.isAdmin() ? "" : <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>;
 
             return (
-                <div className="Listings">
+                <div className="Listings__bar">
                     <h1>Org Listings</h1>
                     { link }
                     <div className="Listings__counts">
-                        <div className="AllListings__approved">
+                        <div className="OrgListings__approved">
                             <i className="icon-thumbs-up-36-green"></i>
                             <span>{ counts.APPROVED }</span><br />
                             <span>Approved</span>
                         </div>
-                        <div className="AllListings__pending">
+                        <div className="OrgListings__pending">
                             <i className="icon-exclamation-36-redOrange"></i>
                             <span>{ counts.PENDING }</span><br />
                             <span>Pending, Org.</span>
                         </div>
-                        <div className="AllListings__submitted">
+                        <div className="OrgListings__submitted">
                             <i className="icon-loader-36-blue"></i>
                             <span>{ counts.APPROVED_ORG }</span><br />
                             <span>Org Approved</span>
                         </div>
-                        <div className="AllListings__rejected">
+                        <div className="OrgListings__rejected">
                             <i className="icon-reload-36-blue"></i>
                             <span>{ counts.REJECTED }</span><br />
                             <span>Returned</span>
                         </div>
-                        <div className="AllListings__draft">
+                        <div className="OrgListings__draft">
                             <i className="icon-paper-36-white"></i>
                             <span>{ counts.IN_PROGRESS }</span><br />
                             <span>Draft</span>
@@ -166,15 +171,16 @@ var AllListings = React.createClass({
 
     render: function() {
         return(
-            <div className="custom-hud-component" id="all-listings">
+            <div className="custom-hud-component" {...this.props}>
                 { this.renderAdminCounts() }
                 { this.renderOrgCounts() }
                 <div className="RecentActivity">
                     <h1>Recent Activity</h1>
-                    <div className="scrollable RecentActivity__activities">
+                    <div className="RecentActivity__activities">
                         { this.renderChangeLogs() }
                     </div>
                 </div>
+                { this.props.children }
             </div>
         );
     }
