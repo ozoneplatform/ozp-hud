@@ -1,3 +1,11 @@
+### 0.7.9 (2015-06-22)
+
+
+#### Features
+
+* **Tooltips:** added tooltips to global navbar ([1e3b0860](https://github.com/ozone-development/ozp-hud.git/commit/1e3b0860ce7ca260091a9a82a3302d69f3f8d282))
+
+
 ### 0.7.8 (2015-06-09)
 
 
