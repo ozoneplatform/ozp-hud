@@ -15,7 +15,9 @@ var ChangeLogStore = Reflux.createStore({
         var me = this;
 
         ListingApi.getAllChangeLogs().then(function(response) {
-            me.changelogs = response._embedded.item;
+            if (response._embedded) {
+                me.changelogs = response._embedded.item;
+            }
             me.doTrigger();
         });
     },
