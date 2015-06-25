@@ -22,7 +22,7 @@ var LibraryWidget = React.createClass({
 	render: function () {
 
 		return (
-			<div className="custom-hud-component" isDraggable={false} { ...this.props }>
+			<div className="custom-hud-component">
                 <h1>My Bookmarks</h1>
                 <Library store={FolderLibraryStore} emptyView={EmptyLibrary} />
                 { this.props.children }

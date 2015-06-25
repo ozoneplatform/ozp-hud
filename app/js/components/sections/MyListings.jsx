@@ -4,25 +4,25 @@ var Reflux = require('reflux');
 var React = require('react');
 var ChangeLog = require('./ChangeLog.jsx');
 var ListingActions = require('../../actions/Listing');
-var ProfileStore = require('../../store/Profile');
 var ChangeLogStore = require('../../store/ProfileChangeLog');
 var ListingManagementLink = require('../ListingManagementLink.jsx');
 
 var MyListings = React.createClass({
 
     mixins: [
-        Reflux.connect(ProfileStore, 'mylistings'),
         Reflux.connect(ChangeLogStore, 'mychangelogs')
     ],
 
+    propTypes: {
+        listings: React.PropTypes.array
+    },
+
     componentWillMount: function () {
         ListingActions.fetchOwnedChangeLogs();
-        ListingActions.fetchOwnedListings();
     },
 
     getInitialState: function() {
         return {
-            mylistings: [],
             mychangelogs: []
         };
     },
@@ -43,11 +43,12 @@ var MyListings = React.createClass({
     },
 
     renderCounts: function () {
-        if (!Array.isArray(this.state.mylistings)) {
-            this.state.mylistings = [this.state.mylistings];
+        var listings = this.props.listings;
+        if (!Array.isArray(listings)) {
+            listings = [listings];
         }
 
-        var counts = this.state.mylistings.reduce(function (acc, i) {
+        var counts = listings.reduce(function (acc, i) {
             (acc[i.approvalStatus])++;
             return acc;
         }, {
@@ -85,7 +86,8 @@ var MyListings = React.createClass({
     },
 
     render: function() {
-        if (this.state.mylistings.length > 0) {
+        var listings = this.props.listings;
+        if (listings && listings.length > 0) {
             return( 
                 <div className="custom-hud-component" { ...this.props }>
                     <div className="Listings__bar">

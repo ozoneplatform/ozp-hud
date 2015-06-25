@@ -7,16 +7,18 @@ var ChangeLog = require('./ChangeLog.jsx');
 var ListingActions = require('../../actions/Listing');
 var ListingStore = require('../../store/Listing');
 var ChangeLogStore = require('../../store/ChangeLog');
-var SelfStore = require('ozp-react-commons/stores/SelfStore');
 var ListingManagementLink = require('../ListingManagementLink.jsx');
 
 var AllListings = React.createClass({
 
     mixins: [
         Reflux.connect(ListingStore, 'listings'),
-        Reflux.connect(ChangeLogStore, 'changelogs'),
-        Reflux.connect(SelfStore, 'profile')
+        Reflux.connect(ChangeLogStore, 'changelogs')
     ],
+
+    propTypes: {    
+        profile: React.PropTypes.object
+    },
 
     componentWillMount: function () {
         ListingActions.fetchAllChangeLogs();
@@ -26,8 +28,7 @@ var AllListings = React.createClass({
     getInitialState: function() {
         return {
             listings: [],
-            changelogs: ChangeLogStore.getDefaultData(),
-            profile: SelfStore.getDefaultData()
+            changelogs: ChangeLogStore.getDefaultData()
         };
     },
     
@@ -48,7 +49,7 @@ var AllListings = React.createClass({
     },    
 
     renderOrgCounts: function () {
-        var profile = this.state.profile.currentUser;
+        var profile = this.props.profile.currentUser;
 
         if (profile && profile.stewardedOrganizations.length > 0) {
 
@@ -114,8 +115,8 @@ var AllListings = React.createClass({
     },
 
     renderAdminCounts: function () {
-        if (this.state.profile && this.state.profile.currentUser &&
-                this.state.profile.currentUser.isAdmin()) {
+        var profile = this.props.profile.currentUser;
+        if (profile && profile.isAdmin()) {
 
             if (!Array.isArray(this.state.listings)) {
                 this.state.listings = [this.state.listings];
@@ -170,12 +171,11 @@ var AllListings = React.createClass({
 
 
     render: function() {
-        var profile = this.state.profile.currentUser;
+        var profile = this.props.profile.currentUser;
 
         if (profile && (profile.stewardedOrganizations.length > 0 || profile.isAdmin())) {
-
             return(
-                <div className="custom-hud-component" {...this.props}>
+                <div className="custom-hud-component">
                     { this.renderAdminCounts() }
                     { this.renderOrgCounts() }
                     <div className="RecentActivity">
