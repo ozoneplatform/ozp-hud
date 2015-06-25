@@ -5,7 +5,7 @@
 		margin-bottom: 50px;
 		overflow-x: hidden;
 		overflow-y: hidden;
-		border: 1px solid $gray-light;
+		border: 1px solid $gray-dark;
 		background: $gray-darkest;
 		padding: 10px;
 
@@ -17,17 +17,24 @@
 			height: 150px;
 
 			a {
-				padding-left: 20px;
-				float: right;
+				padding: 0 0 10px 20px;
+				float: left;
 			}
 
 			.Listings__counts {
 				padding-left: 20px;
+				clear: both;
+				text-align: center;
 
 				div {
 					display: block;
 					float: left;
 					width: 100px;
+				}
+
+				.count {
+					font-size: 32px;
+					margin-left: 10px;
 				}
 			}
 		}
@@ -90,7 +97,8 @@
 }
 
 .react-grid-placeholder {
-	background: $gray-lightest;
+	background: $gray-dark;
+	border: 1px solid $blue;
 	opacity: 0.2;
 	transition-duration: 100ms;
 	z-index: 2;
