@@ -30,31 +30,33 @@ var HelpModal = React.createClass({
     },
 
     fetchDocs: (()=>{
-      var docKeys = Object.keys(HELP_DOCS);
-      return docKeys.map(docKey => {
-        return {name: docKey, link: HELP_DOCS[docKey]};
-      });
+      var docArr = [];
+      for(var doc in HELP_DOCS){
+        docArr.push(HELP_DOCS[doc]);
+      }
+      return docArr;
     })(),
 
     fetchVids: (()=>{
-      var vidKeys = Object.keys(HELP_VIDEOS);
-      return vidKeys.map(vidKey => {
-        return {name: vidKey, link: HELP_VIDEOS[vidKey]};
-      });
+      var vidArr = [];
+      for(var vid in HELP_VIDEOS){
+        vidArr.push(HELP_VIDEOS[vid]);
+      }
+      return vidArr;
     })(),
 
     render: function () {
-        var docLinks = this.fetchDocs.map(function(doc){
+        var docLinks = this.fetchDocs.map(function(link){
           return(
             <li>
-              <a target="_blank" href={ doc.link }>{ doc.name }</a>
+              <a target="_blank" href={ link }>{ link }</a>
             </li>
           );
         });
-        var vidLinks = this.fetchVids.map(function(vid){
+        var vidLinks = this.fetchVids.map(function(link){
           return(
             <li>
-              <a target="_blank" href={ vid.link }>{ vid.name }</a>
+              <a target="_blank" href={ link }>{ link }</a>
             </li>
           );
         });
