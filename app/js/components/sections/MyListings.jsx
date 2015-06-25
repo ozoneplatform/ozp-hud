@@ -60,24 +60,24 @@ var MyListings = React.createClass({
 
         return (
             <div className="Listings__counts">
+                <div className="MyListings__rejected">
+                    <i className="icon-exclamation-36-redOrange"></i>
+                    <span className="count">{counts.REJECTED}</span><br />
+                    <span>Needs Action</span>
+                </div>
                 <div className="MyListings__approved">
                     <i className="icon-thumbs-up-36-green"></i>
-                    <span>{counts.APPROVED}</span><br />
+                    <span className="count">{counts.APPROVED}</span><br />
                     <span>Approved</span>
                 </div>
                 <div className="MyListings__pending">
                     <i className="icon-loader-36-blue"></i>
-                    <span>{counts.APPROVED_ORG + counts.PENDING}</span><br />
+                    <span className="count">{counts.APPROVED_ORG + counts.PENDING}</span><br />
                     <span>Pending</span>
-                </div>
-                <div className="MyListings__rejected">
-                    <i className="icon-exclamation-36-redOrange"></i>
-                    <span>{counts.REJECTED}</span><br />
-                    <span>Returned</span>
                 </div>
                 <div className="MyListings__draft">
                     <i className="icon-paper-36-white"></i>
-                    <span>{counts.IN_PROGRESS}</span><br />
+                    <span className="count">{counts.IN_PROGRESS}</span><br />
                     <span>Draft</span>
                 </div>
             </div>

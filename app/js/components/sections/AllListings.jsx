@@ -82,29 +82,29 @@ var AllListings = React.createClass({
                     <h1>Org Listings</h1>
                     { link }
                     <div className="Listings__counts">
-                        <div className="OrgListings__approved">
-                            <i className="icon-thumbs-up-36-green"></i>
-                            <span>{ counts.APPROVED }</span><br />
-                            <span>Approved</span>
-                        </div>
                         <div className="OrgListings__pending">
                             <i className="icon-exclamation-36-redOrange"></i>
-                            <span>{ counts.PENDING }</span><br />
-                            <span>Pending, Org.</span>
+                            <span className="count">{ counts.PENDING }</span><br />
+                            <span>Needs Action</span>
+                        </div>
+                        <div className="OrgListings__approved">
+                            <i className="icon-thumbs-up-36-green"></i>
+                            <span className="count">{ counts.APPROVED }</span><br />
+                            <span>Approved</span>
                         </div>
                         <div className="OrgListings__submitted">
                             <i className="icon-loader-36-blue"></i>
-                            <span>{ counts.APPROVED_ORG }</span><br />
-                            <span>Org Approved</span>
+                            <span className="count">{ counts.APPROVED_ORG }</span><br />
+                            <span>Pending</span>
                         </div>
                         <div className="OrgListings__rejected">
                             <i className="icon-reload-36-blue"></i>
-                            <span>{ counts.REJECTED }</span><br />
+                            <span className="count">{ counts.REJECTED }</span><br />
                             <span>Returned</span>
                         </div>
                         <div className="OrgListings__draft">
                             <i className="icon-paper-36-white"></i>
-                            <span>{ counts.IN_PROGRESS }</span><br />
+                            <span className="count">{ counts.IN_PROGRESS }</span><br />
                             <span>Draft</span>
                         </div>
                     </div>
@@ -137,29 +137,29 @@ var AllListings = React.createClass({
                     <h1>Marketplace Listings</h1>
                     <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
                     <div className="Listings__counts">
-                        <div className="AllListings__approved">
-                            <i className="icon-thumbs-up-36-green"></i>
-                            <span>{ counts.APPROVED }</span><br />
-                            <span>Approved</span>
-                        </div>
                         <div className="AllListings__pending">
                             <i className="icon-exclamation-36-redOrange"></i>
-                            <span>{ counts.APPROVED_ORG }</span><br />
-                            <span>Pending</span>
+                            <span className="count">{ counts.APPROVED_ORG }</span><br />
+                            <span>Needs Action</span>
+                        </div>
+                        <div className="AllListings__approved">
+                            <i className="icon-thumbs-up-36-green"></i>
+                            <span className="count">{ counts.APPROVED }</span><br />
+                            <span>Approved</span>
                         </div>
                         <div className="AllListings__submitted">
                             <i className="icon-loader-36-blue"></i>
-                            <span>{ counts.PENDING }</span><br />
-                            <span>Pending, Org.</span>
+                            <span className="count">{ counts.PENDING }</span><br />
+                            <span>Pending</span>
                         </div>
                         <div className="AllListings__rejected">
                             <i className="icon-reload-36-blue"></i>
-                            <span>{ counts.REJECTED }</span><br />
+                            <span className="count">{ counts.REJECTED }</span><br />
                             <span>Returned</span>
                         </div>
                         <div className="AllListings__draft">
                             <i className="icon-paper-36-white"></i>
-                            <span>{ counts.IN_PROGRESS }</span><br />
+                            <span className="count">{ counts.IN_PROGRESS }</span><br />
                             <span>Draft</span>
                         </div>
                     </div>
@@ -170,19 +170,28 @@ var AllListings = React.createClass({
 
 
     render: function() {
-        return(
-            <div className="custom-hud-component" {...this.props}>
-                { this.renderAdminCounts() }
-                { this.renderOrgCounts() }
-                <div className="RecentActivity">
-                    <h1>Recent Activity</h1>
-                    <div className="RecentActivity__activities">
-                        { this.renderChangeLogs() }
+        var profile = this.state.profile.currentUser;
+
+        if (profile && (profile.stewardedOrganizations.length > 0 || profile.isAdmin())) {
+
+            return(
+                <div className="custom-hud-component" {...this.props}>
+                    { this.renderAdminCounts() }
+                    { this.renderOrgCounts() }
+                    <div className="RecentActivity">
+                        <h1>Recent Activity</h1>
+                        <div className="RecentActivity__activities">
+                            { this.renderChangeLogs() }
+                        </div>
                     </div>
+                    { this.props.children }
                 </div>
-                { this.props.children }
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div></div>
+            );
+        }
     }
 
 });
