@@ -176,12 +176,16 @@ var AllListings = React.createClass({
         if (profile && (profile.stewardedOrganizations.length > 0 || profile.isAdmin())) {
             return(
                 <div className="custom-hud-component">
-                    { this.renderAdminCounts() }
-                    { this.renderOrgCounts() }
-                    <div className="RecentActivity">
-                        <h1>Recent Activity</h1>
-                        <div className="RecentActivity__activities">
-                            { this.renderChangeLogs() }
+                    <div className="TableRowZero">
+                        { this.renderAdminCounts() }
+                        { this.renderOrgCounts() }
+                    </div>
+                    <div className="TableRow">
+                        <div className="RecentActivity">
+                            <h1>Recent Activity</h1>
+                            <div className="RecentActivity__activities">
+                                { this.renderChangeLogs() }
+                            </div>
                         </div>
                     </div>
                     { this.props.children }

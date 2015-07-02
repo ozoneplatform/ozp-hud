@@ -23,8 +23,10 @@ var LibraryWidget = React.createClass({
 
 		return (
 			<div className="custom-hud-component">
-                <h1>My Bookmarks</h1>
-                <Library store={FolderLibraryStore} emptyView={EmptyLibrary} />
+                <div className="TableRowZero">
+                    <h1>My Bookmarks</h1>
+                </div>
+                <Library className="TableRow" store={FolderLibraryStore} emptyView={EmptyLibrary} />
                 { this.props.children }
             </div>
         );

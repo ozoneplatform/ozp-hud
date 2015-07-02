@@ -90,15 +90,17 @@ var MyListings = React.createClass({
         if (listings && listings.length > 0) {
             return( 
                 <div className="custom-hud-component" { ...this.props }>
-                    <div className="Listings__bar">
+                    <div className="Listings__bar TableRowZero">
                         <h1>My Listings</h1>
                         <ListingManagementLink>Listing Management <i className="icon-caret-right-blueDark"></i></ListingManagementLink>
                             { this.renderCounts() }
                     </div>
-                    <div className="RecentActivity">
-                        <h1>Recent Activity</h1>
-                        <div className="RecentActivity__activities">
-                            { this.renderChangeLogs() }
+                    <div className="TableRow">
+                        <div className="RecentActivity">
+                            <h1>Recent Activity</h1>
+                            <div className="RecentActivity__activities">
+                                { this.renderChangeLogs() }
+                            </div>
                         </div>
                     </div>
                     { this.props.children }
