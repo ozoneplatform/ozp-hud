@@ -15,8 +15,8 @@ var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var Folder = require('../../api/Folder');
-
 var FolderTitle = require('./FolderTitle.jsx');
+var Modal = require('../../../../node_modules/ozp-react-commons/app/js/components/Modal.jsx');
 
 //the classname of the element on which a drag out of the folder would drop.
 //This has been known to change from version to version of bootstrap.
@@ -60,8 +60,9 @@ var FolderModal = React.createClass({
         }
     },
 
-    _close: function() {
+    _close: function () {
         this.transitionTo('/');
+        $( this.getDOMNode() ).modal('hide');
     },
 
     componentWillUnmount: function() {
@@ -106,26 +107,24 @@ var FolderModal = React.createClass({
     render: function() {
         //undo the manual escaping of slashes that we must do because react-router doesn't
         var folderName = decodeURIComponent(this.props.params.name);
-
         return (
-            <div className="modal FolderModal" data-show="true"
-                    onDragEnter={this.onDragOver} onDragOver={this.onDragOver}
-                    onDrop={this.onDrop}>
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <Link className="close" to="main">
-                                <i className="icon-cross-14-grayLightest"/>
-                            </Link>
-                            <FolderTitle name={folderName} element={React.DOM.h3}
-                                onChange={this.onNameChange}/>
-                        </div>
-                        <div className="modal-body">
-                            <Library allowFolderCreate={false} store={CurrentFolderStore} />
-                        </div>
+            <Modal ref="modal" className="FolderModal" onDragEnter={this.onDragOver} onDragOver={this.onDragOver} onDrop={this.onDrop}>
+
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <button type="button" className="close"
+                                onClick={ this._close }>
+                            <span aria-hidden="true"><i className="icon-cross-16"></i></span>
+                            <span className="sr-only">Close</span>
+                        </button>
+                        <FolderTitle name={folderName} element={React.DOM.h4}
+                            onChange={this.onNameChange}/>
+                    </div>
+                    <div className="modal-body">
+                        <Library allowFolderCreate={false} store={CurrentFolderStore} />
                     </div>
                 </div>
-            </div>
+            </Modal>
         );
     }
 });

@@ -5,7 +5,7 @@ var { RouteHandler } = require('react-router');
 var Header = require('./header/index.jsx');
 var Settings = require('./settings/index.jsx');
 
-var GridLayout = require('./GridLayout.jsx');
+var HudGrid = require('./HudGrid.jsx');
 
 var App = React.createClass({
 
@@ -22,7 +22,7 @@ var App = React.createClass({
         return (
             <div>
                 <Header />
-                <GridLayout />
+                <HudGrid />
                 <Settings />
                 <RouteHandler params={ this.props.params } />
             </div>
