@@ -85,14 +85,14 @@ var Header = React.createClass({
                                     </li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
-                                    <li><a href={CENTER_URL + '#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
+                                    <li><a href={CENTER_URL + '/#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
                                     <li><a href={DEVELOPER_RESOURCES_URL} target="_blank"><i className="icon-cloud-grayLightest"></i>Developer Resources</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Manage</li>
-                                    <li><a href={CENTER_URL + '#/user-management/my-listings'}><i className="icon-layers-grayLightest"></i>Listing Management</a></li>
+                                    <li><a href={CENTER_URL + '/#/user-management/my-listings'}><i className="icon-layers-grayLightest"></i>Listing Management</a></li>
                                     {
                                         isAdmin &&
-                                        <li><a href={CENTER_URL + '#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
+                                        <li><a href={CENTER_URL + '/#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
                                     }
                                     { Metrics }
                                     <li><a href={FEEDBACK_ADDRESS} className="caboose" target={feedbackTarget}><i className="icon-mail"></i>Submit Feedback</a></li>
