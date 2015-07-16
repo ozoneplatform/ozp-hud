@@ -3,42 +3,56 @@
 var Reflux = require('reflux');
 var GridActions = require('../actions/HudGridActions');
 
-var HudGridStore = Reflux.createStore({
+var widgets = [],
+    widgetsFormatted = [];
 
-    widgets: [],
-    widgetsFormatted: [],
+var HudGridStore = Reflux.createStore({
 
     listenables: [GridActions],
 
     onAddWidget: function (widget, width, height) {
-        this.widgets.push( {type: widget, width: width, height: height} );
+        widgets.push( {type: widget, width: width, height: height} );
         this.formatWidgets();
-        this.trigger(this.widgetsFormatted);
     },
 
     onClearWidgets: function () {
-        this.widgets = [];
+        widgets = [];
         this.formatWidgets();
-        this.trigger(this.widgetsFormatted);
     },
 
     onMoveWidget: function (oldPosition, newPosition) {
         newPosition = (oldPosition < newPosition) ? Math.floor(newPosition) : Math.ceil(newPosition);
+
         if (oldPosition !== newPosition) {
-            var widget = this.widgets.splice(oldPosition,1)[0];
-            this.widgets.splice(newPosition,0,widget);
+            var widget = widgets.splice(oldPosition,1)[0];
+            widgets.splice(newPosition,0,widget);
             this.formatWidgets();
         }
-        this.trigger(this.widgetsFormatted);
     },
 
-    formatWidgets: function (){
+    onResizeWidget: function (index, newWidth, newHeight) {
+        if (newWidth) {
+            widgets[index].width = newWidth;
+        }
+        if (newHeight) {
+            widgets[index].height = newHeight;
+        }
+        if (newWidth || newHeight) {
+            return this.formatWidgets(index);
+        }
+        return null;
+    },
+
+    formatWidgets: function (returnIndex=null) {
+        var returnWidget = null;
+
         var tiles = [[],[]],
             list = [],
             length = 0,
             side,
             i;
-        this.widgets.forEach( function (widget, index) {
+
+        widgets.forEach( function (widget, index) {
             switch (widget.width) {
             case 1:
                 side = tiles[0].length > tiles[1].length ? tiles[1] : tiles[0]; // pick shorter side
@@ -49,7 +63,7 @@ var HudGridStore = Reflux.createStore({
                 break;
             case 2:
                 side = tiles[0].length > tiles[1].length ? tiles[1] : tiles[0]; // pick shorter side
-                while(tiles[0].length !== tiles[1].length){
+                while (tiles[0].length !== tiles[1].length) {
                     side.push(-1); // -1 = empty space
                 }
                 tiles[0].push(index);
@@ -62,36 +76,58 @@ var HudGridStore = Reflux.createStore({
             }
         });
 
+        while (tiles[0].length !== tiles[1].length) {
+            if (tiles[0].length > tiles[1].length) {
+                tiles[1].push(-1);
+            } else if (tiles[0].length < tiles[1].length) {
+                tiles[0].push(-1);
+            }
+        }
 
         length = tiles[0].length > tiles[1].length ? tiles[0].length : tiles[1].length;
-        for(var row = 0; row < length; row++){
-            for(var col = 0; col < 2; col++){
 
-                if(tiles[col][row] !== null){
-
-                    if( tiles[col][row] >= 0) {
+        for (var row = 0; row < length; row++) {
+            for (var col = 0; col < 2; col++) {
+                var index = tiles[col][row];
+                if (index !== null) {
+                    if ( index >= 0) {
                         var fullWidget = {
-                            type: this.widgets[tiles[col][row]].type,
-                            width: this.widgets[tiles[col][row]].width,
-                            height: this.widgets[tiles[col][row]].height,
-                            x: col,
-                            y: row
+                            type: widgets[index].type,
+                            width: widgets[index].width,
+                            height: widgets[index].height,
+                            left: col,
+                            top: row,
                         };
-                        list.push( fullWidget);
+                        list.push( fullWidget );
+                        if (index === returnIndex) {
+                            returnWidget = fullWidget;
+                        }
+                    } else if ( index === -1) {
+                        var tempHeight = 1,
+                            tempRow = row + 1;
+                        while (tiles[col][tempRow] === -1){//find size of empty space
+                            tiles[col][tempRow] = -2;
+                            tempHeight++;
+                            tempRow++;
+                        }
 
-                    }else if ( tiles[col][row] === -1){
-                        list.push({type: "empty", width: 1, height: 1, x:col, y:row});
+                        list.push({type: "empty", width: 1, height: tempHeight, left:col, top:row});
                     }
                 }
 
             }
         }
-        this.widgetsFormatted = list;
+        widgetsFormatted = list;
+        //Error: Invariant Violation: replaceState(...) ...
+        //this.trigger is being called when it isn't mounted?
+        //figure out why this error is being thrown.
+        this.trigger(widgetsFormatted);
+        return returnWidget;
     },
 
     getDefaultData: function () {
-        return this.widgetsFormatted;
-    }
+        return widgetsFormatted;
+    },
 });
 
 module.exports = HudGridStore;

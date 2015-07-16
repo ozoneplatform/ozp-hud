@@ -5,7 +5,6 @@ var Reflux = require('reflux');
 var Immutable = require('immutable');
 
 var Router = require('react-router');
-var Link = Router.Link;
 var Navigation = Router.Navigation;
 
 var Library = require('../library/index.jsx');
