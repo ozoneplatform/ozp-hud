@@ -6,7 +6,8 @@ var HudGridActions = Reflux.createActions(
         "clearWidgets",
         "addWidget",
         "moveWidget",
-        "resizeWidget"
+        "resizeWidget",
+        "setGridWidth"
     ]
 );
 

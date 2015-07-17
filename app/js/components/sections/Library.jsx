@@ -26,7 +26,13 @@ var LibraryWidget = React.createClass({
                 <div className="TableRowZero">
                     <h1>My Bookmarks</h1>
                 </div>
-                <Library className="TableRow" store={FolderLibraryStore} emptyView={EmptyLibrary} />
+                <div className="TableRow">
+                    <div className="CaptureFrame">
+                        <div className="RecentActivity">
+                            <Library store={FolderLibraryStore} emptyView={EmptyLibrary} />
+                        </div>
+                    </div>
+                </div>
                 { this.props.children }
             </div>
         );

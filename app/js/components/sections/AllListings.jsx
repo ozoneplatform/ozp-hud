@@ -31,14 +31,15 @@ var AllListings = React.createClass({
             changelogs: ChangeLogStore.getDefaultData()
         };
     },
-    
+
     renderChangeLogs: function () {
         if (!Array.isArray(this.state.changelogs)) {
             this.state.changelogs = [this.state.changelogs];
+        } else if (this.state.changelogs.length > 25) {
+            this.state.changelogs.splice(25, this.state.changelogs.length-1);
         }
 
         return this.state.changelogs.map(function (changeLog) {
-
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
                     { changeLog.listing.iconUrl ? <img className="recent-activity-icon" src={ changeLog.listing.iconUrl } /> : <div></div> }
@@ -181,10 +182,12 @@ var AllListings = React.createClass({
                         { this.renderOrgCounts() }
                     </div>
                     <div className="TableRow">
-                        <div className="RecentActivity">
-                            <h1>Recent Activity</h1>
-                            <div className="RecentActivity__activities">
-                                { this.renderChangeLogs() }
+                        <div className="CaptureFrame">
+                            <div className="RecentActivity">
+                                <h1>Recent Activity</h1>
+                                <div className="RecentActivity__activities">
+                                    { this.renderChangeLogs() }
+                                </div>
                             </div>
                         </div>
                     </div>

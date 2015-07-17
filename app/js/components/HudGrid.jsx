@@ -33,43 +33,53 @@ var HudGrid = React.createClass({
 
     componentWillMount: function () {
         ListingActions.fetchOwnedListings();
+        if ($(window).width() < 575) {
+            GridActions.setGridWidth(1);
+            this.setState({gridWidth: 1});
+        } else if ($(window).width() > 575) {
+            GridActions.setGridWidth(2);
+            this.setState({gridWidth: 2});
+        }
         this.getGrid (0);
+        window.addEventListener("resize", this.onResize);
+    },
+
+    componentWillUnmount: function () {
+        window.removeEventListener("resize", this.onResize);
     },
 
     getGrid: function (wait) {
         var profile = this.state.profile.currentUser,
-            listings = this.state.mylistings,
-            tryAgain = false;
+            listings = this.state.mylistings;
 
         if (profile && listings) {
-            var isAdmin = profile.isAdmin() || profile.stewardedOrganizations.length > 0,
+            var isAdmin = profile.isAdmin(),
+                isOrgStw = profile.stewardedOrganizations.length > 0,
                 ownsListings = listings.length > 0;
-
-            if (!isAdmin || !ownsListings) {
-                tryAgain = true;
-            }
-
+            
             GridActions.clearWidgets();
-            if (isAdmin && ownsListings) {
-                GridActions.addWidget("MyListings",1,2);
+            if ((isAdmin && isOrgStw) && ownsListings) {
+                GridActions.addWidget("MyListings",1,2); //GridActions.addWidget("type","width","height")
+                GridActions.addWidget("AllListings",1,4);
+                GridActions.addWidget("Library",1,2);
+            } else if ((isAdmin || isOrgStw) && ownsListings) {
+                GridActions.addWidget("MyListings",1,2); //GridActions.addWidget("type","width","height")
                 GridActions.addWidget("AllListings",1,2);
                 GridActions.addWidget("Library",2,2);
-            } else if (!isAdmin && ownsListings) {
+            } else if (!(isAdmin || isOrgStw) && ownsListings) {
                 GridActions.addWidget("MyListings",1,4);
                 GridActions.addWidget("Library",1,4);
-            } else if (isAdmin && !ownsListings) {
+            } else if ((isAdmin || isOrgStw) && !ownsListings) {
                 GridActions.addWidget("AllListings",1,4);
                 GridActions.addWidget("Library",1,4);
             } else {
                 GridActions.addWidget("Library",2,4);
             }
         } else {
-            tryAgain = true;
-        }
-
-        wait += 25;
-        if (tryAgain && (wait <= 1000)) {
-            setTimeout(this.getGrid.bind(this,wait), wait);
+            wait +=10;
+            if(wait<1000){
+                setTimeout(this.getGrid.bind(this,wait), wait);
+            }
         }
     },
 
@@ -119,7 +129,6 @@ var HudGrid = React.createClass({
                     height: widget.height
                 }
             });
-            console.log("Start:"+event.clientY);
             event.stopPropagation();
         };
 
@@ -165,7 +174,6 @@ var HudGrid = React.createClass({
                 offset = event.clientY - config.mouseY,
                 newWidth = null,
                 newHeight = null;
-            console.log(offset);
             //Horizontal
             if (config.width === 2){
                 if (mousePercentX >= 0.1 && mousePercentX <= 0.6) {
@@ -214,16 +222,29 @@ var HudGrid = React.createClass({
         }
     },
 
+    onResize: function () {
+        if ((this.state.gridWidth !== 1) && ($(window).width() < 575)) {
+            GridActions.setGridWidth(1);
+            this.setState({gridWidth: 1});
+        } else if ((this.state.gridWidth !==2) && ($(window).width() > 575)) {
+            GridActions.setGridWidth(2);
+            this.setState({gridWidth: 2});
+        }
+    },
+
     render: function () {
         var me = this,
             index = -1,
             key = 0;
+        
         var widgets = this.state.grid.map( function (widget) {
             var i = widget.type === "empty" ? index + 0.5 : ++index;
             var cell = me.generateCell(widget, i, key++);
             return cell;
         });
+
         var layoutClass = (this.state.widgetResizeConfig === null) ? "layout" : "layout resizing";
+
         return (
             <div className={layoutClass} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp} onMouseLeave={this.onMouseUp}>
                 {widgets}

@@ -168,7 +168,6 @@ var GenericLegacyChangeLog = React.createClass({
 
 var ChangeLog = React.createClass({
 
-
     // mixins: [ Navigation, ActiveState],
 
     actionMapAdmin: {
@@ -191,28 +190,24 @@ var ChangeLog = React.createClass({
             <ListingDetailsLink listingId={this.props.changeLog.listing.id} tab="overview">
                 { this.props.changeLog.listing.title }
             </ListingDetailsLink>
-        );        
+        );
     },
 
     render: function() {
         var icon = this.props.children;
-
-
         var time = timeAgo(this.props.changeLog.activityDate);
         var Handler = this.actionMapAdmin[this.props.changeLog.action];
+
         if(!Handler) {
             Handler = GenericLegacyChangeLog;
         }
+
         return (
             <li>
-                <div className="row">
-                    <div className="col-md-2" >
-                        <em>{ time }</em>
-                    </div>
-                    <div className="col-md-10" >
-                        { icon }
-                        < Handler changeLog={ this.props.changeLog } listingName={ this.getListingName() } />
-                    </div>
+                { icon }
+                <div className="ChangeLogText">
+                    <em>{ time }</em>
+                    < Handler changeLog={ this.props.changeLog } listingName={ this.getListingName() } />
                 </div>
             </li>
         );

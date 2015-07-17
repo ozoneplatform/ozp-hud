@@ -30,8 +30,10 @@ var MyListings = React.createClass({
     renderChangeLogs: function () {
         if (!Array.isArray(this.state.mychangelogs)) {
             this.state.mychangelogs = [this.state.mychangelogs];
+        } else if (this.state.mychangelogs.length > 25) {
+            this.state.mychangelogs.splice(25, this.state.mychangelogs.length-1);
         }
-
+        
         return this.state.mychangelogs.map(function (changeLog) {
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
@@ -96,10 +98,12 @@ var MyListings = React.createClass({
                             { this.renderCounts() }
                     </div>
                     <div className="TableRow">
-                        <div className="RecentActivity">
-                            <h1>Recent Activity</h1>
-                            <div className="RecentActivity__activities">
-                                { this.renderChangeLogs() }
+                        <div className="CaptureFrame">
+                            <div className="RecentActivity">
+                                <h1>Recent Activity</h1>
+                                <div className="RecentActivity__activities">
+                                    { this.renderChangeLogs() }
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,14 @@
                 }
             }
 
+            .CaptureFrame {
+                position: relative;
+                height: 100%;
+                overflow: hidden;
+            }
+
             .RecentActivity {
+                position: absolute;
                 width: 100%;
                 height: 100%;
                 overflow-x: hidden;
@@ -75,11 +82,17 @@
                 left: 10px;
                 right: 20px;
 
+                .ChangeLogText{
+                    padding-left: 61px;
+                }
+
                 .recent-activity-icon {
+                    position: relative;
                     float: left;
+                    top: 3px;
+                    left: 21px;
                     max-height: 30px;
                     max-width: 30px;
-                    margin-right: 10px;
                 }
 
                 .icon-caret-right {
@@ -103,6 +116,8 @@
             .TableRow {
                 display: table-row;
                 overflow-y: auto;
+                min-height:0;
+                height:100%;
             }
             
             .TableRowZero {

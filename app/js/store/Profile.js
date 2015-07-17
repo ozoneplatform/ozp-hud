@@ -8,15 +8,20 @@ var ProfileStore = Reflux.createStore({
 
     listenables: [ ListingActions ],
 
-    listings: [],
+    listings: null,
 
 	onFetchOwnedListings: function () {
         var me = this;
-
         ListingApi.getOwnedListings().then(function(response) {
             if (response._embedded) {
                 me.listings = response._embedded.item;
+                if (!Array.isArray(me.listings)) {
+                    me.listings = [me.listings];
+                }
+            }else{
+                me.listings = [];
             }
+
             me.doTrigger();
         });
 	},
