@@ -1,3 +1,14 @@
+### 0.7.11 (2015-06-30)
+
+
+#### Bug Fixes
+
+* **Docs and Videos:**
+  * Added docs and videos links to help modal #278 ([862e2432](https://github.com/ozone-development/ozp-hud.git/commit/862e2432d5d5487af5b4986b8d2ccfd0cc48dc11))
+  * Added docs and videos links to help modal #278 ([1db1e21a](https://github.com/ozone-development/ozp-hud.git/commit/1db1e21aaa650842a22cb4ab92b8c0e6dccf77be))
+* **Webpack:** updated webpack to 1.10.0 ([b30506c2](https://github.com/ozone-development/ozp-hud.git/commit/b30506c25489d4b3218a685dc3bbc25ab47418ec))
+
+
 ### 0.7.10 (2015-06-25)
 
 
