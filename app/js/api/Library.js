@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 var { API_URL } = require('OzoneConfig');
 
-var url = API_URL + '/api/profile/self/library';
+var url = API_URL + '/api/self/library';
 
 module.exports.LibraryApi = {
     get: function() {
