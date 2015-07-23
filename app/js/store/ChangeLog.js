@@ -20,6 +20,13 @@ var ChangeLogStore = Reflux.createStore({
             }
             me.doTrigger();
         });
+
+        ListingApi.getOwnedChangeLogs().then(function(response) {
+            if (response._embedded) {
+                me.userChangelogs = response._embedded.item;
+            } 
+            me.doTrigger();
+        });        
     },
 
     doTrigger: function() {
@@ -27,27 +34,8 @@ var ChangeLogStore = Reflux.createStore({
     },
 
     getDefaultData: function() {
-        return this.changelogs;
+        return {changelogs: this.changelogs,userchangelogs: this.userchangelogs};
     },
-
-    onFetchOwnedChangeLogs: function () {
-        var me = this;
-
-        ListingApi.getOwnedChangeLogs().then(function(response) {
-            if (response._embedded) {
-                me.userChangelogs = response._embedded.item;
-            } 
-            me.doUserTrigger();
-        });
-    },
-
-    doUserTrigger: function() {
-        this.trigger(this.getUserDefaultData());
-    },
-
-    getUserDefaultData: function() {
-        return this.userChangelogs;
-    }
 
 });
 

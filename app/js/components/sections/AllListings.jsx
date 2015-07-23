@@ -13,7 +13,7 @@ var AllListings = React.createClass({
 
     mixins: [
         Reflux.connect(ListingStore, 'listings'),
-        Reflux.connect(ChangeLogStore, 'changelogs')
+        Reflux.connect(ChangeLogStore, 'storedata')
     ],
 
     propTypes: {    
@@ -22,24 +22,24 @@ var AllListings = React.createClass({
 
     componentWillMount: function () {
         ListingActions.fetchAllChangeLogs();
-        ListingActions.fetchAllListings();
     },
 
     getInitialState: function() {
         return {
             listings: [],
-            changelogs: ChangeLogStore.getDefaultData()
+            storedata: ChangeLogStore.getDefaultData()
         };
     },
 
     renderChangeLogs: function () {
-        if (!Array.isArray(this.state.changelogs)) {
-            this.state.changelogs = [this.state.changelogs];
-        } else if (this.state.changelogs.length > 25) {
-            this.state.changelogs.splice(25, this.state.changelogs.length-1);
+        var logs = this.state.storedata.changelogs;
+        if (!Array.isArray(logs)) {
+            logs = [logs];
+        } else if (logs.length > 25) {
+            logs.splice(25, logs.length-1);
         }
 
-        return this.state.changelogs.map(function (changeLog) {
+        return logs.map(function (changeLog) {
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
                     { changeLog.listing.iconUrl ? <img className="recent-activity-icon" src={ changeLog.listing.iconUrl } /> : <div></div> }
@@ -117,6 +117,7 @@ var AllListings = React.createClass({
 
     renderAdminCounts: function () {
         var profile = this.props.profile.currentUser;
+
         if (profile && profile.isAdmin()) {
 
             if (!Array.isArray(this.state.listings)) {
@@ -173,7 +174,6 @@ var AllListings = React.createClass({
 
     render: function() {
         var profile = this.props.profile.currentUser;
-
         if (profile && (profile.stewardedOrganizations.length > 0 || profile.isAdmin())) {
             return(
                 <div className="custom-hud-component">

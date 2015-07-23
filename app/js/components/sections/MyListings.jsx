@@ -28,13 +28,14 @@ var MyListings = React.createClass({
     },
     
     renderChangeLogs: function () {
-        if (!Array.isArray(this.state.mychangelogs)) {
-            this.state.mychangelogs = [this.state.mychangelogs];
-        } else if (this.state.mychangelogs.length > 25) {
-            this.state.mychangelogs.splice(25, this.state.mychangelogs.length-1);
+        var logs = this.state.mychangelogs;
+        if (!Array.isArray(logs)) {
+            logs = [logs];
+        } else if (logs.length > 25) {
+            logs.splice(25, logs.length-1);
         }
         
-        return this.state.mychangelogs.map(function (changeLog) {
+        return logs.map(function (changeLog) {
             return [
                 <ChangeLog showListingName={true} changeLog={changeLog}>
                     { changeLog.listing.iconUrl ? <img className="recent-activity-icon" src={ changeLog.listing.iconUrl } /> : <div></div> }

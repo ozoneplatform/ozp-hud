@@ -63,7 +63,7 @@ var HudGrid = React.createClass({
                 GridActions.addWidget("AllListings",1,4);
                 GridActions.addWidget("Library",1,2);
             } else if ((isAdmin || isOrgStw) && ownsListings) {
-                GridActions.addWidget("MyListings",1,2); //GridActions.addWidget("type","width","height")
+                GridActions.addWidget("MyListings",1,2);
                 GridActions.addWidget("AllListings",1,2);
                 GridActions.addWidget("Library",2,2);
             } else if (!(isAdmin || isOrgStw) && ownsListings) {
@@ -141,10 +141,7 @@ var HudGrid = React.createClass({
             child = <Library />;
         }
 
-        switch (widget.type) {
-        case "AllListings":
-        case "MyListings":
-        case "Library":
+        if (child) {
             return (
                 <span className="GridCell" key={key} style={divStyle}>
 
@@ -158,7 +155,7 @@ var HudGrid = React.createClass({
 
                 </span>
             );
-        default :
+        } else {
             return (
                 <span className="GridCell EmptyCell" key={key} style={divStyle}
                     draggable="false" onDragOver={allowDrop} onDrop={onDrop}>
