@@ -110,7 +110,7 @@ var LibraryTile = React.createClass({
                 <ActionMenu entry={entry} />
                 <LaunchLink listing={listing} newTab={newTabSpec} draggable="false">
                     <img ref="banner" draggable="false" className="LibraryTile__img"
-                        src={listing.imageLargeUrl} />
+                     src={listing.banner_icon.url} />
                 </LaunchLink>
                 <h5>{listing.title}</h5>
             </div>
