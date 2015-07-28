@@ -1,3 +1,11 @@
+## 1.0.0 (2015-07-22)
+
+
+#### Bug Fixes
+
+* **Global Nav:** Fixed missing `/` in various links for center ([497a7f63](https://github.com/ozone-development/ozp-hud.git/commit/497a7f636e5fe5164a9ed862954b0e983cd00ec5))
+
+
 ### 0.7.11 (2015-06-30)
 
 
