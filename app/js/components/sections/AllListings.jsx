@@ -22,11 +22,12 @@ var AllListings = React.createClass({
 
     componentWillMount: function () {
         ListingActions.fetchAllChangeLogs();
+        ListingActions.fetchAllListings();
     },
 
     getInitialState: function() {
         return {
-            listings: [],
+            listings: ListingStore.getDefaultData(),
             storedata: ChangeLogStore.getDefaultData()
         };
     },
