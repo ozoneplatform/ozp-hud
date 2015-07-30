@@ -20,7 +20,7 @@ module.exports.LibraryApi = {
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
-            url: url,
+            url: url + 'update_all/',
             data: JSON.stringify(libraryEntries)
         }).fail(function(response) {
             console.error('Error updating library', response.status,

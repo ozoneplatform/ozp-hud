@@ -60,7 +60,7 @@ var FolderTile = React.createClass({
                 'drag-hover': this.state.dropHighlight
             }),
             entryIcons = folder.entries.map(function(entry) {
-                var src = entry.listing.imageMediumUrl;
+                var src = entry.listing.large_icon.url;
 
                 return <img key={entry.listing.id} src={src} draggable="false" />;
             }),
