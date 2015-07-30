@@ -174,12 +174,17 @@ var AllListings = React.createClass({
 
     render: function() {
         var profile = this.props.profile.currentUser;
+        var renderAdminCounts = this.renderAdminCounts(),
+            renderOrgCounts = this.renderOrgCounts();
+        var divider = (renderAdminCounts && renderOrgCounts) ? <hr className="allListingsHr"/> : null;
         if (profile && (profile.stewardedOrganizations.length > 0 || profile.isAdmin())) {
             return(
                 <div className="custom-hud-component">
                     <div className="TableRowZero">
-                        { this.renderAdminCounts() }
-                        { this.renderOrgCounts() }
+                        { renderAdminCounts }
+                        { divider }
+                        { renderOrgCounts }
+                        { divider }
                     </div>
                     <div className="TableRow">
                         <div className="CaptureFrame">

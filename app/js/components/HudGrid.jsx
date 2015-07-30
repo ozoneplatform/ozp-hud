@@ -59,13 +59,13 @@ var HudGrid = React.createClass({
             
             GridActions.clearWidgets();
             if ((isAdmin && isOrgStw) && ownsListings) {
-                GridActions.addWidget("MyListings",1,2); //GridActions.addWidget("type","width","height")
+                GridActions.addWidget("Library",1,2); //GridActions.addWidget("type","width","height")
                 GridActions.addWidget("AllListings",1,4);
-                GridActions.addWidget("Library",1,2);
+                GridActions.addWidget("MyListings",1,2);
             } else if ((isAdmin || isOrgStw) && ownsListings) {
+                GridActions.addWidget("Library",2,2);
                 GridActions.addWidget("MyListings",1,2);
                 GridActions.addWidget("AllListings",1,2);
-                GridActions.addWidget("Library",2,2);
             } else if (!(isAdmin || isOrgStw) && ownsListings) {
                 GridActions.addWidget("MyListings",1,4);
                 GridActions.addWidget("Library",1,4);
