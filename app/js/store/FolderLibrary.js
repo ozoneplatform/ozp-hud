@@ -18,7 +18,9 @@ function updateFolderName(newFolder, entry) {
         (newFolder instanceof Folder ? newFolder.name : newFolder) :
         null;
 
-    return Object.freeze({folder: folderName, listing: entry.listing});
+    return Object.freeze({folder: folderName,
+                          listing: entry.listing,
+                          id: entry.id});
 }
 
 /**
