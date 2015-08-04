@@ -1,3 +1,11 @@
+### 1.0.1 (2015-08-04)
+
+
+#### Features
+
+* **Menu:** Add Helpdesk link to dropdown menu ([802d98cc](https://github.com/ozone-development/ozp-hud.git/commit/802d98cc0304717bbbcb8e46396cb3684230d1c3))
+
+
 ## 1.0.0 (2015-07-22)
 
 
