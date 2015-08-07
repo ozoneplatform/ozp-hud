@@ -86,6 +86,7 @@ var Header = React.createClass({
                                             <i className="icon-cog-grayLightest"></i>Settings
                                         </Link>
                                     </li>
+                                    <li><a href={HELPDESK_ADDRESS} target={helpdeskTarget}><i className="icon-speech-bubble-grayLightest"></i>Contact Help Desk</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
                                     <li><a href={CENTER_URL + '/#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
@@ -98,8 +99,7 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '/#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
                                     }
                                     { Metrics }
-                                    <li><a href={FEEDBACK_ADDRESS} className='caboose' target={feedbackTarget}><i className="icon-mail"></i>Submit Feedback</a></li>
-                                    <li><a href={HELPDESK_ADDRESS} className='caboose' target={helpdeskTarget}><i className="icon-mail"></i>Contact Help Desk</a></li>
+                                    <li><a href={FEEDBACK_ADDRESS} className='caboose' target={feedbackTarget}><i className="icon-lightbulb"></i>Submit Feedback</a></li>
                                 </ul>
                             </li>
                         </ul>
