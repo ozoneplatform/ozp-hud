@@ -48,18 +48,28 @@
 }
 
 .navbar-default .navbar-nav .dropdown-menu > li > a.caboose {
-background-color: $gray-dark !important;
+    background-color: $gray-dark !important;
 
     > .icon-mail {
         @extend .icon-mail-grayLightest;
     }
 
+    > .icon-lightbulb {
+        @extend .icon-lightbulb-grayLightest;
+    }
+
     &:hover, &:focus {
+        border-left-color: $blue !important;
 
         > .icon-mail {
             @extend .icon-mail-white;
+        }
+        
+        > .icon-lightbulb {
+        @extend .icon-lightbulb-white;
         }
 
     }
 
 }
+

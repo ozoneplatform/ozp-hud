@@ -69,7 +69,7 @@
     "babel-runtime": "4.6.6",
     "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass",
     "gulp-preprocess": "1.2.0",
-    "icons": "git://github.com/ozone-development/icons",
+    "icons": "git://github.com/ozone-development/ozp-icons",
     "immutable": "3.0.2",
     "object-assign": "1.0.0",
     "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#master",
