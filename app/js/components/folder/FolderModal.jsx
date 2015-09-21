@@ -130,11 +130,8 @@ var FolderModal = React.createClass({
      */
     onNameChange: function(newName) {
         this.transitionTo('folder', {name: encodeURIComponent(newName)});
-        this.onStoreUpdate;
+        this.onStoreUpdate();
     },
-    // shareClick: function() {
-    //   return shareURLToggle = !shareURLToggle;
-    // },
     render: function() {
 
         //undo the manual escaping of slashes that we must do because react-router doesn't
