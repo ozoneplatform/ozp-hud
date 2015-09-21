@@ -8,3 +8,4 @@ dist
 .*.swp
 *.tar.gz
 .npm-debug.log
+npm-debug.log
