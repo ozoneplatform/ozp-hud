@@ -10,5 +10,9 @@ module.exports = {
         ORG_STEWARD: 1,
         APPSMALL_STEWARD: 2,
         ADMIN: 3
+    },
+    metrics: {
+    	applicationsNewTab: 'Applications - New Tab',
+    	applicationsWebtop: 'Applications - Webtop'
     }
 };
