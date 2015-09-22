@@ -140,3 +140,13 @@ body > div.classBanner {
         bottom: 0px;
     }
 }
+
+a.hidden-link, a.hidden-link:hover {
+  color:inherit;
+  cursor:text;
+  text-decoration:none;
+}
+
+.FolderTitle > h5 {
+  padding-top:30px;
+}

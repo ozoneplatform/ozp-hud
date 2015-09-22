@@ -18,12 +18,13 @@
     .modal-header {
         border-width: 0;
 
-        padding: 10px;
-
-        h3 {
+        padding: 20px;
+        position: relative;
+        
+        h1, h2, h3, h4, h5, h6 {
             margin: 0 auto;
-            text-align: center;
-            width: 90%;
+            float: left;
+            width: 50%;
             cursor: pointer;
 
             &[contenteditable=true] {

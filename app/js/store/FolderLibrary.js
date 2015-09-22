@@ -247,6 +247,7 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onAddToFolder: function(folder, entry) {
+      if(folder !== entry){
         var newEntry = updateFolderName(folder, entry),
             newFolder = new Folder(folder, newEntry),
             folderIndex = this.folderedEntries.indexOf(folder),
@@ -254,8 +255,9 @@ var FolderLibraryStore = Reflux.createStore({
             newFolderedEntries = this.folderedEntries
                 .set(folderIndex, newFolder)
                 .splice(entryIndex, 1);
-
         LibraryActions.updateLibrary(toFlatLibrary(newFolderedEntries));
+      }
+
     },
 
     getDefaultData: function() {
