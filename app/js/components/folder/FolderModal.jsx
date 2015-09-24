@@ -143,18 +143,16 @@ var FolderModal = React.createClass({
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                          <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
-                            onChange={this.onNameChange}/>
-                          <Link className="icon-cross-14-grayLightest vertical-center modalHeaderRight" to="main"></Link>
+                          <Link className="icon-cross-14-grayLightest vertical-center pull-right" to="main"></Link>
                           <button onClick={()=>{
                               LibraryActions.fetchLibrary();
                               this.setState({
                                 shareURLToggle: !this.state.shareURLToggle
                               });
-                            }} className="shareFolderButton modalHeaderRight pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
-                          <button className="shareFolderButton modalHeaderRight btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Open all widgets in new dashboard">
-                            <a href={WEBTOP_URL+`#/launchFolder?dashName=${encodeURI(folderName)}&appIds=${encodeURI(JSON.stringify(appIds))}`} target="_blank" className="hidden-link">Open all in new dashboard</a>
-                          </button>
+                            }} className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
+                            <a href={WEBTOP_URL+`#/launchFolder?dashName=${encodeURI(folderName)}&appIds=${encodeURI(JSON.stringify(appIds))}`} target="_blank" className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Open all widgets in new dashboard">Open all in new dashboard</a>
+                          <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
+                            onChange={this.onNameChange}/>
                         </div>
                         <div className="modal-body">
                             { !this.state.shareURLToggle &&
