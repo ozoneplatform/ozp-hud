@@ -1,30 +1,3 @@
-.modal-body {
-    height:100%;
-}
-
-.modal-content {
-    background: $gray-dark;
-    overflow: auto !important;
-    height: 90%;
-}
-
-.settings-modal .settings-body {
-    background-color: $modal-content-border-color !important;
-    color: white !important;
-    height: 450px;
-}
-
-.modal-header {
-  height: 80px;
-  margin-bottom: 20px;
-  background-color: #3b4246;
-}
-.modal-header .close {
-  margin-top: -10px !important;
-  margin-right: -8px !important;
-  font-size: 150%;
-}
-
 .btn-close {
     color: $gray-lighter !important;
     opacity: 1;
@@ -33,10 +6,10 @@
         color:$white !important;
     }
 }
+
 .close:hover, .close:focus {
     opacity:1;
 }
-
 
 .help-text {
     background-color: $body-bg !important;
