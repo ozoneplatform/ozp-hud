@@ -15,12 +15,8 @@ var {
     WEBTOP_URL,
     DEVELOPER_RESOURCES_URL,
     METRICS_URL,
-    HUD_URL,
-    FEEDBACK_ADDRESS,
-    HELPDESK_ADDRESS
+    HUD_URL
 } = require('OzoneConfig');
-var feedbackPrefix = FEEDBACK_ADDRESS.substring(0,7);
-var helpdeskPrefix = HELPDESK_ADDRESS.substring(0,7);
 
 var Header = React.createClass({
 
@@ -50,9 +46,6 @@ var Header = React.createClass({
             isAdmin = profile && profile.isAdmin(),
             Metrics = (profile && (isAdmin || this.isOrgSteward())) ?
                 <li><a href={METRICS_URL} target="_blank"><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
-
-        var feedbackTarget = this.isFeedbackEmail() ? "_self" : "_blank";
-        var helpdeskTarget = this.isHelpdeskEmail() ? "_self" : "_blank";
 
         return (
             <nav ref="hastooltips" className="navbar navbar-default">
@@ -86,7 +79,6 @@ var Header = React.createClass({
                                             <i className="icon-cog-grayLightest"></i>Settings
                                         </Link>
                                     </li>
-                                    <li><a href={HELPDESK_ADDRESS} target={helpdeskTarget}><i className="icon-speech-bubble-grayLightest"></i>Contact Help Desk</a></li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
                                     <li><a href={CENTER_URL + '/#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
@@ -99,7 +91,11 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '/#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
                                     }
                                     { Metrics }
-                                    <li><a href={FEEDBACK_ADDRESS} className='caboose' target={feedbackTarget}><i className="icon-lightbulb"></i>Submit Feedback</a></li>
+                                    <li>
+                                        <Link to="contacts" className="caboose">
+                                            <i className="icon-speech-bubble-grayLightest"></i>Contact
+                                        </Link>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -110,14 +106,6 @@ var Header = React.createClass({
                 }
             </nav>
         );
-    },
-
-    isFeedbackEmail: function(){
-        return (feedbackPrefix === "mailto:") ? true : false;
-    },
-
-    isHelpdeskEmail: function(){
-        return (helpdeskPrefix === "mailto:") ? true : false;
     },
 
     isOrgSteward: function(){

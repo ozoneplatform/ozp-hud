@@ -18,6 +18,14 @@ var ActionMenu = React.createClass({
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry);
 
+        var reportLaunchWebtop = function() {
+            window._paq.push(['trackEvent', Constants.metrics.applicationsWebtop, listing.title, listing.agencyShort]);
+        };
+
+        var reportLaunchNewTab = function() {
+            window._paq.push(['trackEvent', Constants.metrics.applicationsNewTab, listing.title, listing.agencyShort]);
+        };
+
         //use hidden checkbox to manage menu toggle state
         return (
             <label className="LibraryTile__actionMenu">
@@ -27,12 +35,12 @@ var ActionMenu = React.createClass({
                 </span>
                 <ul>
                     <li>
-                        <WebtopLaunchLink listing={listing} newTab={false}>
+                        <WebtopLaunchLink listing={listing} newTab={false} onClick={reportLaunchWebtop}>
                             Launch in Webtop
                         </WebtopLaunchLink>
                     </li>
                     <li>
-                        <TabLaunchLink listing={listing} newTab={true}>
+                        <TabLaunchLink listing={listing} newTab={true} onClick={reportLaunchNewTab}>
                             Launch in new tab
                         </TabLaunchLink>
                     </li>
@@ -101,6 +109,14 @@ var LibraryTile = React.createClass({
                 tab: true
             };
 
+        var checkIfLaunchedInWebtop = function(isLaunchedInWebtop) {
+            var eventName = Constants.metrics.applicationsNewTab;
+            if(isLaunchedInWebtop) {
+                eventName = Constants.metrics.applicationsWebtop;
+            }
+
+            window._paq.push(['trackEvent', eventName, listing.title, listing.agencyShort]);
+        };
 
         return (
             <div className={classes} data-listing-id={listing.id}
@@ -108,7 +124,7 @@ var LibraryTile = React.createClass({
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
                 <ActionMenu entry={entry} />
-                <LaunchLink listing={listing} newTab={newTabSpec} draggable="false">
+                <LaunchLink listing={listing} newTab={newTabSpec} draggable="false" afterClick={checkIfLaunchedInWebtop}>
                     <img ref="banner" draggable="false" className="LibraryTile__img"
                      src={listing.banner_icon.url} />
                 </LaunchLink>

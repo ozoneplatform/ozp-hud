@@ -46,7 +46,7 @@ var FolderTile = React.createClass({
         var dropInfo = DragAndDropUtils.getDropInfo(evt),
             data = dropInfo.data,
             droppedEntry = this.props.store.getModelByData(data);
-
+            
         LibraryActions.addToFolder(this.props.folder, droppedEntry);
         this.onDragLeave();
 
