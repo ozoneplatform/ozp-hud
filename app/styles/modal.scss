@@ -1,32 +1,7 @@
-.btn-close {
-    color: $gray-lighter !important;
-    opacity: 1;
-    text-shadow:none;
-    &:hover {
-        color:$white !important;
-    }
-}
-
-.close:hover, .close:focus {
-    opacity:1;
-}
-
 .help-text {
     background-color: $body-bg !important;
     border-color: white !important;
     border-style: solid;
     padding: 5px 5px 5px 5px;
     height: 250px;
-}
-
-.modal-dialog-center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-.modalHeaderRight {
-  float: right;
-  margin-left: 20px;
 }
