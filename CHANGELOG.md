@@ -1,3 +1,34 @@
+### 1.0.5 (2015-09-23)
+
+
+#### Bug Fixes
+
+* **folderLibrary:** Sharing folders modal configured, ie bug where right clicking a folder unbookmar ([d077c591](https://github.com/ozone-development/ozp-hud.git/commit/d077c591e6ce3e92b139b9398976e646a225fc67))
+
+
+#### Features
+
+* **Contacts Modal:** Moved all contact links in the navbar into a contacts modal. ([21e85862](https://github.com/ozone-development/ozp-hud.git/commit/21e85862fc28ddf841439dbf477effddf6573f31))
+* **Node 0.12.7:** Support for node v0.12.7 ([c82147a4](https://github.com/ozone-development/ozp-hud.git/commit/c82147a4a940f3741aab9ee0e3b79c5cfb26136d))
+
+
+### 1.0.4 (2015-09-01)
+
+
+### 1.0.3 (2015-08-18)
+
+
+### 1.0.2 (2015-08-11)
+
+
+### 1.0.1 (2015-08-04)
+
+
+#### Features
+
+* **Menu:** Add Helpdesk link to dropdown menu ([802d98cc](https://github.com/ozone-development/ozp-hud.git/commit/802d98cc0304717bbbcb8e46396cb3684230d1c3))
+
+
 ## 1.0.0 (2015-07-22)
 
 

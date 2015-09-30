@@ -14,6 +14,11 @@
     height: 450px;
 }
 
+.modal-header {
+  height: 80px;
+  margin-bottom: 20px;
+  background-color: #3b4246;
+}
 .modal-header .close {
   margin-top: -10px !important;
   margin-right: -8px !important;
@@ -46,4 +51,20 @@
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.modalHeaderRight {
+  float: right;
+  margin-left: 20px;
+}
+
+.FolderTitle {
+  padding-bottom: 5px;
+}
+
+.FolderTitle, .modalHeaderRight {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  vertical-align: middle;
 }

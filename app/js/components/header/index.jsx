@@ -15,10 +15,8 @@ var {
     WEBTOP_URL,
     DEVELOPER_RESOURCES_URL,
     METRICS_URL,
-    HUD_URL,
-    FEEDBACK_ADDRESS
+    HUD_URL
 } = require('OzoneConfig');
-var emailString = FEEDBACK_ADDRESS.substring(0,7);
 
 var Header = React.createClass({
 
@@ -48,8 +46,6 @@ var Header = React.createClass({
             isAdmin = profile && profile.isAdmin(),
             Metrics = (profile && (isAdmin || this.isOrgSteward())) ?
                 <li><a href={METRICS_URL} target="_blank"><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
-
-        var feedbackTarget = this.isEmail() ? "_self" : "_blank";
 
         return (
             <nav ref="hastooltips" className="navbar navbar-default">
@@ -95,7 +91,11 @@ var Header = React.createClass({
                                         <li><a href={CENTER_URL + '/#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
                                     }
                                     { Metrics }
-                                    <li><a href={FEEDBACK_ADDRESS} className="caboose" target={feedbackTarget}><i className="icon-mail"></i>Submit Feedback</a></li>
+                                    <li>
+                                        <Link to="contacts" className="caboose">
+                                            <i className="icon-speech-bubble-grayLightest"></i>Contact
+                                        </Link>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,10 +106,6 @@ var Header = React.createClass({
                 }
             </nav>
         );
-    },
-
-    isEmail: function(){
-        return (emailString === "mailto:") ? true : false;
     },
 
     isOrgSteward: function(){

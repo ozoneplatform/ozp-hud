@@ -47,7 +47,7 @@
         border: 2px solid $gray-darker;
         border-radius: 5px;
 
-        width: 100%;
+        width: auto;
         height: 120px;
 
         padding: 5px 14px;
@@ -211,7 +211,6 @@
 }
 
 .FolderTitle {
-    text-align: center;
     word-wrap: break-word;
 
     h1, h2, h3, h4, h5, h6 {
