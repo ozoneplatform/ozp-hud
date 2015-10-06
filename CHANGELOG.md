@@ -1,3 +1,14 @@
+### 1.0.6 (2015-10-06)
+
+
+#### Bug Fixes
+
+* **modal:**
+  * Fix HUD folder styling ([f263e512](https://github.com/ozone-development/ozp-hud.git/commit/f263e512ae257603ce09c87a4b6c663dce77d7d6))
+  * Remove more HUD overriding modal CSS - folder modal ([b2e40634](https://github.com/ozone-development/ozp-hud.git/commit/b2e40634a219f89fdef540cdfc7c4d55f4bd6a09))
+  * Remove HUD overriding modal CSS to revert to default ozp-bootstrap modal styling ([85bf5558](https://github.com/ozone-development/ozp-hud.git/commit/85bf5558a53bad3dbb3b7ab56f13f096a63b4e64))
+
+
 ### 1.0.5 (2015-09-23)
 
 
