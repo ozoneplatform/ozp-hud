@@ -48,7 +48,7 @@ var Header = React.createClass({
                 <li><a href={METRICS_URL} target="_blank"><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
 
         return (
-            <nav ref="hastooltips" className="navbar navbar-default">
+            <nav ref="hastooltips" className="navbar navbar-default navbar-fixed-top">
                 <div className="container-fluid">
                     <div className="navbar-left">
                         <ul className="nav navbar-nav">

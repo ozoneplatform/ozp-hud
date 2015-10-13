@@ -83,28 +83,20 @@
 
     @extend .list-unstyled;
 
-    width: 120px;
-
-    font-size: .8em;
-    font-weight: 300;
+    width: 180px;
+    font-weight: normal;
     background-color: $gray-base;
-    border-bottom: 1px solid $gray-darkest;
-    border-right: 1px solid $gray-darkest;
-    margin-right: -1px;
+    padding: 10px 0;
 
     > li {
-        $spacing: 5px;
-
-        padding-top: $spacing;
-        padding-bottom: $spacing;
+        margin: 0;
+        padding: 0;
 
         > a {
             color: $gray-lighter;
-            border-left: 3px solid transparent;
-
-            padding-left: $spacing;
-            padding-right: $spacing;
-
+            border-left: 4px solid transparent;
+            padding: 5px 10px;
+            margin: 0;
             display: block;
         }
 
@@ -119,26 +111,21 @@
 .LibraryTile__actionMenuButton {
     display: block;
     text-align: center;
-
     background-color: $gray-base;
     color: $gray-lighter;
     font-size: 1.3em;
-    border-top: 3px solid transparent;
-
+    border-top: 4px solid transparent;
     position: relative;
     margin-right: 0;
     margin-left: auto;
     width: 25px;
-    height: 21px;
+    height: 20px;
     padding: 0;
-
     cursor: pointer;
-
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
 
     > i {
         top: -3px;
