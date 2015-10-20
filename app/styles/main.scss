@@ -62,11 +62,6 @@ html, body {
     min-height: 100%;
     height: auto;
     width: 100%;
-    max-width: 1500px;
-
-    -moz-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
-    -webkit-box-shadow: 0 0 3px rgba(25, 31, 37, .1);
-    box-shadow: 0 0 3px rgba(25, 31, 37, .1);
 }
 
 h1 {
@@ -77,13 +72,6 @@ h1 {
 
 .activeIcon {
   color: $blue !important;
-}
-
-@media (max-width: 1023px) and (min-width: 800px) {
-    #main {
-        width: 800px !important;
-        transition: all .25s linear;
-    }
 }
 
 embed {
@@ -110,11 +98,27 @@ embed {
     line-height: 1;
 }
 
-@import 'variables';
+/* not sure these are needed? */
+.help-text {
+    background-color: $body-bg !important;
+    border-color: white !important;
+    border-style: solid;
+    padding: 5px 5px 5px 5px;
+    height: 250px;
+}
+
+.search {
+    position: absolute;
+    left: 0px;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+/* end */
+
 @import 'header';
-@import 'search';
 @import 'library';
-@import 'modal';
 @import 'folder';
 @import 'loadmask';
 

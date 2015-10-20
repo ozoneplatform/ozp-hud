@@ -1,75 +1,12 @@
 .navbar {
-    z-index: 5;
-    position: fixed;
-    width: 100%;
-    left: 0;
-}
-
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    border-top: 4px solid $blue !important;
-}
-
-.dropdown-header {
-    font-weight: 500 !important;
+    top: 20px;
 }
 
 .navbar-default .navbar-nav {
-    & li > a {
-        font-weight: 300 !important;
-    }
-
-    & li:hover, & li:hover, & ul.dropdown-menu > li > a:hover{
-        border-left-color: $blue !important;
-    }
-
-    & a:hover, & a:focus{
-        border-top-color: $blue !important;
-    }
-
-    & > .open > a {
-        background-color: $gray-darker !important;
-        border-top: 4px solid $blue !important;
-        color: $blue !important;
-
-        &:hover, &:focus {
-            background-color: $gray-darker !important;
-            border-top: 4px solid $blue !important;
-            color: $blue !important;
-        }
-    }
-
     .user-menu-dropdown.open {
         .icon-menu-grayLightest {
             @extend .icon-menu-blue;
         }
     }
-
-
-}
-
-.navbar-default .navbar-nav .dropdown-menu > li > a.caboose {
-    background-color: $gray-dark !important;
-
-    > .icon-mail {
-        @extend .icon-mail-grayLightest;
-    }
-
-    > .icon-lightbulb {
-        @extend .icon-lightbulb-grayLightest;
-    }
-
-    &:hover, &:focus {
-        border-left-color: $blue !important;
-
-        > .icon-mail {
-            @extend .icon-mail-white;
-        }
-        
-        > .icon-lightbulb {
-        @extend .icon-lightbulb-white;
-        }
-
-    }
-
 }
 
