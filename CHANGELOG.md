@@ -1,3 +1,11 @@
+### 1.0.7 (2015-10-21)
+
+
+#### Bug Fixes
+
+* **style:** Clean up custom CSS, revert to default bootstrap ([c771f683](https://github.com/ozone-development/ozp-hud.git/commit/c771f6835f105f7ebc0c4d3349231f0681986001))
+
+
 ### 1.0.6 (2015-10-06)
 
 
