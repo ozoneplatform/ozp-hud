@@ -1,3 +1,11 @@
+### 1.0.8 (2015-11-11)
+
+
+#### Features
+
+* **Help Articles:** Implemented help articles modal ([6794c229](https://github.com/ozone-development/ozp-hud.git/commit/6794c22937ccf86ed03e08beb7b62000b55ab47b))
+
+
 ### 1.0.7 (2015-10-21)
 
 
