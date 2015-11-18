@@ -1,3 +1,19 @@
+### 1.0.8 (2015-11-11)
+
+
+#### Features
+
+* **Help Articles:** Implemented help articles modal ([6794c229](https://github.com/ozone-development/ozp-hud.git/commit/6794c22937ccf86ed03e08beb7b62000b55ab47b))
+
+
+### 1.0.7 (2015-10-21)
+
+
+#### Bug Fixes
+
+* **style:** Clean up custom CSS, revert to default bootstrap ([c771f683](https://github.com/ozone-development/ozp-hud.git/commit/c771f6835f105f7ebc0c4d3349231f0681986001))
+
+
 ### 1.0.6 (2015-10-06)
 
 
