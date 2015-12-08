@@ -1,7 +1,7 @@
 $icon-font-path: "../../bower_components/font-awesome/fonts/";
 
 @import "../../bower_components/ubuntu-fontface/_ubuntu-base.scss";
-@import "bootstrap.scss";
+@import "_bootstrap.scss";
 @import "../../node_modules/ozp-react-commons/app/styles/commons.scss";
 @import "../../node_modules/icons/dist/css/sprite.scss";
 
@@ -22,14 +22,14 @@ $icon-font-path: "../../bower_components/font-awesome/fonts/";
 }
 
 .icon-cross-18 {
-    @extend .icon-cross-18-grayLightest;
+    @extend .icon-cross-18-grayDark; // light-themed modals
 
     &:hover, &:focus{
         @extend .icon-cross-18-blue;
     }
 }
 .icon-cross-16 {
-    @extend .icon-cross-16-grayLightest;
+    @extend .icon-cross-16-grayDark; // light-themed modals
 
     &:hover, &:focus{
         @extend .icon-cross-16-blue;
