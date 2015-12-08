@@ -5,10 +5,7 @@
 .LibraryTiles {
     @extend .list-unstyled;
     margin: 0;
-
     position: relative;
-
-    color: $gray-lightest;
 }
 
 .LibraryTiles__item {
