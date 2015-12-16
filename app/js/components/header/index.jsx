@@ -52,9 +52,9 @@ var Header = React.createClass({
                 <div className="container-fluid">
                     <div className="navbar-left">
                         <ul className="nav navbar-nav">
-                            <li data-toggle="tooltip" data-placement="bottom" title="HUD" className="active tooltiped"><a className="lrg" href={HUD_URL}><i className="icon-home-blue"></i></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Center" className="tooltiped"><a href={CENTER_URL}><i className="icon-shopping-grayLightest"></i></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Webtop" className="tooltiped"><a href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i></a></li>
+                            <li id="tourstop-hud" data-toggle="tooltip" data-placement="bottom" title="HUD" className="active tooltiped"><a className="lrg" href={HUD_URL}><i className="icon-home-blue"></i></a></li>
+                            <li id="tourstop-center" data-toggle="tooltip" data-placement="bottom" title="Center" className="tooltiped"><a href={CENTER_URL}><i className="icon-shopping-grayLightest"></i></a></li>
+                            <li id="tourstop-webtop" data-toggle="tooltip" data-placement="bottom" title="Webtop" className="tooltiped"><a href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i></a></li>
                         </ul>
                     </div>
 
@@ -62,9 +62,9 @@ var Header = React.createClass({
                         <ul className="nav navbar-nav">
                             <UserNotificationDropdown />
                             <li className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Help">
-                                <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
+                                <a href="#" id="tourstop-help" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Menu" className="tooltiped dropdown user-menu-dropdown">
+                            <li data-toggle="tooltip" id="tourstop-global-menu" data-placement="bottom" title="Menu" className="tooltiped dropdown user-menu-dropdown">
                                 <a href="#" data-toggle="dropdown"><i className="icon-menu-grayLightest"></i></a>
                                 <ul className="dropdown-menu">
                                     <li className="dropdown-header">Personalize</li>

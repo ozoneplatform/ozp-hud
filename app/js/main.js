@@ -32,6 +32,10 @@ window.React = React;
 window.$ = $;
 window.jQuery = $;
 
+require('tour');
+require('./tour/tour.js');
+
+
 var Routes = (
     <Route name="main" path="/" handler={App}>
         <Route name="folder" path="folder/:name" handler={FolderModal} />
