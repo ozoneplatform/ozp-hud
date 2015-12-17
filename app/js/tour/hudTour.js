@@ -45,7 +45,7 @@ module.exports = new Tour({
     {
       element: "#tourstop-global-menu",
       title: "Global Menu",
-      content: "The main menu provides a list of resources you can use to submit listings, manage your listings, view your profile, contact us, etc.",
+      content: "The global menu provides a list of resources you can use to submit listings, manage your listings, view your profile, contact us, etc.",
       placement: "left",
       backdropContainer: ".navbar-fixed-top",
       backdropPadding: 0,
@@ -57,23 +57,46 @@ module.exports = new Tour({
       }
     },
     {
-      element: "#tourstop-center-search",
-      title: "Search and Filter",
-      content: "Use keywords and filters to explore listings. When you enter a search term, the system looks for your term in the listing's name, description, tags, etc.",
+      element: ".LibraryTile:first",
+      title: "Bookmarks",
+      content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.",
       placement: "bottom",
-      backdropContainer: "#header"
+      orphan: true,
+      backdropContainer: ".LibraryTile",
+      backdropPadding: 0
     },
     {
-      element: "#tourstop-center-categories",
-      title: "Filter by Category",
-      content: "Use categories to reduce your search results. When you click a category, only listings in that category will appear on the page. If you select multiple categories, only listings associated with all of the selected categories will appear.",
-      placement: "right"
+      element: ".LibraryTile:first",
+      title: "Remove a Bookmark",
+      content: "Use the menu on each bookmark tile to remove or get help for that specific listing. Removing the bookmark does not delete the listing from the system - it only disappears from your HUD. To bookmark it again, find it in Center.",
+      placement: "right",
+      orphan: true,
+      backdropContainer: ".LibraryTile",
+      backdropPadding: 0,
+      onShown: function() {
+        $(".LibraryTile__actionMenu > input").prop("checked", true);
+      },
+      onHide: function() {
+        $(".LibraryTile__actionMenu > input").prop("checked", false);
+      }
     },
     {
-      element: "#tourstop-center-home",
-      title: "Center Home",
-      content: "After searching and filtering, click here to return to the Center Discovery page to see featured listings, new arrivals and most popular listings.",
-      placement: "right"
+      element: ".FolderTile:first",
+      title: "Drag and Drop into Folders",
+      content: "Click a bookmark tile and drag it over another bookmark tile to create a folder. To add bookmark to an existing folder, drag and drop it over the folder tile.",
+      placement: "top",
+      orphan: true,
+      backdropContainer: ".FolderTile",
+      backdropPadding: 0
+    },
+    {
+      path: "/dist/#/folder/[[LINKTOFOLDER]]",
+      element: ".modal-body",
+      title: "Folder",
+      content: "Click a folder tile to access the contents. From this view you can access individual bookmarks and get a link to share the folder with others. To move bookmarks out of a folder, drag and drop the bookmark tile outside the window. The bookmark will return to the first level.",
+      orphan: true,
+      backdropContainer: ".modal-content",
+      backdropPadding: 0
     }
   ]
 });
