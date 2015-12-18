@@ -1,3 +1,12 @@
+### 1.0.10 (2015-12-18)
+
+
+#### Bug Fixes
+
+* **bug:** Fix color of app label text inside folder modal ([2ae5b847](https://github.com/ozone-development/ozp-hud.git/commit/2ae5b8471500aac511917fb4877e713da24993df))
+* **styling:** Make adjustments to work with new light themed ozp-bootstrap-sass  modals ([d4e4bda9](https://github.com/ozone-development/ozp-hud.git/commit/d4e4bda93ef3070fe92b08185b4edb9c203f8e18))
+
+
 ### 1.0.9 (2015-11-25)
 
 
