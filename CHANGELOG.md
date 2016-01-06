@@ -1,3 +1,11 @@
+### 1.0.12 (2016-01-06)
+
+
+#### Bug Fixes
+
+* **help:** Remove 5px of extra space ([498a5b5c](https://github.com/ozone-development/ozp-hud.git/commit/498a5b5cf589fe76e24b6b1b34310c9e6f129fdb))
+
+
 ### 1.0.11 (2015-12-22)
 removed My Bookmarks
 
