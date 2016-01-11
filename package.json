@@ -10,7 +10,7 @@
   "author": "",
   "description": "",
   "scripts": {
-    "install": "bower install",
+    "install": "bower install --config.interactive=false",
     "start": "gulp dev",
     "build": "NODE_ENV=\"production\" gulp build",
     "buildGhPages": "API_URL=\"https://www.owfgoss.org/ng/dev/mp\" CENTER_URL=\"http://ozone-development.github.io/ozp-center\" WEBTOP_URL=\"http://ozone-development.github.io/ozp-webtop/\" HELP_URL=\"http://ozone-development.github.io/ozp-hud/assets/PlaceholderUserGuide.pdf\" gulp build",
