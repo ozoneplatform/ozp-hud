@@ -1,3 +1,35 @@
+### 1.0.12 (2016-01-06)
+
+
+#### Bug Fixes
+
+* **help:** Remove 5px of extra space ([498a5b5c](https://github.com/ozone-development/ozp-hud.git/commit/498a5b5cf589fe76e24b6b1b34310c9e6f129fdb))
+
+
+### 1.0.11 (2015-12-22)
+removed My Bookmarks
+
+### 1.0.10 (2015-12-18)
+
+
+#### Bug Fixes
+
+* **bug:** Fix color of app label text inside folder modal ([2ae5b847](https://github.com/ozone-development/ozp-hud.git/commit/2ae5b8471500aac511917fb4877e713da24993df))
+* **styling:** Make adjustments to work with new light themed ozp-bootstrap-sass  modals ([d4e4bda9](https://github.com/ozone-development/ozp-hud.git/commit/d4e4bda93ef3070fe92b08185b4edb9c203f8e18))
+
+
+### 1.0.9 (2015-11-25)
+
+
+#### Bug Fixes
+
+* **Auth:** Help modal authentication ([5e0901df](https://github.com/ozone-development/ozp-hud.git/commit/5e0901df7f22f5a048afd92ceda99a2dae7bc431))
+* **HelpModal:** Fixed authentication strategy ([e0b592c8](https://github.com/ozone-development/ozp-hud.git/commit/e0b592c82ba4ba0599341cf6c2ab4aa0e0b9f360))
+* **styling:**
+  * Change help modal iframe size ([29c109b1](https://github.com/ozone-development/ozp-hud.git/commit/29c109b16dcc0031d7927de05f75c4abaa6984f3))
+  * Help modal style/language updates to maintain consistency ([f427586e](https://github.com/ozone-development/ozp-hud.git/commit/f427586edd7e0d4bdd27fe8e47eb7b78c9883938))
+
+
 ### 1.0.8 (2015-11-11)
 
 
