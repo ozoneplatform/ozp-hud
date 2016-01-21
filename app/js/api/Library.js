@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 var { API_URL } = require('OzoneConfig');
 
-var url = API_URL + '/api/profile/self/library';
+var url = API_URL + '/api/self/library/';
 
 module.exports.LibraryApi = {
     get: function() {
@@ -20,20 +20,21 @@ module.exports.LibraryApi = {
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
-            url: url,
+            url: url + 'update_all/',
             data: JSON.stringify(libraryEntries)
         }).fail(function(response) {
             console.error('Error updating library', response.status,
                     response.responseJSON || response.responseText);
         });
     },
-    del: function(listingId) {
+
+    del: function(libraryId) {
         return $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: url + `/${encodeURIComponent(listingId)}`
+            url: url + `${encodeURIComponent(libraryId)}/`
         }).fail(function(response) {
-            console.error('Error removing Listing with id ' + listingId + 'from library',
+            console.error('Error removing Listing with id ' + libraryId + ' from library',
                     response.status, response.responseJSON || response.responseText);
         });
     }

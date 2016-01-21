@@ -23,7 +23,6 @@ var LibraryStore = Reflux.createStore({
             return Object.freeze(e);
         }));
 
-
         this.trigger(this.library);
     },
 
@@ -34,16 +33,20 @@ var LibraryStore = Reflux.createStore({
     },
 
     onUpdateLibrary: function(libraryEntries) {
-        LibraryApi.save(libraryEntries).then(this.updateLibrary.bind(this));
+        LibraryApi.save(libraryEntries).then(
+            // GET to ensure updateLibrary happens after GET from onFetchLibrary()
+            ()=>LibraryApi.get()).then(
+                ()=>this.updateLibrary(libraryEntries));
     },
 
     onRemoveFromLibrary: function(libraryEntry) {
-        var idToRemove = libraryEntry.listing.id,
+        var libraryId = libraryEntry.id,
+            listingId = libraryEntry.listing.id,
             me = this;
 
-        LibraryApi.del(idToRemove).then(function() {
+        LibraryApi.del(libraryId).then(function() {
             me.library = me.library.filter(function (entry) {
-                return entry.listing.id !== idToRemove;
+                return entry.listing.id !== listingId;
             });
 
             me.trigger(me.library);
