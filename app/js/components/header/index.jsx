@@ -74,11 +74,6 @@ var Header = React.createClass({
                                             <i className="icon-head-grayLightest"/>Profile
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="settings">
-                                            <i className="icon-cog-grayLightest"></i>Settings
-                                        </Link>
-                                    </li>
                                     <li className="divider"></li>
                                     <li className="dropdown-header">Create</li>
                                     <li><a href={CENTER_URL + '/#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
