@@ -10,7 +10,6 @@ var { Route } = Router;
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
-var HudSettingsWindow = require('./components/HudSettingsWindow.jsx');
 var HudContactsWindow = require('./components/HudContactsWindow.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
@@ -36,7 +35,6 @@ var Routes = (
     <Route name="main" path="/" handler={App}>
         <Route name="folder" path="folder/:name" handler={FolderModal} />
         <Route name="profile" path="profile" handler={CurrentProfileWindow} />
-        <Route name="settings" path="settings" handler={HudSettingsWindow} />
         <Route name="contacts" path="contacts" handler={HudContactsWindow} />
     </Route>
 );
