@@ -150,7 +150,6 @@ var FolderModal = React.createClass({
                                 shareURLToggle: !this.state.shareURLToggle
                               });
                             }} className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
-                            <a href={WEBTOP_URL+`#/launchFolder?dashName=${encodeURI(folderName)}&appIds=${encodeURI(JSON.stringify(appIds))}`} target="_blank" className="shareFolderButton pull-right btn btn-default tooltiped" data-toggle="tooltip" data-placement="bottom" title="Open all widgets in new dashboard">Open all in new dashboard</a>
                           <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
                             onChange={this.onNameChange}/>
                         </div>
