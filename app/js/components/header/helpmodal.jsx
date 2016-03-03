@@ -25,7 +25,8 @@ var HelpModal = React.createClass({
         var UserRole = {
           USER: 0,
           ORG_STEWARD: 1,
-          ADMIN: 2
+          ADMIN: 2,
+          APPS_MALL_STEWARD: 2
         };
         this.setState({
           role: UserRole[ this.state.profile.highestRole ]
