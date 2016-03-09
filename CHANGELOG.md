@@ -1,3 +1,11 @@
+### 1.1.2 (2016-03-09)
+
+
+#### Bug Fixes
+
+* **Help:** Fixed invalid role for appsmall stewards ([def6245d](https://github.com/ozone-development/ozp-hud.git/commit/def6245d7be06b53c5c4cb03c55fe20a31c3d5e8))
+
+
 ### 1.1.1 (2016-02-10)
 
 
