@@ -64,7 +64,7 @@ var HelpModal = React.createClass({
                             <iframe style={{width:"100%", height:"500px", display:"block", border:"none"}} src={`${HELP_URL}${this.state.role}`} />
                         </div>
                         <div className="modal-footer">
-                            <h5>Have a question not answered here?&nbsp;&nbsp;<a href={HELPDESK_ADDRESS} type="button" className="btn btn-primary">Contact the Help Desk</a>
+                            <h5>Have a question not answered here?&nbsp;&nbsp;<a href={HELPDESK_ADDRESS} type="button" className="btn btn-primary" target="_blank">Contact the Help Desk</a>
                                 { /*<a type="button" className="btn btn-primary">Take the tour</a>*/ }
                             </h5>
                         </div>
