@@ -14,7 +14,7 @@ var HudContactsWindow = require('./components/HudContactsWindow.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
-var { APP_TITLE } = require('ozp-react-commons/OzoneConfig');
+var { METRICS_URL, APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
 
@@ -46,6 +46,29 @@ Router.run(Routes, function (Handler, state) {
 ProfileActions.fetchSelf();
 
 document.title = APP_TITLE;
+
+function detectIE() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf('MSIE ');
+
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    // other browser
+    return false;
+ }
+ 
+if (detectIE() && detectIE() < 10) {
+    alert(`
+    OZP is tested against the following browsers:
+    IE 11 +
+    FireFox 24+
+    Chrome 36+
+    `);
+    window.location = IE_REDIRECT_URL;
+}
 
 (function initPiwik() {
     var _paq = window._paq || [];
