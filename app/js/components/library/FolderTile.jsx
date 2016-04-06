@@ -46,7 +46,7 @@ var FolderTile = React.createClass({
         var dropInfo = DragAndDropUtils.getDropInfo(evt),
             data = dropInfo.data,
             droppedEntry = this.props.store.getModelByData(data);
-            
+
         LibraryActions.addToFolder(this.props.folder, droppedEntry);
         this.onDragLeave();
 
@@ -64,10 +64,9 @@ var FolderTile = React.createClass({
 
                 return <img key={entry.listing.id} src={src} draggable="false" />;
             }),
-
             //react-router doesn't handle special characters correctly so we must escape them ourselves
             nameParam = encodeURIComponent(folder.name);
-
+            
         return (
             <div className={classes} data-folder-name={folder.name}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}

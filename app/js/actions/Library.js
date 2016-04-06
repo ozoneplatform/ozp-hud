@@ -13,7 +13,7 @@ module.exports = Reflux.createActions([
     'updateLibrary',
 
     /**
-     * Indicates when the page has loaded 
+     * Indicates when the page has loaded
     */
     'hasLoaded',
     /**
@@ -39,6 +39,12 @@ module.exports = Reflux.createActions([
      * @param entries The initial entries in this folder (as an array)
      */
     'createFolder',
+
+    /**
+     * Create a new folder, name and all, following the backend schema
+     * @param {object} payload - the payload to be sent to the backend.
+     */
+    'makeSharedFolder',
 
     /**
      * Indicate that a new folder has been created with the specified auto-generated name

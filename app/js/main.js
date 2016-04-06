@@ -11,6 +11,7 @@ var { Route } = Router;
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
 var HudContactsWindow = require('./components/HudContactsWindow.jsx');
+var Add = require('./components/folder/Add.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
@@ -33,6 +34,7 @@ window.jQuery = $;
 
 var Routes = (
     <Route name="main" path="/" handler={App}>
+        <Route name="add" path="add/:name/:ids" handler={Add} />
         <Route name="folder" path="folder/:name" handler={FolderModal} />
         <Route name="profile" path="profile" handler={CurrentProfileWindow} />
         <Route name="contacts" path="contacts" handler={HudContactsWindow} />
@@ -59,7 +61,7 @@ function detectIE() {
     // other browser
     return false;
  }
- 
+
 if (detectIE() && detectIE() < 10) {
     alert(`
         This site is tested against the following browsers:

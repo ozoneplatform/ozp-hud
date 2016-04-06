@@ -60,9 +60,11 @@ var Library = React.createClass({
         this.onStoreChange(this.props.store.getDefaultData());
 
         setTimeout(()=>{
-          this.setState({
-            loadMsg: 'The request is taking longer than usual, there may be a serverside issue.'
-          });
+          if (this.isMounted()) {
+            this.setState({
+              loadMsg: 'The request is taking longer than usual, there may be a serverside issue.'
+            });
+          }
         }, 20000);
     },
 

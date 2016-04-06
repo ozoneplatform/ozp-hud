@@ -6,6 +6,7 @@ var LibraryStore = require('./Library');
 var LibraryActions = require('../actions/Library');
 
 var Folder = require('../api/Folder');
+var LibraryApi = require('../api/Library').LibraryApi;
 
 var newFolderBaseName = 'New Folder';
 
@@ -177,6 +178,28 @@ var FolderLibraryStore = Reflux.createStore({
             newFolderedEntries = this.folderedEntries.set(folderIndex, newFolder);
 
         return newFolderedEntries;
+    },
+
+    onMakeSharedFolder: function(payload) {
+      var pack = [];
+      payload.map((entry, i) => {
+        LibraryApi.create({
+          listing: {
+            id: entry.id
+          }
+        }, newEntry => {
+          pack.push({
+            listing: {
+              id: entry.id
+            },
+            folder: entry.folder,
+            id: newEntry.id
+          });
+          if (i + 1 === payload.length) {
+            LibraryApi.save(pack);
+          }
+        });
+      });
     },
 
     onCreateFolder: function(entries) {

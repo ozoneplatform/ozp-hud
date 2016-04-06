@@ -1,0 +1,49 @@
+'use strict';
+
+var React = require('react');
+var Reflux = require('reflux');
+
+var Router = require('react-router');
+var Link = Router.Link;
+var Navigation = Router.Navigation;
+var LibraryActions = require('../../actions/Library');
+
+var Folder = require('../../api/Folder');
+
+
+var FolderModal = React.createClass({
+    mixins: [Navigation, Reflux.ListenerMixin],
+
+    componentDidMount: function() {
+      var folderName = decodeURIComponent(this.props.params.name);
+      var ids = decodeURIComponent(this.props.params.ids);
+
+      ids = JSON.parse(
+        JSON.parse(ids)
+      );
+
+      var request = [];
+
+      ids.map((id, i) => {
+      	request.push({
+          listing: {
+            id: id.id
+          },
+          folder: folderName,
+          id: id.entryid
+        });
+      });
+
+      LibraryActions.makeSharedFolder(request);
+    },
+
+    render: function() {
+        return (
+            <div>
+              <p align="center">Adding folder...</p>
+            </div>
+        );
+    }
+});
+
+module.exports = FolderModal;

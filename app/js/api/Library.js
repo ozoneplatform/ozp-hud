@@ -5,6 +5,7 @@ var $ = require('jquery');
 var { API_URL } = require('OzoneConfig');
 
 var url = API_URL + '/api/self/library/';
+var LibraryActions = require('../actions/Library');
 
 module.exports.LibraryApi = {
     get: function() {
@@ -25,6 +26,20 @@ module.exports.LibraryApi = {
         }).fail(function(response) {
             console.error('Error updating library', response.status,
                     response.responseJSON || response.responseText);
+        }).done(() => {
+          LibraryActions.fetchLibrary();
+        });
+    },
+
+    create: function(entry, cb) {
+        return $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: url,
+            data: JSON.stringify(entry)
+        }).done(res => {
+          cb(res);
         });
     },
 
