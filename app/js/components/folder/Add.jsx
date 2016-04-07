@@ -34,11 +34,7 @@ var FolderModal = React.createClass({
     },
 
     render: function() {
-        return (
-            <div>
-              <p align="center">Adding folder...</p>
-            </div>
-        );
+        return (<div></div>);
     }
 });
 

@@ -50,6 +50,7 @@ var LibraryStore = Reflux.createStore({
             });
 
             me.trigger(me.library);
+            LibraryActions.fetchLibrary();
         });
     }
 });
