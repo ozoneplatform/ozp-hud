@@ -8,6 +8,7 @@ var Immutable = require('immutable');
 var Link = require('react-router').Link;
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
+var RandomBase16 = require('../../util/RandomBase16');
 
 var LibraryActions = require('../../actions/Library');
 
@@ -62,11 +63,11 @@ var FolderTile = React.createClass({
             entryIcons = folder.entries.map(function(entry) {
                 var src = entry.listing.large_icon.url;
 
-                return <img key={entry.listing.id} src={src} draggable="false" />;
+                return <img key={`${entry.listing.id}-${RandomBase16(6)}`} src={src} draggable="false" />;
             }),
             //react-router doesn't handle special characters correctly so we must escape them ourselves
             nameParam = encodeURIComponent(folder.name);
-            
+
         return (
             <div className={classes} data-folder-name={folder.name}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}

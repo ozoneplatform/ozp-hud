@@ -15,7 +15,7 @@ var Add = require('./components/folder/Add.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
-var { METRICS_URL, APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
+var { APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
 
@@ -63,6 +63,7 @@ function detectIE() {
  }
 
 if (detectIE() && detectIE() < 10) {
+    /*jshint ignore:start*/
     alert(`
         This site is tested against the following browsers:
         IE 11+
@@ -70,6 +71,7 @@ if (detectIE() && detectIE() < 10) {
         Chrome 36+
         We have detected that you are using an unsupported browser and some features may not function as expected
     `);
+    /*jshint ignore:end*/
     window.open(IE_REDIRECT_URL);
 }
 

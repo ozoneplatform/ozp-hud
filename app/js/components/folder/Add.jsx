@@ -4,12 +4,8 @@ var React = require('react');
 var Reflux = require('reflux');
 
 var Router = require('react-router');
-var Link = Router.Link;
 var Navigation = Router.Navigation;
 var LibraryActions = require('../../actions/Library');
-
-var Folder = require('../../api/Folder');
-
 
 var FolderModal = React.createClass({
     mixins: [Navigation, Reflux.ListenerMixin],
@@ -24,7 +20,7 @@ var FolderModal = React.createClass({
 
       var request = [];
 
-      ids.map((id, i) => {
+      ids.map(id => {
       	request.push({
           listing: {
             id: id.id

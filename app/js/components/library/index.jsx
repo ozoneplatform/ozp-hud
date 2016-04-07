@@ -3,6 +3,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Immutable = require('immutable');
+var RandomBase16 = require('../../util/RandomBase16');
 
 
 var LibraryTile = require('./LibraryTile.jsx');
@@ -83,13 +84,13 @@ var Library = React.createClass({
                         tile;
 
                     tile = curr instanceof Folder ?
-                        <FolderTile store={store} key={'folder-' + curr.name} folder={curr} /> :
+                        <FolderTile store={store} key={`folder-${curr.name}-${RandomBase16(6)}`} folder={curr} /> :
                         <LibraryTile store={store}
                             allowFolderCreate={me.props.allowFolderCreate}
-                            key={'listing-' + curr.listing.id} entry={curr} />;
+                            key={`listing-${curr.listing.id}-${RandomBase16(6)}`} entry={curr} />;
 
                     return (
-                        <LibraryItem key={tile.props.key}
+                        <LibraryItem key={`${tile.props.key}-${RandomBase16(6)}`}
                                 store={store} prev={prev} curr={curr} next={next}>
                             {tile}
                         </LibraryItem>
