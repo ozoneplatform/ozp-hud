@@ -181,18 +181,19 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onMakeSharedFolder: function(payload) {
+      console.log('payload', payload);
       var pack = [];
-      payload.map((entry, i) => {
+      payload.map((listing, i) => {
         LibraryApi.create({
           listing: {
-            id: entry.id
+            id: listing.listing.id
           }
         }, newEntry => {
           pack.push({
             listing: {
-              id: entry.id
+              id: listing.listing.id
             },
-            folder: entry.folder,
+            folder: listing.folder,
             id: newEntry.id
           });
           if (i + 1 === payload.length) {

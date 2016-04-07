@@ -19,17 +19,15 @@ var FolderModal = React.createClass({
       );
 
       var request = [];
-
       ids.map(id => {
       	request.push({
           listing: {
             id: id.id
           },
-          folder: folderName,
-          id: id.entryid
+          folder: folderName
         });
       });
-
+      console.log('request 1', request);
       LibraryActions.makeSharedFolder(request);
     },
 
