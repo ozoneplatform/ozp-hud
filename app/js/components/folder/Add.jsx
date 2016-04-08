@@ -27,7 +27,7 @@ var FolderModal = React.createClass({
           folder: folderName
         });
       });
-      console.log('request 1', request);
+
       LibraryActions.makeSharedFolder(request);
     },
 

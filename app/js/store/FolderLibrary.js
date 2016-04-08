@@ -181,9 +181,9 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onMakeSharedFolder: function(payload) {
-      console.log('payload', payload);
       var pack = [];
-      payload.map((listing, i) => {
+      (function asterisk(i) {
+        var listing = payload[i];
         LibraryApi.create({
           listing: {
             id: listing.listing.id
@@ -198,9 +198,11 @@ var FolderLibraryStore = Reflux.createStore({
           });
           if (i + 1 === payload.length) {
             LibraryApi.save(pack);
+          } else {
+            asterisk(i + 1);
           }
         });
-      });
+      })(0);
     },
 
     onCreateFolder: function(entries) {
