@@ -20,11 +20,11 @@ var ActionMenu = React.createClass({
 
 
     componentDidMount: function() {
-      if (this.isMounted()) {
         $('html').click(() => {
-          this.setState({checked: false});
-        });  
-      }
+          if (this.isMounted()) {
+            this.setState({checked: false});
+          }
+        });
     },
 
     render: function() {
