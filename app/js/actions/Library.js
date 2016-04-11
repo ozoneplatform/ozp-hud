@@ -13,7 +13,7 @@ module.exports = Reflux.createActions([
     'updateLibrary',
 
     /**
-     * Indicates when the page has loaded 
+     * Indicates when the page has loaded
     */
     'hasLoaded',
     /**
@@ -81,7 +81,8 @@ module.exports = Reflux.createActions([
     /**
      * Indicate that no specific folder is currently being viewed
      */
-    'stopViewingFolder'
+    'stopViewingFolder',
+    'closeMenu'
 ]);
 
 //module.exports.viewFolder.sync = true;

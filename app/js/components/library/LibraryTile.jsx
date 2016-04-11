@@ -11,6 +11,22 @@ var LaunchLink = require('ozp-react-commons/components/LaunchLink.jsx');
 
 
 var ActionMenu = React.createClass({
+
+    getInitialState: function() {
+      return {
+        checked: false
+      };
+    },
+
+
+    componentDidMount: function() {
+      if (this.isMounted()) {
+        $('html').click(() => {
+          this.setState({checked: false});
+        });  
+      }
+    },
+
     render: function() {
         var entry = this.props.entry,
             listing = entry.listing,
@@ -19,7 +35,9 @@ var ActionMenu = React.createClass({
         //use hidden checkbox to manage menu toggle state
         return (
             <label className="LibraryTile__actionMenu">
-                <input ref="checkbox" type="checkbox" />
+                <input ref="checkbox" type="checkbox" checked={this.state.checked} onChange={() => {
+                    this.setState({checked: true});
+                  }}/>
                 <span className="LibraryTile__actionMenuButton">
                      <i className="icon-caret-down-14-grayLightest" />
                 </span>
