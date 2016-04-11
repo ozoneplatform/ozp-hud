@@ -11,7 +11,7 @@ var Library = require('../library/index.jsx');
 var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
-var {WEBTOP_URL} = require('OzoneConfig');
+var {HUD_URL} = require('OzoneConfig');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var Folder = require('../../api/Folder');
@@ -161,7 +161,7 @@ var FolderModal = React.createClass({
                               <div className="col-md-12">
                                 <div className="form-group">
                                   <label className="control-label">Copy the URL and paste it anywhere to share.</label>
-                                  <input type="text" onFocus={this.highlightText} className="form-control" value={WEBTOP_URL+`#/launchFolder?dashName=${encodeURI(folderName)}&appIds=${encodeURI(JSON.stringify(appIds))}`} />
+                                  <input type="text" onFocus={this.highlightText} className="form-control" value={`${HUD_URL}/#/add/${encodeURI(folderName)}/${encodeURI(JSON.stringify(appIds))}`} />
                                 </div>
                             </div>
                             }

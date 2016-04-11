@@ -41,6 +41,12 @@ module.exports = Reflux.createActions([
     'createFolder',
 
     /**
+     * Create a new folder, name and all, following the backend schema
+     * @param {object} payload - the payload to be sent to the backend.
+     */
+    'makeSharedFolder',
+
+    /**
      * Indicate that a new folder has been created with the specified auto-generated name
      * @param name The current name for the new folder
      */
