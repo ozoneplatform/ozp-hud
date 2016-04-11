@@ -11,10 +11,11 @@ var { Route } = Router;
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
 var HudContactsWindow = require('./components/HudContactsWindow.jsx');
+var Add = require('./components/folder/Add.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
-var { METRICS_URL, APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
+var { APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
 
@@ -33,6 +34,7 @@ window.jQuery = $;
 
 var Routes = (
     <Route name="main" path="/" handler={App}>
+        <Route name="add" path="add/:name/:ids" handler={Add} />
         <Route name="folder" path="folder/:name" handler={FolderModal} />
         <Route name="profile" path="profile" handler={CurrentProfileWindow} />
         <Route name="contacts" path="contacts" handler={HudContactsWindow} />
@@ -59,8 +61,9 @@ function detectIE() {
     // other browser
     return false;
  }
- 
+
 if (detectIE() && detectIE() < 10) {
+    /*jshint ignore:start*/
     alert(`
         This site is tested against the following browsers:
         IE 11+
@@ -68,6 +71,7 @@ if (detectIE() && detectIE() < 10) {
         Chrome 36+
         We have detected that you are using an unsupported browser and some features may not function as expected
     `);
+    /*jshint ignore:end*/
     window.open(IE_REDIRECT_URL);
 }
 
