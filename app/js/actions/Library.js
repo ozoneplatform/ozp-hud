@@ -87,8 +87,7 @@ module.exports = Reflux.createActions([
     /**
      * Indicate that no specific folder is currently being viewed
      */
-    'stopViewingFolder',
-    'closeMenu'
+    'stopViewingFolder'
 ]);
 
 //module.exports.viewFolder.sync = true;
