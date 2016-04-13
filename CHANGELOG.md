@@ -1,3 +1,11 @@
+### 1.1.6 (2016-04-13)
+
+
+#### Features
+
+* **Shared Folders:** Hud share folders to other people ([69b4b14a](https://github.com/ozone-development/ozp-hud.git/commit/69b4b14a2522e44740d3a12d3c39cde027525c9d))
+
+
 ### 1.1.5 (2016-04-05)
 
 
