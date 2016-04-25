@@ -77,9 +77,7 @@ var FolderTile = React.createClass({
                         params={{name: nameParam}} draggable="false">
                     {entryIcons.toArray()}
                 </Link>
-                <FolderTitle name={folder.name} element={React.DOM.h5} onFocus={() => {
-                    this.setState({editTitle: true});
-                  }}/>
+                <FolderTitle name={folder.name} element={React.DOM.h5}/>
             </div>
         );
     }
