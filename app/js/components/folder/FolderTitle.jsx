@@ -12,7 +12,7 @@ var FolderTitle = React.createClass({
     getInitialState: function() {
         var newFolderName = NewFolderStore.getDefaultData();
 
-        return { editing: this.props.name === newFolderName, error: false };
+        return { editing: this.props.name === newFolderName, error: false ,focused:false};
     },
 
     componentDidMount: function() {
@@ -26,7 +26,6 @@ var FolderTitle = React.createClass({
 
         if (this.state.editing) {
             node.focus();
-
             if (!wasFocused) {
                 //highlight the contents of the contenteditable region
                 document.execCommand('selectAll', false, null);
@@ -46,7 +45,6 @@ var FolderTitle = React.createClass({
         var newName = this.refs.name.getDOMNode().textContent.trim(),
             oldName = this.props.name,
             error = false;
-
         if (newName === '') {
             error = 'Folder name cannot be blank';
         }
@@ -55,6 +53,9 @@ var FolderTitle = React.createClass({
         }
         else if (newName !== oldName && FolderLibrary.findFolder(newName)) {
             error = 'There is already a folder with this name';
+        }
+        else if (this.state.focused === false){
+          LibraryActions.renameFolder(oldName,oldName);
         }
         else {
             LibraryActions.renameFolder(oldName, newName);
@@ -65,6 +66,7 @@ var FolderTitle = React.createClass({
 
             if (this.props.onChange) {
                 this.props.onChange(newName);
+                LibraryActions.fetchLibrary();
             }
         }
         else {
@@ -81,13 +83,14 @@ var FolderTitle = React.createClass({
 
             //highlight the contents of the contenteditable region
             document.execCommand('selectAll', false, null);
+            this.setState({focused:true});
         });
     },
-
     //if the key was Enter, stop editing the name
     finishEditOnEnter: function(evt) {
-        if (evt.key === 'Enter') {
-            evt.target.blur();
+        if (evt.key === 'Enter' || evt.keyCode === 27 ) {
+            this.setState({focused:false});
+            this.onNameChange(evt);
             evt.preventDefault();
         }
     },
@@ -98,6 +101,11 @@ var FolderTitle = React.createClass({
 
         evt.preventDefault();
         document.execCommand('insertText', false, text);
+    },
+
+    backToOldName: function() {
+      // do whatever is happening when you open the folder modal that is resetting the name
+
     },
 
     render: function() {
@@ -113,7 +121,7 @@ var FolderTitle = React.createClass({
                 <span className="small validation-err-msg">{this.state.error}</span>
                 {element({
                         ref: 'name',
-                        onBlur: this.onNameChange,
+                        onBlur: this.finishEditOnEnter,
                         onDoubleClick: this.editTitle,
                         onKeyDown: this.finishEditOnEnter,
                         onPaste: this.interceptPaste,
