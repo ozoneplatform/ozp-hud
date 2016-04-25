@@ -12,7 +12,7 @@ var FolderTitle = React.createClass({
     getInitialState: function() {
         var newFolderName = NewFolderStore.getDefaultData();
 
-        return { editing: this.props.name === newFolderName, error: false ,focused:false};
+        return { editing: this.props.name === newFolderName, error: false };
     },
 
     componentDidMount: function() {
@@ -54,7 +54,7 @@ var FolderTitle = React.createClass({
         else if (newName !== oldName && FolderLibrary.findFolder(newName)) {
             error = 'There is already a folder with this name';
         }
-        else if (this.state.focused === false){
+        else if (this.state.editing === false){
           LibraryActions.renameFolder(oldName,oldName);
         }
         else {
@@ -83,13 +83,11 @@ var FolderTitle = React.createClass({
 
             //highlight the contents of the contenteditable region
             document.execCommand('selectAll', false, null);
-            this.setState({focused:true});
         });
     },
     //if the key was Enter, stop editing the name
     finishEditOnEnter: function(evt) {
-        if (evt.key === 'Enter' || evt.keyCode === 27 ) {
-            this.setState({focused:false});
+        if (evt.key === 'Enter') {
             this.onNameChange(evt);
             evt.preventDefault();
         }
@@ -104,8 +102,9 @@ var FolderTitle = React.createClass({
     },
 
     backToOldName: function() {
-      // do whatever is happening when you open the folder modal that is resetting the name
-
+      //stop editing and revert back to old name
+      this.setState({editing:false});
+      LibraryActions.fetchLibrary();
     },
 
     render: function() {
@@ -121,7 +120,7 @@ var FolderTitle = React.createClass({
                 <span className="small validation-err-msg">{this.state.error}</span>
                 {element({
                         ref: 'name',
-                        onBlur: this.finishEditOnEnter,
+                        onBlur: this.backToOldName,
                         onDoubleClick: this.editTitle,
                         onKeyDown: this.finishEditOnEnter,
                         onPaste: this.interceptPaste,
