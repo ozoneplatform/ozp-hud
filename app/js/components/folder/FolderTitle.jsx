@@ -72,7 +72,6 @@ var FolderTitle = React.createClass({
         else {
             evt.preventDefault();
             evt.stopPropagation();
-
             this.setState({error: error});
         }
     },
