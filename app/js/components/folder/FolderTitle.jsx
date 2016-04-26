@@ -54,9 +54,6 @@ var FolderTitle = React.createClass({
         else if (newName !== oldName && FolderLibrary.findFolder(newName)) {
             error = 'There is already a folder with this name';
         }
-        else if (this.state.editing === false){
-          LibraryActions.renameFolder(oldName,oldName);
-        }
         else {
             LibraryActions.renameFolder(oldName, newName);
         }
