@@ -1,3 +1,11 @@
+### 1.1.7 (2016-04-27)
+
+
+#### Bug Fixes
+
+* **Renaming Tiles:** fixes library folders not renaming when clicking off / onNameChange  #125 ([c9279a6e](https://github.com/ozone-development/ozp-hud.git/commit/c9279a6e6334fa16a1a04280578bc87fbdb0f313))
+
+
 ### 1.1.6 (2016-04-13)
 
 
