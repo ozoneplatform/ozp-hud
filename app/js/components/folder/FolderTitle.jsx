@@ -26,7 +26,6 @@ var FolderTitle = React.createClass({
 
         if (this.state.editing) {
             node.focus();
-
             if (!wasFocused) {
                 //highlight the contents of the contenteditable region
                 document.execCommand('selectAll', false, null);
@@ -46,7 +45,6 @@ var FolderTitle = React.createClass({
         var newName = this.refs.name.getDOMNode().textContent.trim(),
             oldName = this.props.name,
             error = false;
-
         if (newName === '') {
             error = 'Folder name cannot be blank';
         }
@@ -65,12 +63,12 @@ var FolderTitle = React.createClass({
 
             if (this.props.onChange) {
                 this.props.onChange(newName);
+                LibraryActions.fetchLibrary();
             }
         }
         else {
             evt.preventDefault();
             evt.stopPropagation();
-
             this.setState({error: error});
         }
     },
@@ -83,11 +81,10 @@ var FolderTitle = React.createClass({
             document.execCommand('selectAll', false, null);
         });
     },
-
     //if the key was Enter, stop editing the name
     finishEditOnEnter: function(evt) {
         if (evt.key === 'Enter') {
-            evt.target.blur();
+            this.onNameChange(evt);
             evt.preventDefault();
         }
     },
@@ -98,6 +95,12 @@ var FolderTitle = React.createClass({
 
         evt.preventDefault();
         document.execCommand('insertText', false, text);
+    },
+
+    backToOldName: function() {
+      //stop editing and revert back to old name
+      this.setState({editing:false});
+      LibraryActions.fetchLibrary();
     },
 
     render: function() {
@@ -113,7 +116,7 @@ var FolderTitle = React.createClass({
                 <span className="small validation-err-msg">{this.state.error}</span>
                 {element({
                         ref: 'name',
-                        onBlur: this.onNameChange,
+                        onBlur: this.backToOldName,
                         onDoubleClick: this.editTitle,
                         onKeyDown: this.finishEditOnEnter,
                         onPaste: this.interceptPaste,
