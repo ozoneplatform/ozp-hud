@@ -9,6 +9,7 @@ var DragAndDropUtils = require('../../util/DragAndDrop');
 var ListingDetailsLink = require('../ListingDetailsLink.jsx');
 var LaunchLink = require('ozp-react-commons/components/LaunchLink.jsx');
 
+var LibraryApi = require('../../api/Library').LibraryApi;
 
 var ActionMenu = React.createClass({
 
@@ -17,7 +18,6 @@ var ActionMenu = React.createClass({
         checked: false
       };
     },
-
 
     componentDidMount: function() {
         $('html').click(() => {
@@ -30,7 +30,16 @@ var ActionMenu = React.createClass({
     render: function() {
         var entry = this.props.entry,
             listing = entry.listing,
-            removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry);
+            removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry),
+            duplicateBookmark = () => {
+              LibraryApi.create({
+                listing: {
+                  id: entry.listing.id
+                }
+              }, () => {
+                LibraryActions.fetchLibrary();
+              });
+            };
 
         //use hidden checkbox to manage menu toggle state
         return (
@@ -48,6 +57,7 @@ var ActionMenu = React.createClass({
                         </ListingDetailsLink>
                     </li>
                     <li><a onClick={removeBookmark}>Remove Bookmark</a></li>
+                    <li><a onClick={duplicateBookmark}>Duplicate Bookmark</a></li>
                 </ul>
             </label>
         );
