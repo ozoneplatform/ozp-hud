@@ -1,3 +1,11 @@
+### 1.1.8 (2016-05-04)
+
+
+#### Features
+
+* **Duplicate Bookmarks:** Ability to duplicate bookmarks has been added ([b6c73a28](https://github.com/ozone-development/ozp-hud.git/commit/b6c73a2810dc19e6b19c9e97bfdcd7be1a7beee3))
+
+
 ### 1.1.7 (2016-04-27)
 
 
