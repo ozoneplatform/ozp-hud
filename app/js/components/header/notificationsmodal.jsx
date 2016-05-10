@@ -8,6 +8,7 @@ var marked = require('marked');
 var renderer = new marked.Renderer();
 
 // Disable heading tags
+/* jshint ignore:start */
 renderer.heading = function (text, level) {
   return '<span>' + text + '</span>';
 };
@@ -15,6 +16,7 @@ renderer.heading = function (text, level) {
 renderer.link = function (href, title, text) {
   return `<a href="${href}" target="_blank">${text}</a>`;
 };
+/* jshint ignore:end */
 
 
 var NotificationsModal = React.createClass({
@@ -70,7 +72,7 @@ var NotificationsModal = React.createClass({
                 activeNotification: i
               });
             }}>
-            <a href="#" onClick={(e) => {e.preventDefault()}}>
+            <a href="#" onClick={(e) => {e.preventDefault();}}>
               {n.author.user.username} <small>{formattedDate}</small>
             </a>
           </li>
