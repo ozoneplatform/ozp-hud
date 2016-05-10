@@ -4,6 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var UserNotificationDropdown = require('ozp-react-commons/components/notification/UserNotificationDropdown.jsx');
 var HelpModal = require('./helpmodal.jsx');
+var NotificationsModal = require('./notificationsmodal.jsx');
 var { Link } = require('react-router');
 
 var SelfStore = require('ozp-react-commons/stores/SelfStore');
@@ -25,8 +26,13 @@ var Header = React.createClass({
     getInitialState: function() {
         return {
             showHelp: false,
-            profile: SelfStore.getDefaultData().currentUser
+            profile: SelfStore.getDefaultData().currentUser,
+            showNotifications: false,
         };
+    },
+
+    showNotifications: function() {
+      this.setState({showNotifications: true});
     },
 
     onStoreChange: function(profileData) {
@@ -60,7 +66,7 @@ var Header = React.createClass({
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
-                            <UserNotificationDropdown />
+                            <UserNotificationDropdown moreNotifications={this.showNotifications}/>
                             <li className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Help">
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>
@@ -98,6 +104,9 @@ var Header = React.createClass({
                 </div>
                 {
                     this.state.showHelp && <HelpModal onHidden={this.onModalHidden} />
+                }
+                {
+                    this.state.showNotifications && <NotificationsModal onHidden={this.onModalHidden} />
                 }
             </nav>
         );
