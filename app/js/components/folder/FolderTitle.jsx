@@ -12,7 +12,7 @@ var FolderTitle = React.createClass({
     getInitialState: function() {
         var newFolderName = NewFolderStore.getDefaultData();
 
-        return { editing: this.props.name === newFolderName, error: false };
+        return { editing: false, error: false };
     },
 
     componentDidMount: function() {
