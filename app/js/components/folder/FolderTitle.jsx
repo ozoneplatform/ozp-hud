@@ -10,8 +10,6 @@ var FolderTitle = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     getInitialState: function() {
-        var newFolderName = NewFolderStore.getDefaultData();
-
         return { editing: false, error: false };
     },
 
