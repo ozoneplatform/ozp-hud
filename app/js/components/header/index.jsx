@@ -123,7 +123,7 @@ var Header = React.createClass({
     },
 
     onModalHidden: function () {
-        this.setState({ showHelp: false });
+        this.setState({ showHelp: false, showNotifications: false });
     }
 });
 
