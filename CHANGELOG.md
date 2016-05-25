@@ -1,3 +1,15 @@
+### 1.1.10 (2016-05-25)
+
+
+#### Bug Fixes
+
+* **Notifications Modal:**
+  * Date and time problems ([4cc81b00](https://github.com/ozone-development/ozp-hud.git/commit/4cc81b009c0e795da1c52607e1d5413f811b2342))
+  * Notifications modal doesn't re-appear after closing it once ([282d1986](https://github.com/ozone-development/ozp-hud.git/commit/282d19869e12eeacefa1c5dfc0450a2e47ca5c98))
+* **folderTile:** folders will not not prompt a name change upon creation instead they will be ren ([104aa3a8](https://github.com/ozone-development/ozp-hud.git/commit/104aa3a8cf4b3593f1a188b137d416c4e17b8424))
+* **foldertiles:** removed folder tile variable it is no longer needed ([2fa084b3](https://github.com/ozone-development/ozp-hud.git/commit/2fa084b3c66c477b2c47a695a2aab8c2df3636d1))
+
+
 ### 1.1.8 (2016-05-04)
 
 
