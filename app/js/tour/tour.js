@@ -14,7 +14,7 @@ var tourDB = new ObjectDB('ozp_tour').set({
   }
 });
 
-//console.log(tourDB);
+console.log(tourDB);
 //console.log(tourDB);
 
 var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
