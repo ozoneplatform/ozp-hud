@@ -69,6 +69,7 @@
   "dependencies": {
     "babel-runtime": "4.6.6",
     "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass",
+    "bootstrap-tour": "git://github.com/ozone-utils/bootstrap-tour",
     "browser-pubsub": "^1.2.1",
     "gulp-preprocess": "1.2.0",
     "icons": "git://github.com/ozone-development/ozp-icons",
