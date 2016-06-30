@@ -2,17 +2,17 @@
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
 var $ = require('jquery');
 var ObjectDB = require('object-db');
-//console.log(this.db);
+console.log(this.db);
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
-var tourDB = new ObjectDB('ozp_tour').get();
-//var tourDB = new ObjectDB('ozp_tour').set({
-//  hud: {
-//    ran: false,
-//    startHudTour: false
-//  }
-//});
+//var tourDB = new ObjectDB('ozp_tour').get();
+var tourDB = new ObjectDB('ozp_tour').set({
+  hud: {
+    ran: false,
+    startHudTour: false
+  }
+});
 
 console.log(tourDB);
 
