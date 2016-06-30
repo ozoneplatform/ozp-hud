@@ -2,7 +2,7 @@
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
 var $ = require('jquery');
 var ObjectDB = require('object-db');
-console.log(this.db);
+//console.log(this);
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
