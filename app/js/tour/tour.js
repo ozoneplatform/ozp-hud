@@ -1,4 +1,5 @@
 'use strict';
+console.log('tour');
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
 var $ = require('jquery');
 var ObjectDB = require('object-db');
