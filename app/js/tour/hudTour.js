@@ -7,6 +7,9 @@ var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
 var tourDB = new ObjectDB('ozp_tour');
+
+// rjk
+var tourDB = new ObjectDB('ozp_tour').get();
 if(tourDB.hud.myName === 'russell'){console.log('yes');}
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
