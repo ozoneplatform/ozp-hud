@@ -11,6 +11,7 @@ var Library = require('../library/index.jsx');
 var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
+var {HUD_URL} = require('OzoneConfig');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var Folder = require('../../api/Folder');
