@@ -10,7 +10,10 @@ var tourDB = new ObjectDB('ozp_tour');
 
 // rjk
 var tourDB = new ObjectDB('ozp_tour').get();
-if(tourDB.hud.myName === 'russell'){console.log('yes');}
+if(tourDB.hud.myName === 'russell'){
+  console.log('yes');
+  console.log(tourDB);
+}
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
 
