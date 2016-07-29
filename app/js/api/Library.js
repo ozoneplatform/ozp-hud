@@ -32,8 +32,6 @@ module.exports.LibraryApi = {
               "folder_name": folder
             }
           })
-      }).done(res => {
-
       });
     },
 
