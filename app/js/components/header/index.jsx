@@ -6,6 +6,7 @@ var UserNotificationDropdown = require('ozp-react-commons/components/notificatio
 var HelpModal = require('./helpmodal.jsx');
 var NotificationsModal = require('./notificationsmodal.jsx');
 var { Link } = require('react-router');
+var LibraryActions = require('../../actions/Library');
 
 var SelfStore = require('ozp-react-commons/stores/SelfStore');
 
@@ -66,7 +67,7 @@ var Header = React.createClass({
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
-                            <UserNotificationDropdown moreNotifications={this.showNotifications}/>
+                            <UserNotificationDropdown updateHud={LibraryActions.fetchLibrary} moreNotifications={this.showNotifications}/>
                             <li className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Help">
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>

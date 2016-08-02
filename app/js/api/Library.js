@@ -16,6 +16,25 @@ module.exports.LibraryApi = {
             });
     },
 
+    share: function(folder, peer, message) {
+      return $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          url: API_URL + '/api/notification/',
+          data: JSON.stringify({
+            "expires_date": new Date(new Date().setYear(new Date().getFullYear() + 1)).toISOString(),
+            "message": message,
+            "peer": {
+              "user": {
+                "username": peer
+              },
+              "folder_name": folder
+            }
+          })
+      });
+    },
+
     save: function(libraryEntries) {
         return $.ajax({
             type: 'PUT',

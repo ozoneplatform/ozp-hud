@@ -180,6 +180,10 @@ var FolderLibraryStore = Reflux.createStore({
         return newFolderedEntries;
     },
 
+    onShareFolder: function(payload) {
+      LibraryApi.share(payload.folder, payload.peer, payload.message);
+    },
+
     onMakeSharedFolder: function(payload) {
       var pack = [];
       (function asterisk(i) {

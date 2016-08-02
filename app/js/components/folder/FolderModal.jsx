@@ -11,7 +11,6 @@ var Library = require('../library/index.jsx');
 var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
-var {HUD_URL} = require('OzoneConfig');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 
 var Folder = require('../../api/Folder');
@@ -144,12 +143,6 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                           <Link className="icon-cross-16 vertical-center pull-right" to="main"></Link>
-                          <button onClick={()=>{
-                              LibraryActions.fetchLibrary();
-                              this.setState({
-                                shareURLToggle: !this.state.shareURLToggle
-                              });
-                            }} className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
                           <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
                             onChange={this.onNameChange}/>
                         </div>
@@ -160,12 +153,36 @@ var FolderModal = React.createClass({
                             { this.state.shareURLToggle &&
                               <div className="col-md-12">
                                 <div className="form-group">
-                                  <label className="control-label">Copy the URL and paste it anywhere to share.</label>
-                                  <input type="text" onFocus={this.highlightText} className="form-control" value={`${HUD_URL}/#/add/${encodeURI(folderName)}/${encodeURI(JSON.stringify(appIds))}`} />
+                                  <p>Enter the username you would like to share <b>{folderName}</b> with.</p>
+                                  <input type="text" ref="peer" className="form-control" />
                                 </div>
-                            </div>
+                                <div className="form-group">
+                                  <p>Optionally, enter a short message to the user.</p>
+                                  <textarea type="text" ref="message" className="form-control" ></textarea>
+                                </div>
+                                <div className="form-group">
+                                  <Link to="main" className="btn btn-primary" onClick={() => {
+                                      console.log('test');
+                                      LibraryActions.shareFolder({
+                                        folder: folderName,
+                                        peer: this.refs.peer.getDOMNode().value,
+                                        message: this.refs.message.getDOMNode().value
+                                      });
+                                    }}>
+                                    Send {folderName}
+                                  </Link>
+                                </div>
+                              </div>
                             }
 
+                        </div>
+                        <div className="modal-footer">
+                          <button onClick={()=>{
+                              LibraryActions.fetchLibrary();
+                              this.setState({
+                                shareURLToggle: !this.state.shareURLToggle
+                              });
+                            }} className="shareFolderButton pull-right btn btn-success tooltiped" data-toggle="tooltip" data-placement="bottom" title={`Share ${folderName}`}>Share {folderName}</button>
                         </div>
                     </div>
                 </div>
