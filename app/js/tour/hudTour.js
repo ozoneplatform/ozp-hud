@@ -6,13 +6,11 @@ HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
-var tourDB = new ObjectDB('ozp_tour');
-
 // rjk
 var tourDB = new ObjectDB('ozp_tour').get();
-if(tourDB.library.exists === true){
-  console.log('yes');
-  //console.log(tourDB);
+var contentLocal = 'NO';
+if(tourDB.library === true){
+  contentLocal = "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.";
 }
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
@@ -36,7 +34,8 @@ const meTour = new Tour({
     //0
     {
       title: "Welcome. ",
-      content: "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.",
+      //content: "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.",
+      content: contentLocal,
       orphan: true,
       onShown: function(){
         $('#welcome').focus();
