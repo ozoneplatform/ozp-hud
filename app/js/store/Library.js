@@ -4,8 +4,6 @@ var Reflux = require('reflux');
 var Immutable = require('immutable');
 var LibraryActions = require('../actions/Library');
 var LibraryApi  = require('../api/Library').LibraryApi;
-var ProfileSearchActions = require('../actions/ProfileSearchActions');
-var $ = require('jquery');
 var pass1 = false;
 
 /**

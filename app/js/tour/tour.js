@@ -3,24 +3,41 @@ var ProfileSearchActions = require('../actions/ProfileSearchActions');
 var $ = require('jquery');
 
 var ObjectDB = require('object-db');
-var tourDB = new ObjectDB('ozp_tour').init();
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
-//var tourDB = new ObjectDB('ozp_tour').get();
-console.log(tourDB);
-if(!tourDB.hud_ran){
-  tourDB.set({
-    hud: {
-      ran: false,
-      startHudTour: false,
-      myName: 'russell'
-    },
-    hud_name: 'russell',
-    hud_start: false,
-    hud_ran: false
-  });
-}
+var tourDB = new ObjectDB('ozp_tour').init({
+  hud: {
+    ran: false,
+    startHudTour: false,
+    myName: 'russell'
+  },
+  hud_name: 'russell',
+  hud_start: false,
+  hud_ran: false
+});
+
+
+
+//  rjk
+//var tourDB = new ObjectDB('ozp_tour').init();
+//
+//// Setup our LocalstorageDB we will use this to talk between Center,
+//// Webtop and Hud tours.
+//
+//console.log(tourDB);
+//if(!tourDB.hud_ran){
+//  tourDB.set({
+//    hud: {
+//      ran: false,
+//      startHudTour: false,
+//      myName: 'russell'
+//    },
+//    hud_name: 'russell',
+//    hud_start: false,
+//    hud_ran: false
+//  });
+//}
 
 //var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
 var hudStatus = tourDB.get('hud');
@@ -47,6 +64,8 @@ var initTour = function() {
       var { hudTour } = require('./');
       hudTour.init();
       hudTour.start();
+      //hudTour.setCurrentStep(7);
+      //hudTour.getStep(7);
     }
   }
 };
@@ -69,6 +88,7 @@ ProfileSearchActions.tourCheck.listen(() => {
 });
 
 $(document).on('click', '#tour-start', function(e){
+  var { hudTour } = require('./');
   e.preventDefault();
-  hudTour.restart().goTo(1);
+  hudTour.restart().goTo(7);
 });

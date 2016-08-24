@@ -8,9 +8,6 @@ var Router = require('react-router');
 var { Route } = Router;
 
 require('bootstrap'); //  rjk
-var ObjectDB = require('object-db');
-//var tourDB = new ObjectDB('ozp_tour').get();
-//console.log(tourDB);
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');

@@ -49,7 +49,8 @@ const meTour = new Tour({
       content: "Opens HUD (heads up display) where your bookmarks are stored. Think of HUD like the home screen on a smart phone.",
       placement: "bottom",
       backdropContainer: ".navbar-fixed-top",
-      backdropPadding: 0
+      backdropPadding: 0,
+      onShown: function(){meTour.goTo(7);}
     },
     //2
     {
