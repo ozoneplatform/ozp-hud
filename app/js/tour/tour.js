@@ -18,14 +18,14 @@ var tourDB = new ObjectDB('ozp_tour').init({
 });
 
 //var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
-//var hudStatus = tourDB.get('hud');
+var hudStatus = tourDB.get('hud');
 
 var initTour = function() {
   // If tour has never run before, start it.
   //window.HUD.startTour = function() {
   window.startTour = function(libraryLoaded) {
     //var hudStatus = tourDB.get('hud');
-    var hudStatus = new ObjectDB('ozp_tour').get('hud');
+    //var hudStatus = new ObjectDB('ozp_tour').get('hud');
     console.log(hudStatus);
   if(!hudStatus.ran) {
       console.log('launch');
@@ -65,5 +65,6 @@ ProfileSearchActions.tourCheck.listen(() => {
 $(document).on('click', '#tour-start', function(e){
   var { hudTour } = require('./');
   e.preventDefault();
-  hudTour.restart().goTo(7);
+  hudTour.restart();
+  //.goTo(7);
 });
