@@ -24,6 +24,7 @@ var initTour = function() {
   // If tour has never run before, start it.
   //window.HUD.startTour = function() {
   window.startTour = function(libraryLoaded) {
+    console.log(hudStatus);
   if(!hudStatus.ran) {
       console.log('launch');
       if(libraryLoaded === true){
