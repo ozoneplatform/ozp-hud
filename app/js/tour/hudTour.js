@@ -1,6 +1,6 @@
 'use strict';
 
-var {HUD_URL} = require('ozp-react-commons/OzoneConfig');
+var {CENTER_URL, HUD_URL} = require('ozp-react-commons/OzoneConfig');
 HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 
 var PubSub = require('browser-pubsub');
@@ -14,7 +14,6 @@ if(tourDB.library === true){
 }
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
-
 var readyObject = {};
 
 // HACK: for some reason window.localstorage is lost in this file.
@@ -50,7 +49,18 @@ const meTour = new Tour({
       placement: "bottom",
       backdropContainer: ".navbar-fixed-top",
       backdropPadding: 0,
-      onShown: function(){meTour.goTo(7);}
+      onShow: function(){
+        if(tourDB.library===false){
+          console.log('NO');
+          console.log(CENTER_URL);
+          document.location.href = CENTER_URL;
+        }
+      },
+      onShown: function(){
+        if(tourDB.center_ran===true){
+            meTour.goTo(7);
+        }
+      }
     },
     //2
     {
@@ -110,8 +120,8 @@ const meTour = new Tour({
       content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.",
       placement: "bottom",
       orphan: true,
-      backdropContainer: ".LibraryTile",
-      backdropPadding: 0,
+      //backdropContainer: ".LibraryTile",
+      //backdropPadding: 0,
       onShown: function() {
         $(".LibraryTile:first").addClass("open");
       },
@@ -126,8 +136,8 @@ const meTour = new Tour({
       content: "Use the menu on each bookmark tile to remove or get help for that specific listing. Removing the bookmark does not delete the listing from the system - it only disappears from your HUD. To bookmark it again, find it in Center.",
       placement: "right",
       orphan: true,
-      backdropContainer: ".LibraryTile",
-      backdropPadding: 0,
+      //backdropContainer: ".LibraryTile",
+      //backdropPadding: 0,
       onShown: function() {
         $(".LibraryTile__actionMenu > input").prop("checked", true);
       },
@@ -142,8 +152,8 @@ const meTour = new Tour({
       content: "Click a bookmark tile and drag it over another bookmark tile to create a folder. To add bookmark to an existing folder, drag and drop it over the folder tile.",
       placement: "bottom",
       orphan: true,
-      backdropContainer: ".FolderTile",
-      backdropPadding: 0,
+      //backdropContainer: ".FolderTile",
+      //backdropPadding: 0,
       onNext: function(){meTour.goTo(10);}
     },
     //10
@@ -153,9 +163,9 @@ const meTour = new Tour({
       title: "Folder",
       content: "Click a folder tile to access the contents. From this view you can access individual bookmarks and get a link to share the folder with others. To move bookmarks out of a folder, drag and drop the bookmark tile outside the window. The bookmark will return to the first level.",
       placement: "left",
-      orphan: true,
-      backdropContainer: ".modal-content",
-      backdropPadding: 0
+      backdropContainer: ".FolderTile",
+      backdropPadding: 0,
+      orphan: true
     }
   ]
 });
