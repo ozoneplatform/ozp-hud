@@ -19,14 +19,12 @@ var tourDB = new ObjectDB('ozp_tour').init({
 
 //var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
 var hudStatus = tourDB.get('hud');
+console.log(hudStatus);
 
 var initTour = function() {
   // If tour has never run before, start it.
   //window.HUD.startTour = function() {
   window.startTour = function(libraryLoaded) {
-    //var hudStatus = tourDB.get('hud');
-    //var hudStatus = new ObjectDB('ozp_tour').get('hud');
-    console.log(hudStatus);
   if(!hudStatus.ran) {
       console.log('launch');
       if(libraryLoaded === true){
