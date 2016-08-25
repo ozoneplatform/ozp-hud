@@ -17,6 +17,7 @@ var tourDB = new ObjectDB('ozp_tour').init({
   hud_ran: false
 });
 
+console.log(tourDB);
 //var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
 var hudStatus = tourDB.get('hud');
 console.log(hudStatus);
