@@ -66,5 +66,5 @@ ProfileSearchActions.tourCheck.listen(() => {
 $(document).on('click', '#tour-start', function(e){
   var { hudTour } = require('./');
   e.preventDefault();
-  hudTour.restart().goTo(7);
+  hudTour.restart().goTo(0);
 });

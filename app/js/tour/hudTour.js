@@ -6,8 +6,11 @@ HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
+
 // rjk
-var tourDB = new ObjectDB('ozp_tour').get();
+var tourDBMain = new ObjectDB('ozp_tour').init();
+var tourDB = tourDBMain.get();
+console.log(tourDB);
 var contentLocal = 'NO';
 if(tourDB.library === true){
   contentLocal = "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.";
@@ -57,7 +60,7 @@ const meTour = new Tour({
         }
       },
       onShown: function(){
-        if(tourDB.center_ran===true){
+        if(tourDB.global_ran===true){
             meTour.goTo(7);
         }
       }
@@ -111,6 +114,11 @@ const meTour = new Tour({
       },
       onHide: function() {
         $("#tourstop-global-menu").removeClass("open");
+      },
+      onNext: function() {
+        tourDBMain.set({
+          global_ran: true
+        });
       }
     },
     //7
