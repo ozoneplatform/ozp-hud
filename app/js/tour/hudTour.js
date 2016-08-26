@@ -152,6 +152,7 @@ const meTour = new Tour({
       content: "Click a bookmark tile and drag it over another bookmark tile to create a folder. To add bookmark to an existing folder, drag and drop it over the folder tile.",
       placement: "bottom",
       orphan: true,
+      backdrop: false,
       //backdropContainer: ".FolderTile",
       //backdropPadding: 0,
       onNext: function(){meTour.goTo(10);}
@@ -165,7 +166,8 @@ const meTour = new Tour({
       placement: "left",
       backdropContainer: ".FolderTile",
       backdropPadding: 0,
-      orphan: true
+      orphan: true,
+      onShown: function(){meTour.redraw();}
     }
   ]
 });
