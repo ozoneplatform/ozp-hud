@@ -36,8 +36,8 @@ const meTour = new Tour({
     //0
     {
       title: "Welcome. ",
-      //content: "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.",
-      content: contentLocal,
+      content: "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The HUD, Center and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.",
+      //content: contentLocal,
       orphan: true,
       onShown: function(){
         $('#welcome').focus();
@@ -52,13 +52,11 @@ const meTour = new Tour({
       placement: "bottom",
       backdropContainer: ".navbar-fixed-top",
       backdropPadding: 0,
-      onShow: function(){
-        if(tourDB.library===false){
-          console.log('NO');
-          console.log(CENTER_URL);
-          document.location.href = CENTER_URL;
-        }
-      },
+//      onShow: function(){
+//        if(tourDB.library===false){
+//          document.location.href = CENTER_URL;
+//        }
+//      },
       onShown: function(){
         if(tourDB.global_ran===true){
             meTour.goTo(7);
@@ -130,12 +128,22 @@ const meTour = new Tour({
       orphan: true,
       //backdropContainer: ".LibraryTile",
       //backdropPadding: 0,
+//      onShow: function(){
+//        if(tourDB.library===false){
+//          document.location.href = CENTER_URL;
+//        }
+//      },
       onShown: function() {
         $(".LibraryTile:first").addClass("open");
       },
       onHide: function() {
         $(".LibraryTile:first").removeClass("open");
-      }
+      },
+      onNext: function(){
+        if(tourDB.library===false){
+          document.location.href = CENTER_URL;
+        }
+      },
     },
     //8
     {
