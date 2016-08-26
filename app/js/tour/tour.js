@@ -6,7 +6,7 @@ var ObjectDB = require('object-db');
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
-var tourDB = new ObjectDB('ozp_tour').set({
+var tourDB = new ObjectDB('ozp_tour').init({
   hud: {
     ran: false,
     startHudTour: false,
@@ -16,11 +16,11 @@ var tourDB = new ObjectDB('ozp_tour').set({
   hud_start: false,
   hud_ran: false
 });
+console.dir(tourDB);
 
-console.log(tourDB);
 //var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
 var hudStatus = tourDB.get('hud');
-console.log(hudStatus);
+console.dir(hudStatus);
 
 var initTour = function() {
   // If tour has never run before, start it.
@@ -64,6 +64,5 @@ ProfileSearchActions.tourCheck.listen(() => {
 $(document).on('click', '#tour-start', function(e){
   var { hudTour } = require('./');
   e.preventDefault();
-  hudTour.restart();
-  //.goTo(7);
+  hudTour.restart().goTo(7);
 });
