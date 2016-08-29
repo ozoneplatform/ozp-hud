@@ -6,13 +6,10 @@ HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
-var contentLocalBookmarks = '';
-
 // rjk
 var tourDBMain = new ObjectDB('ozp_tour').init();
 var tourDB = tourDBMain.get();
-//console.log(tourDB);  //  rjk
-var contentLocal = 'NO';
+var contentLocalBookmarks = '';
 if(tourDB.library === true){
   contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.";
 }else{

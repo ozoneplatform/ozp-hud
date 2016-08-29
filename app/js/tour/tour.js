@@ -25,8 +25,6 @@ var initTour = function() {
   //window.HUD.startTour = function() { //  rjk
   window.startTour = function(libraryLoaded) {
   if(!hudStatus.ran) {
-      console.log('launch');
-      console.log(tourDB.db.data);
       if(libraryLoaded === true){
         //var tourDB = new ObjectDB('ozp_tour').set({
         tourDB.set({
@@ -54,7 +52,6 @@ ProfileSearchActions.tourCheck.listen(() => {
         ran: true
       }
     });
-    console.log(tourDB);
   });
 
   initTour();
