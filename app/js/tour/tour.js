@@ -7,35 +7,34 @@ var tourDB = new ObjectDB('ozp_tour').init();
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
-//var tourDB = new ObjectDB('ozp_tour').init({
+//var tourDB = new ObjectDB('ozp_tour').init({  //  rjk
 if (typeof tourDB.db.data.hud === 'undefined') {
-tourDB.set({
-  hud: {
-    ran: false,
-    startHudTour: false,
-    myName: 'russell'
-  },
-  hud_name: 'russell',
-  hud_start: false,
-  hud_ran: false
-});
+  tourDB.set({
+    hud: {
+      ran: false,
+      startHudTour: false
+    }
+  });
 }
 
-//var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');
+//var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');  //  rjk
 var hudStatus = tourDB.get('hud');
 
 var initTour = function() {
   // If tour has never run before, start it.
-  //window.HUD.startTour = function() {
+  //window.HUD.startTour = function() { //  rjk
   window.startTour = function(libraryLoaded) {
   if(!hudStatus.ran) {
       console.log('launch');
+      console.log(tourDB.db.data);
       if(libraryLoaded === true){
-        var tourDB = new ObjectDB('ozp_tour').set({
+        //var tourDB = new ObjectDB('ozp_tour').set({
+        tourDB.set({
           library: true,
         });
       }else{
-        var tourDB = new ObjectDB('ozp_tour').set({
+        //var tourDB = new ObjectDB('ozp_tour').set({
+        tourDB.set({
           library: false,
         });
       }
@@ -50,12 +49,10 @@ var initTour = function() {
 ProfileSearchActions.tourCheck.listen(() => {
   // If we close the tour, remember to not show the tour again.
   $(document).on('click', '#end-tour-btn', function() {
-    console.log('end');
     tourDB.set({
       hud: {
         ran: true
-      },
-      hud_ran: true
+      }
     });
     console.log(tourDB);
   });

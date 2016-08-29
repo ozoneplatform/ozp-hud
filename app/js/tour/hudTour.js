@@ -10,7 +10,7 @@ var ObjectDB = require('object-db');
 // rjk
 var tourDBMain = new ObjectDB('ozp_tour').init();
 var tourDB = tourDBMain.get();
-console.log(tourDB);
+//console.log(tourDB);  //  rjk
 var contentLocal = 'NO';
 if(tourDB.library === true){
   contentLocal = "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.";
