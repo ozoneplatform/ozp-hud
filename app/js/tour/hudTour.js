@@ -16,7 +16,7 @@ var contentLocal = 'NO';
 if(tourDB.library === true){
   contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.";
 }else{
-  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, click next to go to Center and learn about bookmarking listings. Then return to HUD to finish the tour.";
+  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">click next to go to Center</span> and learn about bookmarking listings. Then <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">return to HUD</span> to finish the tour.";
 }
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
