@@ -11,18 +11,21 @@ var tourDBMain = new ObjectDB('ozp_tour').init();
 var tourDB = tourDBMain.get();
 var contentLocalBookmarks = '';
 var contentLocalCenter = '';
+var contentLocalStart = '';
+
 if(tourDB.library === true){
   contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.";
 }else{
-  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">click next to go to Center</span> and learn about bookmarking listings. Then <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">return to HUD</span> to finish the tour.";
+  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">click next to go to Center</span> and learn about bookmarking listings then <span class=\"popover-title\" style=\"padding:0;margin:0;border:0;\">return to HUD</span> to finish the tour.";
 }
 
-//if (typeof tourDB.center !== 'undefined' && tourDB.center.ran === true){
-//  contentLocalHUD = "";
-//}else{
-  //contentLocalHUD = '<button class="btn btn-sm btn-default" onclick="att.com">Next HUD &raquo;</button>';
-  contentLocalCenter = '<button class="btn btn-sm btn-default" onclick="parent.location.href=\'' + CENTER_URL + '\'">Next Center &raquo;</button>';
-//}
+if (typeof tourDB.center !== 'undefined' && tourDB.center.ran === true){
+  contentLocalStart = "Continue tour";
+}else{
+  contentLocalStart = "Start the tour";
+}
+
+contentLocalCenter = '<button class="btn btn-sm btn-default" onclick="parent.location.href=\'' + CENTER_URL + '\'">Next Center &raquo;</button>';
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
 var readyObject = {};
@@ -194,6 +197,15 @@ const meTour = new Tour({
       backdropPadding: 0,
       template: '<div class="popover" role="tooltip"> <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content"></div> <div class="popover-navigation"> <button class="btn btn-sm" id="end-tour-btn" data-role="end">End tour</button> <div class="btn-group"> <button class="btn btn-sm btn-default" data-role="prev">&laquo; Prev</button> ' + contentLocalCenter + '<button class="btn btn-sm btn-default" data-role="pause-resume" data-pause-text="Pause" data-resume-text="Resume">Pause</button> </div> </div> </div>',
       orphan: true,
+      onShown: function() {
+        tourDBMain.set({
+          hud: {
+            ran: true,
+            startCenterTour: true
+          }
+        });
+      },
+      onNext: function() {meTour.end();}//,
       //onShown: function(){meTour.redraw();},
       //onPrev: function() {
       //  $(".Library").modal("hide");
