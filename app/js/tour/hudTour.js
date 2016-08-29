@@ -6,6 +6,7 @@ HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
+var contentLocalBookmarks = '';
 
 // rjk
 var tourDBMain = new ObjectDB('ozp_tour').init();
@@ -13,7 +14,9 @@ var tourDB = tourDBMain.get();
 //console.log(tourDB);  //  rjk
 var contentLocal = 'NO';
 if(tourDB.library === true){
-  contentLocal = "This simple tour guides you through the toolbar items and introduces you to the primary components of the system: The Center, HUD, and Webtop. These three components enable you to discover, bookmark, rate, review, organize and launch mission and business applications from across the enterprise.";
+  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.";
+}else{
+  contentLocalBookmarks = "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, click next to go to Center and learn about bookmarking listings. Then return to HUD to finish the tour.";
 }
 
 var ProfileSearchActions = require('../actions/ProfileSearchActions');
@@ -123,7 +126,9 @@ const meTour = new Tour({
     {
       element: ".LibraryTile:first",
       title: "Bookmarks",
-      content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.",
+      //content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.",
+      //content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, click next to go to Center and learn about bookmarking listings. Then return to HUD to finish the tour.",
+      content: contentLocalBookmarks,
       placement: "bottom",
       orphan: true,
       //backdropContainer: ".LibraryTile",
