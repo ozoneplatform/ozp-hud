@@ -185,7 +185,11 @@ const meTour = new Tour({
       backdropContainer: ".FolderTile",
       backdropPadding: 0,
       orphan: true,
-      onShown: function(){meTour.redraw();}
+      //onShown: function(){meTour.redraw();},
+      //onPrev: function() {
+      //  $(".Library").modal("hide");
+      //  meTour.goTo(9);
+      //}
     }
   ]
 });
