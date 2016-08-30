@@ -69,11 +69,14 @@ const meTour = new Tour({
       placement: "bottom",
       backdropContainer: ".navbar-fixed-top",
       backdropPadding: 0,
-//      onShow: function(){
-//        if(tourDB.library===false){
-//          document.location.href = CENTER_URL;
-//        }
-//      },
+      onShow: function() {
+        tourDBMain.set({
+          hud: {
+            ran: false,
+            startHudTour: true
+          }
+        });
+      },
       onShown: function(){
         if(tourDB.global_ran===true){
             meTour.goTo(7);
@@ -209,7 +212,7 @@ const meTour = new Tour({
         tourDBMain.set({
           hud: {
             ran: true,
-            startCenterTour: true
+            startHudTour: true
           }
         });
       },
