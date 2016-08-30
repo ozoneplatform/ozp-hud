@@ -13,6 +13,7 @@ var contentLocalBookmarks = '';
 var contentLocalCenter = '<button class="btn btn-sm btn-default" onclick="parent.location.href=\'' + CENTER_URL + '\'">Next Center &raquo;</button>';
 var contentLocalStart = '';
 var contentLocalTemplate = '';
+var contentLocalTemplate2 = '';
 
 console.log(tourDBMain);
 console.log(tourDB);
@@ -27,6 +28,7 @@ if(tourDB.library === true){
 
 if (typeof tourDB.center !== 'undefined' && tourDB.center.ran === true){
   contentLocalStart = "Continue tour";
+  contentLocalCenter = '';
 }else{
   contentLocalStart = "Start the tour";
 }
