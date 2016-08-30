@@ -1,3 +1,15 @@
+### 1.1.12 (2016-08-03)
+
+
+#### Features
+
+* **Shared folders:** Notification modal changes applied. ([61f2c137](https://github.com/ozone-development/ozp-hud.git/commit/61f2c137e7bc92952b6e08a4dd266fbd9cd46dd5))
+* **SharedFolders:** Add functionality for shared folders ([4da8766a](https://github.com/ozone-development/ozp-hud.git/commit/4da8766a39c7cf6d38cabce13141e1cec59604e2))
+
+
+### 1.1.11 (2016-07-28)
+
+
 ### 1.1.10 (2016-05-25)
 
 
