@@ -13,7 +13,7 @@ var contentLocalBookmarks = '';
 var contentLocalCenter = '<button class="btn btn-sm btn-default" onclick="parent.location.href=\'' + CENTER_URL + '\'">Next Center &raquo;</button>';
 var contentLocalStart = '';
 var contentLocalTemplate = '';
-var contentLocalTemplate2 = '';
+//var contentLocalTemplate2 = '';
 
 console.log(tourDBMain);
 console.log(tourDB);
