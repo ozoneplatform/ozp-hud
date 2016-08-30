@@ -215,6 +215,11 @@ const meTour = new Tour({
             startHudTour: true
           }
         });
+        $(".FolderModal").modal("show");
+      },
+      onPrev: function() {
+        $(".FolderModal").modal("hide");
+        meTour.goTo(9);
       },
       onNext: function() {meTour.end();}//,
       //onShown: function(){meTour.redraw();},
