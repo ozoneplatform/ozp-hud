@@ -25,13 +25,13 @@ if(tourDB.library === true){
   contentLocalTemplate = '<div class="popover" role="tooltip" tabIndex="0"> <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content"></div> <div class="popover-navigation" style="width:300px;"> <button class="btn btn-sm" id="end-tour-btn" data-role="end" tabIndex="0">End tour</button> <div class="btn-group"> <button class="btn btn-sm btn-default" data-role="prev" tabIndex="0">&laquo; Prev</button>' + contentLocalCenter + ' <button class="btn btn-sm btn-default" data-role="pause-resume" data-pause-text="Pause" data-resume-text="Resume" tabIndex="0">Pause</button> </div> </div> </div>';
 }
 
-if (typeof tourDB.center !== 'undefined' && tourDB.center.ran === true || tourDB.center.startCenterTour === true){
+if (typeof tourDB.center !== 'undefined' && (tourDB.center.ran === true || tourDB.center.startCenterTour === true)){
   contentLocalStart = "Continue tour";
 }else{
   contentLocalStart = "Start the tour";
 }
 
-if (typeof tourDB.center !== 'undefined' && (tourDB.center.ran === true)){
+if (typeof tourDB.center !== 'undefined' && tourDB.center.ran === true){
   contentLocalCenter = '';
 }
 
