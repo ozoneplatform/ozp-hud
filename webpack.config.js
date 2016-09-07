@@ -22,10 +22,13 @@ module.exports = {
             react$: "react/addons",
             jquery$: "jquery/dist/jquery",
             bootstrap$: "bootstrap-sass/assets/javascripts/bootstrap",
-            'ozp-react-commons': 'ozp-react-commons/app/js'
+            "bootstrap-classify$": "bootstrap-classify/js/bootstrap-classify.js",
+            "ozp-react-commons": "ozp-react-commons/app/js",
+            bootstrapjs$: "bootstrap/dist/js/bootstrap.js",
+            tour$: "bootstrap-tour/build/js/bootstrap-tour.js"
         },
         // Tell webpack to look for required files in bower and node
-        modulesDirectories: ['bower_components', 'node_modules'],
+        modulesDirectories: ['bower_components', './node_modules'],
     },
     module: {
         preLoaders: [{
