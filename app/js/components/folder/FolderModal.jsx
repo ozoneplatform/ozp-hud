@@ -146,7 +146,7 @@ var FolderModal = React.createClass({
                           <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
                             onChange={this.onNameChange}/>
                         </div>
-                        <div className="modal-body clearfix">
+                        <div className="modal-body clearfix" id="rjk">
                             { !this.state.shareURLToggle &&
                               <Library allowFolderCreate={false} store={CurrentFolderStore} />
                             }

@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var UserNotificationDropdown = require('ozp-react-commons/components/notification/UserNotificationDropdown.jsx');
 var HelpModal = require('./helpmodal.jsx');
 var NotificationsModal = require('./notificationsmodal.jsx');
+var ProfileSearchActions = require('../../actions/ProfileSearchActions');
 var { Link } = require('react-router');
 var LibraryActions = require('../../actions/Library');
 
@@ -46,6 +47,9 @@ var Header = React.createClass({
           delay: 400
         });
       });
+
+      // TODO: Move this to a backend request checking profile for tour status.
+      ProfileSearchActions.tourCheck();
     },
 
     render: function () {
@@ -58,20 +62,20 @@ var Header = React.createClass({
             <nav ref="hastooltips" className="navbar navbar-default navbar-fixed-top">
                 <div className="container-fluid">
                     <div className="navbar-left">
-                        <ul className="nav navbar-nav">
-                            <li data-toggle="tooltip" data-placement="bottom" title="HUD" className="active tooltiped"><a className="lrg" href={HUD_URL}><i className="icon-home-blue"></i></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Center" className="tooltiped"><a href={CENTER_URL}><i className="icon-shopping-grayLightest"></i></a></li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Webtop" className="tooltiped"><a href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i></a></li>
-                        </ul>
+                      <ul className="nav navbar-nav">
+                          <li id="tourstop-hud" className="active tooltiped" data-toggle="tooltip" data-placement="bottom" title="HUD"><a className="lrg" href={HUD_URL}><i className="icon-home-grayLightest activeIcon"></i><span className="hidden-span">HUD</span></a></li>
+                          <li id="tourstop-center" className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Center"><a className="lrg" href={CENTER_URL} ><i className="icon-shopping-grayLightest"></i><span className="hidden-span">Center</span></a></li>
+                          <li id="tourstop-webtop" className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Webtop"><a className="lrg" href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i><span className="hidden-span">Webtop</span></a></li>
+                      </ul>
                     </div>
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
                             <UserNotificationDropdown updateHud={LibraryActions.fetchLibrary} moreNotifications={this.showNotifications}/>
-                            <li className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Help">
+                            <li className="tooltiped" id="tourstop-help" data-toggle="tooltip" data-placement="bottom" title="Help">
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>
-                            <li data-toggle="tooltip" data-placement="bottom" title="Menu" className="tooltiped dropdown user-menu-dropdown">
+                            <li data-toggle="tooltip" id="tourstop-global-menu" data-placement="bottom" title="Menu" className="tooltiped dropdown user-menu-dropdown">
                                 <a href="#" data-toggle="dropdown"><i className="icon-menu-grayLightest"></i></a>
                                 <ul className="dropdown-menu">
                                     <li className="dropdown-header">Personalize</li>
