@@ -60,5 +60,8 @@ ProfileSearchActions.tourCheck.listen(() => {
 $(document).on('click', '#tour-start', function(e){
   var { hudTour } = require('./');
   e.preventDefault();
+  tourDB.set({
+    global_ran: false
+  });
   hudTour.restart().goTo(0);
 });
