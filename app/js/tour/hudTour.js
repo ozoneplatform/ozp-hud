@@ -223,7 +223,17 @@ const meTour = new Tour({
         $(".FolderModal").modal("hide");
         meTour.goTo(9);
       },
-      onNext: function() {meTour.end();}//,
+
+      onNext: function(){
+        if (typeof tourDB.center !== 'undefined' && (tourDB.center.ran === false)){
+          document.location.href = CENTER_URL;
+        }else{
+          meTour.end();
+        }
+      }
+
+      //onNext: function() {meTour.end();}
+      //,
       //onShown: function(){meTour.redraw();},
       //onPrev: function() {
       //  $(".Library").modal("hide");
