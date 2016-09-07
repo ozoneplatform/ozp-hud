@@ -53,7 +53,10 @@ var Header = React.createClass({
             isAdmin = profile && profile.isAdmin(),
             Metrics = (profile && (isAdmin || this.isOrgSteward())) ?
                 <li><a href={METRICS_URL} target="_blank"><i className="icon-bar-graph-2-grayLightest"></i>Metrics</a></li> : null;
-
+        var secondParty = true;
+        if (this.state.profile !== null){
+          secondParty = this.state.profile.secondPartyUser;
+        }
         return (
             <nav ref="hastooltips" className="navbar navbar-default navbar-fixed-top">
                 <div className="container-fluid">
@@ -81,13 +84,27 @@ var Header = React.createClass({
                                             <i className="icon-head-grayLightest"/>Profile
                                         </Link>
                                     </li>
+                                    {!secondParty &&
                                     <li className="divider"></li>
+                                    }
+                                    {!secondParty &&
                                     <li className="dropdown-header">Create</li>
+                                    }
+                                    {!secondParty &&
                                     <li><a href={CENTER_URL + '/#/edit'}><i className="icon-square-plus-grayLightest"></i>Submit a Listing</a></li>
+                                    }
+                                    {!secondParty &&
                                     <li><a href={DEVELOPER_RESOURCES_URL} target="_blank"><i className="icon-cloud-grayLightest"></i>Developer Resources</a></li>
+                                    }
+                                    {!secondParty &&
                                     <li className="divider"></li>
+                                    }
+                                    {!secondParty &&
                                     <li className="dropdown-header">Manage</li>
+                                    }
+                                    {!secondParty &&
                                     <li><a href={CENTER_URL + '/#/user-management/my-listings'}><i className="icon-layers-grayLightest"></i>Listing Management</a></li>
+                                    }
                                     {
                                         isAdmin &&
                                         <li><a href={CENTER_URL + '/#/mall-management/categories'}><i className="icon-shopping-settings-grayLightest"></i>Center Settings</a></li>
