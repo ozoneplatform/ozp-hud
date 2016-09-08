@@ -7,7 +7,7 @@ var React = require('react');
 var Router = require('react-router');
 var { Route } = Router;
 
-require('bootstrap'); //  rjk
+require('bootstrap');
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
@@ -37,13 +37,6 @@ window.React = React;
 window.$ = $;
 window.jQuery = $;
 
-// rjk
-//require('script!underscore');
-//require('script!ism');
-//require('script!bootstrap-classify');
-//require('tour');
-//require('./tour/tour.js');
-
 var Routes = (
     <Route name="main" path="/" handler={App}>
         <Route name="add" path="add/:name/:ids" handler={Add} />
@@ -59,7 +52,6 @@ Router.run(Routes, function (Handler, state) {
 
 ProfileActions.fetchSelf();
 
-//  rjk
 require('tour');
 require('./tour/tour.js');
 

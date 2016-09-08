@@ -7,7 +7,6 @@ var tourDB = new ObjectDB('ozp_tour').init();
 
 // Setup our LocalstorageDB we will use this to talk between Center,
 // Webtop and Hud tours.
-//var tourDB = new ObjectDB('ozp_tour').init({  //  rjk
 if (typeof tourDB.db.data.hud === 'undefined') {
   tourDB.set({
     hud: {
@@ -17,21 +16,17 @@ if (typeof tourDB.db.data.hud === 'undefined') {
   });
 }
 
-//var { hudTour } = require('./');  //var { globalTour, hudTour } = require('./');  //  rjk
 var hudStatus = tourDB.get('hud');
 
 var initTour = function() {
   // If tour has never run before, start it.
-  //window.HUD.startTour = function() { //  rjk
   window.startTour = function(libraryLoaded) {
   if(!hudStatus.ran) {
       if(libraryLoaded === true){
-        //var tourDB = new ObjectDB('ozp_tour').set({
         tourDB.set({
           library: true,
         });
       }else{
-        //var tourDB = new ObjectDB('ozp_tour').set({
         tourDB.set({
           library: false,
         });

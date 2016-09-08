@@ -95,6 +95,3 @@ module.exports = Reflux.createActions([
      */
     'stopViewingFolder'
 ]);
-
-//module.exports.viewFolder.sync = true;
-//module.exports.stopViewingFolder.sync = true;

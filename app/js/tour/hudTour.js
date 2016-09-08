@@ -156,7 +156,6 @@ const meTour = new Tour({
         if(tourDB.library===false){
           document.location.href = CENTER_URL;
         }
-        //$(".LibraryTile:first").removeClass("open");
       },
     },
     //8
@@ -186,7 +185,7 @@ const meTour = new Tour({
     //10
     {
       path: `${HUD_URL}#/folder/New%20Folder`,
-      element: "#rjk",
+      element: "#divFolderID",
       title: "Folder",
       content: "Click a folder tile to access the contents. From this view you can access individual bookmarks and get a link to share the folder with others. To move bookmarks out of a folder, drag and drop the bookmark tile outside the window. The bookmark will return to the first level.",
       placement: "left",
