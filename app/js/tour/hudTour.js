@@ -6,7 +6,6 @@ HUD_URL = `/${HUD_URL.match(/http.?:\/\/[^/]*\/(.*?)\/?$/)[1]}/`;
 var PubSub = require('browser-pubsub');
 var tourCh = new PubSub('tour');
 var ObjectDB = require('object-db');
-// rjk
 var tourDBMain = new ObjectDB('ozp_tour').init();
 var tourDB = tourDBMain.get();
 var contentLocalBookmarks = '';
@@ -142,20 +141,10 @@ const meTour = new Tour({
     {
       element: ".LibraryTile:first",
       title: "Bookmarks",
-      //content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. Click a tile to quickly launch the bookmark.",
-      //content: "When you bookmark a listing in Center, it appears here in your HUD. Bookmarks provide easy access to listings. Use them to group and access your tools. To continue with the tour, click next to go to Center and learn about bookmarking listings. Then return to HUD to finish the tour.",
       content: contentLocalBookmarks,
       placement: "bottom",
       orphan: true,
       template: contentLocalTemplate,
-      //template: '<div class="popover" role="tooltip" tabIndex="0"> <div class="arrow"></div> <h3 class="popover-title"></h3> <div class="popover-content"></div> <div class="popover-navigation" style="width:300px;"> <button class="btn btn-sm" id="end-tour-btn" data-role="end" tabIndex="0">End tour</button> <div class="btn-group"> <button class="btn btn-sm btn-default" data-role="prev" tabIndex="0">&laquo; Prev</button> <button class="btn btn-sm btn-default" data-role="next" tabIndex="0">' + contentLocalCenter + ' &raquo;</button> <button class="btn btn-sm btn-default" data-role="pause-resume" data-pause-text="Pause" data-resume-text="Resume" tabIndex="0">Pause</button> </div> </div> </div>',
-      //backdropContainer: ".LibraryTile",
-      //backdropPadding: 0,
-//      onShow: function(){
-//        if(tourDB.library===false){
-//          document.location.href = CENTER_URL;
-//        }
-//      },
       onShown: function() {
         $(".LibraryTile:first").addClass("open");
       },
@@ -163,9 +152,11 @@ const meTour = new Tour({
         $(".LibraryTile:first").removeClass("open");
       },
       onNext: function(){
+        meTour.goTo(1);
         if(tourDB.library===false){
           document.location.href = CENTER_URL;
         }
+        //$(".LibraryTile:first").removeClass("open");
       },
     },
     //8
@@ -175,8 +166,6 @@ const meTour = new Tour({
       content: "Use the menu on each bookmark tile to remove or get help for that specific listing. Removing the bookmark does not delete the listing from the system - it only disappears from your HUD. To bookmark it again, find it in Center.",
       placement: "right",
       orphan: true,
-      //backdropContainer: ".LibraryTile",
-      //backdropPadding: 0,
       onShown: function() {
         $(".LibraryTile__actionMenu > input").prop("checked", true);
       },
@@ -192,8 +181,6 @@ const meTour = new Tour({
       placement: "bottom",
       orphan: true,
       backdrop: false,
-      //backdropContainer: ".FolderLibrary",
-      //backdropPadding: 0,
       onNext: function(){meTour.goTo(10);}
     },
     //10
@@ -228,14 +215,6 @@ const meTour = new Tour({
           meTour.end();
         }
       }
-
-      //onNext: function() {meTour.end();}
-      //,
-      //onShown: function(){meTour.redraw();},
-      //onPrev: function() {
-      //  $(".Library").modal("hide");
-      //  meTour.goTo(9);
-      //}
     },
     {
       title: "end holder"
