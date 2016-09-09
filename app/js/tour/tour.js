@@ -21,7 +21,7 @@ var hudStatus = tourDB.get('hud');
 var initTour = function() {
   // If tour has never run before, start it.
   window.startTour = function(libraryLoaded) {
-  if(!hudStatus.ran) {
+    if(!hudStatus.ran) {
       if(libraryLoaded === true){
         tourDB.set({
           library: true,
@@ -35,7 +35,7 @@ var initTour = function() {
       hudTour.init();
       hudTour.start();
     }
-  }
+  };
 };
 
 
