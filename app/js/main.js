@@ -3,10 +3,11 @@
 window.Object.assign = require('object-assign');
 
 require('console-polyfill');
-require('bootstrap');
 var React = require('react');
 var Router = require('react-router');
 var { Route } = Router;
+
+require('bootstrap');
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
@@ -15,7 +16,11 @@ var Add = require('./components/folder/Add.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
-var { APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
+var {
+  //METRICS_URL,
+  APP_TITLE,
+  IE_REDIRECT_URL
+} = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
 
@@ -46,6 +51,9 @@ Router.run(Routes, function (Handler, state) {
 });
 
 ProfileActions.fetchSelf();
+
+require('tour');
+require('./tour/tour.js');
 
 document.title = APP_TITLE;
 

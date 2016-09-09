@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var Immutable = require('immutable');
 var LibraryActions = require('../actions/Library');
 var LibraryApi  = require('../api/Library').LibraryApi;
+var pass1 = false;
 
 /**
  * This store manages the simple list of library entries
@@ -29,6 +30,14 @@ var LibraryStore = Reflux.createStore({
     onFetchLibrary: function () {
         LibraryApi.get().then(this.updateLibrary.bind(this)).then(()=>{
             LibraryActions.hasLoaded();
+            if(pass1 === false){
+              if(this.library.size >= 1){
+                window.startTour(true);
+              }else{
+                window.startTour(false);
+              }
+              pass1 = true;
+            }
         });
     },
 
