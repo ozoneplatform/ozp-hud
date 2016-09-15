@@ -68,7 +68,9 @@ var Header = React.createClass({
                       <ul className="nav navbar-nav">
                           <li id="tourstop-hud" className="active tooltiped" data-toggle="tooltip" data-placement="bottom" title="HUD"><a className="lrg" href={HUD_URL}><i className="icon-home-grayLightest activeIcon"></i><span className="hidden-span">HUD</span></a></li>
                           <li id="tourstop-center" className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Center"><a className="lrg" href={CENTER_URL} ><i className="icon-shopping-grayLightest"></i><span className="hidden-span">Center</span></a></li>
-                          <li id="tourstop-webtop" className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Webtop"><a className="lrg" href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i><span className="hidden-span">Webtop</span></a></li>
+                          { ! secondParty &&
+                            <li id="tourstop-webtop" className="tooltiped" data-toggle="tooltip" data-placement="bottom" title="Webtop"><a className="lrg" href={WEBTOP_URL}><i className="icon-layout-grayLightest"></i><span className="hidden-span">Webtop</span></a></li>
+                          }
                       </ul>
                     </div>
 
