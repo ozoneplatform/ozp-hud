@@ -90,8 +90,7 @@ var Library = React.createClass({
                             key={`listing-${curr.listing.id}-${RandomBase16(6)}`} entry={curr} />;
 
                     return (
-                        <LibraryItem key={`${tile.props.key}-${RandomBase16(6)}`}
-                                store={store} prev={prev} curr={curr} next={next}>
+                        <LibraryItem key={`${tile.props.key}-${RandomBase16(6)}`} store={store} prev={prev} curr={curr} next={next}>
                             {tile}
                         </LibraryItem>
                     );

@@ -71,7 +71,8 @@ var Header = React.createClass({
 
                     <div className="navbar-right">
                         <ul className="nav navbar-nav">
-                            <UserNotificationDropdown updateHud={LibraryActions.fetchLibrary} moreNotifications={this.showNotifications}/>
+                            <UserNotificationDropdown updateHud={LibraryActions.
+                            } moreNotifications={this.showNotifications}/>
                             <li className="tooltiped" id="tourstop-help" data-toggle="tooltip" data-placement="bottom" title="Help">
                                 <a href="#" onClick={this.showHelpModal}><i className="icon-question-grayLightest"></i></a>
                             </li>

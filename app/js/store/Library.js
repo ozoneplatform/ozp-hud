@@ -20,7 +20,13 @@ var LibraryStore = Reflux.createStore({
     },
 
     updateLibrary: function(entries) {
-        this.library = Immutable.List(entries.map(function(e) {
+        // for (var i = 0; i < entries.count; i++){
+        //     entries[i].position = i;
+        // }
+        this.library = Immutable.List(entries.map(function(e, i, a) {
+
+            // console.log(e.position);
+
             return Object.freeze(e);
         }));
 
@@ -42,6 +48,8 @@ var LibraryStore = Reflux.createStore({
     },
 
     onUpdateLibrary: function(libraryEntries) {
+
+
         LibraryApi.save(libraryEntries).then(
             // GET to ensure updateLibrary happens after GET from onFetchLibrary()
             ()=>LibraryApi.get()).then(
