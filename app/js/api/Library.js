@@ -38,13 +38,13 @@ module.exports.LibraryApi = {
     save: function(libraryEntries) {
         // Reorder Function
         var libraryEntriesList = libraryEntries.map(function(e,ind){
-                                                    var tempObj = {}
+                                                    var tempObj = {};
 
                                                     for(var i in e){
                                                         tempObj[i] = e[i];
                                                     }
 
-                                                    tempObj.position = ind
+                                                    tempObj.position = ind;
                                                     return tempObj;
                                                 });
 

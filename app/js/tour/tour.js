@@ -35,7 +35,7 @@ var initTour = function() {
       hudTour.init();
       hudTour.start();
     }
-  }
+  };
 };
 
 
