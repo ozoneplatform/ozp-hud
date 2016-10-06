@@ -36,17 +36,29 @@ module.exports.LibraryApi = {
     },
 
     save: function(libraryEntries) {
+        // Reorder Function
+        var libraryEntriesList = libraryEntries.map(function(e,ind){
+                                                    var tempObj = {};
+
+                                                    for(var i in e){
+                                                        tempObj[i] = e[i];
+                                                    }
+
+                                                    tempObj.position = ind;
+                                                    return tempObj;
+                                                });
+
         return $.ajax({
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
             url: url + 'update_all/',
-            data: JSON.stringify(libraryEntries)
+            data: JSON.stringify(libraryEntriesList)
         }).fail(function(response) {
             console.error('Error updating library', response.status,
                     response.responseJSON || response.responseText);
         }).done(() => {
-          LibraryActions.fetchLibrary();
+            LibraryActions.fetchLibrary();
         });
     },
 

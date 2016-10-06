@@ -42,6 +42,8 @@ var LibraryStore = Reflux.createStore({
     },
 
     onUpdateLibrary: function(libraryEntries) {
+
+
         LibraryApi.save(libraryEntries).then(
             // GET to ensure updateLibrary happens after GET from onFetchLibrary()
             ()=>LibraryApi.get()).then(
