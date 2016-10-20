@@ -1,3 +1,13 @@
+### 1.1.16 (2016-10-20)
+
+
+#### Features
+
+* **order:**
+  * PR Review ([31a30044](https://github.com/ozone-development/ozp-hud.git/commit/31a300445bc13a8be1891795fdae77ac4c2b8796), closes [#231](https://github.com/ozone-development/ozp-hud.git/issues/231))
+  * Introduced Ordering of Icon #231 ([c26ef780](https://github.com/ozone-development/ozp-hud.git/commit/c26ef780969ca8c083c4466412638fa3e43f494f))
+
+
 ### 1.1.15 (2016-10-05)
 
 
