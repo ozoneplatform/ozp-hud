@@ -3,9 +3,9 @@
   "version": "1.1.16",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ozone-development/ozp-hud.git"
+    "url": "http://dev1.vistronix.com:9080/ozp/ozp-hud.git"
   },
-  "homepage": "https://github.com/ozone-development/ozp-hud/blob/master/README.md",
+  "homepage": "http://dev1.vistronix.com:9080/ozp/ozp-hud/blob/master/README.md",
   "bugs": "https://www.owfgoss.org/jira/browse/OZF",
   "author": "",
   "description": "",
@@ -13,7 +13,7 @@
     "install": "bower install --config.interactive=false",
     "start": "gulp dev",
     "build": "NODE_ENV=\"production\" gulp build",
-    "buildGhPages": "API_URL=\"https://www.owfgoss.org/ng/dev/mp\" CENTER_URL=\"http://ozone-development.github.io/ozp-center\" WEBTOP_URL=\"http://ozone-development.github.io/ozp-webtop/\" HELP_URL=\"http://ozone-development.github.io/ozp-hud/assets/PlaceholderUserGuide.pdf\" gulp build",
+    "buildGhPages": "API_URL=\"http://localhost:4440\" CENTER_URL=\"http://localhost:8000\" WEBTOP_URL=\"http://localhost:9000\" HELP_URL=\"http://aml-development.github.io/ozp-hud/assets/PlaceholderUserGuide.pdf\" gulp build",
     "deployGhPages": "npm run buildGhPages && gulp deploy",
     "changelog": "gulp changelog",
     "tarDistDate": "gulp tarDistDate",
@@ -69,15 +69,15 @@
   "dependencies": {
     "babel-runtime": "4.6.6",
     "bootstrap": "^3.3.7",
-    "bootstrap-sass": "git://github.com/ozone-development/bootstrap-sass",
+    "bootstrap-sass": "git://github.com/aml-development/ozp-bootstrap-sass",
     "bootstrap-tour": "git://github.com/ozone-utils/bootstrap-tour.git",
     "browser-pubsub": "^1.2.1",
     "gulp-preprocess": "1.2.0",
-    "icons": "git://github.com/ozone-development/ozp-icons",
+    "icons": "git://github.com/aml-development/ozp-icons",
     "immutable": "3.0.2",
     "object-assign": "1.0.0",
     "object-db": "^1.2.4",
-    "ozp-react-commons": "git://github.com/ozone-development/ozp-react-commons#master",
+    "ozp-react-commons": "git+http://dev1.vistronix.com:9080/ozp/ozp-react-commons#master",
     "react": "0.12.2",
     "react-router": "0.12.4",
     "reflux": "0.1.15"
