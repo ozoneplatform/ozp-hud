@@ -17,7 +17,7 @@ var Add = require('./components/folder/Add.jsx');
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
 var {
-  //METRICS_URL,
+  API_URL,
   APP_TITLE,
   IE_REDIRECT_URL
 } = require('ozp-react-commons/OzoneConfig');
@@ -36,6 +36,12 @@ var App = require('./components/app.jsx');
 window.React = React;
 window.$ = $;
 window.jQuery = $;
+
+$(document).ajaxError(function (event, jqxhr, settings, thrownError ) {
+    if (settings.url.indexOf('/api/') >= 0 && thrownError === 'FORBIDDEN') {
+        window.location = API_URL + '/accounts/login/';
+    }
+});
 
 var Routes = (
     <Route name="main" path="/" handler={App}>
@@ -82,27 +88,3 @@ if (detectIE() && detectIE() < 10) {
     /*jshint ignore:end*/
     window.open(IE_REDIRECT_URL);
 }
-
-(function initPiwik() {
-    var _paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-
-    (function() {
-        var d = document,
-            g = d.createElement('script'),
-            s = d.getElementsByTagName('script')[0],
-            u = window.OzoneConfig.METRICS_URL + '/';
-
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', window.OzoneConfig.METRICS_HUD_SITE_ID]);
-
-        g.type='text/javascript';
-        g.async=true;
-        g.defer=true;
-        g.src=u+'piwik.js';
-        s.parentNode.insertBefore(g,s);
-    })();
-
-    window._paq = _paq;
-})();

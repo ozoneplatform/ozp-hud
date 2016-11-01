@@ -11,6 +11,7 @@ gulp.task('dev', ['sass', 'copy', 'config', 'vendor', 'fonts', 'svg', 'jqueryUnd
 
     // Start a webpack-dev-server
     var server = new WebpackDevServer(webpack(devConfig), {
+        contentBase: "./dist",
         publicPath: "/" + devConfig.output.publicPath,
         stats: {
             colors: true
@@ -19,7 +20,7 @@ gulp.task('dev', ['sass', 'copy', 'config', 'vendor', 'fonts', 'svg', 'jqueryUnd
 
     server.listen(8088, "0.0.0.0", function (err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "http://0.0.0.0:8088/dist");
+        gutil.log("[webpack-dev-server]", "http://0.0.0.0:8088");
     });
 
     // refresh app on sass, images and html changes
