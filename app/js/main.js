@@ -24,10 +24,37 @@ var {
 
 var $ = require('jquery');
 
-$.ajaxPrefilter(function(options) {
+var getCookie = function(cookieName) {
+    var cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+
+        $.each(cookies, function(index, cookie) {
+            var cookie = $.trim(cookie);
+
+            // Does this cookie string begin with the cookieName we want?
+            if (cookie.substring(0, cookieName.length + 1) === (cookieName + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(cookieName.length + 1));
+
+                // Returning false breaks out of $.each
+                return false;
+            }
+        });
+    }
+
+    return cookieValue;
+};
+
+$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     options.xhrFields = {
         withCredentials: true
     };
+
+    var requestType = options['type'].toLowerCase();
+    if (requestType === 'post' || requestType === 'delete') {
+        jqXHR.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+    }
 });
 
 var App = require('./components/app.jsx');
