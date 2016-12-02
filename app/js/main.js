@@ -8,6 +8,7 @@ var Router = require('react-router');
 var { Route } = Router;
 
 require('bootstrap');
+require('classification');
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
