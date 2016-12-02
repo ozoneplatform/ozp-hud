@@ -74,6 +74,7 @@
     "browser-pubsub": "^1.2.1",
     "gulp-preprocess": "1.2.0",
     "icons": "git://github.com/aml-development/ozp-icons",
+    "ozp-classification": "git+http://dev1.vistronix.com:9080/ozp/ozp-classification.git",
     "immutable": "3.0.2",
     "object-assign": "1.0.0",
     "object-db": "^1.2.4",
