@@ -19,10 +19,16 @@ var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 var {
   API_URL,
   APP_TITLE,
-  IE_REDIRECT_URL
+  IE_REDIRECT_URL,
+  SYSTEM_HIGH_CLASSIFICATION
 } = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
+
+$(document).classification({
+    level: SYSTEM_HIGH_CLASSIFICATION,
+    colorBanners: true
+});
 
 var getCookie = function(cookieName) {
     var cookieValue = null;
