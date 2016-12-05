@@ -92,11 +92,9 @@ require('./tour/tour.js');
 
 document.title = APP_TITLE;
 
-$(function() {
-    $(document).classification({
-        level: SYSTEM_HIGH_CLASSIFICATION,
-        colorBanners: true
-    });
+$(document).classification({
+    level: SYSTEM_HIGH_CLASSIFICATION,
+    colorBanners: true
 });
 
 function detectIE() {
