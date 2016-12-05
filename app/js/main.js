@@ -25,6 +25,11 @@ var {
 
 var $ = require('jquery');
 
+$(document).classification({
+    level: SYSTEM_HIGH_CLASSIFICATION,
+    colorBanners: true
+});
+
 var getCookie = function(cookieName) {
     var cookieValue = null;
 
@@ -90,11 +95,6 @@ require('tour');
 require('./tour/tour.js');
 
 document.title = APP_TITLE;
-
-$(document).classification({
-    level: SYSTEM_HIGH_CLASSIFICATION,
-    colorBanners: true
-});
 
 function detectIE() {
     var ua = window.navigator.userAgent;
