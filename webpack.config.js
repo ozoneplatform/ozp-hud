@@ -22,7 +22,6 @@ module.exports = {
             react$: "react/addons",
             jquery$: "jquery/dist/jquery",
             bootstrap$: "bootstrap-sass/assets/javascripts/bootstrap",
-            classification$: "ozp-classification/jquery.classification.js",
             "ozp-react-commons": "ozp-react-commons/app/js",
             bootstrapjs$: "bootstrap/dist/js/bootstrap.js",
             tour$: "bootstrap-tour/build/js/bootstrap-tour.js"
