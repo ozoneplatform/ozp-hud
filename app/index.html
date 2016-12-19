@@ -19,7 +19,7 @@
     <script src="assets/vendor/jquery.classification.js"></script>
     <script>
         $(document).classification({
-            level: "U"
+             level: window.OzoneConfig.SYSTEM_HIGH_CLASSIFICATION || 'U',
         });
     </script>
 </body>
