@@ -12,7 +12,7 @@ var CurrentFolderStore = require('../../store/CurrentFolder');
 var LibraryActions = require('../../actions/Library');
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
-
+var {HUD_URL} = require('OzoneConfig');
 var Folder = require('../../api/Folder');
 
 var FolderTitle = require('./FolderTitle.jsx');
@@ -144,6 +144,12 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                           <Link className="icon-cross-16 vertical-center pull-right" to="main"></Link>
+                            <button onClick={()=>{
+                              LibraryActions.fetchLibrary();
+                              this.setState({
+                                shareURLToggle: !this.state.shareURLToggle
+                              });
+                             }} className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
                           <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
                             onChange={this.onNameChange}/>
                         </div>
@@ -154,6 +160,8 @@ var FolderModal = React.createClass({
                             { this.state.shareURLToggle &&
                               <div className="col-md-12">
                                 <div className="form-group">
+                                  <label className="control-label">Copy the URL and paste it anywhere to share.</label>
+                                  <input type="text" onFocus={this.highlightText} className="form-control" value={`${HUD_URL}/#/add/${encodeURI(folderName)}/${encodeURI(JSON.stringify(appIds))}`} />
                                   <p>Enter the username you would like to share <b>{folderName}</b> with.</p>
                                   <input type="text" ref="peer" className="form-control" />
                                 </div>
