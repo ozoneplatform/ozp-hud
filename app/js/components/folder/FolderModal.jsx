@@ -48,13 +48,9 @@ var FolderModal = React.createClass({
         this.setState({folder: data});
         appIds = [];
         for(var a in this.state.folder._tail.array){
-          var outObject = {
-            "id" : this.state.folder._tail.array[a].listing.id,
-            "uuid" : this.state.folder._tail.array[a].listing.uuid
-          };
+          var outObject = this.state.folder._tail.array[a].listing.id
           appIds.push(outObject);
         }
-        appIds = JSON.stringify(appIds);
     },
 
     componentDidMount: function() {
@@ -162,7 +158,7 @@ var FolderModal = React.createClass({
                               <div className="col-md-12">
                                 <div className="form-group">
                                   <label className="control-label">Copy the URL and paste it anywhere to share.</label>
-                                  <input type="text" onFocus={this.highlightText} className="form-control" value={`${HUD_URL}/#/add/${encodeURI(folderName)}/${encodeURI(JSON.stringify(appIds))}`} />
+                                  <input type="text" onFocus={this.highlightText} className="form-control" value={`${HUD_URL}/#/add/${encodeURI(folderName)}/${appIds}`} />
                                 </div>
                               <div className="form-group">
                                 <label className="control-label">OR</label>
@@ -177,7 +173,6 @@ var FolderModal = React.createClass({
                                 </div>
                                 <div className="form-group">
                                   <Link to="main" className="btn btn-primary" onClick={() => {
-                                      console.log('test');
                                       LibraryActions.shareFolder({
                                         folder: folderName,
                                         peer: this.refs.peer.getDOMNode().value,

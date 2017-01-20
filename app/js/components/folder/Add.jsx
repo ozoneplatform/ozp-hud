@@ -12,17 +12,15 @@ var FolderModal = React.createClass({
 
     componentDidMount: function() {
       var folderName = decodeURIComponent(this.props.params.name);
-      var ids = decodeURIComponent(this.props.params.ids);
-
-      ids = JSON.parse(
-        JSON.parse(ids)
-      );
-
+      var ids = this.props.params.ids;
+      if(ids){
+        ids = ids.split(',').map(Number);
+      }
       var request = [];
       ids.map(id => {
       	request.push({
           listing: {
-            id: id.id
+            id: id
           },
           folder: folderName
         });

@@ -187,25 +187,29 @@ var FolderLibraryStore = Reflux.createStore({
     onMakeSharedFolder: function(payload) {
       var pack = [];
       (function asterisk(i) {
-        var listing = payload[i];
-        LibraryApi.create({
-          listing: {
-            id: listing.listing.id
-          }
-        }, newEntry => {
-          pack.push({
+        if (i === payload.length) {
+           LibraryApi.save(pack);
+        } else {
+            var listing = payload[i];
+            console.log(listing)
+            LibraryApi.create({
             listing: {
-              id: listing.listing.id
-            },
-            folder: listing.folder,
-            id: newEntry.id
-          });
-          if (i + 1 === payload.length) {
-            LibraryApi.save(pack);
-          } else {
-            asterisk(i + 1);
-          }
-        });
+                id: listing.listing.id
+            }
+            }, newEntry => { 
+                pack.push({
+                    listing: {
+                        id: listing.listing.id
+                    },
+                    folder: listing.folder,
+                    id: newEntry.id
+                });
+                asterisk(i + 1);
+            }, error => {
+                asterisk(i+1);
+            }
+          );
+        }
       })(0);
     },
 
