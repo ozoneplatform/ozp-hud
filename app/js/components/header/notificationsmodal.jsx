@@ -95,7 +95,7 @@ var NotificationsModal = React.createClass({
             <h4>{(n.listing) ? n.listing.title : 'AppsMall'} <small>{formattedDate}</small></h4>
             <span>
 
-              { !(n.notificationType === "PEER.BOOKMARK") &&
+              { (n.notificationType !== "PEER.BOOKMARK") &&
                 <span className="message small" dangerouslySetInnerHTML={createNotificationText()}></span>
               }
               { n.notificationType === "PEER.BOOKMARK" &&
