@@ -190,13 +190,14 @@ var FolderLibraryStore = Reflux.createStore({
         if (i === payload.length) {
            LibraryApi.save(pack);
         } else {
+          LibraryApi.create(payload);
+            /*//old code
             var listing = payload[i];
-            console.log(listing)
             LibraryApi.create({
             listing: {
                 id: listing.listing.id
             }
-            }, newEntry => { 
+            }, newEntry => {
                 pack.push({
                     listing: {
                         id: listing.listing.id
@@ -209,6 +210,7 @@ var FolderLibraryStore = Reflux.createStore({
                 asterisk(i+1);
             }
           );
+          */
         }
       })(0);
     },

@@ -67,7 +67,7 @@ module.exports.LibraryApi = {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            url: url,
+            url: url + '/create_batch/',
             data: JSON.stringify(entry)
         }).fail(res => {errorCb(res);
         }).success(res => {cb(res);

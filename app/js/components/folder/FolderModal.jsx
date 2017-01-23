@@ -48,7 +48,7 @@ var FolderModal = React.createClass({
         this.setState({folder: data});
         appIds = [];
         for(var a in this.state.folder._tail.array){
-          var outObject = this.state.folder._tail.array[a].listing.id
+          var outObject = this.state.folder._tail.array[a].listing.id;
           appIds.push(outObject);
         }
     },
