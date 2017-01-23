@@ -67,10 +67,11 @@ module.exports.LibraryApi = {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            url: url + '/create_batch/',
+            url: url + 'create_batch/',
             data: JSON.stringify(entry)
-        }).fail(res => {errorCb(res);
-        }).success(res => {cb(res);
+        }).fail(res => {if(errorCb){errorCb(res)};
+        }).success(res => {if(cb){cb(res)};
+            LibraryActions.fetchLibrary();
         });
     },
 
