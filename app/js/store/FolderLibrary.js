@@ -194,8 +194,9 @@ var FolderLibraryStore = Reflux.createStore({
             folder: folderName
             });
         });
-        if(payload.length)
+        if(payload.length){
           LibraryApi.create(payload);
+        }
     },
 
     onCreateFolder: function(entries) {
