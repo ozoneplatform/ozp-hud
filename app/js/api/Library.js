@@ -17,6 +17,9 @@ module.exports.LibraryApi = {
     },
 
     share: function(folder, peer, message) {
+      if(message.replace(/\s/g, '').length == 0){
+        message = 'shared folder'
+      }
       return $.ajax({
           type: 'POST',
           dataType: 'json',
