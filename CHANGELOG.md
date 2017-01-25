@@ -1,3 +1,11 @@
+### 1.1.20 (2017-01-25)
+
+
+#### Bug Fixes
+
+* **folderSharing:** made urls shorter and possible to add bookmarks even if one has an error #257,25 ([658cf91f](https://github.com/ozone-development/ozp-hud.git/commit/658cf91f9024e9f541c5363f23e0ddd8e77066dc))
+
+
 ### 1.1.19 (2017-01-11)
 
 
