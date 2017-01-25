@@ -55,22 +55,23 @@ module.exports.LibraryApi = {
             url: url + 'update_all/',
             data: JSON.stringify(libraryEntriesList)
         }).fail(function(response) {
-            console.error('Error updating library', response.status,
+            console.log('Error updating library', response.status,
                     response.responseJSON || response.responseText);
         }).done(() => {
             LibraryActions.fetchLibrary();
         });
     },
 
-    create: function(entry, cb) {
+    create: function(entry, cb, errorCb) {
         return $.ajax({
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            url: url,
+            url: url + 'create_batch/',
             data: JSON.stringify(entry)
-        }).done(res => {
-          cb(res);
+        }).fail(res => {if(errorCb){errorCb(res);}
+      }).success(res => {if(cb){cb(res);}
+            LibraryActions.fetchLibrary();
         });
     },
 
