@@ -19,8 +19,17 @@ var FolderTile = React.createClass({
     getInitialState: function() {
         return {
             dropHighlight: false,
-            editingTitle: false
+            editingTitle: false,
+            checked: false
         };
+    },
+   
+    componentDidMount: function() {
+        $('html').click(() => {
+          if (this.isMounted()) {
+            this.setState({checked: false});
+          }
+        });
     },
 
     onDragStart: function(evt) {
@@ -67,12 +76,24 @@ var FolderTile = React.createClass({
             }),
             //react-router doesn't handle special characters correctly so we must escape them ourselves
             nameParam = encodeURIComponent(folder.name);
+            var deleteFolder = LibraryActions.deleteFolder.bind(null,folder);
 
         return (
             <div className={classes} data-folder-name={folder.name}
                     onDragOver={this.onDragOver} onDragEnter={this.onDragOver}
                     onDragLeave={this.onDragLeave} onDrop={this.onDrop}
                     draggable="true" onDragStart={this.onDragStart}>
+                <label className="FolderTile__actionMenu">
+                    <input ref="checkbox" type="checkbox" checked={this.state.checked} onChange={() => {
+                        this.setState({checked: true});
+                    }}/>
+                    <span className="FolderTile__actionMenuButton">
+                        <i className="icon-caret-down-14-grayLightest" />
+                    </span>
+                    <ul>
+                        <li><a onClick={deleteFolder}>Delete Folder</a></li>
+                    </ul>
+                </label>
                 <Link ref="folderView" className="FolderTile__folderView" to="folder"
                         params={{name: nameParam}} draggable="false">
                     {entryIcons.toArray()}
