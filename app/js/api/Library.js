@@ -93,7 +93,7 @@ module.exports.LibraryApi = {
         return $.ajax({
             type: 'DELETE',
             dataType: 'json',
-            url: url + `${encodeURIComponent(appId)}/` + 'folder/'
+            url: url + `${encodeURIComponent(appId)}/` + 'delete_folder/'
         }).fail(function(response) {
             console.error('Error removing folder containing Listing with id ' + appId + ' from library',
                     response.status, response.responseJSON || response.responseText);
