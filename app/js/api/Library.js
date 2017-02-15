@@ -87,5 +87,16 @@ module.exports.LibraryApi = {
             console.error('Error removing Listing with id ' + libraryId + ' from library',
                     response.status, response.responseJSON || response.responseText);
         });
+    },
+    
+    deleteFolder: function(appId) {
+        return $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: url + `${encodeURIComponent(appId)}/` + 'delete_folder/'
+        }).fail(function(response) {
+            console.error('Error removing folder containing Listing with id ' + appId + ' from library',
+                    response.status, response.responseJSON || response.responseText);
+        });
     }
 };
