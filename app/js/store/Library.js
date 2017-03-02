@@ -60,7 +60,7 @@ var LibraryStore = Reflux.createStore({
 
         LibraryApi.del(libraryId).then(function() {
             me.library = me.library.filter(function (entry) {
-                return entry.listing.id !== listingId;
+                return entry.id !== libraryId;
             });
 
             me.trigger(me.library);
