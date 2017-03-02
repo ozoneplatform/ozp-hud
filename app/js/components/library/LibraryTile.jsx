@@ -32,11 +32,11 @@ var ActionMenu = React.createClass({
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry),
             duplicateBookmark = () => {
-              LibraryApi.create({
+              LibraryApi.create([{
                 listing: {
                   id: entry.listing.id
-                }
-              }, () => {
+                },folder: entry.folder,
+              }], () => {
                 LibraryActions.fetchLibrary();
               });
             };
