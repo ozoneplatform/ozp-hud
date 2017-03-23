@@ -10,3 +10,11 @@
     }
 }
 
+.navbar-nav > li.disabled{
+	& a:hover, & a:focus{
+    background: transparent !important;
+    border-top-color: transparent !important;
+    border-color: transparent !important;
+    cursor: default;
+	}
+}
