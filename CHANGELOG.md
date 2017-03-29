@@ -1,3 +1,11 @@
+### 1.1.27 (2017-03-29)
+
+
+#### Features
+
+* **notification:** Fixed link in notification model ([dd1054bc](https://github.com/ozone-development/ozp-hud.git/commit/dd1054bc6191286e71070c157876b53224514d90))
+
+
 ### 1.1.26 (2017-03-22)
 
 
