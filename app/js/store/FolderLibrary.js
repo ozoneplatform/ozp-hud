@@ -181,7 +181,7 @@ var FolderLibraryStore = Reflux.createStore({
     },
 
     onShareFolder: function(payload) {
-      LibraryApi.share(payload.folder, payload.peer, payload.message);
+      LibraryApi.share(payload.folder, payload.peer, payload.message, payload.fn);
     },
 
     onDeleteFolder: function(folder) {
