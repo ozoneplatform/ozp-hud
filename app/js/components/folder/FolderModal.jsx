@@ -127,10 +127,18 @@ var FolderModal = React.createClass({
         this.transitionTo('folder', {name: encodeURIComponent(newName)});
         this.onStoreUpdate();
     },
+
+    toggleURLState: function(){
+        this.setState({
+            shareURLToggle: !this.state.shareURLToggle
+        });
+    },
+
     render: function() {
 
         //undo the manual escaping of slashes that we must do because react-router doesn't
         var folderName = decodeURIComponent(this.props.params.name);
+        var fn = this.toggleURLState;
         var shareFolderButtonText = (!this.state.shareURLToggle ? 'Share ' + folderName : 'Back');
         return (
             <div ref="hastooltips" className="modal FolderModal" data-show="true"
@@ -172,15 +180,16 @@ var FolderModal = React.createClass({
                                   <textarea type="text" ref="message" className="form-control" ></textarea>
                                 </div>
                                 <div className="form-group">
-                                  <Link to="main" className="btn btn-primary" onClick={() => {
+                                  <button to="main" className="btn btn-primary" onClick={() => {
                                       LibraryActions.shareFolder({
                                         folder: folderName,
                                         peer: this.refs.peer.getDOMNode().value,
-                                        message: this.refs.message.getDOMNode().value
+                                        message: this.refs.message.getDOMNode().value,
+                                        fn: fn
                                       });
                                     }}>
                                     Send {folderName}
-                                  </Link>
+                                  </button>
                                 </div>
                               </div>
                             }
