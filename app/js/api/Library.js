@@ -17,8 +17,8 @@ module.exports.LibraryApi = {
     },
 
     share: function(folder, peer, message, fn) {
-      if(message.replace(/\s/g, '').length == 0){
-        message = 'shared folder'
+      if(message.replace(/\s/g, '').length === 0){
+        message = 'shared folder';
       }
       return $.ajax({
           type: 'POST',
@@ -36,13 +36,14 @@ module.exports.LibraryApi = {
             }
           })
       }).fail(function(response) {
-          if(peer == '') {
-              alert('Username not entered');
-          } else if(response.responseJSON && response.responseJSON.non_field_errors
-             && response.responseJSON.non_field_errors[0] == 'Valid User is Required'){
-              alert('The username "' + peer + '" was not found.  Please check the spelling');
+          if(peer === '') {
+              window.alert('Username not entered');
+          } else if(response.responseJSON &&
+              response.responseJSON.non_field_errors &&
+              response.responseJSON.non_field_errors[0] === 'Valid User is Required'){
+              window.alert('The username "' + peer + '" was not found.  Please check the spelling');
           } else {
-              alert('Error sharing folder.  Please try again.');
+              window.alert('Error sharing folder.  Please try again.');
           }
           console.log('Error sharing folder: ', response.status,
                   response.responseJSON || response.responseText);

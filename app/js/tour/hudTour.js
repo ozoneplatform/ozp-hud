@@ -39,7 +39,7 @@ setInterval(() => {
   readyObject = Object.assign({}, readyObject, tourCh.get());
 }, 100);
 
-const meTour = new Tour({
+const meTour = new Tour({ //jshint ignore:line
   backdrop: true,
   backdropPadding: 10,
   storage: false,
