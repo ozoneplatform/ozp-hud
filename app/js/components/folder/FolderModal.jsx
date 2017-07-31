@@ -182,7 +182,7 @@ var FolderModal = React.createClass({
                                         fn: fn
                                       });
                                     }}>
-                                    Send {folderName}
+                                    Send folder
                                   </button>
                                 </div>
                               </div>
