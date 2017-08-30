@@ -4,7 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var UserNotificationDropdown = require('ozp-react-commons/components/notification/UserNotificationDropdown.jsx');
 var HelpModal = require('./helpmodal.jsx');
-var NotificationsModal = require('./notificationsmodal.jsx');
+var NotificationsModal = require('ozp-react-commons/components/notification/NotificationsModal.jsx');
 var ProfileSearchActions = require('../../actions/ProfileSearchActions');
 var { Link } = require('react-router');
 var LibraryActions = require('../../actions/Library');
@@ -130,7 +130,7 @@ var Header = React.createClass({
                     this.state.showHelp && <HelpModal onHidden={this.onModalHidden} />
                 }
                 {
-                    this.state.showNotifications && <NotificationsModal onHidden={this.onModalHidden} />
+                    this.state.showNotifications && <NotificationsModal onHidden={this.onModalHidden} backRoute="/"/>
                 }
             </nav>
         );
