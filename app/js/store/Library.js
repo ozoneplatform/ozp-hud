@@ -24,7 +24,7 @@ var LibraryStore = Reflux.createStore({
             return Object.freeze(e);
         }));
         this.trigger(this.library);
-    }, 
+    },
 
     viewFolder: function(){
         LibraryActions.hasLoaded();
@@ -55,7 +55,6 @@ var LibraryStore = Reflux.createStore({
 
     onRemoveFromLibrary: function(libraryEntry) {
         var libraryId = libraryEntry.id,
-            listingId = libraryEntry.listing.id,
             me = this;
 
         LibraryApi.del(libraryId).then(function() {
