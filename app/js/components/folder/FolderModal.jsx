@@ -139,7 +139,7 @@ var FolderModal = React.createClass({
         //undo the manual escaping of slashes that we must do because react-router doesn't
         var folderName = decodeURIComponent(this.props.params.name);
         var fn = this.toggleURLState;
-        var shareFolderButtonText = (!this.state.shareURLToggle ? 'Share ' + folderName : 'Back');
+        var shareFolderButtonText = (!this.state.shareURLToggle ? 'Share ' + '"' + folderName + '" folder' : 'Back');
         return (
             <div ref="hastooltips" className="modal FolderModal" data-show="true"
                     onDragEnter={this.onDragOver} onDragOver={this.onDragOver}
@@ -148,12 +148,6 @@ var FolderModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                           <Link className="icon-cross-16 vertical-center pull-right" to="main"></Link>
-                            <button onClick={()=>{
-                              LibraryActions.fetchLibrary();
-                              this.setState({
-                                shareURLToggle: !this.state.shareURLToggle
-                              });
-                             }} className="shareFolderButton pull-right btn btn-primary tooltiped" data-toggle="tooltip" data-placement="bottom" title="Get Shareable Link">Get Shareable Link</button>
 
                           <FolderTitle className="vertical-center" name={folderName} element={React.DOM.h3}
                             onChange={this.onNameChange}/>
@@ -188,7 +182,7 @@ var FolderModal = React.createClass({
                                         fn: fn
                                       });
                                     }}>
-                                    Send {folderName}
+                                    Send folder
                                   </button>
                                 </div>
                               </div>
