@@ -1,4 +1,9 @@
 
+### 1.1.44 (None)         
+
+#### Changes  
+* Evan hud tour work (#204) ([fa0ba1a4](https://github.com/aml-development/ozp-hud/commit/fa0ba1a41b34dc998686b898deffecbe0dba3d9f))     
+
 ### 1.1.43 (2017-09-20)           
 
 ### 1.1.42 (2017-09-13)           
