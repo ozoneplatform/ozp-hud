@@ -1,5 +1,10 @@
 
-### 1.1.44 (None)         
+### 1.1.45 (None)         
+
+#### Changes  
+* Unsubscribe in Profile(#205) ([fc5b320e](https://github.com/aml-development/ozp-hud/commit/fc5b320e4448517a00590b0ce17a4568e32b2904))     
+
+### 1.1.44 (2017-09-28)         
 
 #### Changes  
 * Evan hud tour work (#204) ([fa0ba1a4](https://github.com/aml-development/ozp-hud/commit/fa0ba1a41b34dc998686b898deffecbe0dba3d9f))     
