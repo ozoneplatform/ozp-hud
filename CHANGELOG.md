@@ -1,5 +1,13 @@
 
-### 1.1.45 (None)         
+### 1.1.46 (None)   
+
+#### Merge Pull Requests  
+* Merge pull request #206 from aml-development/tour_spelling ([80806765](https://github.com/aml-development/ozp-hud/commit/808067655bc7189c3ee2e16d41f8206b8a7f4817))         
+
+#### Changes  
+* Spelling fix in Tour ([f4d2d035](https://github.com/aml-development/ozp-hud/commit/f4d2d03518ba321eac5686c3c495c4f05b2df1be))     
+
+### 1.1.45 (2017-10-30)         
 
 #### Changes  
 * Unsubscribe in Profile(#205) ([fc5b320e](https://github.com/aml-development/ozp-hud/commit/fc5b320e4448517a00590b0ce17a4568e32b2904))     
