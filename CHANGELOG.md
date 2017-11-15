@@ -1,5 +1,7 @@
 
-### 1.1.46 (None)   
+### 1.1.47 (2017-11-15)           
+
+### 1.1.46 (2017-11-08)   
 
 #### Merge Pull Requests  
 * Merge pull request #206 from aml-development/tour_spelling ([80806765](https://github.com/aml-development/ozp-hud/commit/808067655bc7189c3ee2e16d41f8206b8a7f4817))         
