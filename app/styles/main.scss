@@ -154,3 +154,22 @@ a.hidden-link, a.hidden-link:hover {
   cursor:text;
   text-decoration:none;
 }
+
+.restoreFolder {
+    text-align: center;
+    top: -35px;
+    position: absolute;
+    background: orange;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    cursor: pointer;
+    padding: 4px;
+    left: 0;
+    right: 0;
+}
+
+.deleteFolderConfirm {
+    float: right;
+}
