@@ -73,12 +73,13 @@ var Library = React.createClass({
     deletedFolder: function(folder){
         var me = this;
         me.setState({deletedFolder: folder});
+
         setTimeout(function() {
            me.setState({deletedFolder: false});
        }, 10000);
     },
 
-    restoreFolder: function(){
+    restoreFolder: function(e){
         var bookmarks = '';
         var arr = this.state.deletedFolder.entries._tail.array;
         arr.forEach(function(listing){
@@ -90,6 +91,7 @@ var Library = React.createClass({
 
         window.location.href = url;
         this.setState({deletedFolder: false});
+        e.preventDefault();
     },
 
     closeDeleteNotice: function(e){
@@ -127,7 +129,7 @@ var Library = React.createClass({
         if (this.state.hasLoaded && elements.size) {
             return (
                 <ol className="LibraryTiles">
-                    {this.state.deletedFolder && <div className="restoreFolder" onClick={this.restoreFolder}> Click to restore the deleted folder <span style={{'fontWeight':'bold'}}>{this.state.deletedFolder.name}</span> <span className="deleteFolderConfirm" onClick={this.closeDeleteNotice}>X</span></div>}
+                    {this.state.deletedFolder && <div className="restoreFolder" > The folder <span style={{'fontWeight':'bold'}}>{this.state.deletedFolder.name}</span> was deleted.   <a href="#" onClick={this.restoreFolder}>Undo</a><span className="deleteFolderConfirm" onClick={this.closeDeleteNotice}>X</span></div>}
                     {elements.toArray()}
                 </ol>
             );
