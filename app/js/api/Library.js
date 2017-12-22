@@ -57,6 +57,8 @@ module.exports.LibraryApi = {
       if(message.replace(/\s/g, '').length === 0){
         message = 'restore folder';
       }
+      var date = new Date;
+      date.setDate(date.getDate()+1);
 
       return $.ajax({
           type: 'POST',
@@ -64,7 +66,7 @@ module.exports.LibraryApi = {
           contentType: 'application/json',
           url: API_URL + '/api/notification/',
           data: JSON.stringify({
-            "expires_date": new Date(new Date().setYear(new Date().getFullYear() + 1)).toISOString(),
+            "expires_date": date,
             "message": message,
             "peer": {
               "user": {
