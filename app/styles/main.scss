@@ -159,17 +159,26 @@ a.hidden-link, a.hidden-link:hover {
     text-align: center;
     top: -35px;
     position: absolute;
-    background: orange;
+    background: #f9edbe;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     color: black;
-    cursor: pointer;
-    padding: 4px;
+    padding: 1px;
     left: 0;
     right: 0;
-}
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 2px;
 
-.deleteFolderConfirm {
-    float: right;
+    > a {
+        text-decoration: underline;
+        color: black;
+        padding-left: 7px;
+    }
+
+    > .deleteFolderConfirm {
+        float: right;
+        padding-right: 6px;
+        cursor: pointer;
+    }
 }
