@@ -55,7 +55,7 @@ module.exports.LibraryApi = {
 
     restore: function(folder, peer, message) {
       if(message.replace(/\s/g, '').length === 0){
-        message = 'restore folder';
+        message = 'restore folder ' + folder;
       }
       var date = new Date();
       date.setDate(date.getDate()+1);
