@@ -57,7 +57,7 @@ module.exports.LibraryApi = {
       if(message.replace(/\s/g, '').length === 0){
         message = 'restore folder';
       }
-      var date = new Date;
+      var date = new Date();
       date.setDate(date.getDate()+1);
 
       return $.ajax({
