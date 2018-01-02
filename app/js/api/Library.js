@@ -53,6 +53,46 @@ module.exports.LibraryApi = {
       });
     },
 
+    restore: function(folder, peer, message) {
+      if(message.replace(/\s/g, '').length === 0){
+        message = 'restore folder ' + folder;
+      }
+      var date = new Date();
+      date.setDate(date.getDate()+1);
+
+      return $.ajax({
+          type: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          url: API_URL + '/api/notification/',
+          data: JSON.stringify({
+            "expires_date": date,
+            "message": message,
+            "peer": {
+              "user": {
+                "username": peer
+              },
+              "folder_name": folder,
+              "deleted_folder": "true"
+            },
+          })
+      }).fail(function(response) {
+          if(peer === '') {
+              window.alert('Username not entered');
+          } else if(response.responseJSON &&
+              response.responseJSON.non_field_errors &&
+              response.responseJSON.non_field_errors[0] === 'Valid User is Required'){
+              window.alert('The username "' + peer + '" was not found.  Please check the spelling');
+          } else {
+              window.alert('Error sharing folder.  Please try again.');
+          }
+          console.log('Error sharing folder: ', response.status,
+                  response.responseJSON || response.responseText);
+      }).done(() => {
+          LibraryActions.fetchLibrary();
+      });
+    },
+
     save: function(libraryEntries) {
         // Reorder Function
         var libraryEntriesList = libraryEntries.map(function(e,ind){

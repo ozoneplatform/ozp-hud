@@ -4,18 +4,21 @@
 'use strict';
 
 var React = require('react');
+var Reflux = require('reflux');
 var Immutable = require('immutable');
 var Link = require('react-router').Link;
 var Constants = require('../../Constants');
 var DragAndDropUtils = require('../../util/DragAndDrop');
 var RandomBase16 = require('../../util/RandomBase16');
+var CurrentProfileStore = require('ozp-react-commons/stores/CurrentProfileStore');
+var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
 var LibraryActions = require('../../actions/Library');
 
 var FolderTitle = require('../folder/FolderTitle.jsx');
 
 var FolderTile = React.createClass({
-
+    mixins: [Reflux.connect(CurrentProfileStore)],
     getInitialState: function() {
         return {
             dropHighlight: false,
@@ -23,8 +26,9 @@ var FolderTile = React.createClass({
             checked: false
         };
     },
-   
+
     componentDidMount: function() {
+        ProfileActions.fetchProfile();
         $('html').click(() => {
           if (this.isMounted()) {
             this.setState({checked: false});
@@ -63,6 +67,18 @@ var FolderTile = React.createClass({
         evt.preventDefault();
     },
 
+    deleteFolder: function(folder, deletedFn){
+        //if(window.confirm("Delete folder?")){
+            LibraryActions.deleteFolder(folder);
+            LibraryActions.restoreFolderNotification({
+              folder: folder.name,
+              peer: CurrentProfileStore.profile.username,
+              message: ''
+            });
+            deletedFn(folder);
+        //}
+    },
+
     render: function() {
         var folder = this.props.folder,
             classes = React.addons.classSet({
@@ -76,7 +92,6 @@ var FolderTile = React.createClass({
             }),
             //react-router doesn't handle special characters correctly so we must escape them ourselves
             nameParam = encodeURIComponent(folder.name);
-            var deleteFolder = LibraryActions.deleteFolder.bind(null,folder);
 
         return (
             <div className={classes} data-folder-name={folder.name}
@@ -91,7 +106,7 @@ var FolderTile = React.createClass({
                         <i className="icon-caret-down-14-grayLightest" />
                     </span>
                     <ul>
-                        <li><a onClick={deleteFolder}>Delete Folder</a></li>
+                        <li><a onClick={this.deleteFolder.bind(this, folder, this.props.deleted)}>Delete Folder</a></li>
                     </ul>
                 </label>
                 <Link ref="folderView" className="FolderTile__folderView" to="folder"

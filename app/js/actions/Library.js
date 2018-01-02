@@ -53,6 +53,12 @@ module.exports = Reflux.createActions([
     'shareFolder',
 
     /**
+     * Restore a deleted folder
+     * @param {object} payload - the payload to be sent to the backend.
+     */
+    'restoreFolderNotification',
+
+    /**
      * Remove a folder from a user
      * @param {object} id of the application whose containing folder should be deleted
      */
