@@ -1,4 +1,21 @@
 
+### 1.1.51 (None)
+
+#### Feature  
+* **notification**:  expire restore notifications to the day after ([4bec59ca](https://github.com/aml-development/ozp-hud/commit/4bec59ca0fc5c949cb9c9e2e6e471ee1f308261d))    
+
+#### Fixes  
+* **jslint**:  fix jslint error ([e8a120f7](https://github.com/aml-development/ozp-hud/commit/e8a120f7d96b5fb1ef0f039a21ca11c7dc9ada92))     
+
+#### Merge Pull Requests  
+* Merge pull request #207 from aml-development/undo_delete_folder ([7af4f995](https://github.com/aml-development/ozp-hud/commit/7af4f995e79f298382ed44e0c9d77c4cd3e0f2a0))
+* Merge branch 'undo_delete_folder' of github.com:aml-development/ozp-hud into undo_delete_folder ([a37fb837](https://github.com/aml-development/ozp-hud/commit/a37fb8378e8a051b05aee7b60206dc20db144180))         
+
+#### Changes  
+* updating message text ([7c796715](https://github.com/aml-development/ozp-hud/commit/7c796715f54b71e7bc16ad74772c58c4f5395fde))
+* Update text and styles for undo delete banner. ([533250ba](https://github.com/aml-development/ozp-hud/commit/533250ba215c8488c7392c946bcb362c7ad7ef62))
+* Adding the ability to restore a deleted bookmark folder. ([e7a76004](https://github.com/aml-development/ozp-hud/commit/e7a7600472163678f6a00212cf191cb74fe3bbf1))     
+
 ### 1.1.50 (2017-12-20)           
 
 ### 1.1.49 (2017-12-14)           
