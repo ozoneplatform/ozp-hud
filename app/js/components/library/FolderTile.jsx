@@ -28,7 +28,9 @@ var FolderTile = React.createClass({
     },
 
     componentDidMount: function() {
-        ProfileActions.fetchProfile();
+        // assumes that FolderTile is ALWAYS being used as self
+        ProfileActions.fetchProfile('self');
+
         $('html').click(() => {
           if (this.isMounted()) {
             this.setState({checked: false});
