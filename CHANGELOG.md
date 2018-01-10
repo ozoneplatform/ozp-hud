@@ -1,5 +1,18 @@
 
-### 1.1.51 (None)
+### 1.1.52 (None) 
+
+#### Fixes  
+* **profile**:  fix bugs in HUD profile window ([efb03787](https://github.com/aml-development/ozp-hud/commit/efb03787057f1024941bef64e4968abe1cdd2ba2))     
+
+#### Merge Pull Requests  
+* Merge pull request #208 from aml-development/fix_profile ([dfd9d481](https://github.com/aml-development/ozp-hud/commit/dfd9d48196464af90cca01fde82a6e73dfd9d3a0))         
+
+#### Changes 
+* **jenkins**
+  *  add build relase script ([a16aac8e](https://github.com/aml-development/ozp-hud/commit/a16aac8e169a4e7c344bc46b4b0b9767b03537aa))
+  *  add build script ([3720c50c](https://github.com/aml-development/ozp-hud/commit/3720c50ce1b80de62fcbe3d0be921d91cb69a719))      
+
+### 1.1.51 (2018-01-03)
 
 #### Feature  
 * **notification**:  expire restore notifications to the day after ([4bec59ca](https://github.com/aml-development/ozp-hud/commit/4bec59ca0fc5c949cb9c9e2e6e471ee1f308261d))    
