@@ -1,5 +1,10 @@
 
-### 1.1.52 (None) 
+### 1.1.53 (None)         
+
+#### Changes  
+* **script**:  fix release script ([75237a1f](https://github.com/aml-development/ozp-hud/commit/75237a1f984e6cf6ed8efa071eedf74cba8a1b69))     
+
+### 1.1.52 (2018-01-10) 
 
 #### Fixes  
 * **profile**:  fix bugs in HUD profile window ([efb03787](https://github.com/aml-development/ozp-hud/commit/efb03787057f1024941bef64e4968abe1cdd2ba2))     
