@@ -105,5 +105,11 @@ module.exports = Reflux.createActions([
     /**
      * Indicate that no specific folder is currently being viewed
      */
-    'stopViewingFolder'
+    'stopViewingFolder',
+
+    /**
+     * Remove notification after a foder is restored via undo button
+     * @param payload The id of the notification
+     */
+    'restoreFolderNotificationRemoval'
 ]);

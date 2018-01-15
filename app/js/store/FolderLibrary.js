@@ -306,6 +306,10 @@ var FolderLibraryStore = Reflux.createStore({
                 return (ent instanceof Folder) &&
                     ent.name === data.name;
             });
+    },
+
+    onRestoreFolderNotificationRemoval: function(payload){
+          LibraryApi.removeFolderNotification(payload);
     }
 });
 

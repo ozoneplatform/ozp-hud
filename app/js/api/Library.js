@@ -93,18 +93,31 @@ module.exports.LibraryApi = {
       });
     },
 
+    removeFolderNotification: function(notificaitonId){
+        return $.ajax({
+            url: `${API_URL}/api/notification/` + notificaitonId + '/',
+            type: 'delete',
+            dataType: 'json',
+            contentType: 'application/json'
+        }).then(() => {
+            LibraryActions.fetchLibrary();
+            return;
+        });
+
+    },
+
     save: function(libraryEntries) {
         // Reorder Function
         var libraryEntriesList = libraryEntries.map(function(e,ind){
-                                                    var tempObj = {};
+            var tempObj = {};
 
-                                                    for(var i in e){
-                                                        tempObj[i] = e[i];
-                                                    }
+            for(var i in e){
+                tempObj[i] = e[i];
+            }
 
-                                                    tempObj.position = ind;
-                                                    return tempObj;
-                                                });
+            tempObj.position = ind;
+            return tempObj;
+        });
 
         return $.ajax({
             type: 'PUT',
