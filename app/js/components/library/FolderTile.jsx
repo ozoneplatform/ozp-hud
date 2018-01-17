@@ -71,13 +71,16 @@ var FolderTile = React.createClass({
     },
 
     deleteFolder: function(folder, deletedFn){
-        LibraryActions.deleteFolder(folder);
         LibraryApi.restore(
             folder.name,
             CurrentProfileStore.profile.username,
             ""
         ).then(function(response){
-            deletedFn(folder, response.id);
+            LibraryApi.deleteFolder(
+                folder.entries.get(0).id
+            ).then(function(){
+                deletedFn(folder, response.id);
+            });
         });
     },
 

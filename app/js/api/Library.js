@@ -93,9 +93,9 @@ module.exports.LibraryApi = {
       });
     },
 
-    removeFolderNotification: function(notificaitonId){
+    removeFolderNotification: function(notificationId){
         return $.ajax({
-            url: `${API_URL}/api/notification/` + notificaitonId + '/',
+            url: `${API_URL}/api/notification/` + notificationId + '/',
             type: 'delete',
             dataType: 'json',
             contentType: 'application/json'
@@ -165,6 +165,8 @@ module.exports.LibraryApi = {
         }).fail(function(response) {
             console.error('Error removing folder containing Listing with id ' + appId + ' from library',
                     response.status, response.responseJSON || response.responseText);
+        }).done(() => {
+            LibraryActions.fetchLibrary();
         });
     }
 };

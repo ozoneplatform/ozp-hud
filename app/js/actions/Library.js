@@ -108,7 +108,7 @@ module.exports = Reflux.createActions([
     'stopViewingFolder',
 
     /**
-     * Remove notification after a foder is restored via undo button
+     * Remove notification after a folder is restored via undo button
      * @param payload The id of the notification
      */
     'restoreFolderNotificationRemoval'
