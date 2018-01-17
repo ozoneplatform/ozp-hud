@@ -31,7 +31,8 @@ var Library = React.createClass({
             library: Immutable.List(),
             hasLoaded: 0,
             loadMsg: '',
-            deletedFolder: false
+            deletedFolder: false,
+            notificationId: null
         };
     },
 
@@ -70,12 +71,12 @@ var Library = React.createClass({
         }, 20000);
     },
 
-    deletedFolder: function(folder){
+    deletedFolder: function(folder, notificationId){
         var me = this;
-        me.setState({deletedFolder: folder});
+        me.setState({deletedFolder: folder, notificationId:notificationId});
 
         setTimeout(function() {
-           me.setState({deletedFolder: false});
+           me.setState({deletedFolder: false, notificationId: null});
        }, 10000);
     },
 
@@ -90,7 +91,10 @@ var Library = React.createClass({
         var url =`${HUD_URL}/#/add/${encodeURI(this.state.deletedFolder.name)}/${bookmarks}`;
 
         window.location.href = url;
-        this.setState({deletedFolder: false});
+
+        LibraryActions.restoreFolderNotificationRemoval( this.state.notificationId);
+
+        this.setState({deletedFolder: false, notificationId: null});
         e.preventDefault();
     },
 

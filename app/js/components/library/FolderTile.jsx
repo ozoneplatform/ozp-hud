@@ -13,6 +13,7 @@ var RandomBase16 = require('../../util/RandomBase16');
 var CurrentProfileStore = require('ozp-react-commons/stores/CurrentProfileStore');
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
+var LibraryApi = require('../../api/Library').LibraryApi;
 var LibraryActions = require('../../actions/Library');
 
 var FolderTitle = require('../folder/FolderTitle.jsx');
@@ -70,15 +71,17 @@ var FolderTile = React.createClass({
     },
 
     deleteFolder: function(folder, deletedFn){
-        //if(window.confirm("Delete folder?")){
-            LibraryActions.deleteFolder(folder);
-            LibraryActions.restoreFolderNotification({
-              folder: folder.name,
-              peer: CurrentProfileStore.profile.username,
-              message: ''
+        LibraryApi.restore(
+            folder.name,
+            CurrentProfileStore.profile.username,
+            ""
+        ).then(function(response){
+            LibraryApi.deleteFolder(
+                folder.entries.get(0).id
+            ).then(function(){
+                deletedFn(folder, response.id);
             });
-            deletedFn(folder);
-        //}
+        });
     },
 
     render: function() {

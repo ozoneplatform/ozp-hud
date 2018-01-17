@@ -1,7 +1,6 @@
 'use strict';
 
 var Reflux = require('reflux');
-var Immutable = require('immutable');
 var LibraryActions = require('../actions/Library');
 var LibraryApi  = require('../api/Library').LibraryApi;
 var pass1 = false;
@@ -11,7 +10,7 @@ var pass1 = false;
  */
 var LibraryStore = Reflux.createStore({
     //the actual object storing the library records
-    library: Immutable.List(),
+    library: [],
 
     listenables: LibraryActions,
 
@@ -20,9 +19,9 @@ var LibraryStore = Reflux.createStore({
     },
 
     updateLibrary: function(entries) {
-        this.library = Immutable.List(entries.map(function(e) {
+        this.library = entries.map(function(e) {
             return Object.freeze(e);
-        }));
+        });
         this.trigger(this.library);
     },
 
