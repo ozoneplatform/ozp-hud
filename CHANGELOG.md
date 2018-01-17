@@ -1,5 +1,18 @@
 
-### 1.1.53 (None)         
+### 1.1.54 (None) 
+
+#### Fixes 
+* **bookmarks**
+  *  remove notificaiton on undo ([7ba0a388](https://github.com/aml-development/ozp-hud/commit/7ba0a38892fc8f2a73f8f839150e1d17cc5e1d4c))
+  *  Remove notification on undo ([c14f3466](https://github.com/aml-development/ozp-hud/commit/c14f346692eed9539a84da94c72f90abac1674e2))      
+
+#### Merge Pull Requests  
+* Merge pull request #209 from aml-development/folder_add_fix ([6b4a0040](https://github.com/aml-development/ozp-hud/commit/6b4a00404a10d3f7d7a36314bd5b0f8fb3c5a698))           
+
+### 1.1.53 (2018-01-12) 
+
+#### Fixes  
+* **add**:  fix for add listing links ([029a8b36](https://github.com/aml-development/ozp-hud/commit/029a8b36fa32981e612069c91c5b754d141f4715))           
 
 #### Changes  
 * **script**:  fix release script ([75237a1f](https://github.com/aml-development/ozp-hud/commit/75237a1f984e6cf6ed8efa071eedf74cba8a1b69))     
