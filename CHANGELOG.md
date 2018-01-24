@@ -1,5 +1,13 @@
 
-### 1.1.54 (None) 
+### 1.1.55 (None) 
+
+#### Fixes  
+* **fonts**:  console errors ([9d05eef9](https://github.com/aml-development/ozp-hud/commit/9d05eef913b5f537a1b0ebeae8d55e6dc7377b71))     
+
+#### Merge Pull Requests  
+* Merge pull request #210 from aml-development/font_console_error_fix ([8e135aa5](https://github.com/aml-development/ozp-hud/commit/8e135aa5669a259757fabd900e4780c773ed11a0))           
+
+### 1.1.54 (2018-01-17) 
 
 #### Fixes 
 * **bookmarks**
