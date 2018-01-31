@@ -1,5 +1,7 @@
 
-### 1.1.55 (None) 
+### 1.1.56 (2018-01-31)           
+
+### 1.1.55 (2018-01-24) 
 
 #### Fixes  
 * **fonts**:  console errors ([9d05eef9](https://github.com/aml-development/ozp-hud/commit/9d05eef913b5f537a1b0ebeae8d55e6dc7377b71))     
