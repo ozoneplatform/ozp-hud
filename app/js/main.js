@@ -3,10 +3,11 @@
 window.Object.assign = require('object-assign');
 
 require('console-polyfill');
-require('bootstrap');
 var React = require('react');
 var Router = require('react-router');
 var { Route } = Router;
+
+require('bootstrap');
 
 var FolderModal = require('./components/folder/FolderModal.jsx');
 var CurrentProfileWindow = require('./components/header/CurrentProfileWindow.jsx');
@@ -15,14 +16,43 @@ var Add = require('./components/folder/Add.jsx');
 
 var ProfileActions = require('ozp-react-commons/actions/ProfileActions');
 
-var { APP_TITLE, IE_REDIRECT_URL } = require('ozp-react-commons/OzoneConfig');
+var {
+  //METRICS_URL,
+  APP_TITLE,
+  IE_REDIRECT_URL,
+  PIWIK_ANALYTICS
+} = require('ozp-react-commons/OzoneConfig');
 
 var $ = require('jquery');
 
-$.ajaxPrefilter(function(options) {
+var getCookie = function(cookieName) {
+    var cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+
+        $.each(cookies, function(index, cookie) {
+            cookie = $.trim(cookie);
+
+            // Does this cookie string begin with the cookieName we want?
+            if (cookie.substring(0, cookieName.length + 1) === (cookieName + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(cookieName.length + 1));
+
+                // Returning false breaks out of $.each
+                return false;
+            }
+        });
+    }
+
+    return cookieValue;
+};
+
+$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     options.xhrFields = {
         withCredentials: true
     };
+
+    jqXHR.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
 });
 
 var App = require('./components/app.jsx');
@@ -46,6 +76,9 @@ Router.run(Routes, function (Handler, state) {
 });
 
 ProfileActions.fetchSelf();
+
+require('tour');
+require('./tour/tour.js');
 
 document.title = APP_TITLE;
 
@@ -75,26 +108,29 @@ if (detectIE() && detectIE() < 10) {
     window.open(IE_REDIRECT_URL);
 }
 
-(function initPiwik() {
+
+function initPiwik() {
     var _paq = window._paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
 
-    (function() {
-        var d = document,
-            g = d.createElement('script'),
-            s = d.getElementsByTagName('script')[0],
-            u = window.OzoneConfig.METRICS_URL + '/';
+    var d = document,
+    g = d.createElement('script'),
+    s = d.getElementsByTagName('script')[0],
+    u = window.OzoneConfig.METRICS_URL + '/';
 
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', window.OzoneConfig.METRICS_HUD_SITE_ID]);
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', window.OzoneConfig.METRICS_HUD_SITE_ID]);
 
-        g.type='text/javascript';
-        g.async=true;
-        g.defer=true;
-        g.src=u+'piwik.js';
-        s.parentNode.insertBefore(g,s);
-    })();
+    g.type='text/javascript';
+    g.async=true;
+    g.defer=true;
+    g.src=u+'piwik.js';
+    s.parentNode.insertBefore(g,s);
 
     window._paq = _paq;
-})();
+}
+
+if (PIWIK_ANALYTICS) {
+    initPiwik();
+}

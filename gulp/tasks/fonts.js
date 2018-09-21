@@ -10,7 +10,7 @@ var FONT_PATHS = [
 ];
 
 gulp.task('fonts', function () {
-    var filterFonts = filter('**/*.{eot,svg,ttf,woff}');
+    var filterFonts = filter('**/*.{eot,svg,ttf,woff,woff2}');
 
     return gulp.src(FONT_PATHS)
         .pipe(filterFonts)

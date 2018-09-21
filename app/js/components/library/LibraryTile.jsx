@@ -32,11 +32,11 @@ var ActionMenu = React.createClass({
             listing = entry.listing,
             removeBookmark = LibraryActions.removeFromLibrary.bind(null, entry),
             duplicateBookmark = () => {
-              LibraryApi.create({
+              LibraryApi.create([{
                 listing: {
                   id: entry.listing.id
-                }
-              }, () => {
+                },folder: entry.folder,
+              }], () => {
                 LibraryActions.fetchLibrary();
               });
             };
@@ -45,7 +45,7 @@ var ActionMenu = React.createClass({
         return (
             <label className="LibraryTile__actionMenu">
                 <input ref="checkbox" type="checkbox" checked={this.state.checked} onChange={() => {
-                    this.setState({checked: true});
+                    this.setState({checked: !this.state.checked});
                   }}/>
                 <span className="LibraryTile__actionMenuButton">
                      <i className="icon-caret-down-14-grayLightest" />

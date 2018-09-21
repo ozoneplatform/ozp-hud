@@ -4,7 +4,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var Immutable = require('immutable');
 var RandomBase16 = require('../../util/RandomBase16');
-
+var {HUD_URL} = require('OzoneConfig');
 
 var LibraryTile = require('./LibraryTile.jsx');
 var FolderTile = require('./FolderTile.jsx');
@@ -31,6 +31,8 @@ var Library = React.createClass({
             library: Immutable.List(),
             hasLoaded: 0,
             loadMsg: '',
+            deletedFolder: false,
+            notificationId: null
         };
     },
 
@@ -69,6 +71,38 @@ var Library = React.createClass({
         }, 20000);
     },
 
+    deletedFolder: function(folder, notificationId){
+        var me = this;
+        me.setState({deletedFolder: folder, notificationId:notificationId});
+
+        setTimeout(function() {
+           me.setState({deletedFolder: false, notificationId: null});
+       }, 10000);
+    },
+
+    restoreFolder: function(e){
+        var bookmarks = '';
+        var arr = this.state.deletedFolder.entries._tail.array;
+        arr.forEach(function(listing){
+            bookmarks += listing.listing.id + ',';
+        });
+        bookmarks = bookmarks.replace(/,\s*$/, "");
+
+        var url =`${HUD_URL}/#/add/${encodeURI(this.state.deletedFolder.name)}/${bookmarks}`;
+
+        window.location.href = url;
+
+        LibraryActions.restoreFolderNotificationRemoval( this.state.notificationId);
+
+        this.setState({deletedFolder: false, notificationId: null});
+        e.preventDefault();
+    },
+
+    closeDeleteNotice: function(e){
+        this.setState({deletedFolder: false});
+        e.stopPropagation();
+    },
+
     render: function () {
         var me = this,
             elements = this.state.library
@@ -84,14 +118,13 @@ var Library = React.createClass({
                         tile;
 
                     tile = curr instanceof Folder ?
-                        <FolderTile store={store} key={`folder-${curr.name}-${RandomBase16(6)}`} folder={curr} /> :
+                        <FolderTile store={store} key={`folder-${curr.name}-${RandomBase16(6)}`} folder={curr} deleted={me.deletedFolder}/> :
                         <LibraryTile store={store}
                             allowFolderCreate={me.props.allowFolderCreate}
                             key={`listing-${curr.listing.id}-${RandomBase16(6)}`} entry={curr} />;
 
                     return (
-                        <LibraryItem key={`${tile.props.key}-${RandomBase16(6)}`}
-                                store={store} prev={prev} curr={curr} next={next}>
+                        <LibraryItem key={`${tile.props.key}-${RandomBase16(6)}`} store={store} prev={prev} curr={curr} next={next}>
                             {tile}
                         </LibraryItem>
                     );
@@ -100,6 +133,7 @@ var Library = React.createClass({
         if (this.state.hasLoaded && elements.size) {
             return (
                 <ol className="LibraryTiles">
+                    {this.state.deletedFolder && <div className="restoreFolder" > The folder <span style={{'fontWeight':'bold'}}>{this.state.deletedFolder.name}</span> was deleted.   <a href="#" onClick={this.restoreFolder}>Undo</a><span className="deleteFolderConfirm" onClick={this.closeDeleteNotice}>X</span></div>}
                     {elements.toArray()}
                 </ol>
             );

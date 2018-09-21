@@ -1,6 +1,6 @@
 {
   "name": "hud-ui",
-  "version": "1.1.12",
+  "version": "1.1.57",
   "repository": {
     "type": "git",
     "url": "https://github.com/ozoneplatform/ozp-hud.git"
@@ -68,14 +68,19 @@
   },
   "dependencies": {
     "babel-runtime": "4.6.6",
+    "bootstrap": "^3.3.7",
     "bootstrap-sass": "git://github.com/ozoneplatform/ozp-bootstrap-sass",
+    "bootstrap-tour": "git://github.com/ozone-utils/bootstrap-tour.git",
+    "browser-pubsub": "^1.2.1",
     "gulp-preprocess": "1.2.0",
     "icons": "git://github.com/ozoneplatform/ozp-icons",
     "immutable": "3.0.2",
     "object-assign": "1.0.0",
+    "object-db": "^1.2.4",
     "ozp-react-commons": "git://github.com/ozoneplatform/ozp-react-commons#master",
     "react": "0.12.2",
     "react-router": "0.12.4",
-    "reflux": "0.1.15"
+    "reflux": "0.1.15",
+    "select2": "^3.5.1"
   }
 }

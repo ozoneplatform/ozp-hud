@@ -53,6 +53,18 @@ module.exports = Reflux.createActions([
     'shareFolder',
 
     /**
+     * Restore a deleted folder
+     * @param {object} payload - the payload to be sent to the backend.
+     */
+    'restoreFolderNotification',
+
+    /**
+     * Remove a folder from a user
+     * @param {object} id of the application whose containing folder should be deleted
+     */
+    'deleteFolder',
+
+    /**
      * Indicate that a new folder has been created with the specified auto-generated name
      * @param name The current name for the new folder
      */
@@ -93,8 +105,11 @@ module.exports = Reflux.createActions([
     /**
      * Indicate that no specific folder is currently being viewed
      */
-    'stopViewingFolder'
-]);
+    'stopViewingFolder',
 
-//module.exports.viewFolder.sync = true;
-//module.exports.stopViewingFolder.sync = true;
+    /**
+     * Remove notification after a folder is restored via undo button
+     * @param payload The id of the notification
+     */
+    'restoreFolderNotificationRemoval'
+]);
